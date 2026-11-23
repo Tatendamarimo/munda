@@ -1,0 +1,21 @@
+.gradle/
+build/
+local.properties
+android/local.properties
+.idea/
+*.iml
+.DS_Store
+captures/
+.kotlin/
+# Per-project Firebase config; download your own from the Firebase console.
+android/app/google-services.json
+node_modules/
+*.log
+firebase-debug.log
+firestore-debug.log
+web/dist/
+web/.env*.local
+web/e2e/screenshots/
+dev-dist/
+
+.superpowers/

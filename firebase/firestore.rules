@@ -1,0 +1,95 @@
+rules_version = '2';
+
+// Munda: orgs/{orgId}/observations/{id}
+// An org is a farm, cooperative or extension group. Tenancy comes from an `orgId` custom claim
+// set by an admin backend; users without one share the "demo" org (matches Session.kt).
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() { return request.auth != null; }
+    function myOrg() { return request.auth.token.get('orgId', 'demo'); }
+    function inOrg(orgId) { return signedIn() && orgId == myOrg(); }
+
+    function isStr(v, min, max) { return v is string && v.size() >= min && v.size() <= max; }
+    function optStr(v, max) { return v == null || (v is string && v.size() <= max); }
+
+    function validOrigin(v) { return v in ['ON_DEVICE', 'CLOUD', 'PENDING']; }
+    function validReviewStatus(v) { return v in ['NOT_STARTED', 'DONE', 'FAILED']; }
+    function validStage(v) { return v in ['EMERGENCE', 'EARLY_GROWTH', 'LATE_GROWTH', 'TASSELING', 'GRAIN_FILL', 'MATURITY', 'UNKNOWN']; }
+
+    function validCore(c) {
+      return c is map && c.keys().hasOnly(['area', 'rainfall', 'onset'])
+        && c.area in ['FEW_PLANTS', 'PATCHES', 'LOW_SPOTS', 'FIELD_EDGES', 'MOST_OF_FIELD', 'UNKNOWN']
+        && c.rainfall in ['NONE', 'LIGHT', 'HEAVY', 'FLOODING', 'UNKNOWN']
+        && c.onset in ['RECENT', 'THIS_WEEK', 'ONE_TO_TWO_WEEKS', 'LONGER', 'UNKNOWN'];
+    }
+
+    // Model output is shaped by the app; rules bound its size so a compromised client can't bloat docs.
+    function validRecord(r) {
+      return r == null || (r is map
+        && r.keys().hasOnly(['summary', 'symptoms', 'possibleCauses', 'urgency', 'uncertaintyNote'])
+        && isStr(r.summary, 1, 300)
+        && r.possibleCauses is list && r.possibleCauses.size() <= 4
+        && r.urgency in ['ROUTINE', 'SOON', 'URGENT']);
+    }
+
+    function validReview(v) {
+      return v == null || (v is map
+        && v.keys().hasOnly(['summary', 'patterns', 'updatedCauses', 'nextChecks', 'reviewedAtMillis', 'historyConsidered'])
+        && v.patterns is list && v.patterns.size() <= 8
+        && v.updatedCauses is list && v.updatedCauses.size() <= 4
+        && v.nextChecks is list && v.nextChecks.size() <= 4);
+    }
+
+    match /orgs/{orgId}/observations/{obsId} {
+      allow read: if inOrg(orgId);
+
+      allow create: if inOrg(orgId)
+        && request.resource.data.keys().hasOnly([
+             'schemaVersion', 'id', 'orgId', 'ownerUid', 'plot', 'plotKey', 'crop', 'cropStage', 'description',
+             'core', 'followUps', 'hadPhoto', 'record', 'origin', 'createdAtMillis', 'reviewStatus', 'review',
+             'recordError', 'syncedAt'])
+        && request.resource.data.schemaVersion == 1
+        && request.resource.data.id == obsId
+        && request.resource.data.orgId == orgId
+        && request.resource.data.ownerUid == request.auth.uid
+        && isStr(request.resource.data.plot, 1, 64)
+        && isStr(request.resource.data.plotKey, 1, 64)
+        // Add crops here as their guides ship (see docs/adr/0004-multi-crop-and-livestock.md).
+        && request.resource.data.crop in ['MAIZE']
+        && validStage(request.resource.data.cropStage)
+        && isStr(request.resource.data.description, 1, 8000)
+        && validCore(request.resource.data.core)
+        && request.resource.data.followUps is list && request.resource.data.followUps.size() <= 4
+        && request.resource.data.hadPhoto is bool
+        && validRecord(request.resource.data.record)
+        && validOrigin(request.resource.data.origin)
+        // Offline-first: created on the phone, possibly days before it syncs; never in the future.
+        && request.resource.data.createdAtMillis is int
+        && request.resource.data.createdAtMillis <= request.time.toMillis() + 300000
+        && request.resource.data.reviewStatus == 'NOT_STARTED'
+        && request.resource.data.review == null
+        && optStr(request.resource.data.recordError, 200)
+        && request.resource.data.syncedAt == request.time;
+
+      // Only the author's device fills in the record and review; the observation itself is immutable.
+      allow update: if inOrg(orgId)
+        && resource.data.ownerUid == request.auth.uid
+        && request.resource.data.diff(resource.data).affectedKeys()
+             .hasOnly(['record', 'origin', 'recordError', 'reviewStatus', 'review', 'updatedAt'])
+        && validRecord(request.resource.data.record)
+        && validOrigin(request.resource.data.origin)
+        && validReviewStatus(request.resource.data.reviewStatus)
+        && validReview(request.resource.data.review)
+        && optStr(request.resource.data.recordError, 200)
+        && request.resource.data.updatedAt == request.time;
+
+      // Field history is the product; no client-side deletes (handle via admin tooling).
+      allow delete: if false;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

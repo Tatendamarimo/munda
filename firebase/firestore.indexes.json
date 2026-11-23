@@ -1,0 +1,19 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "observations",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "plotKey", "order": "ASCENDING" },
+        { "fieldPath": "createdAtMillis", "order": "DESCENDING" }
+      ]
+    }
+  ],
+  "fieldOverrides": [
+    {
+      "collectionGroup": "observations",
+      "fieldPath": "description",
+      "indexes": []
+    }
+  ]
+}

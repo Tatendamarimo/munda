@@ -1,0 +1,294 @@
+{
+  "crop": "MAIZE",
+  "version": 1,
+  "note": "Plain-language summary of widely published extension guidance (e.g. FAO, CIMMYT). Reference material for the model, not a diagnosis tool. Single source of truth: the web app imports this file; the Android MaizeGuide is tested against it.",
+  "entries": [
+    {
+      "id": "nitrogen",
+      "name": "Nitrogen deficiency",
+      "category": "NUTRIENT",
+      "keywords": [
+        "yellow",
+        "yellowing",
+        "pale",
+        "light green",
+        "lower leaves",
+        "bottom leaves",
+        "old leaves",
+        "v shape",
+        "v-shape",
+        "midrib",
+        "tip",
+        "stunted",
+        "poor growth",
+        "small",
+        "thin"
+      ],
+      "signs": "Yellowing starts at the tip of older, lower leaves and runs down the midrib in a V shape; plants pale and stunted.",
+      "distinguish": "Lower leaves first (sulfur and zinc show on young leaves first). Common after heavy rain on sandy soil or with no top-dressing.",
+      "checkInField": "Compare lower and upper leaves; ask when fertilizer was last applied; compare with a well-fertilized row."
+    },
+    {
+      "id": "waterlogging",
+      "name": "Waterlogging",
+      "category": "WATER",
+      "keywords": [
+        "waterlogged",
+        "standing water",
+        "flood",
+        "flooded",
+        "wet",
+        "low",
+        "low spots",
+        "puddle",
+        "rain",
+        "yellow",
+        "purple",
+        "wilting",
+        "rotten roots",
+        "smell"
+      ],
+      "signs": "Yellowing or purpling and stunting in low parts of the field after heavy rain; roots brown, few, or smelling sour.",
+      "distinguish": "Follows the lie of the land (low spots) rather than rows or random plants; appears within days of heavy rain.",
+      "checkInField": "Look for standing water or wet soil after rain; dig up one plant and check roots for brown rot or sour smell."
+    },
+    {
+      "id": "drought",
+      "name": "Drought / moisture stress",
+      "category": "WATER",
+      "keywords": [
+        "dry",
+        "drought",
+        "no rain",
+        "rolling",
+        "rolled",
+        "curling",
+        "wilting",
+        "grey",
+        "gray",
+        "dull",
+        "afternoon",
+        "hot",
+        "cracks"
+      ],
+      "signs": "Leaves roll or curl and look dull grey-green, especially in the afternoon; plants recover overnight if stress is mild.",
+      "distinguish": "Rolling that eases in the morning points to moisture stress; worst on sandy or shallow soils and ridges.",
+      "checkInField": "Dig 10 cm down: if soil crumbles dry, moisture is short. Check whether leaves unroll early morning."
+    },
+    {
+      "id": "sulfur",
+      "name": "Sulfur deficiency",
+      "category": "NUTRIENT",
+      "keywords": [
+        "yellow",
+        "striped",
+        "stripes",
+        "young leaves",
+        "top leaves",
+        "upper leaves",
+        "new leaves",
+        "pale"
+      ],
+      "signs": "Whole young (upper) leaves turn pale yellow, sometimes with light stripes between veins; plants stunted.",
+      "distinguish": "Upper/younger leaves first — the opposite of nitrogen, which starts on lower leaves.",
+      "checkInField": "Compare young top leaves with older lower ones. Common on sandy, low-organic-matter soils."
+    },
+    {
+      "id": "potassium",
+      "name": "Potassium deficiency",
+      "category": "NUTRIENT",
+      "keywords": [
+        "edges",
+        "margins",
+        "brown edges",
+        "burnt",
+        "scorched",
+        "firing",
+        "lower leaves",
+        "lodging",
+        "falling over"
+      ],
+      "signs": "Older leaves yellow then brown along the edges (margins) while the midrib stays green; weak stalks may fall over.",
+      "distinguish": "Edges burn, not the midrib (nitrogen runs down the midrib).",
+      "checkInField": "Look at lower leaf edges for yellow-brown scorching with a green centre."
+    },
+    {
+      "id": "phosphorus",
+      "name": "Phosphorus deficiency",
+      "category": "NUTRIENT",
+      "keywords": [
+        "purple",
+        "reddish",
+        "red",
+        "dark green",
+        "slow",
+        "young plants",
+        "cold",
+        "stunted"
+      ],
+      "signs": "Young plants dark green with purple or reddish leaf edges and tips; slow early growth.",
+      "distinguish": "Mostly in young plants and cold or wet early-season soils; some varieties are naturally purple.",
+      "checkInField": "Check whether purple colour is on young plants across an area; compare with plants of the same seed elsewhere."
+    },
+    {
+      "id": "zinc",
+      "name": "Zinc deficiency",
+      "category": "NUTRIENT",
+      "keywords": [
+        "white",
+        "bands",
+        "white stripes",
+        "young leaves",
+        "pale bands",
+        "short",
+        "bushy"
+      ],
+      "signs": "Broad white or pale yellow bands either side of the midrib on young leaves; short internodes.",
+      "distinguish": "Wide bands near the base of young leaves, not narrow broken streaks (streak virus).",
+      "checkInField": "Examine young leaves for broad pale bands starting near the leaf base."
+    },
+    {
+      "id": "fall_armyworm",
+      "name": "Fall armyworm",
+      "category": "PEST",
+      "keywords": [
+        "holes",
+        "ragged",
+        "eaten",
+        "chewed",
+        "window",
+        "windowpane",
+        "whorl",
+        "funnel",
+        "sawdust",
+        "frass",
+        "droppings",
+        "caterpillar",
+        "worm",
+        "larva",
+        "larvae"
+      ],
+      "signs": "Ragged holes and see-through 'windowpane' patches on leaves; wet sawdust-like droppings (frass) in the whorl; caterpillars inside.",
+      "distinguish": "Fresh frass in the whorl and a caterpillar with an upside-down Y on its head; damage on scattered plants, not in low spots.",
+      "checkInField": "Walk a W pattern, check 20 plants: open the whorl, look for frass and caterpillars. Note how many of 20 are damaged."
+    },
+    {
+      "id": "stalk_borer",
+      "name": "Stalk borer",
+      "category": "PEST",
+      "keywords": [
+        "holes",
+        "shot holes",
+        "row of holes",
+        "dead heart",
+        "dead centre",
+        "tunnel",
+        "stem",
+        "stalk",
+        "broken",
+        "borer"
+      ],
+      "signs": "Rows of small 'shot holes' across leaves as they unroll; dead centre leaf (dead heart); tunnels inside stems.",
+      "distinguish": "Holes in a neat row across the leaf (from feeding in the whorl) and tunnels in the stalk.",
+      "checkInField": "Pull the centre leaf: if it slides out and is rotten at the base, split the stem to look for tunnels or larvae."
+    },
+    {
+      "id": "streak_virus",
+      "name": "Maize streak virus",
+      "category": "DISEASE",
+      "keywords": [
+        "streaks",
+        "streak",
+        "stripes",
+        "lines",
+        "yellow lines",
+        "broken lines",
+        "young leaves",
+        "stunted",
+        "leafhopper"
+      ],
+      "signs": "Narrow, broken yellow streaks along the veins of young leaves, becoming continuous stripes; plants stunted if infected early.",
+      "distinguish": "Thin broken streaks along veins (not broad bands); scattered plants, often near field edges; spread by leafhoppers.",
+      "checkInField": "Hold a young leaf to the light and look for thin broken yellow streaks along veins. Count affected plants."
+    },
+    {
+      "id": "mln",
+      "name": "Maize lethal necrosis",
+      "category": "DISEASE",
+      "keywords": [
+        "drying",
+        "dying",
+        "dead",
+        "margins",
+        "edges",
+        "dead heart",
+        "rotten cob",
+        "mottle",
+        "mottling",
+        "whole plant"
+      ],
+      "signs": "Yellow mottling, then drying from leaf edges inward; dead heart; plants may die or cobs rot. Recorded mainly in East Africa.",
+      "distinguish": "Rapid drying of whole plants and dead heart with mottling; usually needs expert or lab confirmation.",
+      "checkInField": "Note how many plants are drying from the edges and whether centre leaves are dead. Report to an extension officer."
+    },
+    {
+      "id": "grey_leaf_spot",
+      "name": "Grey leaf spot",
+      "category": "DISEASE",
+      "keywords": [
+        "spots",
+        "lesions",
+        "grey",
+        "gray",
+        "tan",
+        "rectangular",
+        "brown spots",
+        "humid",
+        "lower leaves"
+      ],
+      "signs": "Long, narrow rectangular grey to tan lesions that stop at the leaf veins, starting on lower leaves in humid weather.",
+      "distinguish": "Straight-sided rectangles bounded by veins (blight lesions are cigar-shaped).",
+      "checkInField": "Look at lower leaves for rectangular lesions with straight sides."
+    },
+    {
+      "id": "leaf_blight",
+      "name": "Northern leaf blight",
+      "category": "DISEASE",
+      "keywords": [
+        "spots",
+        "lesions",
+        "long spots",
+        "cigar",
+        "boat",
+        "grey-green",
+        "tan",
+        "dead patches",
+        "humid",
+        "cool"
+      ],
+      "signs": "Long cigar- or boat-shaped grey-green to tan lesions on leaves, starting low and moving up in cool, humid weather.",
+      "distinguish": "Elliptical, cigar-shaped lesions not limited by veins.",
+      "checkInField": "Measure a few lesions: long (several cm) elliptical lesions suggest blight."
+    },
+    {
+      "id": "striga",
+      "name": "Striga (witchweed)",
+      "category": "WEED",
+      "keywords": [
+        "weed",
+        "weeds",
+        "pink flowers",
+        "purple flowers",
+        "small plants",
+        "witchweed",
+        "striga",
+        "wilting",
+        "stunted",
+        "yellow"
+      ],
+      "signs": "Maize stunted, yellowing and wilting even with moisture, with small weeds with pink or purple flowers at the base.",
+      "distinguish": "Small pink/purple-flowered weeds attached to maize roots; damage starts before the weed emerges.",
+      "checkInField": "Look at the base of affected plants for small weeds with pink or purple flowers; carefully dig to see if they attach to roots."
+    }
+  ]
+}

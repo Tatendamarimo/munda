@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="200 60 600 600" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">Munda</title>
+  <desc id="desc">Forest green M with curved cultivated fields and a golden sprout, above a rounded lowercase Munda wordmark. Transparent background.</desc>
+  <defs>
+    <mask id="fields" maskUnits="userSpaceOnUse" x="200" y="90" width="600" height="540">
+      <path fill="white" d="M200 630V165Q200 90 275 90H325L500 250L675 90H725Q800 90 800 165V605Q800 630 775 630Z"/>
+      <g stroke="black" stroke-width="28" stroke-linecap="butt">
+        <path d="M180 350Q340 330 500 420"/>
+        <path d="M180 440Q300 440 395 510"/>
+        <path d="M290 660Q440 350 820 355"/>
+        <path d="M480 660Q590 455 820 440"/>
+      </g>
+    </mask>
+  </defs>
+  <g id="symbol">
+    <path fill="#075536" mask="url(#fields)" d="M200 90H800V630H200Z"/>
+    <path fill="#D5A52D" d="M636 363C640 337 642 317 637 299C615 302 579 282 574 249C609 244 641 267 644 295C649 251 666 217 714 210C719 253 690 291 655 303C650 322 651 341 651 360Z"/>
+  </g>
+  <g id="wordmark" transform="translate(57 0)" stroke="#075536" stroke-width="40" stroke-linecap="round" stroke-linejoin="round">
+    <path id="m" d="M100 830V755C100 710 166 710 166 755V830M166 755C166 710 232 710 232 755V830"/>
+    <path id="u" d="M284 733V790C284 848 362 848 362 790V733"/>
+    <path id="n" d="M414 830V773C414 715 492 715 492 773V830"/>
+    <path id="d" d="M636 830V685M636 780C636 715 548 715 548 780C548 845 636 845 636 780"/>
+    <path id="a" d="M786 830V780C786 715 698 715 698 780C698 845 786 845 786 780"/>
+  </g>
+</svg>

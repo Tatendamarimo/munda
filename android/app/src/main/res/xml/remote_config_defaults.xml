@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- In-app defaults; override from the Firebase console without shipping an update. -->
+<defaultsMap>
+    <entry><key>cloud_model</key><value>gemini-3.7-flash</value></entry>
+    <entry><key>review_model</key><value>gemini-3.7-flash</value></entry>
+    <!-- On-device input is capped at ~4k tokens including prompt + guide excerpts. -->
+    <entry><key>max_on_device_chars</key><value>3000</value></entry>
+    <entry><key>history_lookback_days</key><value>120</value></entry>
+    <entry><key>recurring_threshold</key><value>1</value></entry>
+    <entry><key>spreading_plot_threshold</key><value>2</value></entry>
+    <entry><key>spreading_window_days</key><value>21</value></entry>
+    <entry><key>ai_review_enabled</key><value>true</value></entry>
+    <entry><key>ai_followup_questions_enabled</key><value>true</value></entry>
+</defaultsMap>
