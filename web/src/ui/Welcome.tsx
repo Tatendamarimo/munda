@@ -2,7 +2,8 @@ import { connectivity } from '../data/connectivity';
 import { session, type SessionState } from '../data/session';
 import { useStore } from '../data/store';
 import { LANG_CODES, LANGS, setLanguage, useLang, useT } from '../i18n';
-import { CauseEntry, OriginBadge, Working } from './components';
+import { CauseCard } from './CauseCard';
+import { OriginBadge, Working } from './components';
 import { Hero } from './Header';
 
 /**
@@ -40,7 +41,8 @@ export function Welcome({ state }: { state: SessionState }) {
             <p>{t('welcome.sample')}</p>
             <OriginBadge origin="ON_DEVICE" />
           </div>
-          <CauseEntry
+          <CauseCard
+            lead
             animate
             cause={{
               guideId: 'nitrogen', name: 'Nitrogen deficiency', likelihood: 'HIGH',

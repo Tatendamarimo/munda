@@ -1,7 +1,7 @@
 import { CircleCheck, CircleHelp, Cloud, CloudUpload, HardDrive, Laptop, ListChecks, Timer } from 'lucide-react';
 import type { ReactNode } from 'react';
+import { labelLikelihood, labelOrigin, labelUrgency, useLang, useT } from '../i18n';
 import type { InferenceOrigin, Likelihood, PossibleCause, Urgency } from '../domain/models';
-import { Likelihood as L, Urgency as U } from '../domain/models';
 
 type Tone = 'device' | 'cloud' | 'pending' | 'soil' | 'ok' | 'quiet' | 'routine' | 'soon' | 'urgent';
 
@@ -13,19 +13,27 @@ const ic = { size: 14, strokeWidth: 2.25, 'aria-hidden': true } as const;
 
 /** Where the AI actually ran, from the SDK's inferenceSource. Shown on every record. */
 export function OriginBadge({ origin }: { origin: InferenceOrigin }) {
-  if (origin === 'ON_DEVICE') return <Badge tone="device" icon={<Laptop {...ic} />}>On this device</Badge>;
-  if (origin === 'CLOUD') return <Badge tone="cloud" icon={<Cloud {...ic} />}>Cloud AI</Badge>;
-  return <Badge tone="pending" icon={<Timer {...ic} />}>Waiting for signal</Badge>;
+  const lang = useLang();
+  const text = labelOrigin(origin, lang);
+  if (origin === 'ON_DEVICE') return <Badge tone="device" icon={<Laptop {...ic} />}>{text}</Badge>;
+  if (origin === 'CLOUD') return <Badge tone="cloud" icon={<Cloud {...ic} />}>{text}</Badge>;
+  return <Badge tone="pending" icon={<Timer {...ic} />}>{text}</Badge>;
 }
 
-export const SyncBadge = ({ synced }: { synced: boolean }) =>
-  synced ? <Badge tone="ok" icon={<CircleCheck {...ic} />}>Synced</Badge> : <Badge tone="soil" icon={<HardDrive {...ic} />}>Saved on device</Badge>;
+export function SyncBadge({ synced }: { synced: boolean }) {
+  const t = useT();
+  return synced ? <Badge tone="ok" icon={<CircleCheck {...ic} />}>{t('enums.sync.SYNCED')}</Badge> : <Badge tone="soil" icon={<HardDrive {...ic} />}>{t('enums.sync.LOCAL')}</Badge>;
+}
 
-export const UrgencyBadge = ({ urgency }: { urgency: Urgency }) => (
-  <Badge tone={urgency === 'URGENT' ? 'urgent' : urgency === 'SOON' ? 'soon' : 'routine'}>{U.label(urgency)}</Badge>
-);
+export function UrgencyBadge({ urgency }: { urgency: Urgency }) {
+  const lang = useLang();
+  return <Badge tone={urgency === 'URGENT' ? 'urgent' : urgency === 'SOON' ? 'soon' : 'routine'}>{labelUrgency(urgency, lang)}</Badge>;
+}
 
-export const QueuedBadge = () => <Badge tone="pending" icon={<CloudUpload {...ic} />}>Finishes when online</Badge>;
+export function QueuedBadge() {
+  const t = useT();
+  return <Badge tone="pending" icon={<CloudUpload {...ic} />}>{t('enums.sync.QUEUED')}</Badge>;
+}
 
 const KERNELS = 5;
 const filled: Record<Likelihood, number> = { LOW: 1, MEDIUM: 3, HIGH: 4 };
@@ -35,10 +43,12 @@ const filled: Record<Likelihood, number> = { LOW: 1, MEDIUM: 3, HIGH: 4 };
  * certainty, and the meter says so without words. Words sit beside it so colour isn't needed.
  */
 export function KernelMeter({ likelihood, animate = false }: { likelihood: Likelihood; animate?: boolean }) {
+  const lang = useLang();
   const n = filled[likelihood];
+  const label = labelLikelihood(likelihood, lang);
   return (
-    <div className={`kernels kernels-${likelihood.toLowerCase()}${animate ? ' kernels-animate' : ''}`} role="img" aria-label={`${L.label(likelihood)}: ${n} of ${KERNELS}`}>
-      <span className="kernels-label">{L.label(likelihood)}</span>
+    <div className={`kernels kernels-${likelihood.toLowerCase()}${animate ? ' kernels-animate' : ''}`} role="img" aria-label={`${label}: ${n}/${KERNELS}`}>
+      <span className="kernels-label">{label}</span>
       <span className="kernels-row" title="Munda never fills the fifth kernel: it can't be certain from a description.">
         {Array.from({ length: KERNELS }, (_, i) => (
           <svg key={i} viewBox="0 0 10 14" className={i < n ? 'kernel kernel-on' : 'kernel'} style={{ animationDelay: `${120 + i * 90}ms` }}>

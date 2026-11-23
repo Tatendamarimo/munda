@@ -1,7 +1,7 @@
 import { useSyncExternalStore } from 'react';
 import { session } from '../data/session';
 import { useStore } from '../data/store';
-import { DetailPage } from './DetailPage';
+import { RecordPage } from './RecordPage';
 import { HomePage } from './HomePage';
 import { ObservePage } from './ObservePage';
 import { Placeholder } from './Placeholder';
@@ -20,7 +20,7 @@ function screenFor(r: Route) {
   switch (r.name) {
     case 'home': return <HomePage />;
     case 'observe': return <div className="page"><ObservePage key="observe" /></div>;
-    case 'record': return <div className="page"><DetailPage key={r.id} id={r.id} /></div>;
+    case 'record': return <RecordPage key={r.id} id={r.id} />;
     case 'plots': case 'plot': case 'guide': case 'guideEntry': case 'me': return <Placeholder route={r} />;
   }
 }
