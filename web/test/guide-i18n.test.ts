@@ -22,6 +22,20 @@ describe('multilingual retrieval', () => {
     });
   }
 
+  const nitrogenIn: Array<[string, string]> = [
+    ['nd', 'Amahlamvu angaphansi ayaphuzi kusukela esihlokweni, izithombo zincane'],
+    ['sw', 'Majani ya chini yanageuka manjano kuanzia ncha na mimea ni midogo'],
+    ['fr', 'Les feuilles du bas jaunissent depuis la pointe et les plants sont chétifs'],
+    ['pt', 'As folhas de baixo estão amarelando a partir da ponta e as plantas estão pequenas'],
+    ['es', 'Las hojas de abajo se ponen amarillas desde la punta y las plantas están pequeñas'],
+  ];
+  for (const [lang, text] of nitrogenIn) {
+    it(`${lang}: yellow lower leaves after heavy rain`, () => {
+      const got = maize.relevant(text, core('PATCHES', 'HEAVY'), 'EARLY_GROWTH', 5).map((e) => e.id);
+      expect(got).toContain('nitrogen');
+    });
+  }
+
   it('normalises accents and case', () => {
     expect(normalizeText('Hojas AMARILLAS y maïs')).toBe('hojas amarillas y mais');
   });
@@ -34,9 +48,18 @@ describe('localized guide entries', () => {
     expect(sn.name).not.toBe(nitrogen.name);
     expect(sn.checkInField).not.toBe(nitrogen.checkInField);
   });
-  it('falls back to English per field when a language has no file', () => {
-    expect(localizedEntry(nitrogen, 'fr')).toEqual({ name: nitrogen.name, signs: nitrogen.signs, checkInField: nitrogen.checkInField });
+  it('falls back to English per field when a translation leaves one out', () => {
+    expect(localizedEntry({ ...nitrogen, id: 'not_in_any_translation' }, 'fr')).toEqual({ name: nitrogen.name, signs: nitrogen.signs, checkInField: nitrogen.checkInField });
   });
+  for (const lang of ['nd', 'sw', 'fr', 'pt', 'es'] as const) {
+    it(`${lang} translates every guide entry`, () => {
+      for (const e of maize.entries) {
+        const l = localizedEntry(e, lang);
+        expect(l.name, e.id).not.toBe(e.name);
+        expect(l.checkInField, e.id).not.toBe(e.checkInField);
+      }
+    });
+  }
   it('every Shona entry exists in the guide', () => {
     for (const e of maize.entries) expect(localizedEntry(e, 'sn').name.trim()).not.toBe('');
   });

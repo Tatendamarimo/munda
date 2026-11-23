@@ -3,13 +3,18 @@ import { Store, useStore } from '../data/store';
 import type { AffectedArea, CropStage, FindingSource, InferenceOrigin, Likelihood, Onset, PatternKind, Rainfall, Urgency } from '../domain/models';
 import { en, type MessageKey, type PartialMessages } from './en';
 import { isLang, LANGS, type Lang } from './langs';
+import { es } from './es';
+import { fr } from './fr';
+import { nd } from './nd';
+import { pt } from './pt';
 import { sn } from './sn';
+import { sw } from './sw';
 
 export { LANGS, LANG_CODES, isLang, type Lang } from './langs';
 export type { MessageKey } from './en';
 
-/** Languages without a dictionary yet simply fall back to English for every key. */
-const DICTS: Partial<Record<Lang, PartialMessages>> = { en, sn };
+/** Any key a dictionary leaves out falls back to English. */
+const DICTS: Partial<Record<Lang, PartialMessages>> = { en, sn, nd, sw, fr, pt, es };
 
 export function registerDictionary(lang: Lang, dict: PartialMessages) {
   DICTS[lang] = dict;
