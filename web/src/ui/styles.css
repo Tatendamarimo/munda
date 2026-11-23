@@ -296,7 +296,7 @@ progress { width: 100%; height: 8px; accent-color: var(--leaf); }
 .dot-ACT { background: var(--rust); box-shadow: 0 0 0 4px var(--rust-wash); }
 
 /* Light page head (all screens but home) */
-.page-head { display: flex; align-items: center; gap: 10px; padding: calc(12px + env(safe-area-inset-top)) 16px 4px; max-width: 760px; margin: 0 auto; }
+.page-head { width: 100%; display: flex; align-items: center; gap: 10px; padding: calc(12px + env(safe-area-inset-top)) 16px 4px; max-width: 760px; margin: 0 auto; }
 .page-head h1 { font-size: 1.05rem; flex: 1; text-align: center; }
 .page-title { font-size: 1.6rem; font-weight: 800; line-height: 1.15; }
 .icon-btn { width: 44px; height: 44px; flex: none; display: grid; place-items: center; border: 0; border-radius: 14px; background: var(--card); color: var(--ink); cursor: pointer; }
@@ -363,3 +363,23 @@ progress { width: 100%; height: 8px; accent-color: var(--leaf); }
 .full-logo { display: block; height: auto; }
 .brand-on-dark { display: inline-flex; align-items: center; gap: 8px; color: #fff; text-decoration: none; font-family: var(--font-display); font-weight: 800; font-size: 1.35rem; letter-spacing: -.02em; }
 .brand-on-dark img { width: 30px; height: 30px; padding: 3px; border-radius: 9px; background: #fff; }
+
+/* Observation flow, design B */
+.flow { display: grid; gap: 8px; }
+.photo-preview { position: relative; display: grid; gap: 10px; }
+.photo-preview img { width: 100%; max-height: 300px; object-fit: cover; border-radius: var(--r-lg); display: block; }
+.photo-remove { position: absolute; top: 10px; right: 10px; background: rgb(18 32 26 / .7); color: #fff; }
+.action-card-inline { margin: 0; width: 100%; max-width: none; }
+.duo { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.duo-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 56px; border-radius: 16px;
+  border: 0; background: var(--wash); color: var(--leaf); font: inherit; font-weight: 700; cursor: pointer;
+}
+.duo-btn[aria-pressed='true'] { box-shadow: inset 0 0 0 2px var(--leaf); }
+.duo-btn.is-live { background: var(--alert); color: #fff; }
+.tile { position: relative; }
+.tile-check { position: absolute; top: 8px; right: 8px; color: #fff; background: var(--leaf); border-radius: 50%; padding: 3px; width: 24px; height: 24px; }
+.tiles-text { grid-template-columns: 1fr; }
+.tile-text { min-height: 60px; align-content: center; }
+.question-text { font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; }
+.text-btn[aria-pressed='true'] { color: var(--leaf); }

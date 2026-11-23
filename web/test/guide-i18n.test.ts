@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { guideFor, normalizeText } from '../src/domain/guide';
-import { localizedEntry } from '../src/domain/localize';
+import { causeDisplay, localizedEntry } from '../src/domain/localize';
 import type { AffectedArea, CoreAnswers, CropStage, Rainfall } from '../src/domain/models';
 import { emptyCore } from '../src/domain/models';
 
@@ -39,5 +39,22 @@ describe('localized guide entries', () => {
   });
   it('every Shona entry exists in the guide', () => {
     for (const e of maize.entries) expect(localizedEntry(e, 'sn').name.trim()).not.toBe('');
+  });
+});
+
+describe('cause display', () => {
+  const nitrogen = { guideId: 'nitrogen', name: 'Nitrogen deficiency', likelihood: 'HIGH' as const, supporting: [], againstOrMissing: [], checkNext: 'Compare with a top-dressed row.' };
+  it('shows the translated guide name and field check, keeping the model note', () => {
+    const d = causeDisplay(nitrogen, 'sn', maize);
+    expect(d.name).toBe(localizedEntry(maize.get('nitrogen')!, 'sn').name);
+    expect(d.check).toBe(localizedEntry(maize.get('nitrogen')!, 'sn').checkInField);
+    expect(d.modelCheck).toBe('Compare with a top-dressed row.');
+  });
+  it('in English uses the model’s own specific check', () => {
+    expect(causeDisplay(nitrogen, 'en', maize)).toEqual({ name: 'Nitrogen deficiency', check: 'Compare with a top-dressed row.', modelCheck: null });
+  });
+  it('keeps causes outside the guide as the model wrote them', () => {
+    const other = { ...nitrogen, guideId: null, name: 'Hail damage', checkNext: 'Look for torn leaves after the storm.' };
+    expect(causeDisplay(other, 'sn', maize)).toEqual({ name: 'Hail damage', check: 'Look for torn leaves after the storm.', modelCheck: null });
   });
 });
