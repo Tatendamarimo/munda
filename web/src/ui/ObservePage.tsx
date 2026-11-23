@@ -56,6 +56,7 @@ export function ObservePage() {
   const [record, setRecord] = useState<RecordState>({ kind: 'idle' });
   const questionsFor = useRef<string | null>(null);
   const requestSeq = useRef(0);
+  const recordSeq = useRef(0);
   const advanceTimer = useRef<number | undefined>(undefined);
   useEffect(() => () => window.clearTimeout(advanceTimer.current), []);
 
@@ -73,6 +74,8 @@ export function ObservePage() {
   // While questions are loading we still plan to show them; "unavailable" or none skips the step.
   const hasFollowUps = step === 'followups' || questions.kind === 'loading' || (questions.kind === 'ready' && questions.questions.length > 0);
   const steps = stepsFor(hasFollowUps);
+  const hasFollowUpsRef = useRef(hasFollowUps);
+  hasFollowUpsRef.current = hasFollowUps;
 
   const edit = (patch: Partial<Form>) => {
     setForm((f) => ({ ...f, ...patch, description: (patch.description ?? f.description).slice(0, Limits.MAX_DESCRIPTION) }));
@@ -95,12 +98,14 @@ export function ObservePage() {
   };
 
   const buildRecord = () => {
-    if (record.kind === 'building') return;
     if (route.route === 'QUEUE_UNTIL_ONLINE') { setRecord({ kind: 'problem', message: route.reason }); return; }
     setRecord({ kind: 'building' });
-    void mundaAi.buildRecord(input(true), route.route).then((out) =>
-      setRecord(out.kind === 'done' ? { kind: 'done', record: out.value, origin: out.origin, latencyMs: out.latencyMs } : { kind: 'problem', message: out.reason }),
-    );
+    // Only the latest build may land: after Back and a changed answer, an earlier one is stale.
+    const seq = ++recordSeq.current;
+    void mundaAi.buildRecord(input(true), route.route).then((out) => {
+      if (seq !== recordSeq.current) return;
+      setRecord(out.kind === 'done' ? { kind: 'done', record: out.value, origin: out.origin, latencyMs: out.latencyMs } : { kind: 'problem', message: out.reason });
+    });
   };
 
   const goTo = (s: ObserveStep | null) => {
@@ -114,13 +119,18 @@ export function ObservePage() {
   const next = () => goTo(nextStep(step, hasFollowUps));
   const goBack = () => {
     const p = prevStep(step, hasFollowUps);
-    if (step === 'result') setRecord({ kind: 'idle' });
+    if (step === 'result') { recordSeq.current++; setRecord({ kind: 'idle' }); }
     if (p) goTo(p); else back();
   };
+  // The timer must run the goTo of the render *after* the answer is applied, or the record is
+  // built from the form as it was before the last tap (e.g. onset still "not sure").
+  const latestGoTo = useRef(goTo);
+  latestGoTo.current = goTo;
   const answerAndAdvance = (patch: Partial<Form>) => {
     edit(patch);
     window.clearTimeout(advanceTimer.current);
-    advanceTimer.current = window.setTimeout(() => goTo(nextStep(step, hasFollowUps)), AUTO_ADVANCE_MS);
+    const from = step;
+    advanceTimer.current = window.setTimeout(() => latestGoTo.current(nextStep(from, hasFollowUpsRef.current)), AUTO_ADVANCE_MS);
   };
   const setCore = (p: Partial<CoreAnswers>) => answerAndAdvance({ core: { ...form.core, ...p } });
 

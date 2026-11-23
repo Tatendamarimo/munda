@@ -2,7 +2,7 @@ import { Check, CloudRain, Camera, ChevronRight, HardDrive, MapPin, Sun, Triangl
 import { connectivity } from '../data/connectivity';
 import { cropWeeks, prefs } from '../data/prefs';
 import { useStore } from '../data/store';
-import { weather } from '../data/weather';
+import { freshWeather, weather } from '../data/weather';
 import { farmSummary, latestAlert, plotsFrom, timeline } from '../domain/farm';
 import { labelPattern, labelStage, useLang, useT, weekday } from '../i18n';
 import { Hero } from './Header';
@@ -16,7 +16,7 @@ export function HomePage() {
   const lang = useLang();
   const items = useObservations() ?? [];
   const p = useStore(prefs);
-  const w = useStore(weather);
+  const w = freshWeather(useStore(weather), Date.now());
   const online = useStore(connectivity);
 
   const observations = items.map((i) => i.observation);

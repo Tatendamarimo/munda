@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { cropWeeks } from '../src/data/prefs';
-import { parseOpenMeteo } from '../src/data/weather';
+import { freshWeather, parseOpenMeteo } from '../src/data/weather';
 
 const now = Date.UTC(2026, 10, 24, 9); // Tuesday 24 Nov 2026
 const sample = {
@@ -10,7 +10,7 @@ const sample = {
 
 describe('Open-Meteo parsing', () => {
   it('reads temperature and the first rainy day in the next 3 days', () => {
-    expect(parseOpenMeteo(sample, now)).toEqual({ tempC: 24, rainSoon: true, rainDay: 4, at: now });
+    expect(parseOpenMeteo(sample, now)).toEqual({ tempC: 24, rainSoon: true, rainDay: 4, rainAt: Date.UTC(2026, 10, 26, 12), at: now });
   });
   it('dry days ahead', () => {
     const dry = { ...sample, daily: { ...sample.daily, precipitation_sum: [0, 0, 4.9, 30] } };
@@ -29,5 +29,21 @@ describe('crop age', () => {
     expect(cropWeeks(undefined, now)).toBeNull();
     expect(cropWeeks(now - 43 * 86_400_000, now)).toBe(6);
     expect(cropWeeks(now + 86_400_000, now)).toBeNull();
+  });
+});
+
+describe('stale forecasts', () => {
+  const w = parseOpenMeteo(sample, now)!;
+  const H = 3_600_000;
+  it('shows a fresh forecast as is', () => {
+    expect(freshWeather(w, now + 2 * H)).toEqual(w);
+  });
+  it('hides a forecast older than a day', () => {
+    expect(freshWeather(w, now + 25 * H)).toBeNull();
+    expect(freshWeather(null, now)).toBeNull();
+  });
+  it('drops rain whose day has already passed', () => {
+    const rainedYesterday = { ...w, rainAt: now - 20 * H, rainDay: 1 };
+    expect(freshWeather(rainedYesterday, now + 2 * H)).toMatchObject({ rainSoon: false, rainDay: null, rainAt: null, tempC: 24 });
   });
 });

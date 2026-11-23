@@ -143,6 +143,8 @@ npm run e2e:serve       # terminal 2 (uses the fake config in .env.e2e)
 npm run e2e             # terminal 3 (set CHROME=/path/to/chrome if not /usr/bin/google-chrome)
 ```
 
+Flow regressions (no emulators; dev server + fake on-device model): `cd web && npm run dev`, then `node e2e/flow-regressions.mjs`.
+
 See [`docs/eval/scenarios.md`](docs/eval/scenarios.md) for the evaluation scenarios and [`docs/eval/test-images.md`](docs/eval/test-images.md) for openly licensed maize image datasets.
 
 ## Project structure

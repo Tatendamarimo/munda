@@ -2,7 +2,7 @@ import { MapPin } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { prefs, updatePrefs } from '../data/prefs';
 import { useStore } from '../data/store';
-import { setWeatherEnabled, weather, weatherEnabled } from '../data/weather';
+import { freshWeather, setWeatherEnabled, weather, weatherEnabled } from '../data/weather';
 import { LANG_CODES, LANGS, setLanguage, useLang, useT } from '../i18n';
 import { PageHead } from './Header';
 import { StatusDetails } from './StatusPill';
@@ -19,7 +19,7 @@ export function MePage() {
   const lang = useLang();
   const p = useStore(prefs);
   const weatherOn = useStore(weatherEnabled);
-  const w = useStore(weather);
+  const w = freshWeather(useStore(weather), Date.now());
   return (
     <>
       <PageHead title={t('me.title')} />

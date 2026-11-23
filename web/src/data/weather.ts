@@ -12,6 +12,8 @@ export interface Weather {
   rainSoon: boolean;
   /** Day of week (0 = Sunday) of the first such day. */
   rainDay: number | null;
+  /** Noon (UTC) of that day, to drop rain that has already passed. */
+  rainAt: number | null;
   at: number;
 }
 
@@ -31,14 +33,27 @@ export function parseOpenMeteo(json: unknown, now: number): Weather | null {
   if (temp === null || !Array.isArray(times) || !Array.isArray(rain) || times.length !== rain.length) return null;
   // Today and the next 2 days: the window a farmer can still act in.
   let rainDay: number | null = null;
+  let rainAt: number | null = null;
   for (let i = 0; i < Math.min(3, times.length); i++) {
     const mm = num(rain[i]);
     if (mm !== null && mm >= RAIN_MM && typeof times[i] === 'string') {
       const d = new Date(`${times[i]}T12:00:00Z`);
-      if (!Number.isNaN(d.getTime())) { rainDay = d.getUTCDay(); break; }
+      if (!Number.isNaN(d.getTime())) { rainDay = d.getUTCDay(); rainAt = d.getTime(); break; }
     }
   }
-  return { tempC: Math.round(temp), rainSoon: rainDay !== null, rainDay, at: now };
+  return { tempC: Math.round(temp), rainSoon: rainDay !== null, rainDay, rainAt, at: now };
+}
+
+const SHOW_FOR = 24 * 3_600_000;
+
+/**
+ * What the header may show now: nothing once the forecast is over a day old (offline for days
+ * must not read as this week's weather), and no rain once its day has passed.
+ */
+export function freshWeather(w: Weather | null, now: number): Weather | null {
+  if (!w || now - w.at > SHOW_FOR) return null;
+  if (w.rainAt !== null && w.rainAt !== undefined && now > w.rainAt + 12 * 3_600_000) return { ...w, rainSoon: false, rainDay: null, rainAt: null };
+  return w;
 }
 
 function readCache(): Weather | null {
