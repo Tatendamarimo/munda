@@ -130,7 +130,7 @@ export const en = {
   plots: {
     title: 'My plots',
     empty: 'No plots yet. Check a crop and name its plot; Munda keeps each plot’s history.',
-    records: '{n} records',
+    records: '{n} records', recordsOne: '1 record',
     lastChecked: 'Last checked {when}',
     planted: 'Planting date',
     plantedHelp: 'Set it to see the crop’s age on the home page.',

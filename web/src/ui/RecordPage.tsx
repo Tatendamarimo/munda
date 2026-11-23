@@ -26,7 +26,7 @@ function useItem(id: string): ObservationItem | null | undefined {
   const orgId = s.kind === 'ready' ? s.orgId : null;
   const [item, setItem] = useState<ObservationItem | null | undefined>(undefined);
   useEffect(() => (orgId ? repository.observe(orgId, id, setItem) : undefined), [orgId, id]);
-  if (import.meta.env.DEV && demoMode()) return demoObservations.find((d) => d.observation.id === id) ?? null;
+  if (import.meta.env.DEV && demoMode()) return demoObservations().find((d) => d.observation.id === id) ?? null;
   return item;
 }
 

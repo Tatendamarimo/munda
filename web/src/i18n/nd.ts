@@ -56,7 +56,7 @@ export const nd: Messages = {
   },
   plots: {
     title: 'Amasimu ami', empty: 'Akukabi lamasimu. Hlola isilimo uphe isimu ibizo; iMunda igcina umlando wesimu ngasinye.',
-    records: 'Imibhalo {n}', lastChecked: 'Kwahlolwa {when}', planted: 'Usuku lokuhlanyela', plantedHelp: 'Lufake ukuze ubone ubudala besilimo ekhaya.',
+    records: 'Imibhalo {n}', recordsOne: 'Umbhalo 1', lastChecked: 'Kwahlolwa {when}', planted: 'Usuku lokuhlanyela', plantedHelp: 'Lufake ukuze ubone ubudala besilimo ekhaya.',
     patterns: 'Okubonwe yiMunda', noReview: 'Kuvela lapho umbhalo uthunyelwa uhlolwe kuinthanethi.', history: 'Imibhalo',
     trend: 'Indawo ethintekileyo ngokuhamba kwesikhathi', heavyRain: 'Izulu elinengi',
   },

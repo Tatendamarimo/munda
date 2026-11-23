@@ -56,7 +56,7 @@ export const pt: Messages = {
   },
   plots: {
     title: 'Os meus talhões', empty: 'Ainda não há talhões. Examine uma cultura e dê nome ao talhão; o Munda guarda o histórico de cada um.',
-    records: '{n} registos', lastChecked: 'Verificado {when}', planted: 'Data de sementeira', plantedHelp: 'Indique-a para ver a idade da cultura no início.',
+    records: '{n} registos', recordsOne: '1 registo', lastChecked: 'Verificado {when}', planted: 'Data de sementeira', plantedHelp: 'Indique-a para ver a idade da cultura no início.',
     patterns: 'O que o Munda notou', noReview: 'Aparece quando um registo é sincronizado e revisto na nuvem.', history: 'Registos',
     trend: 'Área afetada ao longo do tempo', heavyRain: 'Chuva forte',
   },

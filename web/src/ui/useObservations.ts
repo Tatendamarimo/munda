@@ -10,6 +10,6 @@ export function useObservations(): ObservationItem[] | null {
   const orgId = s.kind === 'ready' ? s.orgId : null;
   const [items, setItems] = useState<ObservationItem[] | null>(null);
   useEffect(() => (orgId ? repository.observeRecent(orgId, setItems) : undefined), [orgId]);
-  if (import.meta.env.DEV && demoMode()) return demoObservations;
+  if (import.meta.env.DEV && demoMode()) return demoObservations();
   return items;
 }

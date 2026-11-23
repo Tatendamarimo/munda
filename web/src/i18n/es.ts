@@ -56,7 +56,7 @@ export const es: Messages = {
   },
   plots: {
     title: 'Mis parcelas', empty: 'Aún no hay parcelas. Revise un cultivo y nombre su parcela; Munda guarda el historial de cada una.',
-    records: '{n} registros', lastChecked: 'Revisada {when}', planted: 'Fecha de siembra', plantedHelp: 'Póngala para ver la edad del cultivo en el inicio.',
+    records: '{n} registros', recordsOne: '1 registro', lastChecked: 'Revisada {when}', planted: 'Fecha de siembra', plantedHelp: 'Póngala para ver la edad del cultivo en el inicio.',
     patterns: 'Lo que Munda notó', noReview: 'Aparece cuando un registro se sincroniza y se revisa en la nube.', history: 'Registros',
     trend: 'Área afectada en el tiempo', heavyRain: 'Lluvia fuerte',
   },

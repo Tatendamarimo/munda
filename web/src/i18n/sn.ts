@@ -132,7 +132,7 @@ export const sn: Messages = {
   plots: {
     title: 'Minda yangu',
     empty: 'Hapana minda parizvino. Ongorora chirimwa wotumidza munda wacho zita; Munda inochengeta nhoroondo yemunda wega wega.',
-    records: 'Zvinyorwa {n}',
+    records: 'Zvinyorwa {n}', recordsOne: 'Chinyorwa 1',
     lastChecked: 'Yakapedzisira kutariswa {when}',
     planted: 'Zuva rekudyara',
     plantedHelp: 'Riise kuti uone zera rechirimwa pamberi.',

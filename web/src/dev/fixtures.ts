@@ -7,7 +7,14 @@ import { normalizeKey } from '../domain/models';
  * realistic data without the Firestore emulator. Never bundled in production builds.
  */
 const DAY = 86_400_000;
-const now = Date.now();
+
+/** Built on first use only, so production builds (where callers are dead code) drop all of it. */
+let cached: ObservationItem[] | null = null;
+export function demoObservations(): ObservationItem[] {
+  return (cached ??= build(Date.now()));
+}
+
+function build(now: number): ObservationItem[] {
 
 const nitrogen: PossibleCause = {
   guideId: 'nitrogen', name: 'Nitrogen deficiency', likelihood: 'HIGH',
@@ -45,8 +52,8 @@ const review: HistoryReview = {
   reviewedAtMillis: now - DAY / 2, historyConsidered: 3,
 };
 
-function obs(id: string, plot: string, daysAgo: number, o: Partial<Observation>): ObservationItem {
-  return {
+const obs = (id: string, plot: string, daysAgo: number, o: Partial<Observation>): ObservationItem => (
+  {
     synced: daysAgo > 0.5,
     observation: {
       id, orgId: 'demo', ownerUid: 'demo', crop: 'MAIZE', plot, plotKey: normalizeKey(plot), cropStage: 'LATE_GROWTH',
@@ -56,10 +63,9 @@ function obs(id: string, plot: string, daysAgo: number, o: Partial<Observation>)
       origin: 'ON_DEVICE', createdAtMillis: now - daysAgo * DAY, reviewStatus: 'NOT_STARTED', review: null, recordError: null,
       ...o,
     },
-  };
-}
+  });
 
-export const demoObservations: ObservationItem[] = [
+return [
   obs('d1', 'Low field', 0.2, { core: { area: 'MOST_OF_FIELD', rainfall: 'HEAVY', onset: 'THIS_WEEK' }, reviewStatus: 'DONE', review, origin: 'CLOUD' }),
   obs('d2', 'Home plot', 2, { core: { area: 'FEW_PLANTS', rainfall: 'LIGHT', onset: 'RECENT' }, description: 'Ragged holes in the leaves and sawdust in the funnel.', record: record([armyworm], 'URGENT', 'Holes and droppings in the funnel on a few plants.') }),
   obs('d3', 'Low field', 9, { core: { area: 'PATCHES', rainfall: 'HEAVY', onset: 'THIS_WEEK' } }),
@@ -67,5 +73,6 @@ export const demoObservations: ObservationItem[] = [
   obs('d5', 'Low field', 24, { core: { area: 'LOW_SPOTS', rainfall: 'FLOODING', onset: 'ONE_TO_TWO_WEEKS' } }),
   obs('d6', 'Low field', 38, { core: { area: 'FEW_PLANTS', rainfall: 'LIGHT', onset: 'RECENT' }, record: null, origin: 'PENDING' }),
 ];
+}
 
 export const demoMode = () => typeof location !== 'undefined' && new URLSearchParams(location.search).has('demo');

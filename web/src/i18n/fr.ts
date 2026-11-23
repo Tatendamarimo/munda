@@ -56,7 +56,7 @@ export const fr: Messages = {
   },
   plots: {
     title: 'Mes parcelles', empty: 'Pas encore de parcelle. Examinez une culture et nommez sa parcelle ; Munda garde l’historique de chacune.',
-    records: '{n} fiches', lastChecked: 'Vérifiée {when}', planted: 'Date de semis', plantedHelp: 'Indiquez-la pour voir l’âge de la culture à l’accueil.',
+    records: '{n} fiches', recordsOne: '1 fiche', lastChecked: 'Vérifiée {when}', planted: 'Date de semis', plantedHelp: 'Indiquez-la pour voir l’âge de la culture à l’accueil.',
     patterns: 'Ce que Munda a remarqué', noReview: 'Apparaît quand une fiche est synchronisée et analysée en ligne.', history: 'Fiches',
     trend: 'Surface touchée dans le temps', heavyRain: 'Fortes pluies',
   },

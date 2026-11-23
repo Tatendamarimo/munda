@@ -38,7 +38,7 @@ export function PlotsPage() {
               <span className={`dot dot-${p.status}`} aria-label={t(`enums.plotStatus.${p.status}`)} />
               <span style={{ flex: 1 }}>
                 <b>{p.name}</b>
-                <small>{t(`enums.plotStatus.${p.status}`)} · {t('plots.lastChecked', { when: relativeTime(p.lastAt, now, lang) })} · {t('plots.records', { n: p.count })}</small>
+                <small>{t(`enums.plotStatus.${p.status}`)} · {t('plots.lastChecked', { when: relativeTime(p.lastAt, now, lang) })} · {p.count === 1 ? t('plots.recordsOne') : t('plots.records', { n: p.count })}</small>
               </span>
               <Trend points={timeline(observations, p.key)} />
               <ChevronRight size={20} className="muted" aria-hidden="true" />

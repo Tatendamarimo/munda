@@ -33,7 +33,7 @@ export function PlotPage({ plotKey }: { plotKey: string }) {
       <div className="page" style={{ gap: 14 }}>
         <div>
           <h2 className="page-title">{plot.name}</h2>
-          <p className="muted small">{t(`enums.plotStatus.${plot.status}`)} · {t('plots.records', { n: plot.count })}</p>
+          <p className="muted small">{t(`enums.plotStatus.${plot.status}`)} · {plot.count === 1 ? t('plots.recordsOne') : t('plots.records', { n: plot.count })}</p>
         </div>
 
         <p className="tag">{t('plots.trend')}</p>

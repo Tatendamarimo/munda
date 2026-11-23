@@ -56,7 +56,7 @@ export const sw: Messages = {
   },
   plots: {
     title: 'Mashamba yangu', empty: 'Bado hakuna mashamba. Kagua zao na upe shamba jina; Munda huhifadhi historia ya kila shamba.',
-    records: 'Kumbukumbu {n}', lastChecked: 'Ilikaguliwa {when}', planted: 'Tarehe ya kupanda', plantedHelp: 'Iweke ili kuona umri wa zao nyumbani.',
+    records: 'Kumbukumbu {n}', recordsOne: 'Kumbukumbu 1', lastChecked: 'Ilikaguliwa {when}', planted: 'Tarehe ya kupanda', plantedHelp: 'Iweke ili kuona umri wa zao nyumbani.',
     patterns: 'Alichogundua Munda', noReview: 'Huonekana kumbukumbu ikisawazishwa na kukaguliwa mtandaoni.', history: 'Kumbukumbu',
     trend: 'Eneo lililoathirika kwa muda', heavyRain: 'Mvua kubwa',
   },
