@@ -8,6 +8,10 @@ import { firebase } from '../data/firebase';
 import { settings } from '../data/settings';
 import { Store } from '../data/store';
 import { questionsPrompt, recordPrompt, retrievalText, type ObservationInput } from './prompts';
+import { language } from '../i18n';
+
+/** Only cloud calls get the farmer's language; on-device stays English (see prompts.languageLines). */
+const cloudLang = (route: Route) => (route === 'CLOUD' ? language.value : undefined);
 import { questionsSchema, recordSchema } from './schemas';
 
 export type AiOutcome<T> =
@@ -109,14 +113,14 @@ class MundaAi {
   async followUpQuestions(input: ObservationInput, route: Route): Promise<AiOutcome<FollowUpQuestion[]>> {
     if (!settings.aiFollowUpsEnabled) return { kind: 'done', value: [], origin: 'ON_DEVICE', latencyMs: 0 };
     const candidates = guideFor(input.crop).relevant(retrievalText(input), input.core, input.stage, 4);
-    return this.run('questions', questionsPrompt(input, candidates), input.photoBase64, route, parseQuestions);
+    return this.run('questions', questionsPrompt(input, candidates, cloudLang(route)), input.photoBase64, route, parseQuestions);
   }
 
   async buildRecord(input: ObservationInput, route: Route): Promise<AiOutcome<FieldRecord>> {
     const guide = guideFor(input.crop);
     const candidates = guide.relevant(retrievalText(input), input.core, input.stage, 5);
     const allowed = new Set(candidates.map((e) => e.id));
-    return this.run('record', recordPrompt(input, candidates), input.photoBase64, route, (t) => parseRecord(t, guide, allowed));
+    return this.run('record', recordPrompt(input, candidates, cloudLang(route)), input.photoBase64, route, (t) => parseRecord(t, guide, allowed));
   }
 
   private async run<T>(kind: 'questions' | 'record', prompt: string, photo: string | null, route: Route, parse: (t: string) => Result<T>): Promise<AiOutcome<T>> {

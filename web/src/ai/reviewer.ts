@@ -7,6 +7,7 @@ import { firebase } from '../data/firebase';
 import { repository } from '../data/repository';
 import { settings } from '../data/settings';
 import { reviewPrompt } from './prompts';
+import { language } from '../i18n';
 import { reviewSchema } from './schemas';
 
 const DAY = 86_400_000;
@@ -37,7 +38,7 @@ export async function reviewObservation(target: Observation): Promise<HistoryRev
           generationConfig: { responseMimeType: 'application/json', responseJsonSchema: reviewSchema, temperature: 0.1 },
         },
       });
-      const res = await model.generateContent(reviewPrompt(target, plotHistory, farmHistory, rules.map((r) => r.kind)), { timeout: 60_000 });
+      const res = await model.generateContent(reviewPrompt(target, plotHistory, farmHistory, rules.map((r) => r.kind), language.value), { timeout: 60_000 });
       const parsed = parseReview(res.response.text(), new Set(history.map((o) => o.id)), guideFor(target.crop));
       if (parsed.ok) ai = parsed.value;
       else console.warn('Unparseable review', parsed.error);

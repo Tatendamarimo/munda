@@ -1,4 +1,5 @@
 import { guideFor, type GuideEntry } from '../domain/guide';
+import { LANGS, type Lang } from '../i18n/langs';
 import type { CoreAnswers, Crop, CropStage, Observation, PatternKind, QA } from '../domain/models';
 import { AffectedArea, Crop as CropL, CropStage as StageL, Onset, Rainfall } from '../domain/models';
 
@@ -17,10 +18,17 @@ export interface ObservationInput {
 export const retrievalText = (i: ObservationInput) => `${i.description} ${i.followUps.map((f) => `${f.question} ${f.answer}`).join(' ')}`;
 
 const cropName = (c: Crop) => CropL.label(c).toLowerCase();
+
+/**
+ * Cloud-only: asks for the farmer's language. On-device prompts never get this line (Gemini Nano
+ * here is English-only), and the guide-backed names and checks are translated by the app instead.
+ */
+const languageLines = (lang?: Lang): string[] =>
+  lang && lang !== 'en' ? [`Write all text values in ${LANGS[lang].english}. Keep JSON keys, ids and enum values in English.`] : [];
 const entryLine = (e: GuideEntry) => `id=${e.id} | ${e.name} | signs: ${e.signs} | tells apart: ${e.distinguish} | check: ${e.checkInField}`;
 
 /** Prompts mirror Prompts.kt on Android and are sized for Gemini Nano's small context. */
-export function questionsPrompt(i: ObservationInput, candidates: GuideEntry[]): string {
+export function questionsPrompt(i: ObservationInput, candidates: GuideEntry[], outputLang?: Lang): string {
   return [
     `You help a ${cropName(i.crop)} farmer narrow down what might be wrong in their field.`,
     'Ask at most 2 short, simple questions whose answers best tell apart the possible causes below.',
@@ -33,6 +41,7 @@ export function questionsPrompt(i: ObservationInput, candidates: GuideEntry[]): 
     '',
     'Possible causes and how they differ:',
     ...candidates.map((e) => `- ${e.name}: ${e.distinguish}`),
+    ...languageLines(outputLang),
     'Respond with JSON only.',
   ].join('\n');
 }
@@ -48,7 +57,7 @@ function observationBlock(i: ObservationInput): string[] {
   ];
 }
 
-export function recordPrompt(i: ObservationInput, candidates: GuideEntry[]): string {
+export function recordPrompt(i: ObservationInput, candidates: GuideEntry[], outputLang?: Lang): string {
   return [
     `You help a ${cropName(i.crop)} farmer record a field observation. You do NOT diagnose.`,
     'List up to 3 POSSIBLE causes, most likely first, using only the guide entries below (or "other").',
@@ -64,6 +73,7 @@ export function recordPrompt(i: ObservationInput, candidates: GuideEntry[]): str
     ...candidates.map(entryLine),
     '',
     ...observationBlock(i),
+    ...languageLines(outputLang),
     'Respond with JSON only.',
   ].join('\n');
 }
@@ -74,7 +84,7 @@ function obsLine(o: Observation): string {
   return o.record ? `${base} | causes: ${o.record.possibleCauses.map((c) => `${c.guideId ?? c.name}=${c.likelihood}`).join('; ')}` : base;
 }
 
-export function reviewPrompt(target: Observation, plotHistory: Observation[], farmHistory: Observation[], ruleKinds: PatternKind[]): string {
+export function reviewPrompt(target: Observation, plotHistory: Observation[], farmHistory: Observation[], ruleKinds: PatternKind[], outputLang?: Lang): string {
   const prior = plotHistory.filter((o) => o.id !== target.id);
   const others = farmHistory.filter((o) => o.id !== target.id && o.plotKey !== target.plotKey);
   return [
@@ -97,5 +107,6 @@ export function reviewPrompt(target: Observation, plotHistory: Observation[], fa
     '',
     'OTHER PLOTS, RECENT (newest first)',
     ...(others.length ? others.map(obsLine) : ['none']),
+    ...languageLines(outputLang),
   ].join('\n');
 }
