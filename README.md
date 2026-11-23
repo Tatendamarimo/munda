@@ -23,6 +23,17 @@ Smallholder maize farmers lose yield to problems they notice too late or misread
 
 Every record shows **where its AI actually ran** ("On this device" / "Cloud AI" / "Waiting for signal"), taken from the SDK's `inferenceSource`, never guessed.
 
+## Easy for any farmer, in their language
+
+- **Picture answers.** One question per screen, answered by tapping drawings (patches, low wet spots, heavy rain, this week). Typing is optional; a photo alone is enough to start.
+- **Check before buying anything.** Every result leads with one field check to do before spending money on inputs.
+- **Seven languages:** English and chiShona, plus isiNdebele, Kiswahili, Français, Português and Español (marked *beta* until a native speaker reviews them). Screens, the maize guide and its field checks are all translated. Adding a language is one dictionary file and one guide file.
+- **Offline in any language.** Gemini Nano runs in English here, so the app shows cause names and field checks from the human-written guide in the farmer's language, with the model's own English wording under *Details*. In cloud mode the model writes in the farmer's language directly.
+- **Search in any language.** On-device retrieval matches keywords from every translated guide (accent-insensitive), so "mashizha ari kuita yellow" or "hojas amarillas" find the right entries.
+- **Read aloud** on questions, results and guide pages, where the device has a voice for the language.
+- **Plots and history at a glance:** a home screen with the farm summary and latest alert, a timeline per plot (affected area against heavy rain), and the cloud review's patterns and next steps.
+- **Local details stay on the phone:** name, area, extension officer's number, planting dates and an optional rain outlook (Open-Meteo) are kept in local storage, never in Firestore.
+
 ## One app, hybrid by design
 
 | Device | What happens |
@@ -102,7 +113,7 @@ Crops plug in as a `SymptomGuide` plus a guide file; prompts, retrieval, parsing
    - **App Check → Apps → your web app → reCAPTCHA Enterprise**: create a key and add your hosting domains (`<project>.web.app`, `<project>.firebaseapp.com`). Don't add `localhost`.
 2. **Config:** `web/.env` already points at the `app-munda` project. To use your own project, `cp web/.env.example web/.env.local` and fill in its values (they override `.env`).
 3. **Deploy rules and indexes:** `firebase deploy --only firestore --project <project-id>`
-4. **Run locally:** `cd web && npm install && npm run dev`. Open the printed URL in Chrome, copy the **App Check debug token** from the browser console, and register it under **App Check → Apps → Manage debug tokens**.
+4. **Run locally:** `cd web && npm install && npm run dev`. Add `?demo` to the URL to see every screen with a sample farm (development builds only). Open the printed URL in Chrome, copy the **App Check debug token** from the browser console, and register it under **App Check → Apps → Manage debug tokens**.
 5. **Enable on-device AI in Chrome** (if not already on): open `chrome://flags`, enable **Prompt API for Gemini Nano** and **Prompt API for Gemini Nano with Multimodal Input**, restart Chrome. Check the model under `chrome://on-device-internals`.
 6. In Munda, tap **Set up this device**, then **Download offline AI**, and wait for **Works offline**. Turn Wi-Fi off and record an observation.
 7. **Deploy for judging:** `cd web && npm run build && cd .. && firebase deploy --only hosting --project <project-id>`
@@ -118,7 +129,7 @@ Crops plug in as a `SymptomGuide` plus a guide file; prompts, retrieval, parsing
 ## Tests
 
 ```bash
-cd web && npm test                         # routing, retrieval eval (10 maize scenarios), parser/uncertainty rules, history rules
+cd web && npm test                         # routing, retrieval eval (English + 7-language scenarios), parser/uncertainty rules, history rules, i18n, plots
 cd firebase/rules-test && npm install && npm test   # Firestore security rules in the emulator
 cd android && ./gradlew testDebugUnitTest  # Android domain tests + shared-guide parity
 ```
@@ -142,9 +153,11 @@ web/                 PWA (React + TypeScript + Vite)
   src/ai/            Hybrid AI (on-device + cloud), prompts, JSON schemas, cloud reviewer
   src/data/          Firebase bootstrap, Firestore repository, session, Remote Config
   src/sync/          Finishes queued work when online
-  src/ui/            Screens
+  src/i18n/          Dictionaries for 7 languages (typed against English)
+  src/ui/            Screens (Home, Plots, Guide, Me, observation flow)
 android/             Android client (Kotlin/Compose), same design, data and rules
 shared/guides/       Crop guides: single source of truth for all clients
+  i18n/              Guide translations and keywords per language
 firebase/            Firestore rules, indexes, rules tests
 docs/                ADRs, eval scenarios, demo script
 ```
@@ -153,7 +166,7 @@ docs/                ADRs, eval scenarios, demo script
 
 - Gemini Nano in Chrome runs on desktop/laptop only; phones use cloud mode with offline queueing.
 - Dictation in desktop Chrome uses a cloud speech service; typing always works offline.
-- English only on-device for now; local languages (e.g. Shona, Swahili) are planned through cloud mode and translated guide content.
+- On-device AI writes in English; the app translates guide-backed names and checks, and cloud mode writes in the farmer's language. Beta languages need native-speaker review.
 - Maize only for now; other crops and livestock are planned ([ADR 0004](docs/adr/0004-multi-crop-and-livestock.md)).
 - Activation needs one online session (sign-in and model download); after that Munda works offline.
 

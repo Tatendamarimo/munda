@@ -13,6 +13,7 @@ Film indoors near a window. Screen-record the MacBook (QuickTime: File → New S
 | 1:20–1:50 | Result: **Likely** Nitrogen deficiency, **Possible** Waterlogging, with fits / doesn't fit / check next, the uncertainty note, latency, and the **On this device** badge | "It doesn't diagnose. It shows possible causes, how sure it is, what's missing, and what to check. Those rules are enforced in code, not just requested." |
 | 1:50–2:00 | Save. List shows **Saved on device** | "Saved offline. Nothing has left the laptop." |
 | 2:00–2:25 | Turn **Wi-Fi on**. Badge flips to **Synced**, then **patterns** appears. Open it: *Getting worse*, *Linked to rain*, numbered next checks | "With signal, cloud Gemini reviews it against this plot's history. It keeps following heavy rain, so drainage moves up the list." |
+| 2:20–2:25 | **Me → chiShona.** The same result now reads *Kushaya nitrogen* and *Tarisa usati watenga chinhu* | "Grandmother reads it in Shona. Names and checks come from the guide, so they work offline in any language." |
 | 2:25–2:45 | **iPhone**, same app (home-screen icon), banner says **Cloud** | "On a farmer's phone without on-device AI, the same app uses cloud Gemini automatically, and offline it saves observations and finishes them later. One hybrid SDK." |
 | 2:45–2:57 | Quick cuts: code showing `PREFER_ON_DEVICE`, `responseConstraint`, `inferenceSource`; Firestore, App Check and Remote Config consoles | "Firebase AI Logic with Firestore offline sync, Auth, App Check and Remote Config." |
 | 2:57–3:00 | End card with photo credits | "Munda: careful advice, even without signal." |
@@ -24,3 +25,4 @@ Film indoors near a window. Screen-record the MacBook (QuickTime: File → New S
 - [ ] Munda added to the iPhone home screen from the hosted URL (Safari → Share → Add to Home Screen)
 - [ ] One full dry run with Wi-Fi off
 - [ ] Do Not Disturb on both devices
+- [ ] Name and area set on Me (e.g. Gogo, Hwedza); extension officer number added so the call button shows
