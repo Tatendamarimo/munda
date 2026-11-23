@@ -37,17 +37,19 @@ export interface SymptomGuide {
 export class KeywordIndex {
   private readonly patterns = new Map<string, Array<[string, RegExp]>>();
 
-  constructor(entries: GuideEntry[]) {
+  /** extraKeywords: entry id → keywords in other languages, matched the same way as English ones. */
+  constructor(entries: GuideEntry[], extraKeywords: ReadonlyMap<string, readonly string[]> = new Map()) {
     for (const e of entries) {
+      const all = [...new Set([...e.keywords, ...(extraKeywords.get(e.id) ?? [])].map(normalizeText).filter((k) => k !== ''))];
       this.patterns.set(
         e.id,
-        e.keywords.map((k) => [k, new RegExp(`(^|[^a-z])${escapeRegExp(k)}(s|es|ed|ing)?($|[^a-z])`)]),
+        all.map((k) => [k, new RegExp(`(^|[^a-z])${escapeRegExp(k)}(s|es|ed|ing)?($|[^a-z])`)]),
       );
     }
   }
 
   score(entry: GuideEntry, text: string): number {
-    const t = text.toLowerCase().replace(/[^a-z0-9 \-]/g, ' ');
+    const t = normalizeText(text);
     let score = 0;
     for (const [phrase, rx] of this.patterns.get(entry.id) ?? []) {
       if (rx.test(t)) score += phrase.includes(' ') ? 2 : 1;
@@ -56,14 +58,49 @@ export class KeywordIndex {
   }
 }
 
+/**
+ * Lower-case, strip accents (NFD + drop combining marks) and keep only a-z, digits, spaces and
+ * hyphens, so "Hojas AMARILLAS" and "maïs" match keywords written without accents.
+ */
+export function normalizeText(s: string): string {
+  return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9 \-]/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
 const escapeRegExp = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
 const MIN_RESULTS = 3;
 
+/** Translated guide side files: shared/guides/i18n/<crop>.<lang>.json (the English guide stays untouched). */
+export interface GuideTranslation {
+  lang: string;
+  entries: Array<{ id: string; name?: string; signs?: string; checkInField?: string; keywords?: string[] }>;
+}
+
+const translationFiles = import.meta.glob<GuideTranslation>('../../../shared/guides/i18n/*.json', { eager: true, import: 'default' });
+
+/** All translations for a crop, keyed by language code. */
+export function guideTranslations(crop: string): Map<string, GuideTranslation> {
+  const out = new Map<string, GuideTranslation>();
+  for (const [path, t] of Object.entries(translationFiles)) {
+    const m = /\/([a-z_]+)\.([a-z]{2,3})\.json$/.exec(path);
+    if (m && m[1] === crop) out.set(m[2]!, t);
+  }
+  return out;
+}
+
+/** Keywords from every language merged per entry, so a description in any language finds its entries. */
+function translatedKeywords(crop: string): Map<string, string[]> {
+  const out = new Map<string, string[]>();
+  for (const t of guideTranslations(crop).values()) {
+    for (const e of t.entries) out.set(e.id, [...(out.get(e.id) ?? []), ...(e.keywords ?? [])]);
+  }
+  return out;
+}
+
 function maizeGuide(): SymptomGuide {
   const entries = maizeJson.entries as GuideEntry[];
   const byId = new Map(entries.map((e) => [e.id, e]));
-  const index = new KeywordIndex(entries);
+  const index = new KeywordIndex(entries, translatedKeywords('maize'));
 
   return {
     crop: 'MAIZE',
