@@ -5,6 +5,8 @@ import { mundaAi } from './ai/mundaAi';
 import { firebase, firebaseConfigured } from './data/firebase';
 import { session } from './data/session';
 import { settings } from './data/settings';
+import { refreshWeather } from './data/weather';
+import { language } from './i18n';
 import { syncProcessor } from './sync/syncProcessor';
 import { Shell } from './ui/Shell';
 import '@fontsource-variable/bricolage-grotesque/wght.css';
@@ -30,6 +32,9 @@ if (firebaseConfigured) {
   syncProcessor.start();
   void mundaAi.refreshLocalStatus();
   registerSW({ immediate: true });
+  document.documentElement.lang = language.value;
+  void refreshWeather();
+  window.addEventListener('online', () => void refreshWeather());
   root.render(<StrictMode><Shell /></StrictMode>);
 } else {
   root.render(<StrictMode><NotConfigured /></StrictMode>);

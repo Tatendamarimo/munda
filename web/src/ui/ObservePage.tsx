@@ -18,7 +18,10 @@ import { dictationSupported, fileToJpegBase64, startDictation } from './media';
 import { nextStep, prevStep, stepsFor, type ObserveStep } from './observe/steps';
 import { PictureChoice } from './observe/PictureChoice';
 import { areaPicture, onsetPicture, rainPicture, stagePicture } from './observe/pictures';
+import { ReadAloud } from './ReadAloud';
 import { ResultStep, type RecordState } from './ResultStep';
+import { guideFor } from '../domain/guide';
+import { causeDisplay } from '../domain/localize';
 import { back, href } from './router';
 import { useObservations } from './useObservations';
 
@@ -145,14 +148,29 @@ export function ObservePage() {
     if (step === 'followups' && questions.kind === 'unavailable' && !questions.reason) goTo('result');
   });
 
+  /** What read-aloud speaks: the question and its answers, or the leading cause and its check. */
+  const readText = (): string => {
+    const list = (title: string, labels: string[]) => [title, ...labels].join('. ');
+    switch (step) {
+      case 'describe': return [t('observe.describeTitle'), t('observe.describeHint')].join('. ');
+      case 'plot': return list(t('observe.plotTitle'), []);
+      case 'area': return list(t('observe.areaTitle'), AffectedArea.values.map((a) => labelArea(a, lang)));
+      case 'rain': return list(t('observe.rainTitle'), Rainfall.values.map((r) => labelRain(r, lang)));
+      case 'onset': return list(t('observe.onsetTitle'), Onset.values.map((o) => labelOnset(o, lang)));
+      case 'followups': return questions.kind === 'ready' ? questions.questions.map((q) => list(q.text, q.options)).join('. ') : '';
+      case 'result': {
+        const lead = record.kind === 'done' ? record.record.possibleCauses[0] : undefined;
+        if (!lead) return '';
+        const d = causeDisplay(lead, lang, guideFor('MAIZE'));
+        return [t('result.title'), d.name, t('result.checkFirst'), d.check].join('. ');
+      }
+    }
+  };
+
   const index = steps.indexOf(step);
   return (
     <div className="flow">
-      <PageHead
-        onBack={goBack}
-        title={undefined}
-        right={<span className="icon-spacer" />}
-      />
+      <PageHead onBack={goBack} right={<ReadAloud text={readText()} />} />
       <div className="page" style={{ gap: 18 }}>
         <div className="dots" role="progressbar" aria-valuemin={1} aria-valuemax={steps.length} aria-valuenow={index + 1} aria-label={t('observe.stepOf', { n: index + 1, total: steps.length })}>
           {steps.map((s, i) => <i key={s} className={i <= index ? 'on' : ''} />)}

@@ -4,7 +4,10 @@ import { useStore } from '../data/store';
 import { RecordPage } from './RecordPage';
 import { HomePage } from './HomePage';
 import { ObservePage } from './ObservePage';
-import { Placeholder } from './Placeholder';
+import { GuideEntryPage, GuidePage } from './GuidePage';
+import { MePage } from './MePage';
+import { PlotPage } from './PlotPage';
+import { PlotsPage } from './PlotsPage';
 import { tabOf, useRoute, type Route } from './router';
 import { TabBar } from './TabBar';
 import { Welcome } from './Welcome';
@@ -21,7 +24,11 @@ function screenFor(r: Route) {
     case 'home': return <HomePage />;
     case 'observe': return <div className="page"><ObservePage key="observe" /></div>;
     case 'record': return <RecordPage key={r.id} id={r.id} />;
-    case 'plots': case 'plot': case 'guide': case 'guideEntry': case 'me': return <Placeholder route={r} />;
+    case 'plots': return <PlotsPage />;
+    case 'plot': return <PlotPage key={r.key} plotKey={r.key} />;
+    case 'guide': return <GuidePage />;
+    case 'guideEntry': return <GuideEntryPage key={r.id} id={r.id} />;
+    case 'me': return <MePage />;
   }
 }
 
