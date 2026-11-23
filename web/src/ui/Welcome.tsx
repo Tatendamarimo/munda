@@ -1,34 +1,43 @@
 import { connectivity } from '../data/connectivity';
 import { session, type SessionState } from '../data/session';
 import { useStore } from '../data/store';
-import { Wordmark } from './brand';
+import { LANG_CODES, LANGS, setLanguage, useLang, useT } from '../i18n';
 import { CauseEntry, OriginBadge, Working } from './components';
+import { Hero } from './Header';
 
 /**
- * First run. The hero is the product's own output, a real possible-cause entry, because that's
- * the thing that makes Munda different: careful, honest about uncertainty, and actionable.
+ * First run. Language comes first (it's the farmer's first choice), then the promise, then the
+ * product's own output as proof: a real possible-cause entry, honest about uncertainty.
  */
 export function Welcome({ state }: { state: SessionState }) {
+  const t = useT();
+  const lang = useLang();
   const online = useStore(connectivity);
   return (
     <div className="welcome">
-      <header className="appbar"><Wordmark /></header>
+      <Hero>
+        <div className="lang-chips" role="group" aria-label="Language">
+          {LANG_CODES.map((l) => (
+            <button key={l} className="lang-chip" aria-pressed={l === lang} onClick={() => setLanguage(l)}>
+              {LANGS[l].native}{LANGS[l].beta ? ' β' : ''}
+            </button>
+          ))}
+        </div>
+      </Hero>
       <main className="welcome-main">
         <section className="welcome-copy">
-          <h1>Know what to check next in your maize field.</h1>
-          <p className="lede">
-            Describe what you see. Munda asks a few questions, then shows the possible causes, how sure it is about each, and what to check before you spend money. It works without signal.
-          </p>
-          {(state.kind === 'loading' || state.kind === 'activating') && <Working>Setting up this device</Working>}
+          <h1>{t('welcome.title')}</h1>
+          <p className="lede">{t('welcome.lede')}</p>
+          {(state.kind === 'loading' || state.kind === 'activating') && <Working>{t('welcome.settingUp')}</Working>}
           {state.kind === 'error' && <p className="error" role="alert">{state.message}</p>}
-          <button className="btn btn-primary btn-large" disabled={!online || state.kind === 'activating' || state.kind === 'loading'} onClick={() => void session.activate()}>
-            {online ? 'Set up this device' : 'Connect to the internet to set up'}
+          <button className="btn btn-primary btn-main" disabled={!online || state.kind === 'activating' || state.kind === 'loading'} onClick={() => void session.activate()}>
+            {online ? t('welcome.setup') : t('welcome.setupOffline')}
           </button>
-          <p className="fineprint">Setup needs signal once. After that, Munda works offline. Photos never leave your device.</p>
+          <p className="fineprint">{t('welcome.fineprint')}</p>
         </section>
-        <section className="welcome-sample" aria-label="Example of a Munda field record">
+        <section className="welcome-sample" aria-label="Example">
           <div className="sample-head">
-            <p>Lower leaves yellowing from the tip after heavy rain.</p>
+            <p>{t('welcome.sample')}</p>
             <OriginBadge origin="ON_DEVICE" />
           </div>
           <CauseEntry
