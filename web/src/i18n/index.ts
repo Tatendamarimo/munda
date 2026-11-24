@@ -1,4 +1,5 @@
 import { useCallback } from 'react';
+import { CALENDARS } from './calendar';
 import { Store, useStore } from '../data/store';
 import type { AffectedArea, CropStage, FindingSource, InferenceOrigin, Likelihood, Onset, PatternKind, Rainfall, Urgency } from '../domain/models';
 import { en, type MessageKey, type PartialMessages } from './en';
@@ -70,19 +71,37 @@ function intlLocale(lang: Lang): string {
 }
 
 export function formatDate(ms: number, lang: Lang): string {
+  const cal = CALENDARS[lang];
+  if (cal) { const d = new Date(ms); return `${d.getDate()} ${cal.months[d.getMonth()]} ${d.getFullYear()}`; }
   return new Date(ms).toLocaleDateString(intlLocale(lang), { day: 'numeric', month: 'short', year: 'numeric' });
 }
 
 export function shortDate(ms: number, lang: Lang): string {
+  const cal = CALENDARS[lang];
+  if (cal) { const d = new Date(ms); return `${d.getDate()} ${cal.months[d.getMonth()]}`; }
   return new Date(ms).toLocaleDateString(intlLocale(lang), { day: 'numeric', month: 'short' });
 }
 
 export function weekday(day: number, lang: Lang): string {
+  const cal = CALENDARS[lang];
+  if (cal) return cal.days[((day % 7) + 7) % 7]!;
   // 2023-01-01 was a Sunday (day 0).
   return new Date(Date.UTC(2023, 0, 1 + day, 12)).toLocaleDateString(intlLocale(lang), { weekday: 'long', timeZone: 'UTC' });
 }
 
 export function relativeTime(ms: number, now: number, lang: Lang): string {
+  const cal = CALENDARS[lang];
+  if (cal) {
+    const min = Math.round((now - ms) / 60_000);
+    if (min < 1) return cal.justNow;
+    if (min < 60) return cal.minutesAgo(min);
+    const h = Math.round(min / 60);
+    if (h < 24) return cal.hoursAgo(h);
+    const d = Math.round(h / 24);
+    if (d === 1) return cal.yesterday;
+    if (d < 7) return cal.daysAgo(d);
+    return shortDate(ms, lang);
+  }
   const rtf = new Intl.RelativeTimeFormat(intlLocale(lang), { numeric: 'auto', style: 'short' });
   const min = -Math.round((now - ms) / 60_000);
   if (Math.abs(min) < 60) return rtf.format(min, 'minute');
