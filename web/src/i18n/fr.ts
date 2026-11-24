@@ -4,6 +4,8 @@ import { en, type Messages } from './en';
 export const fr: Messages = {
   // New interface copy uses explicit English fallback until reviewed translations are available.
   studio: {
+    getAndroid: 'Obtenir l’app Android',
+    getAndroidHelp: 'Pour les téléphones : installez le fichier de l’app Munda depuis GitHub.',
     act: 'Vérifiez avant de dépenser',
     activity: 'Activité au champ',
     checking: 'Vérification des capacités d’IA de cet appareil.',

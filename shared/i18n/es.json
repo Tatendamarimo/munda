@@ -262,6 +262,8 @@
   "studio.few": "Pocas plantas",
   "studio.fieldCheck": "Revisión de campo",
   "studio.firstCheck": "Empiece su primera revisión",
+  "studio.getAndroid": "Obtener la app de Android",
+  "studio.getAndroidHelp": "Para teléfonos: instale el archivo de la app Munda desde GitHub.",
   "studio.guideEmpty": "No hay entradas en la guía. Pruebe otra palabra.",
   "studio.guideSearch": "Buscar señales, problemas o revisiones",
   "studio.hideExample": "Ocultar ejemplo",

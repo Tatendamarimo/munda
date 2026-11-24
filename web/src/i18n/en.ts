@@ -4,6 +4,8 @@
  */
 export const en = {
   studio: {
+    getAndroid: 'Get the Android app',
+    getAndroidHelp: 'For phones: install the Munda app file from GitHub.',
     companion: 'Your field companion', overview: 'Farm overview', recent: 'Recent field checks',
     journal: 'Your farm, one observation at a time.', journalHelp: 'Every check adds context. Revisit a plot to see what has changed.',
     firstCheck: 'Start your first field check', emptyTitle: 'Your field story starts here.',

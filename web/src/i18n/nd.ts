@@ -4,6 +4,8 @@ import { en, type Messages } from './en';
 export const nd: Messages = {
   // New interface copy uses explicit English fallback until reviewed translations are available.
   studio: {
+    getAndroid: 'Thola i-app ye-Android',
+    getAndroidHelp: 'Yamafoni: faka ifayela le-app yeMunda kusuka ku-GitHub.',
     act: 'Hlola ungakasebenzisi imali',
     activity: 'Imisebenzi yasensimini',
     checking: 'Ihlola okungenziwa yi-AI yalefoni.',

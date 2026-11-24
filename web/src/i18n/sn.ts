@@ -7,6 +7,8 @@ import { en, type Messages } from './en';
 export const sn: Messages = {
   // New interface copy uses explicit English fallback until reviewed translations are available.
   studio: {
+    getAndroid: 'Tora app yeAndroid',
+    getAndroidHelp: 'Yemafoni: isa faira reapp yeMunda kubva kuGitHub.',
     act: 'Tarisa usati washandisa mari',
     activity: 'Zviitiko zvemumunda',
     checking: 'Kutarisa kuti AI yefoni ino inogona kuitei.',

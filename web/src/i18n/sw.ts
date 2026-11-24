@@ -4,6 +4,8 @@ import { en, type Messages } from './en';
 export const sw: Messages = {
   // New interface copy uses explicit English fallback until reviewed translations are available.
   studio: {
+    getAndroid: 'Pata programu ya Android',
+    getAndroidHelp: 'Kwa simu: sakinisha faili ya programu ya Munda kutoka GitHub.',
     act: 'Kagua kabla ya kutumia pesa',
     activity: 'Shughuli za shambani',
     checking: 'Inakagua uwezo wa AI wa kifaa hiki.',

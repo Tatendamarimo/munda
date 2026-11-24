@@ -522,3 +522,6 @@ progress { width: 100%; height: 8px; accent-color: var(--leaf); }
 .gallery-btn { display: inline-flex; align-items: center; gap: 8px; justify-self: start; cursor: pointer; }
 .seen-card { display: grid; gap: 8px; padding: 12px 14px; border-radius: var(--r-md); background: var(--wash); border: 1px dashed var(--leaf-2); }
 .seen-note { color: var(--leaf); font-weight: 700; }
+.android-link { display: inline-flex; align-items: center; gap: 10px; margin-top: 12px; padding: 10px 14px; border-radius: var(--r-md); border: 1px solid var(--rule); color: inherit; text-decoration: none; }
+.android-link small { display: block; color: var(--ink-2); font-size: .82rem; }
+.android-link:hover { border-color: var(--leaf); }

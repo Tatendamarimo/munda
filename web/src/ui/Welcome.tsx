@@ -1,5 +1,5 @@
 import { Wordmark } from './brand';
-import { Leaf, ScanLine, ShieldCheck, Sprout } from 'lucide-react';
+import { Leaf, ScanLine, ShieldCheck, Smartphone, Sprout } from 'lucide-react';
 import { useState } from 'react';
 import { connectivity } from '../data/connectivity';
 import { session, type SessionState } from '../data/session';
@@ -9,6 +9,8 @@ import { CauseCard } from './CauseCard';
 import { Working } from './components';
 import { FieldArtwork } from './FieldArtwork';
 import { StatusPill } from './StatusPill';
+
+const ANDROID_APK = 'https://github.com/Tatendamarimo/munda/releases/latest/download/munda.apk';
 
 export function Welcome({ state }: { state: SessionState }) {
   const t = useT();
@@ -33,6 +35,10 @@ export function Welcome({ state }: { state: SessionState }) {
             <button className="btn btn-example" aria-expanded={example} aria-controls="welcome-example" onClick={() => setExample(!example)}>{example ? t('studio.hideExample') : t('studio.seeExample')}</button>
           </div>
           <p className="fineprint">{t('welcome.fineprint')}</p>
+          {/* Android is the main farmer app; the file is attached to each GitHub release. */}
+          <a className="android-link" href={ANDROID_APK} rel="noopener">
+            <Smartphone size={18} aria-hidden="true" /><span><b>{t('studio.getAndroid')}</b><small>{t('studio.getAndroidHelp')}</small></span>
+          </a>
           <div className="welcome-languages">
             <span className="tag">{t('me.language')}</span>
             <div className="lang-chips" role="group" aria-label={t('me.language')}>

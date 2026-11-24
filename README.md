@@ -6,7 +6,14 @@
 
 > Munda does not diagnose. It helps farmers observe carefully, record consistently and decide what to check next. Serious or uncertain cases are pointed to an extension officer.
 
-**Platforms:** Web (Chrome, installable PWA) and Android (Kotlin, Jetpack Compose). Both use Firebase AI Logic hybrid inference, with Gemini Nano on-device where the device supports it and cloud Gemini otherwise. They share one Firestore backend, one set of security rules and one crop guide, so a record made on a phone opens on the web, and the reverse. See [ADR 0006](docs/adr/0006-two-platforms.md).
+**Platforms:** **Android** (Kotlin, Jetpack Compose) is the farmer's app. The **web app** (installable PWA) is the extension officer's tool, with the live group view and area map, and the way in for anyone on an iPhone or a computer. Both use Firebase AI Logic hybrid inference, with Gemini Nano on-device where the device supports it and cloud Gemini otherwise. They share one Firestore backend, one set of security rules, one crop guide and one set of translations, so a record made on a phone opens on the web, and the reverse. See [ADR 0006](docs/adr/0006-two-platforms.md).
+
+## Try it
+
+- **Web app:** https://app-munda.web.app (Chrome on a laptop or Android phone; Safari on iPhone). Tap *See an example* for a sample result without setting anything up.
+- **Android app:** download [`munda.apk`](https://github.com/Tatendamarimo/munda/releases/latest/download/munda.apk) from the latest release and open it on the phone (Android 8 or newer; allow installing from your browser when asked).
+- **Video:** *link added on submission.*
+- **Offline AI on a laptop:** in Chrome, Munda can run Gemini Nano on the device. If the status says *Cloud AI only*, the device or browser doesn't support on-device AI yet, and Munda uses cloud Gemini.
 
 ---
 
