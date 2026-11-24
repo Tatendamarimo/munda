@@ -1,0 +1,51 @@
+[
+ {
+  "code": "en",
+  "native": "English",
+  "english": "English",
+  "beta": false,
+  "locale": "en"
+ },
+ {
+  "code": "sn",
+  "native": "chiShona",
+  "english": "Shona",
+  "beta": false,
+  "locale": "sn-ZW"
+ },
+ {
+  "code": "nd",
+  "native": "isiNdebele",
+  "english": "Ndebele",
+  "beta": true,
+  "locale": "nd-ZW"
+ },
+ {
+  "code": "sw",
+  "native": "Kiswahili",
+  "english": "Swahili",
+  "beta": true,
+  "locale": "sw-KE"
+ },
+ {
+  "code": "fr",
+  "native": "Français",
+  "english": "French",
+  "beta": true,
+  "locale": "fr-FR"
+ },
+ {
+  "code": "pt",
+  "native": "Português",
+  "english": "Portuguese",
+  "beta": true,
+  "locale": "pt-MZ"
+ },
+ {
+  "code": "es",
+  "native": "Español",
+  "english": "Spanish",
+  "beta": true,
+  "locale": "es-MX"
+ }
+]

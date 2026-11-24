@@ -4,33 +4,39 @@ import type { Lang } from './langs';
  * Day and month names for languages browsers have no calendar for (Intl falls back to English).
  * Drafts like the rest of the Shona and Ndebele text: to be checked by native speakers.
  */
-interface Calendar {
+export interface Calendar {
   days: readonly string[]; // Sunday first
   months: readonly string[];
-  minutesAgo: (n: number) => string;
-  hoursAgo: (n: number) => string;
+  /** Templates with {n}; plain text so the Android app shares them (shared/i18n). */
+  minutesAgo: string;
+  hourAgo: string;
+  hoursAgo: string;
   yesterday: string;
-  daysAgo: (n: number) => string;
+  daysAgo: string;
   justNow: string;
 }
+
+export const fill = (template: string, n: number) => template.replace('{n}', String(n));
 
 export const CALENDARS: Partial<Record<Lang, Calendar>> = {
   sn: {
     days: ['Svondo', 'Muvhuro', 'Chipiri', 'Chitatu', 'China', 'Chishanu', 'Mugovera'],
     months: ['Ndira', 'Kukadzi', 'Kurume', 'Kubvumbi', 'Chivabvu', 'Chikumi', 'Chikunguru', 'Nyamavhuvhu', 'Gunyana', 'Gumiguru', 'Mbudzi', 'Zvita'],
-    minutesAgo: (n) => `maminitsi ${n} apfuura`,
-    hoursAgo: (n) => (n === 1 ? 'awa rimwe rapfuura' : `maawa ${n} apfuura`),
+    minutesAgo: 'maminitsi {n} apfuura',
+    hourAgo: 'awa rimwe rapfuura',
+    hoursAgo: 'maawa {n} apfuura',
     yesterday: 'nezuro',
-    daysAgo: (n) => `mazuva ${n} apfuura`,
+    daysAgo: 'mazuva {n} apfuura',
     justNow: 'izvozvi',
   },
   nd: {
     days: ['iSonto', 'uMvulo', 'uLwesibili', 'uLwesithathu', 'uLwesine', 'uLwesihlanu', 'uMgqibelo'],
     months: ['uZibandlela', 'uNhlolanja', 'uMbimbitho', 'uMabasa', 'uNkwenkwezi', 'uNhlangula', 'uNtulikazi', 'uNcwabakazi', 'uMpandula', 'uMfumfu', 'uLwezi', 'uMpalakazi'],
-    minutesAgo: (n) => `imizuzu engu-${n} edlulileyo`,
-    hoursAgo: (n) => `amahola angu-${n} adlulileyo`,
+    minutesAgo: 'imizuzu engu-{n} edlulileyo',
+    hourAgo: 'ihola elilodwa elidlulileyo',
+    hoursAgo: 'amahola angu-{n} adlulileyo',
     yesterday: 'izolo',
-    daysAgo: (n) => `insuku ezingu-${n} ezedlulileyo`,
+    daysAgo: 'insuku ezingu-{n} ezedlulileyo',
     justNow: 'khathesi',
   },
 };

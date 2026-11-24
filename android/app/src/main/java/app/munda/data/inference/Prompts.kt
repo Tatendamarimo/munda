@@ -34,7 +34,7 @@ internal object Prompts {
         ),
     )
 
-    fun questions(input: ObservationInput, candidates: List<GuideEntry>): String = buildString {
+    fun questions(input: ObservationInput, candidates: List<GuideEntry>, outputLanguage: String? = null): String = buildString {
         appendLine("You help a ${input.crop.label.lowercase()} farmer narrow down what might be wrong in their field.")
         appendLine("Ask at most 2 short, simple questions whose answers best tell apart the possible causes below.")
         appendLine("Each question must be answerable by looking at the plants or the soil. Give 2-4 short answer choices.")
@@ -46,6 +46,7 @@ internal object Prompts {
         appendLine()
         appendLine("Possible causes and how they differ:")
         candidates.forEach { appendLine("- ${it.name}: ${it.distinguish}") }
+        appendLanguage(outputLanguage)
         append("Respond with JSON only.")
     }
 
@@ -57,7 +58,7 @@ internal object Prompts {
             "name" to Schema.string(),
             "likelihood" to Schema.enumeration(Likelihood.entries.map { it.name }),
             "supporting" to Schema.array(Schema.string(), "Observations that support this cause", maxItems = 3),
-            "againstOrMissing" to Schema.array(Schema.string(), "Observations that argue against it, or information still missing", maxItems = 3),
+            "againstOrMissing" to Schema.array(Schema.string(), "Facts against it, or facts still unknown. Not actions to take.", maxItems = 3),
             "checkNext" to Schema.string("One concrete check the farmer can do in the field."),
         ),
     )
@@ -72,13 +73,14 @@ internal object Prompts {
         ),
     )
 
-    fun record(input: ObservationInput, candidates: List<GuideEntry>): String = buildString {
+    fun record(input: ObservationInput, candidates: List<GuideEntry>, outputLanguage: String? = null): String = buildString {
         appendLine("You help a ${input.crop.label.lowercase()} farmer record a field observation. You do NOT diagnose.")
         appendLine("List up to 3 POSSIBLE causes, most likely first, using only the guide entries below (or \"other\").")
         appendLine("Rules:")
         appendLine("- likelihood HIGH only if at least 2 observations support it and nothing contradicts it. Otherwise MEDIUM or LOW.")
         appendLine("- supporting: only things the farmer actually said or the photo clearly shows.")
-        appendLine("- againstOrMissing: what contradicts it or what we still don't know.")
+        appendLine("- againstOrMissing: a fact that contradicts it, or a fact we still don't know (e.g. \"not said whether lower leaves are worse\"). Never a check or an action; those go in checkNext.")
+        appendLine("- If the farmer reports heavy rain or flooding, weigh waterlogging and nitrogen loss by leaching seriously.")
         appendLine("- checkNext: something the farmer can check with their eyes or hands. No product names or doses.")
         appendLine("- urgency: URGENT only for a pest or disease that can spread fast, or risk to most of the field; ROUTINE if minor.")
         appendLine("- Use short, plain words.")
@@ -87,6 +89,7 @@ internal object Prompts {
         candidates.forEach { appendLine(it.line()) }
         appendLine()
         appendObservation(input)
+        appendLanguage(outputLanguage)
         append("Respond with JSON only.")
     }
 
@@ -121,7 +124,7 @@ internal object Prompts {
         ),
     )
 
-    fun review(target: Observation, plotHistory: List<Observation>, farmHistory: List<Observation>, ruleKinds: List<PatternKind>): String = buildString {
+    fun review(target: Observation, plotHistory: List<Observation>, farmHistory: List<Observation>, ruleKinds: List<PatternKind>, outputLanguage: String? = null): String = buildString {
         appendLine("You are an agronomy assistant reviewing a ${target.crop.label.lowercase()} farmer's field records. You do NOT diagnose.")
         appendLine("Using the history, update the possible causes for TODAY's observation and suggest what to check next.")
         appendLine("Same likelihood rules: HIGH only with 2+ supporting observations and no contradiction. Keep uncertainty visible.")
@@ -141,6 +144,12 @@ internal object Prompts {
         appendLine()
         appendLine("OTHER PLOTS, RECENT (newest first)")
         farmHistory.filter { it.id != target.id && it.plotKey != target.plotKey }.ifEmpty { null }?.forEach { appendLine(it.line()) } ?: appendLine("none")
+        appendLanguage(outputLanguage)
+    }
+
+    /** Cloud calls only: the farmer's language for text, English for keys and ids (as on the web). */
+    private fun StringBuilder.appendLanguage(language: String?) {
+        if (language != null && language != "English") appendLine("Write all text values in $language. Keep JSON keys, ids and enum values in English.")
     }
 
     private fun Observation.line(): String {

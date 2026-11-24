@@ -42,6 +42,12 @@ android {
     testOptions {
         unitTests.isReturnDefaultValues = true
     }
+
+    // One source of truth with the web app: guides, guide translations and UI text (shared/i18n,
+    // exported from web/src/i18n) ship as assets, read at runtime.
+    sourceSets {
+        getByName("main") { assets.srcDir("../../shared") }
+    }
 }
 
 kotlin {

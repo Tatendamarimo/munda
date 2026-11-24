@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { CALENDARS } from './calendar';
+import { CALENDARS, fill } from './calendar';
 import { Store, useStore } from '../data/store';
 import type { AffectedArea, CropStage, FindingSource, InferenceOrigin, Likelihood, Onset, PatternKind, Rainfall, Urgency } from '../domain/models';
 import { en, type MessageKey, type PartialMessages } from './en';
@@ -94,12 +94,12 @@ export function relativeTime(ms: number, now: number, lang: Lang): string {
   if (cal) {
     const min = Math.round((now - ms) / 60_000);
     if (min < 1) return cal.justNow;
-    if (min < 60) return cal.minutesAgo(min);
+    if (min < 60) return fill(cal.minutesAgo, min);
     const h = Math.round(min / 60);
-    if (h < 24) return cal.hoursAgo(h);
+    if (h < 24) return h === 1 ? cal.hourAgo : fill(cal.hoursAgo, h);
     const d = Math.round(h / 24);
     if (d === 1) return cal.yesterday;
-    if (d < 7) return cal.daysAgo(d);
+    if (d < 7) return fill(cal.daysAgo, d);
     return shortDate(ms, lang);
   }
   const rtf = new Intl.RelativeTimeFormat(intlLocale(lang), { numeric: 'auto', style: 'short' });
