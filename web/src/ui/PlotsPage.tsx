@@ -25,12 +25,21 @@ export function Trend({ points }: { points: TimelinePoint[] }) {
  */
 function FieldMap({ plots }: { plots: PlotSummary[] }) {
   const t = useT();
+  // Three columns; every fifth field is wide; the last field fills its row so there's no gap.
+  let col = 0;
+  const spans = plots.map((_, i) => {
+    let span = i % 5 === 0 ? 2 : 1;
+    if (col + span > 3) col = 0;
+    if (i === plots.length - 1) span = 3 - col;
+    col = (col + span) % 3;
+    return span;
+  });
   return (
     <section className="stack" style={{ gap: 8 }} aria-label={t('plots.map')}>
       <p className="tag">{t('plots.map')}</p>
       <div className="field-map">
         {plots.map((p, i) => (
-          <a key={p.key} href={href({ name: 'plot', key: p.key })} className={`field field-${p.status}${i % 5 === 0 ? ' field-wide' : ''}`} style={{ ['--rows' as string]: `${[-24, 18, -8, 30, 4][i % 5]}deg` }}>
+          <a key={p.key} href={href({ name: 'plot', key: p.key })} className={`field field-${p.status}`} style={{ gridColumn: `span ${spans[i]}`, ['--rows' as string]: `${[-24, 18, -8, 30, 4][i % 5]}deg` }}>
             <b>{p.name}</b>
             <small>{t(`enums.plotStatus.${p.status}`)}</small>
           </a>

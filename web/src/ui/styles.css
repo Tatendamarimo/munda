@@ -470,7 +470,7 @@ progress { width: 100%; height: 8px; accent-color: var(--leaf); }
 @keyframes drop { from { transform: translateY(-100%); opacity: 0; } }
 
 /* Field map */
-.field-map { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 92px; grid-auto-flow: dense; gap: 8px; }
+.field-map { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 92px; gap: 8px; }
 .field {
   --tone: var(--leaf-2); --tone-wash: var(--sprout);
   display: flex; flex-direction: column; justify-content: flex-end; padding: 10px 11px; border-radius: 18px 10px 20px 12px;
@@ -479,7 +479,6 @@ progress { width: 100%; height: 8px; accent-color: var(--leaf); }
   border: 2px solid color-mix(in srgb, var(--tone) 45%, transparent);
 }
 .field:nth-child(even) { border-radius: 10px 20px 12px 18px; }
-.field-wide { grid-column: span 2; }
 .field-WATCH { --tone: var(--maize-deep); --tone-wash: var(--husk); }
 .field-ACT { --tone: var(--rust); --tone-wash: var(--rust-wash); }
 .field b { font-size: .92rem; line-height: 1.2; background: color-mix(in srgb, var(--card) 85%, transparent); padding: 2px 6px; border-radius: 6px; justify-self: start; align-self: flex-start; }
@@ -488,5 +487,4 @@ progress { width: 100%; height: 8px; accent-color: var(--leaf); }
 @media (prefers-reduced-motion: reduce) {
   .page > *, .action-card, .live-step, .live-cause, .trail-step, .field, .banner, .scene-plant > g, .caret, .live-step.is-active .live-mark, .banner-sync svg { animation: none; }
 }
-.field:last-child { grid-column: auto / -1; }
 .page > .badge { justify-self: start; }
