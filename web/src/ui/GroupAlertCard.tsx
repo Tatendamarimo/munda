@@ -4,6 +4,7 @@ import { group } from '../data/group';
 import { observeAlerts, type GroupAlert } from '../data/groupData';
 import { useStore } from '../data/store';
 import { relativeTime, useLang, useT } from '../i18n';
+import { alertText } from './alertText';
 
 const SHOW_FOR = 14 * 86_400_000;
 
@@ -20,7 +21,7 @@ export function GroupAlertCard() {
   return (
     <div className="group-alert" role="status">
       <BellRing size={22} strokeWidth={2.25} aria-hidden="true" />
-      <span><b>{t('home.groupAlert')} · {relativeTime(a.createdAt, now, lang)}</b><br />{a.message}</span>
+      <span><b>{t('home.groupAlert')} · {relativeTime(a.createdAt, now, lang)}</b><br />{alertText(t, lang, a)}</span>
     </div>
   );
 }

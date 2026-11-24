@@ -20,7 +20,9 @@ export function ResultStep({ state, onSave }: { state: RecordState; onSave: () =
   if (state.kind === 'problem') {
     return (
       <div className="stack">
-        <p className="lede">{state.message}</p>
+        {/* Plain words for the farmer; the technical reason only under details. */}
+        <p className="lede">{t('observe.cantFinish')}</p>
+        <details className="hint"><summary>{t('observe.technical')}</summary>{state.message}</details>
         <p>{t('observe.queuedLede')}</p>
         <button className="btn btn-primary btn-main" onClick={onSave}>{t('observe.saveForLater')}</button>
       </div>

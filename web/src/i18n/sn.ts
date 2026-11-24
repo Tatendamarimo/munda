@@ -118,6 +118,8 @@ export const sn: Messages = {
   },
   observe: {
     ...en.observe,
+    cantFinish: 'Munda haikwanisi kupedzisa izvi izvozvi.',
+    technical: 'Ruzivo rwehunyanzvi',
     fromGallery: 'Sarudza kubva mugallery',
     photoTips: 'Zvakanakisa: shizha rimwe rarwara riri pedyo, pachiedza, wobva watora muti wose.',
     reading: 'Munda iri kutarisa mufananidzo wako…',
@@ -292,6 +294,7 @@ export const sn: Messages = {
     worsening: '{n} zviri kuwedzera',
     confirm: 'Simbisa uye yambira boka',
     confirmed: 'Yambiro yatumirwa kuboka',
+    alertMessageOne: '{problem} zvasimbiswa papurazi riri mu {area}. Tarisa chibage chako.',
     alertMessage: '{problem} zvasimbiswa pamapurazi {n} mu {area}. Tarisa chibage chako.',
     noArea: 'Nzvimbo haina kupiwa',
     empty: 'Hapana zvakatariswa neboka svondo rino.',

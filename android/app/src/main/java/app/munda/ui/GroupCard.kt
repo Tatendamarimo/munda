@@ -29,6 +29,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import app.munda.data.GroupAlert
+import app.munda.data.alertText
+import app.munda.domain.MaizeGuide
 
 /** Join a cooperative or extension group with the officer's code (web: GroupCard). Officers start groups on the web. */
 @Composable
@@ -64,9 +66,10 @@ fun GroupCard(vm: FarmViewModel) {
 
 /** The newest alert the group's officer confirmed (web: GroupAlertCard). */
 @Composable
-fun GroupAlertCard(a: GroupAlert) {
+fun GroupAlertCard(a: GroupAlert, vm: FarmViewModel) {
     val c = LocalMunda.current
     val s = strings()
+    val text = alertText({ k, v -> s.t(k, *v) }, { id -> MaizeGuide.get(id)?.let { vm.c.guideText.localized(it, s.lang).name } ?: id }, a)
     Row(
         Modifier.offset(y = (-22).dp).fillMaxWidth().clip(RoundedCornerShape(18.dp)).background(c.leafWash).padding(14.dp),
         horizontalArrangement = Arrangement.spacedBy(11.dp),
@@ -74,7 +77,7 @@ fun GroupAlertCard(a: GroupAlert) {
         Icon(Icons.Outlined.Campaign, null, tint = c.leaf)
         Column {
             Text(listOfNotNull(s.t("home.groupAlert"), a.area).joinToString(" · "), style = MaterialTheme.typography.titleSmall)
-            Text(a.message.ifBlank { a.problem }, style = MaterialTheme.typography.bodySmall, color = c.ink2)
+            Text(text, style = MaterialTheme.typography.bodySmall, color = c.ink2)
         }
     }
 }

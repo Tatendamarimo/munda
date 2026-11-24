@@ -83,6 +83,8 @@ export const sw: Messages = {
   },
   observe: {
     ...en.observe,
+    cantFinish: 'Munda haiwezi kumaliza hili sasa.',
+    technical: 'Maelezo ya kiufundi',
     fromGallery: 'Chagua kutoka kwenye picha',
     photoTips: 'Bora: jani moja lenye ugonjwa karibu, mchana, kisha mmea mzima.',
     reading: 'Munda inaangalia picha yako…',
@@ -196,6 +198,7 @@ export const sw: Messages = {
     worsening: '{n} yanazidi',
     confirm: 'Thibitisha na utahadharishe kikundi',
     confirmed: 'Tahadhari imetumwa kwa kikundi',
+    alertMessageOne: '{problem} imethibitishwa kwenye shamba moja huko {area}. Kagua mahindi yako.',
     alertMessage: '{problem} imethibitishwa kwenye mashamba {n} huko {area}. Kagua mahindi yako.',
     noArea: 'Eneo halijatolewa',
     empty: 'Bado hakuna ukaguzi wa kikundi wiki hii.',

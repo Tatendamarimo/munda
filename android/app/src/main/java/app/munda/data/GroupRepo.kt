@@ -82,3 +82,14 @@ class GroupRepo(context: Context) {
         }
     }
 }
+
+/**
+ * An officer's confirmed alert in the reader's own language, from its stored problem, area and
+ * count (web: ui/alertText.ts). [t] is the i18n lookup for the reader's language.
+ */
+fun alertText(t: (String, Array<Pair<String, Any>>) -> String, problemName: (String) -> String, a: GroupAlert): String {
+    val area = a.area?.ifBlank { null } ?: t("area.noArea", emptyArray())
+    val problem = problemName(a.problem)
+    return if (a.count == 1) t("area.alertMessageOne", arrayOf("problem" to problem, "area" to area))
+    else t("area.alertMessage", arrayOf("problem" to problem, "n" to a.count, "area" to area))
+}

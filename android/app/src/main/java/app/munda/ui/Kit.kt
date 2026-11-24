@@ -386,3 +386,8 @@ fun CauseList(causes: List<PossibleCause>, display: (PossibleCause) -> CauseDisp
     if (causes.size > 1) Tag(strings().t("result.otherCauses"), Modifier.padding(top = 4.dp))
     causes.drop(1).forEach { CauseCard(it, display(it), lead = false) }
 }
+
+/** Small uppercase label above a heading (web: .eyebrow). */
+@Composable
+fun Eyebrow(text: String, color: Color) =
+    Text(text.uppercase(), style = MaterialTheme.typography.labelSmall.copy(letterSpacing = 1.4.sp, fontWeight = FontWeight.Bold), color = color)

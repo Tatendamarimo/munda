@@ -90,6 +90,8 @@ export const en = {
     today: 'Today',
   },
   observe: {
+    cantFinish: 'Munda can’t finish this now.',
+    technical: 'Technical details',
     fromGallery: 'Choose from gallery',
     photoTips: 'Best: one sick leaf close up in daylight, then the whole plant.',
     reading: 'Munda is looking at your photo…',
@@ -261,6 +263,7 @@ export const en = {
     worsening: '{n} getting worse',
     confirm: 'Confirm and alert the group',
     confirmed: 'Alert sent to the group',
+    alertMessageOne: '{problem} confirmed on a farm in {area}. Check your maize.',
     alertMessage: '{problem} confirmed on {n} farms in {area}. Check your maize.',
     noArea: 'Area not given',
     empty: 'No checks from the group this week yet.',

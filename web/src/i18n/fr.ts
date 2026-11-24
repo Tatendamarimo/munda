@@ -83,6 +83,8 @@ export const fr: Messages = {
   },
   observe: {
     ...en.observe,
+    cantFinish: 'Munda ne peut pas terminer pour l’instant.',
+    technical: 'Détails techniques',
     fromGallery: 'Choisir dans la galerie',
     photoTips: 'Idéal : une feuille malade de près, en plein jour, puis la plante entière.',
     reading: 'Munda regarde votre photo…',
@@ -196,6 +198,7 @@ export const fr: Messages = {
     worsening: '{n} s’aggravent',
     confirm: 'Confirmer et alerter le groupe',
     confirmed: 'Alerte envoyée au groupe',
+    alertMessageOne: '{problem} confirmé dans une ferme à {area}. Vérifiez votre maïs.',
     alertMessage: '{problem} confirmé dans {n} fermes à {area}. Vérifiez votre maïs.',
     noArea: 'Zone non indiquée',
     empty: 'Aucun diagnostic du groupe cette semaine.',

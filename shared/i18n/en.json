@@ -1,6 +1,7 @@
 {
  "strings": {
   "area.alertMessage": "{problem} confirmed on {n} farms in {area}. Check your maize.",
+  "area.alertMessageOne": "{problem} confirmed on a farm in {area}. Check your maize.",
   "area.checks": "{n} checks",
   "area.confirm": "Confirm and alert the group",
   "area.confirmed": "Alert sent to the group",
@@ -154,6 +155,7 @@
   "me.weatherOn": "Use my location",
   "observe.addSeen": "Add what Munda sees",
   "observe.areaTitle": "How much of the plot is affected?",
+  "observe.cantFinish": "Munda can’t finish this now.",
   "observe.changePhoto": "Change photo",
   "observe.choosing": "Munda is choosing questions",
   "observe.choosingOnDevice": "Munda is choosing questions on this device",
@@ -185,6 +187,7 @@
   "observe.stop": "Stop",
   "observe.takePhoto": "Take a photo",
   "observe.takePhotoSub": "Of the sick leaf, close up",
+  "observe.technical": "Technical details",
   "observe.type": "Type",
   "observe.unclear": "Munda couldn’t see the problem clearly. Try one sick leaf, close up, in daylight.",
   "observe.writing": "Writing your field record",

@@ -1,6 +1,7 @@
 {
  "strings": {
   "area.alertMessage": "{problem} confirmé dans {n} fermes à {area}. Vérifiez votre maïs.",
+  "area.alertMessageOne": "{problem} confirmé dans une ferme à {area}. Vérifiez votre maïs.",
   "area.checks": "{n} diagnostics",
   "area.confirm": "Confirmer et alerter le groupe",
   "area.confirmed": "Alerte envoyée au groupe",
@@ -154,6 +155,7 @@
   "me.weatherOn": "Utiliser ma position",
   "observe.addSeen": "Ajouter ce que voit Munda",
   "observe.areaTitle": "Quelle partie de la parcelle est touchée ?",
+  "observe.cantFinish": "Munda ne peut pas terminer pour l’instant.",
   "observe.changePhoto": "Changer la photo",
   "observe.choosing": "Munda choisit des questions",
   "observe.choosingOnDevice": "Munda choisit des questions sur cet appareil",
@@ -185,6 +187,7 @@
   "observe.stop": "Arrêter",
   "observe.takePhoto": "Prendre une photo",
   "observe.takePhotoSub": "De la feuille malade, de près",
+  "observe.technical": "Détails techniques",
   "observe.type": "Écrire",
   "observe.unclear": "Munda ne voit pas bien le problème. Essayez une feuille malade, de près, en plein jour.",
   "observe.writing": "Rédaction de votre fiche",

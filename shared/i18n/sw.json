@@ -1,6 +1,7 @@
 {
  "strings": {
   "area.alertMessage": "{problem} imethibitishwa kwenye mashamba {n} huko {area}. Kagua mahindi yako.",
+  "area.alertMessageOne": "{problem} imethibitishwa kwenye shamba moja huko {area}. Kagua mahindi yako.",
   "area.checks": "ukaguzi {n}",
   "area.confirm": "Thibitisha na utahadharishe kikundi",
   "area.confirmed": "Tahadhari imetumwa kwa kikundi",
@@ -154,6 +155,7 @@
   "me.weatherOn": "Tumia mahali nilipo",
   "observe.addSeen": "Ongeza kile Munda inaona",
   "observe.areaTitle": "Sehemu gani ya shamba imeathirika?",
+  "observe.cantFinish": "Munda haiwezi kumaliza hili sasa.",
   "observe.changePhoto": "Badilisha picha",
   "observe.choosing": "Munda inachagua maswali",
   "observe.choosingOnDevice": "Munda inachagua maswali kwenye kifaa hiki",
@@ -185,6 +187,7 @@
   "observe.stop": "Simama",
   "observe.takePhoto": "Piga picha",
   "observe.takePhotoSub": "Ya jani lililougua, karibu",
+  "observe.technical": "Maelezo ya kiufundi",
   "observe.type": "Andika",
   "observe.unclear": "Munda haikuona tatizo vizuri. Jaribu jani moja lenye ugonjwa, karibu, mchana.",
   "observe.writing": "Inaandika kumbukumbu yako",

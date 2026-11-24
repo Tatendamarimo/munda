@@ -83,6 +83,8 @@ export const nd: Messages = {
   },
   observe: {
     ...en.observe,
+    cantFinish: 'IMunda ayikwazi ukuqedela lokhu khathesi.',
+    technical: 'Imininingwane yobuchwepheshe',
     fromGallery: 'Khetha kuma-gallery',
     photoTips: 'Okungcono: ihlamvu elilodwa eligulayo eduze, ekukhanyeni, ubusuthathe isithombo sonke.',
     reading: 'IMunda ikhangela isithombe sakho…',
@@ -196,6 +198,7 @@ export const nd: Messages = {
     worsening: '{n} kuyanda',
     confirm: 'Qinisekisa uxwayise iqembu',
     confirmed: 'Isexwayiso sithunyelwe eqenjini',
+    alertMessageOne: '{problem} kuqinisekisiwe epulazini e-{area}. Hlola umbila wakho.',
     alertMessage: '{problem} kuqinisekisiwe emapulazini angu-{n} e-{area}. Hlola umbila wakho.',
     noArea: 'Indawo kayinikwanga',
     empty: 'Akukabi lokuhlolwa kweqembu kuleli viki.',

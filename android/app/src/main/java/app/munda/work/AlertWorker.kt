@@ -21,6 +21,8 @@ import androidx.work.WorkerParameters
 import app.munda.MainActivity
 import app.munda.MundaApp
 import app.munda.R
+import app.munda.data.alertText
+import app.munda.domain.MaizeGuide
 import java.util.concurrent.TimeUnit
 
 /**
@@ -37,7 +39,7 @@ class AlertWorker(context: Context, params: WorkerParameters) : CoroutineWorker(
         sp.edit().putString(SEEN, latest.id).apply()
         val lang = c.prefs.value.lang ?: "en"
         val title = c.i18n.t(lang, "home.groupAlert")
-        val body = listOfNotNull(latest.message.ifBlank { null } ?: latest.problem, latest.area).joinToString(" · ")
+        val body = alertText({ k, v -> c.i18n.t(lang, k, *v) }, { id -> MaizeGuide.get(id)?.let { c.guideText.localized(it, lang).name } ?: id }, latest)
         notify(applicationContext, latest.id.hashCode(), title, body)
         return Result.success()
     }

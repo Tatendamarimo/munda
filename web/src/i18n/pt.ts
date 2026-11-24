@@ -83,6 +83,8 @@ export const pt: Messages = {
   },
   observe: {
     ...en.observe,
+    cantFinish: 'O Munda não consegue terminar agora.',
+    technical: 'Detalhes técnicos',
     fromGallery: 'Escolher da galeria',
     photoTips: 'Ideal: uma folha doente de perto, à luz do dia, depois a planta inteira.',
     reading: 'O Munda está a ver a sua foto…',
@@ -196,6 +198,7 @@ export const pt: Messages = {
     worsening: '{n} a piorar',
     confirm: 'Confirmar e alertar o grupo',
     confirmed: 'Alerta enviado ao grupo',
+    alertMessageOne: '{problem} confirmado numa machamba em {area}. Verifique o seu milho.',
     alertMessage: '{problem} confirmado em {n} machambas em {area}. Verifique o seu milho.',
     noArea: 'Zona não indicada',
     empty: 'Ainda não há verificações do grupo esta semana.',

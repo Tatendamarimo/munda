@@ -83,6 +83,8 @@ export const es: Messages = {
   },
   observe: {
     ...en.observe,
+    cantFinish: 'Munda no puede terminar esto ahora.',
+    technical: 'Detalles técnicos',
     fromGallery: 'Elegir de la galería',
     photoTips: 'Lo mejor: una hoja enferma de cerca, con luz de día, y luego la planta entera.',
     reading: 'Munda está mirando su foto…',
@@ -196,6 +198,7 @@ export const es: Messages = {
     worsening: '{n} empeorando',
     confirm: 'Confirmar y alertar al grupo',
     confirmed: 'Alerta enviada al grupo',
+    alertMessageOne: '{problem} confirmado en una finca en {area}. Revise su maíz.',
     alertMessage: '{problem} confirmado en {n} fincas en {area}. Revise su maíz.',
     noArea: 'Zona no indicada',
     empty: 'Aún no hay revisiones del grupo esta semana.',

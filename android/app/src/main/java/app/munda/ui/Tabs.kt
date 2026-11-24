@@ -1,5 +1,10 @@
 package app.munda.ui
 
+import androidx.compose.foundation.Image
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.style.TextAlign
+import app.munda.R
 import android.app.DatePickerDialog
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -38,7 +43,7 @@ private fun Page(content: @Composable ColumnScope.() -> Unit) =
 // ---------------- Home ----------------
 
 @Composable
-fun HomeScreen(vm: FarmViewModel, onCheck: () -> Unit, onOpen: (String) -> Unit, onPlot: (String) -> Unit, onPlots: () -> Unit) {
+fun HomeScreen(vm: FarmViewModel, onCheck: () -> Unit, onOpen: (String) -> Unit, onPlot: (String) -> Unit, onPlots: () -> Unit, onGuide: () -> Unit = {}) {
     val c = LocalMunda.current
     val s = strings()
     val items = vm.items.collectAsStateWithLifecycle().value.orEmpty()
@@ -72,6 +77,7 @@ fun HomeScreen(vm: FarmViewModel, onCheck: () -> Unit, onOpen: (String) -> Unit,
                 }
             }) else null,
         ) {
+            Eyebrow(s.t("studio.overview"), Color.White.copy(alpha = .8f))
             Text(if (p.name.isNotBlank()) s.t("home.greeting", "name" to p.name) else s.t("home.greetingNoName"), style = MaterialTheme.typography.headlineMedium, color = Color.White)
             Text(cropLine, style = MaterialTheme.typography.bodySmall, color = Color.White.copy(alpha = .85f))
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -84,22 +90,28 @@ fun HomeScreen(vm: FarmViewModel, onCheck: () -> Unit, onOpen: (String) -> Unit,
                     s.t(if (unsynced || !online) "home.statSaved" else "home.statSynced"))
             }
         }
-        // The yellow card overlaps the hero, as in design B.
-        Row(
+        // The check card overlaps the hero, with the field painting (web: HomePage + FieldArtwork).
+        Column(
             Modifier.padding(horizontal = 16.dp).offset(y = (-36).dp).fillMaxWidth().shadow(10.dp, RoundedCornerShape(20.dp)).clip(RoundedCornerShape(20.dp))
-                .background(c.card).clickable(onClick = onCheck).padding(14.dp),
-            verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(14.dp),
+                .background(c.card).clickable(onClick = onCheck),
         ) {
-            Box(Modifier.size(52.dp).clip(RoundedCornerShape(16.dp)).background(c.maize), contentAlignment = Alignment.Center) { Icon(Icons.Outlined.PhotoCamera, null, tint = c.forest, modifier = Modifier.size(28.dp)) }
-            Column(Modifier.weight(1f)) {
-                Text(s.t("home.checkCrop"), style = MaterialTheme.typography.titleMedium)
+            Image(painterResource(R.drawable.field_study), null, Modifier.fillMaxWidth().height(120.dp), contentScale = ContentScale.Crop)
+            Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                Eyebrow(s.t("studio.fieldCheck"), c.leaf)
+                Text(s.t("home.checkCrop"), style = MaterialTheme.typography.titleLarge)
                 Text(s.t("home.checkCropSub"), style = MaterialTheme.typography.bodySmall, color = c.ink2)
+                Row(
+                    Modifier.padding(top = 6.dp).clip(RoundedCornerShape(14.dp)).background(c.maize).padding(horizontal = 16.dp, vertical = 10.dp),
+                    verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp),
+                ) {
+                    Icon(Icons.Outlined.PhotoCamera, null, tint = c.forest, modifier = Modifier.size(20.dp))
+                    Text(s.t("home.checkCrop"), style = MaterialTheme.typography.labelLarge, color = c.forest)
+                }
             }
-            Icon(Icons.AutoMirrored.Outlined.KeyboardArrowRight, null, tint = c.ink2)
         }
         Page {
             Spacer(Modifier.height(0.dp).offset(y = (-36).dp))
-            vm.alerts.collectAsStateWithLifecycle().value.firstOrNull()?.let { GroupAlertCard(it) }
+            vm.alerts.collectAsStateWithLifecycle().value.firstOrNull()?.let { GroupAlertCard(it, vm) }
             if (alert != null) {
                 Row(
                     Modifier.offset(y = (-22).dp).fillMaxWidth().clip(RoundedCornerShape(18.dp)).background(c.husk).clickable { onOpen(alert.observation.id) }.padding(14.dp),
@@ -121,7 +133,28 @@ fun HomeScreen(vm: FarmViewModel, onCheck: () -> Unit, onOpen: (String) -> Unit,
                     Box(Modifier.clickable { onPlot(active.key) }) { TimelineBars(Farm.timeline(observations, active.key)) }
                 }
             } else {
-                Text(s.t("home.emptyHint"), Modifier.offset(y = (-22).dp).fillMaxWidth().border(1.dp, c.rule, RoundedCornerShape(16.dp)).padding(16.dp), style = MaterialTheme.typography.bodyMedium, color = c.ink2)
+                // Empty farm: the start of the field story (web: studio.emptyTitle).
+                Column(
+                    Modifier.offset(y = (-22).dp).fillMaxWidth().border(1.dp, c.rule, RoundedCornerShape(18.dp)).padding(20.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(8.dp),
+                ) {
+                    Box(Modifier.size(44.dp).clip(RoundedCornerShape(14.dp)).background(c.leafWash), contentAlignment = Alignment.Center) { Icon(Icons.Outlined.Eco, null, tint = c.leaf) }
+                    Text(s.t("studio.emptyTitle"), style = MaterialTheme.typography.titleMedium, textAlign = TextAlign.Center)
+                    Text(s.t("studio.emptyHelp"), style = MaterialTheme.typography.bodySmall, color = c.ink2, textAlign = TextAlign.Center)
+                    MainButton(s.t("studio.firstCheck"), onCheck, kind = ButtonKind.GHOST)
+                }
+            }
+            // The guide, one tap from home (web: studio.library card).
+            Row(
+                Modifier.offset(y = (-22).dp).fillMaxWidth().clip(RoundedCornerShape(18.dp)).background(c.card).clickable(onClick = onGuide).padding(16.dp),
+                horizontalArrangement = Arrangement.spacedBy(14.dp), verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Box(Modifier.size(44.dp).clip(RoundedCornerShape(14.dp)).background(c.leafWash), contentAlignment = Alignment.Center) { Icon(Icons.Outlined.MenuBook, null, tint = c.leaf) }
+                Column(Modifier.weight(1f)) {
+                    Text(s.t("studio.library"), style = MaterialTheme.typography.titleSmall)
+                    Text(s.t("studio.libraryHelp"), style = MaterialTheme.typography.bodySmall, color = c.ink2)
+                    Text(s.t("studio.learn"), style = MaterialTheme.typography.labelMedium, color = c.leaf)
+                }
             }
         }
     }

@@ -1,6 +1,7 @@
 {
  "strings": {
   "area.alertMessage": "{problem} zvasimbiswa pamapurazi {n} mu {area}. Tarisa chibage chako.",
+  "area.alertMessageOne": "{problem} zvasimbiswa papurazi riri mu {area}. Tarisa chibage chako.",
   "area.checks": "kutarisa {n}",
   "area.confirm": "Simbisa uye yambira boka",
   "area.confirmed": "Yambiro yatumirwa kuboka",
@@ -154,6 +155,7 @@
   "me.weatherOn": "Shandisa nzvimbo yangu",
   "observe.addSeen": "Wedzera zvinoonekwa naMunda",
   "observe.areaTitle": "Chikamu chakadii chemunda chabatwa?",
+  "observe.cantFinish": "Munda haikwanisi kupedzisa izvi izvozvi.",
   "observe.changePhoto": "Chinja mufananidzo",
   "observe.choosing": "Munda iri kusarudza mibvunzo",
   "observe.choosingOnDevice": "Munda iri kusarudza mibvunzo pamudziyo uyu",
@@ -185,6 +187,7 @@
   "observe.stop": "Mira",
   "observe.takePhoto": "Tora mufananidzo",
   "observe.takePhotoSub": "Weshizha rinorwara, uri pedyo",
+  "observe.technical": "Ruzivo rwehunyanzvi",
   "observe.type": "Nyora",
   "observe.unclear": "Munda haina kuona dambudziko zvakajeka. Edza shizha rimwe rarwara riri pedyo, pachiedza.",
   "observe.writing": "Kunyora chinyorwa chemunda",

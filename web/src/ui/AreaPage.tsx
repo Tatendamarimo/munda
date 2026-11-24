@@ -11,6 +11,7 @@ import { localizedEntry } from '../domain/localize';
 import { relativeTime, useLang, useT } from '../i18n';
 import { AreaMap, type MapCell } from './AreaMap';
 import { Working } from './components';
+import { alertText } from './alertText';
 import { PageHead } from './Header';
 import { back } from './router';
 
@@ -56,7 +57,7 @@ export function AreaPage() {
     setSending(key);
     try {
       await confirmAlert(g.orgId, s.uid, { problem: a.problem, area: a.area || null, count: a.farms,
-        message: t('area.alertMessage', { problem: nameOf(a.problem), n: a.farms, area: a.area || t('area.noArea') }) });
+        message: alertText(t, lang, { problem: a.problem, area: a.area || null, count: a.farms }) });
     } finally { setSending(null); }
   };
 

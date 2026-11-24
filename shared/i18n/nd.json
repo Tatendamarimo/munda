@@ -1,6 +1,7 @@
 {
  "strings": {
   "area.alertMessage": "{problem} kuqinisekisiwe emapulazini angu-{n} e-{area}. Hlola umbila wakho.",
+  "area.alertMessageOne": "{problem} kuqinisekisiwe epulazini e-{area}. Hlola umbila wakho.",
   "area.checks": "ukuhlola okungu-{n}",
   "area.confirm": "Qinisekisa uxwayise iqembu",
   "area.confirmed": "Isexwayiso sithunyelwe eqenjini",
@@ -154,6 +155,7 @@
   "me.weatherOn": "Sebenzisa indawo yami",
   "observe.addSeen": "Engeza okubonwa yiMunda",
   "observe.areaTitle": "Kungakanani kwesimu okuthintekileyo?",
+  "observe.cantFinish": "IMunda ayikwazi ukuqedela lokhu khathesi.",
   "observe.changePhoto": "Ntshintsha isithombe",
   "observe.choosing": "IMunda ikhetha imibuzo",
   "observe.choosingOnDevice": "IMunda ikhetha imibuzo kule foni",
@@ -185,6 +187,7 @@
   "observe.stop": "Ima",
   "observe.takePhoto": "Thatha isithombe",
   "observe.takePhotoSub": "Sehlamvu eligulayo, eduze",
+  "observe.technical": "Imininingwane yobuchwepheshe",
   "observe.type": "Bhala",
   "observe.unclear": "IMunda ayibonanga inkinga kuhle. Zama ihlamvu elilodwa eligulayo eduze, ekukhanyeni.",
   "observe.writing": "Kubhalwa umbhalo wakho",

@@ -1,6 +1,7 @@
 {
  "strings": {
   "area.alertMessage": "{problem} confirmado em {n} machambas em {area}. Verifique o seu milho.",
+  "area.alertMessageOne": "{problem} confirmado numa machamba em {area}. Verifique o seu milho.",
   "area.checks": "{n} verificações",
   "area.confirm": "Confirmar e alertar o grupo",
   "area.confirmed": "Alerta enviado ao grupo",
@@ -154,6 +155,7 @@
   "me.weatherOn": "Usar a minha localização",
   "observe.addSeen": "Acrescentar o que o Munda vê",
   "observe.areaTitle": "Quanto do talhão está afetado?",
+  "observe.cantFinish": "O Munda não consegue terminar agora.",
   "observe.changePhoto": "Mudar a foto",
   "observe.choosing": "O Munda está a escolher perguntas",
   "observe.choosingOnDevice": "O Munda está a escolher perguntas neste aparelho",
@@ -185,6 +187,7 @@
   "observe.stop": "Parar",
   "observe.takePhoto": "Tirar uma foto",
   "observe.takePhotoSub": "Da folha doente, de perto",
+  "observe.technical": "Detalhes técnicos",
   "observe.type": "Escrever",
   "observe.unclear": "O Munda não viu o problema com clareza. Tente uma folha doente, de perto, à luz do dia.",
   "observe.writing": "A escrever o seu registo",

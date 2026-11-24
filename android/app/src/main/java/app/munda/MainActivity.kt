@@ -82,7 +82,7 @@ private fun MundaNav(farm: FarmViewModel, app: MundaApp) {
         Column(Modifier.padding(bottom = pad.calculateBottomPadding())) {
             ConnectionBanner(online, syncing, reviewAdded, open)
             NavHost(nav, startDestination = "home") {
-                composable("home") { HomeScreen(farm, onCheck = { nav.navigate("observe") }, onOpen = open, onPlot = { nav.navigate("plot/$it") }, onPlots = { nav.navigate("plots") }) }
+                composable("home") { HomeScreen(farm, onCheck = { nav.navigate("observe") }, onOpen = open, onPlot = { nav.navigate("plot/$it") }, onPlots = { nav.navigate("plots") }, onGuide = { nav.navigate("guide") }) }
                 composable("plots") { PlotsScreen(farm) { nav.navigate("plot/$it") } }
                 composable("plot/{key}") { e -> PlotScreen(farm, e.arguments?.getString("key").orEmpty(), { nav.popBackStack() }, open) }
                 composable("guide") { GuideScreen(farm) { nav.navigate("guide/$it") } }

@@ -464,7 +464,9 @@ private fun ResultStep(vm: ObserveViewModel, r: RecordState, farm: FarmViewModel
         RecordState.Idle -> Working(s.t("observe.writing"))
         is RecordState.Building -> LiveResult(r, farm)
         is RecordState.Problem -> {
-            Text(r.message, style = MaterialTheme.typography.titleMedium)
+            // Plain words for the farmer; the technical reason stays in small print.
+            Text(s.t("observe.cantFinish"), style = MaterialTheme.typography.titleMedium)
+            Text("${s.t("observe.technical")}: ${r.message}", style = MaterialTheme.typography.labelSmall, color = c.ink2)
             Text(s.t("observe.queuedLede"), style = MaterialTheme.typography.bodyMedium, color = c.ink2)
             MainButton(s.t("observe.saveForLater"), { vm.save(onSaved) })
         }
