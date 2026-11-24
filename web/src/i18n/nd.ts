@@ -66,6 +66,8 @@ export const nd: Messages = {
   },
   welcome: {
     ...en.welcome,
+    lede: 'Phendula okubonayo ensimini yakho yombila kube yikuhlola okusizayo. Qala ngesithombe kumbe amazwi amalutshwana.',
+    fineprint: 'Xhuma kanye ukuze ulungise. I-AI engadingi inethiwekhi idinga ifoni efaneleyo lemodeli elandiweyo. Kwezinye izifoni, ukuhlola kulinda inethiwekhi.',
     title: 'Yazi okumele ukuhlole ensimini yakho.',
 
     setup: 'Lungisa le foni', setupOffline: 'Xhumana leinthanethi ukuze ulungise', settingUp: 'Kulungiswa le foni',
@@ -74,6 +76,7 @@ export const nd: Messages = {
   },
   home: {
     ...en.home,
+    checkCropSub: 'Isithombe. Imibuzo emilutshwana. Isinyathelo esisizayo.',
     groupAlert: 'Kuqinisekiswe yisikhulu sakho',
     greeting: 'Salibonani, {name}', greetingNoName: 'Salibonani', cropLine: 'Umbila', weeks: 'Amaviki {weeks}',
     statPlots: 'Amasimu', statNeedsCheck: 'Hlola', statSynced: 'Kuthunyelwe', statSaved: 'Kusefonini',
@@ -83,6 +86,7 @@ export const nd: Messages = {
   },
   observe: {
     ...en.observe,
+    queuedLede: 'Gcina okubhalileyo lempendulo khathesi. IMunda ingaqedela umbiko nxa usuxhumene.',
     cantFinish: 'IMunda ayikwazi ukuqedela lokhu khathesi.',
     technical: 'Imininingwane yobuchwepheshe',
     fromGallery: 'Khetha kuma-gallery',
@@ -112,6 +116,7 @@ export const nd: Messages = {
   },
   record: {
     ...en.record,
+    photoNote: 'Isithombe sehlamvu sisetshenzisiwe. Isithombe kasigcinwa kulumbiko.',
     recorded: 'Kubhaliwe', crop: 'Isilimo', affected: 'Okuthintekileyo', rain: 'Izulu, amaviki 2', noticed: 'Kwabonwa', notAvailable: 'Umbhalo lo kawutholakali kule foni.',
     loading: 'Kulayishwa umbhalo', queued: 'IMunda izabhala umbhalo lapho le foni ithola inethiwekhi.', error: 'IMunda ayikwazanga ukubhala umbhalo lo: {error}',
     review: 'Ukuhlolwa komlando', reviewAfterRecord: 'Kwenziwa ngemva kokubhalwa komlando.',
@@ -142,6 +147,7 @@ export const nd: Messages = {
   readAloud: { play: 'Bala ngelizwi', stop: 'Yekela ukubala' },
   live: {
     ...en.live,
+    onDevice: 'Le-AI isebenza efonini yakho. Imibiko egciniweyo ingathunyelwa ngemuva.',
     title: 'IMunda iyacabanga',
 
     cloud: 'Ku-cloud, ngeGemini.',
@@ -167,6 +173,7 @@ export const nd: Messages = {
   },
   banner: {
     ...en.banner,
+    offline: 'Akulanethiwekhi. Okubhaliweyo kuhlala kulefoni kuthunyelwe nxa inethiwekhi ibuyile.',
 
     syncing: 'Inethiwekhi ibuyile. Kuyathunyelwa njalo kuhlolwa ku-cloud…',
     reviewed: 'Ukuhlola kwe-cloud kungeziwe · {plot}',

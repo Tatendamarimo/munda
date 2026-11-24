@@ -66,6 +66,8 @@ export const es: Messages = {
   },
   welcome: {
     ...en.welcome,
+    lede: 'Convierta lo que nota en su campo de maíz en una revisión útil. Empiece con una foto o unas palabras.',
+    fineprint: 'Conéctese una vez para configurar. La IA sin conexión necesita un dispositivo compatible y un modelo descargado. En otros dispositivos, las revisiones esperan conexión.',
     title: 'Sepa qué revisar en su campo.',
 
     setup: 'Configurar este dispositivo', setupOffline: 'Conéctese a internet para configurar', settingUp: 'Configurando este dispositivo',
@@ -74,6 +76,7 @@ export const es: Messages = {
   },
   home: {
     ...en.home,
+    checkCropSub: 'Una foto. Unas preguntas. Un siguiente paso útil.',
     groupAlert: 'Confirmado por su extensionista',
     greeting: 'Hola, {name}', greetingNoName: 'Hola', cropLine: 'Maíz', weeks: '{weeks} semanas',
     statPlots: 'Parcelas', statNeedsCheck: 'Por revisar', statSynced: 'Sincronizado', statSaved: 'En el teléfono',
@@ -83,6 +86,7 @@ export const es: Messages = {
   },
   observe: {
     ...en.observe,
+    queuedLede: 'Guarde ahora su descripción y respuestas. Munda puede terminar el registro cuando vuelva a conectarse.',
     cantFinish: 'Munda no puede terminar esto ahora.',
     technical: 'Detalles técnicos',
     fromGallery: 'Elegir de la galería',
@@ -112,6 +116,7 @@ export const es: Messages = {
   },
   record: {
     ...en.record,
+    photoNote: 'Se usó una foto de la hoja. La foto no se guarda en este informe sincronizado.',
     recorded: 'Registrado', crop: 'Cultivo', affected: 'Afectado', rain: 'Lluvia, 2 semanas', noticed: 'Notado', notAvailable: 'Este registro no está disponible en este dispositivo.',
     loading: 'Cargando registro', queued: 'Munda escribirá el registro cuando este dispositivo tenga señal.', error: 'Munda no pudo escribir este registro: {error}',
     review: 'Revisión del historial', reviewAfterRecord: 'Se hace después de escribir el registro.',
@@ -142,6 +147,7 @@ export const es: Messages = {
   readAloud: { play: 'Leer en voz alta', stop: 'Dejar de leer' },
   live: {
     ...en.live,
+    onDevice: 'Esta solicitud de IA se ejecuta en su dispositivo. Los informes guardados pueden sincronizarse después.',
     title: 'Analizando',
 
     cloud: 'En la nube, con Gemini.',
@@ -167,6 +173,7 @@ export const es: Messages = {
   },
   banner: {
     ...en.banner,
+    offline: 'Sin señal. Los registros se quedan en este dispositivo y se sincronizan al conectarse.',
 
     syncing: 'De nuevo en línea. Sincronizando y revisando en la nube…',
     reviewed: 'Revisión del historial añadida · {plot}',

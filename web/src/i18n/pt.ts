@@ -66,6 +66,8 @@ export const pt: Messages = {
   },
   welcome: {
     ...en.welcome,
+    lede: 'Transforme o que nota na sua machamba de milho numa verificação útil. Comece com uma foto ou algumas palavras.',
+    fineprint: 'Ligue-se uma vez para configurar. A IA offline precisa de um dispositivo compatível e de um modelo descarregado. Noutros dispositivos, as verificações esperam por ligação.',
     title: 'Saiba o que verificar a seguir na sua machamba.',
 
     setup: 'Configurar este aparelho', setupOffline: 'Ligue-se à internet para configurar', settingUp: 'A configurar este aparelho',
@@ -74,6 +76,7 @@ export const pt: Messages = {
   },
   home: {
     ...en.home,
+    checkCropSub: 'Uma foto. Algumas perguntas. Um próximo passo útil.',
     groupAlert: 'Confirmado pelo seu extensionista',
     greeting: 'Olá, {name}', greetingNoName: 'Olá', cropLine: 'Milho', weeks: '{weeks} semanas',
     statPlots: 'Talhões', statNeedsCheck: 'A verificar', statSynced: 'Sincronizado', statSaved: 'No aparelho',
@@ -83,6 +86,7 @@ export const pt: Messages = {
   },
   observe: {
     ...en.observe,
+    queuedLede: 'Guarde já a descrição e as respostas. O Munda pode terminar o registo quando voltar a ter ligação.',
     cantFinish: 'O Munda não consegue terminar agora.',
     technical: 'Detalhes técnicos',
     fromGallery: 'Escolher da galeria',
@@ -112,6 +116,7 @@ export const pt: Messages = {
   },
   record: {
     ...en.record,
+    photoNote: 'Foi usada uma foto da folha. A foto não é guardada neste relatório sincronizado.',
     recorded: 'Registado', crop: 'Cultura', affected: 'Afetado', rain: 'Chuva, 2 semanas', noticed: 'Notado', notAvailable: 'Este registo não está disponível neste aparelho.',
     loading: 'A carregar registo', queued: 'O Munda escreve o registo quando este aparelho tiver rede.', error: 'O Munda não conseguiu escrever este registo: {error}',
     review: 'Revisão do histórico', reviewAfterRecord: 'Feita depois de escrever o registo.',
@@ -142,6 +147,7 @@ export const pt: Messages = {
   readAloud: { play: 'Ler em voz alta', stop: 'Parar a leitura' },
   live: {
     ...en.live,
+    onDevice: 'Este pedido de IA corre no seu dispositivo. Os relatórios guardados podem sincronizar mais tarde.',
     title: 'A analisar',
 
     cloud: 'Na nuvem, com o Gemini.',
@@ -167,6 +173,7 @@ export const pt: Messages = {
   },
   banner: {
     ...en.banner,
+    offline: 'Sem rede. Os registos ficam neste dispositivo e sincronizam quando houver ligação.',
 
     syncing: 'De volta à rede. A sincronizar e rever na nuvem…',
     reviewed: 'Revisão do histórico adicionada · {plot}',

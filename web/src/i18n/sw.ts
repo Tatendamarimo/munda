@@ -66,6 +66,8 @@ export const sw: Messages = {
   },
   welcome: {
     ...en.welcome,
+    lede: 'Geuza unachoona kwenye shamba lako la mahindi kuwa ukaguzi muhimu unaofuata. Anza na picha au maneno machache.',
+    fineprint: 'Unganisha mara moja kuandaa. AI ya nje ya mtandao inahitaji kifaa kinachofaa na modeli iliyopakuliwa. Kwenye vifaa vingine, ukaguzi unasubiri mtandao.',
     title: 'Jua cha kukagua shambani mwako.',
 
     setup: 'Andaa kifaa hiki', setupOffline: 'Unganisha intaneti ili kuandaa', settingUp: 'Inaandaa kifaa hiki',
@@ -74,6 +76,7 @@ export const sw: Messages = {
   },
   home: {
     ...en.home,
+    checkCropSub: 'Picha. Maswali machache. Hatua muhimu inayofuata.',
     groupAlert: 'Imethibitishwa na afisa wako',
     greeting: 'Habari, {name}', greetingNoName: 'Habari', cropLine: 'Mahindi', weeks: 'Wiki {weeks}',
     statPlots: 'Mashamba', statNeedsCheck: 'Ya kukagua', statSynced: 'Imesawazishwa', statSaved: 'Kwenye simu',
@@ -83,6 +86,7 @@ export const sw: Messages = {
   },
   observe: {
     ...en.observe,
+    queuedLede: 'Hifadhi maelezo na majibu yako sasa. Munda inaweza kumaliza rekodi ukiunganishwa tena.',
     cantFinish: 'Munda haiwezi kumaliza hili sasa.',
     technical: 'Maelezo ya kiufundi',
     fromGallery: 'Chagua kutoka kwenye picha',
@@ -112,6 +116,7 @@ export const sw: Messages = {
   },
   record: {
     ...en.record,
+    photoNote: 'Picha ya jani ilitumika. Picha haihifadhiwi kwenye ripoti hii.',
     recorded: 'Imerekodiwa', crop: 'Zao', affected: 'Kilichoathirika', rain: 'Mvua, wiki 2', noticed: 'Ilionekana', notAvailable: 'Kumbukumbu hii haipatikani kwenye kifaa hiki.',
     loading: 'Inapakia kumbukumbu', queued: 'Munda itaandika kumbukumbu kifaa hiki kikipata mtandao.', error: 'Munda haikuweza kuandika kumbukumbu hii: {error}',
     review: 'Ukaguzi wa historia', reviewAfterRecord: 'Hufanyika baada ya kumbukumbu kuandikwa.',
@@ -142,6 +147,7 @@ export const sw: Messages = {
   readAloud: { play: 'Soma kwa sauti', stop: 'Acha kusoma' },
   live: {
     ...en.live,
+    onDevice: 'Ombi hili la AI linaendeshwa kwenye kifaa chako. Ripoti zilizohifadhiwa zinaweza kusawazishwa baadaye.',
     title: 'Inafikiria',
 
     cloud: 'Kwenye wingu, kwa Gemini.',
@@ -167,6 +173,7 @@ export const sw: Messages = {
   },
   banner: {
     ...en.banner,
+    offline: 'Hakuna mtandao. Rekodi zinabaki kwenye kifaa hiki na kusawazishwa ukiunganishwa.',
 
     syncing: 'Mtandao umerudi. Inatuma na kukagua kwenye wingu…',
     reviewed: 'Ukaguzi wa historia wa wingu umeongezwa · {plot}',

@@ -87,6 +87,8 @@ export const sn: Messages = {
   },
   welcome: {
     ...en.welcome,
+    lede: 'Shandura zvaunoona mumunda wako wechibage kuva chekutarisa chinobatsira. Tanga nemufananidzo kana mazwi mashoma.',
+    fineprint: 'Batanidza kamwe chete kuti ugadzirire. AI isingadi network inoda foni inokwanisa uye modhi yakadhawunodwa. Pane mamwe mafoni, kutarisa kunomirira network.',
     title: 'Ziva zvekutarisa mumunda mako.',
 
     setup: 'Gadzirira mudziyo uyu',
@@ -97,6 +99,7 @@ export const sn: Messages = {
   },
   home: {
     ...en.home,
+    checkCropSub: 'Mufananidzo. Mibvunzo mishoma. Danho rinobatsira.',
     groupAlert: 'Zvasimbiswa nemupi wezano wako',
     greeting: 'Mhoro, {name}',
     greetingNoName: 'Mhoro',
@@ -118,6 +121,7 @@ export const sn: Messages = {
   },
   observe: {
     ...en.observe,
+    queuedLede: 'Chengeta zvawanyora nemhinduro izvozvi. Munda inogona kupedzisa mushumo kana network yadzoka.',
     cantFinish: 'Munda haikwanisi kupedzisa izvi izvozvi.',
     technical: 'Ruzivo rwehunyanzvi',
     fromGallery: 'Sarudza kubva mugallery',
@@ -175,6 +179,7 @@ export const sn: Messages = {
   },
   record: {
     ...en.record,
+    photoNote: 'Mufananidzo weshizha wakashandiswa. Mufananidzo hauchengetwe mumushumo uyu.',
     recorded: 'Zvakanyorwa',
     crop: 'Chirimwa',
     affected: 'Zvabatwa',
@@ -238,6 +243,7 @@ export const sn: Messages = {
   readAloud: { play: 'Verenga zvinonzwika', stop: 'Mira kuverenga' },
   live: {
     ...en.live,
+    onDevice: 'AI iyi iri kushanda pafoni yako. Mishumo yakachengetwa inogona kutumirwa gare gare.',
     title: 'Munda iri kufunga',
 
     cloud: 'Mu cloud, neGemini.',
@@ -263,6 +269,7 @@ export const sn: Messages = {
   },
   banner: {
     ...en.banner,
+    offline: 'Hapana network. Zvinyorwa zvinoramba zviri pafoni ino uye zvinotumirwa kana network yadzoka.',
 
     syncing: 'Network yadzoka. Kutumira nekuongorora mu cloud…',
     reviewed: 'Ongororo ye cloud yawedzerwa · {plot}',

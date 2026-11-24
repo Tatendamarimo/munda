@@ -31,7 +31,13 @@ private data class Dict(val strings: Map<String, String>, val calendar: Calendar
  * the same thing in all 7 languages. English fills any gap; `{name}` placeholders are filled from
  * vars. Shona and Ndebele get their own day/month names (Java has no calendar for them).
  */
-class I18n private constructor(val langs: List<LangInfo>, private val dicts: Map<String, Dict>) {
+class I18n private constructor(val langs: List<LangInfo>, private val loadDict: (String) -> Dict?) {
+    /** Each language is parsed the first time it's used, not all seven at startup. */
+    private val cache = java.util.concurrent.ConcurrentHashMap<String, java.util.Optional<Dict>>()
+    private val dicts = object {
+        operator fun get(lang: String): Dict? = cache.getOrPut(lang) { java.util.Optional.ofNullable(loadDict(lang)) }.orElse(null)
+    }
+
 
     fun t(lang: String, key: String, vararg vars: Pair<String, Any>): String {
         val raw = dicts[lang]?.strings?.get(key) ?: dicts["en"]?.strings?.get(key) ?: key
@@ -89,8 +95,8 @@ class I18n private constructor(val langs: List<LangInfo>, private val dicts: Map
         /** [read] returns a file from shared/i18n by name (assets on the device, files in tests). */
         fun load(read: (String) -> String): I18n {
             val langs = json.decodeFromString<List<LangInfo>>(read("langs.json"))
-            val dicts = langs.associate { it.code to json.decodeFromString<Dict>(read("${it.code}.json")) }
-            return I18n(langs, dicts)
+            val codes = langs.map { it.code }.toSet()
+            return I18n(langs) { code -> if (code in codes) runCatching { json.decodeFromString<Dict>(read("$code.json")) }.getOrNull() else null }
         }
     }
 }

@@ -66,6 +66,8 @@ export const fr: Messages = {
   },
   welcome: {
     ...en.welcome,
+    lede: 'Transformez ce que vous remarquez dans votre champ de maïs en une vérification utile. Commencez par une photo ou quelques mots.',
+    fineprint: 'Connectez-vous une fois pour configurer. L’IA hors ligne demande un appareil compatible et un modèle téléchargé. Ailleurs, les diagnostics attendent une connexion.',
     title: 'Sachez quoi vérifier ensuite dans votre champ.',
 
     setup: 'Configurer cet appareil', setupOffline: 'Connectez-vous à internet pour configurer', settingUp: 'Configuration de cet appareil',
@@ -74,6 +76,7 @@ export const fr: Messages = {
   },
   home: {
     ...en.home,
+    checkCropSub: 'Une photo. Quelques questions. Une prochaine étape utile.',
     groupAlert: 'Confirmé par votre conseiller',
     greeting: 'Bonjour, {name}', greetingNoName: 'Bonjour', cropLine: 'Maïs', weeks: '{weeks} semaines',
     statPlots: 'Parcelles', statNeedsCheck: 'À vérifier', statSynced: 'Synchronisé', statSaved: 'Sur l’appareil',
@@ -83,6 +86,7 @@ export const fr: Messages = {
   },
   observe: {
     ...en.observe,
+    queuedLede: 'Enregistrez votre description et vos réponses maintenant. Munda pourra terminer la fiche à la reconnexion.',
     cantFinish: 'Munda ne peut pas terminer pour l’instant.',
     technical: 'Détails techniques',
     fromGallery: 'Choisir dans la galerie',
@@ -112,6 +116,7 @@ export const fr: Messages = {
   },
   record: {
     ...en.record,
+    photoNote: 'Une photo de feuille a été utilisée. La photo n’est pas conservée dans ce rapport synchronisé.',
     recorded: 'Enregistré', crop: 'Culture', affected: 'Touché', rain: 'Pluie, 2 semaines', noticed: 'Remarqué', notAvailable: 'Cette fiche n’est pas disponible sur cet appareil.',
     loading: 'Chargement de la fiche', queued: 'Munda rédigera la fiche quand cet appareil retrouvera le réseau.', error: 'Munda n’a pas pu rédiger cette fiche : {error}',
     review: 'Analyse de l’historique', reviewAfterRecord: 'Se fait après la rédaction de la fiche.',
@@ -142,6 +147,7 @@ export const fr: Messages = {
   readAloud: { play: 'Lire à voix haute', stop: 'Arrêter la lecture' },
   live: {
     ...en.live,
+    onDevice: 'Cette requête d’IA s’exécute sur votre appareil. Les rapports enregistrés pourront se synchroniser plus tard.',
     title: 'Analyse en cours',
 
     cloud: 'Dans le cloud, avec Gemini.',
@@ -167,6 +173,7 @@ export const fr: Messages = {
   },
   banner: {
     ...en.banner,
+    offline: 'Pas de réseau. Les fiches restent sur cet appareil et se synchronisent à la connexion.',
 
     syncing: 'De retour en ligne. Synchronisation et analyse dans le cloud…',
     reviewed: 'Analyse de l’historique ajoutée · {plot}',
