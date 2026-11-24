@@ -29,6 +29,9 @@ class RemoteSettings {
 
     val cloudModel: String get() = rc.getString("cloud_model").ifBlank { DEFAULT_MODEL }
     val reviewModel: String get() = rc.getString("review_model").ifBlank { DEFAULT_MODEL }
+    /** Read-aloud voice (Gemini text-to-speech), same keys as the web. */
+    val ttsModel: String get() = rc.getString("tts_model").ifBlank { "gemini-2.5-flash-preview-tts" }
+    val ttsVoice: String get() = rc.getString("tts_voice").ifBlank { "Sulafat" }
     val maxOnDeviceChars: Int get() = rc.getLong("max_on_device_chars").toInt().coerceIn(500, 8_000)
     val historyLookbackDays: Int get() = rc.getLong("history_lookback_days").toInt().coerceIn(7, 730)
     val aiReviewEnabled: Boolean get() = rc.getBoolean("ai_review_enabled")

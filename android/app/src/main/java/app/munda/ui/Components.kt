@@ -98,29 +98,29 @@ fun Badge(text: String, fg: Color, bg: Color, icon: ImageVector? = null) {
 fun OriginBadge(origin: InferenceOrigin) {
     val c = LocalMunda.current
     when (origin) {
-        InferenceOrigin.ON_DEVICE -> Badge("On this device", c.leaf, c.leafWash, Icons.Outlined.PhoneAndroid)
-        InferenceOrigin.CLOUD -> Badge("Cloud AI", c.sky, c.skyWash, Icons.Outlined.Cloud)
-        InferenceOrigin.PENDING -> Badge("Waiting for signal", c.ink2, c.ink2.copy(alpha = .12f), Icons.Outlined.Timer)
+        InferenceOrigin.ON_DEVICE -> Badge(strings().origin(origin), c.leaf, c.leafWash, Icons.Outlined.PhoneAndroid)
+        InferenceOrigin.CLOUD -> Badge(strings().origin(origin), c.sky, c.skyWash, Icons.Outlined.Cloud)
+        InferenceOrigin.PENDING -> Badge(strings().origin(origin), c.ink2, c.ink2.copy(alpha = .12f), Icons.Outlined.Timer)
     }
 }
 
 @Composable
 fun SyncBadge(synced: Boolean) {
     val c = LocalMunda.current
-    if (synced) Badge("Synced", c.leaf, c.leafWash, Icons.Outlined.CheckCircle)
-    else Badge("Saved on device", c.soil, c.soilWash, Icons.Outlined.SdStorage)
+    if (synced) Badge(strings().t("enums.sync.SYNCED"), c.leaf, c.leafWash, Icons.Outlined.CheckCircle)
+    else Badge(strings().t("enums.sync.LOCAL"), c.soil, c.soilWash, Icons.Outlined.SdStorage)
 }
 
 @Composable
 fun UrgencyBadge(u: Urgency) {
     val (fg, bg) = LocalMunda.current.urgency(u)
-    Badge(u.label, fg, bg)
+    Badge(strings().urgency(u), fg, bg)
 }
 
 @Composable
 fun QueuedBadge() {
     val c = LocalMunda.current
-    Badge("Finishes when online", c.ink2, c.ink2.copy(alpha = .12f), Icons.Outlined.CloudUpload)
+    Badge(strings().t("enums.sync.QUEUED"), c.ink2, c.ink2.copy(alpha = .12f), Icons.Outlined.CloudUpload)
 }
 
 @OptIn(ExperimentalLayoutApi::class)
@@ -149,13 +149,14 @@ fun KernelMeter(likelihood: Likelihood, animate: Boolean = false) {
     val progress = remember { Animatable(if (animate && !reduceMotion) 0f else 1f) }
     LaunchedEffect(Unit) { if (progress.value < 1f) progress.animateTo(1f, tween(650)) }
     val fill = if (likelihood == Likelihood.HIGH) c.kernel else c.kernel.copy(alpha = .7f).compositeOver(c.kernelEmpty)
+    val label = strings().likelihood(likelihood)
 
     Column(
         horizontalAlignment = Alignment.End,
         verticalArrangement = Arrangement.spacedBy(4.dp),
-        modifier = Modifier.semantics { contentDescription = "${likelihood.label}: $filled of $KERNELS" },
+        modifier = Modifier.semantics { contentDescription = "${label}: $filled of $KERNELS" },
     ) {
-        Text(likelihood.label, style = MaterialTheme.typography.labelMedium, color = c.likelihood(likelihood))
+        Text(label, style = MaterialTheme.typography.labelMedium, color = c.likelihood(likelihood))
         Canvas(Modifier.size(width = 72.dp, height = 16.dp)) {
             val k = size.height / 14f
             for (i in 0 until KERNELS) {
