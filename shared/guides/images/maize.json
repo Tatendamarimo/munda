@@ -1,0 +1,89 @@
+{
+ "drought": {
+  "kind": "photo",
+  "file": "drought.jpg",
+  "author": "CraneStation",
+  "license": "CC BY 2.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Drought-stressed_corn,_western_Tennessee-Kentucky_border.jpg",
+  "title": "Drought-stressed corn, western Tennessee-Kentucky border.jpg",
+  "confirmed": false
+ },
+ "fall_armyworm": {
+  "kind": "photo",
+  "file": "fall_armyworm.jpg",
+  "author": "Wee Hong",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Zea_mays_damaged_by_Spodoptera_frugiperda_(200218-0814).jpg",
+  "title": "Zea mays damaged by Spodoptera frugiperda (200218-0814).jpg",
+  "confirmed": false
+ },
+ "leaf_blight": {
+  "kind": "photo",
+  "file": "leaf_blight.jpg",
+  "author": "Chroanch",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Northern_corn_leaf_blight.JPG",
+  "title": "Northern corn leaf blight.JPG",
+  "confirmed": false
+ },
+ "mln": {
+  "kind": "photo",
+  "file": "mln.jpg",
+  "author": "Sureshlm",
+  "license": "CC BY 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:1._Cover_page.jpg",
+  "title": "1. Cover page.jpg",
+  "confirmed": false
+ },
+ "nitrogen": {
+  "kind": "drawing",
+  "file": "nitrogen.jpg",
+  "confirmed": false
+ },
+ "phosphorus": {
+  "kind": "photo",
+  "file": "phosphorus.jpg",
+  "author": "Alandmanson",
+  "license": "CC0",
+  "source": "https://commons.wikimedia.org/wiki/File:2005_1214_0928_Hlokozi_-_Acid-induced_P_deficiency.jpg",
+  "title": "2005 1214 0928 Hlokozi - Acid-induced P deficiency.jpg",
+  "confirmed": false
+ },
+ "potassium": {
+  "kind": "photo",
+  "file": "potassium.jpg",
+  "author": "Alandmanson",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:K-deficient_maize_on_Cedara_2_2003-01-13.jpg",
+  "title": "K-deficient maize on Cedara 2 2003-01-13.jpg",
+  "confirmed": false
+ },
+ "streak_virus": {
+  "kind": "drawing",
+  "file": "streak_virus.jpg",
+  "confirmed": false
+ },
+ "striga": {
+  "kind": "photo",
+  "file": "striga.jpg",
+  "author": "Oliversamson1",
+  "license": "CC0",
+  "source": "https://commons.wikimedia.org/wiki/File:Striga_hermonthica_flowering_among_maize_and_cassava_in_Uganda.jpg",
+  "title": "Striga hermonthica flowering among maize and cassava in Uganda.jpg",
+  "confirmed": false
+ },
+ "sulfur": {
+  "kind": "drawing",
+  "file": "sulfur.jpg",
+  "confirmed": false
+ },
+ "zinc": {
+  "kind": "photo",
+  "file": "zinc.jpg",
+  "author": "Alandmanson",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Zinc-deficient_maize_plants.jpg",
+  "title": "Zinc-deficient maize plants.jpg",
+  "confirmed": false
+ }
+}

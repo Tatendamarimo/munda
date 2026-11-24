@@ -1,199 +1,295 @@
 {
-  "lang": "nd",
-  "note": "Ndebele translation of maize.json (names, signs, field checks) plus keywords for on-device retrieval. Beta: machine-drafted, needs review by a Ndebele-speaking agronomist.",
-  "entries": [
-    {
-      "id": "nitrogen",
-      "name": "Ukuswela kwe-nitrogen",
-      "signs": "Ukuphuzi kuqalisa esihlokweni samahlamvu amadala angaphansi kwehlele phakathi kwehlamvu ngesimo se-V; izilimo zidanile futhi zincane.",
-      "checkInField": "Qathanisa amahlamvu angaphansi lawaphezulu; buza ukuthi umanyolo wafakwa nini; qathanisa lomugca owafakwa umanyolo kuhle.",
-      "keywords": [
-        "ayaphuzi",
-        "kuphuzi",
-        "phuzi",
-        "amahlamvu angaphansi",
-        "amahlamvu amadala",
-        "esihlokweni",
-        "phakathi kwehlamvu",
-        "zincane",
-        "zidanile",
-        "akukhuli"
-      ]
-    },
-    {
-      "id": "waterlogging",
-      "name": "Amanzi amanengi emhlabathini",
-      "signs": "Ukuphuzi kumbe ukuba nsomi lokungakhuli ezindaweni ezingaphansi zesimu ngemva kwezulu elinengi; impande ezinsundu, ezimbalwa kumbe ezinuka kubi.",
-      "checkInField": "Khangela amanzi amileyo kumbe umhlabathi omanzi ngemva kwezulu; siphuna isilimo esisodwa ukhangele impande zibolile kumbe zinuka.",
-      "keywords": [
-        "amanzi amileyo",
-        "umhlabathi omanzi",
-        "manzi",
-        "izikhukhula",
-        "ezindaweni ezingaphansi",
-        "impande zibolile",
-        "kunuka"
-      ]
-    },
-    {
-      "id": "drought",
-      "name": "Ukoma / ukuswela amanzi",
-      "signs": "Amahlamvu ayasonga abe mpunga-luhlaza, ikakhulu emini; izilimo ziyabuya ebusuku nxa inkinga incane.",
-      "checkInField": "Mba u-10 cm: nxa umhlabathi uhlakazeka womile, amanzi mancane. Khangela ukuthi amahlamvu ayavuleka ekuseni.",
-      "keywords": [
-        "ayasonga",
-        "ukusonga",
-        "mpunga",
-        "ayabuna",
-        "womile",
-        "ukoma",
-        "emini",
-        "alikho izulu"
-      ]
-    },
-    {
-      "id": "sulfur",
-      "name": "Ukuswela kwe-sulfur",
-      "signs": "Amahlamvu amatsha aphezulu aphuzi wonke, ngezinye izikhathi alemigqa phakathi kwemithambo; izilimo zincane.",
-      "checkInField": "Qathanisa amahlamvu amatsha aphezulu lamadala angaphansi. Kuvamile emhlabathini wesihlabathi.",
-      "keywords": [
-        "amahlamvu amatsha",
-        "aphezulu",
-        "imigqa",
-        "isihlabathi",
-        "phuzi"
-      ]
-    },
-    {
-      "id": "potassium",
-      "name": "Ukuswela kwe-potassium",
-      "signs": "Amahlamvu amadala ayaphuzi abesensundu emaphethelweni kodwa phakathi kuhlala kuluhlaza; iziqu ezibuthakathaka ziyawa.",
-      "checkInField": "Khangela amaphethelo amahlamvu angaphansi: ukutsha okuphuzi-nsundu kuluhlaza phakathi.",
-      "keywords": [
-        "emaphethelweni",
-        "amaphethelo",
-        "ukutsha",
-        "nsundu",
-        "iziqu ezibuthakathaka",
-        "ziyawa"
-      ]
-    },
-    {
-      "id": "phosphorus",
-      "name": "Ukuswela kwe-phosphorus",
-      "signs": "Izilimo ezincane eziluhlaza okukhulu ezilamaphethelo lezihloko ezinsomi kumbe ezibomvu; ukukhula okuphuzayo ekuqaleni.",
-      "checkInField": "Khangela ukuthi umbala onsomi usezilimweni ezincane endaweni yonke; qathanisa lezilimo zenhlanyelo efanayo kwenye indawo.",
-      "keywords": [
-        "nsomi",
-        "bomvu",
-        "izilimo ezincane",
-        "ukukhula kancane"
-      ]
-    },
-    {
-      "id": "zinc",
-      "name": "Ukuswela kwe-zinc",
-      "signs": "Imigqa ebanzi emhlophe kumbe ephuzi kancane ezinhlangothini zombili zehlamvu kumahlamvu amatsha; amalunga amafitshane.",
-      "checkInField": "Hlola amahlamvu amatsha: imigqa ebanzi elula eqalisa eduze kwesisekelo sehlamvu.",
-      "keywords": [
-        "imigqa emhlophe",
-        "imigqa ebanzi",
-        "emhlophe",
-        "isisekelo sehlamvu"
-      ]
-    },
-    {
-      "id": "fall_armyworm",
-      "name": "Imbungu (fall armyworm)",
-      "signs": "Imigodi engalinganiyo lezindawo ezibonisayo emahlamvini; indle emanzi enjengothuli lwezigodo phakathi kwenhliziyo yombila; imbungu ezile-Y phezu kwekhanda.",
-      "checkInField": "Hamba ngesimo se-W uhlole izilimo ezingu-20: vula inhliziyo, dinga indle lembungu. Bhala ukuthi zingaki ku-20 ezilimeleyo.",
-      "keywords": [
-        "imigodi",
-        "uthuli",
-        "inhliziyo yombila",
-        "imbungu",
-        "izibungu",
-        "indle"
-      ]
-    },
-    {
-      "id": "stalk_borer",
-      "name": "Imbungu yesiqu",
-      "signs": "Imigqa yemigodi emincane emahlamvini lapho evuleka; ihlamvu eliphakathi lifile; imigudu phakathi kwesiqu.",
-      "checkInField": "Donsa ihlamvu eliphakathi: nxa liphuma libolile ngaphansi, dabula isiqu udinge imigudu kumbe imbungu.",
-      "keywords": [
-        "imigodi emincane",
-        "ihlamvu eliphakathi lifile",
-        "imigudu",
-        "isiqu",
-        "imbungu yesiqu"
-      ]
-    },
-    {
-      "id": "streak_virus",
-      "name": "Igciwane lemigqa yombila",
-      "signs": "Imigqa emincane ephuzi eqamukileyo eceleni kwemithambo yamahlamvu amatsha, ezihlanganayo ngemva; izilimo azikhuli nxa zithelelwe zisencane.",
-      "checkInField": "Phatha ihlamvu elitsha ekukhanyeni udinge imigqa emincane ephuzi eqamukileyo eceleni kwemithambo. Bala izilimo ezithintekileyo.",
-      "keywords": [
-        "imigqa",
-        "imigqa emincane",
-        "imithambo",
-        "igciwane"
-      ]
-    },
-    {
-      "id": "mln",
-      "name": "Umkhuhlane obulalayo wombila (MLN)",
-      "signs": "Amabala aphuzi, ngemva ukoma kusukela emaphethelweni kungena phakathi; ihlamvu eliphakathi liyafa; izilimo zingafa kumbe izikhwebu zibole.",
-      "checkInField": "Bhala ukuthi zingaki izilimo ezoma kusukela emaphethelweni lokuthi amahlamvu aphakathi afile yini. Tshela umeluleki wezolimo.",
-      "keywords": [
-        "amabala",
-        "ukoma emaphethelweni",
-        "ziyafa",
-        "izikhwebu zibolile",
-        "ukoma"
-      ]
-    },
-    {
-      "id": "grey_leaf_spot",
-      "name": "Amabala ampunga emahlamvini",
-      "signs": "Amabala amade amancane anjengebhokisi ampunga kumbe ansundu emisa emithanjeni, eqalisa emahlamvini angaphansi nxa kumanzi.",
-      "checkInField": "Khangela amahlamvu angaphansi: amabala anjengebhokisi alezinhlangothi eziqondileyo.",
-      "keywords": [
-        "amabala ampunga",
-        "njengebhokisi",
-        "amabala",
-        "kumanzi",
-        "eziqondileyo"
-      ]
-    },
-    {
-      "id": "leaf_blight",
-      "name": "Ukoma kwamahlamvu (northern leaf blight)",
-      "signs": "Amabala amade anjengogwayi kumbe isikepe, ampunga-luhlaza kumbe ansundu, akhuphuka evela phansi nxa kuqanda kumanzi.",
-      "checkInField": "Linganisa amabala ambalwa: amabala amade anjengeqanda (ama-cm amanengi) atshengisa i-blight.",
-      "keywords": [
-        "njengogwayi",
-        "isikepe",
-        "amabala amade",
-        "kuqanda",
-        "blight"
-      ]
-    },
-    {
-      "id": "striga",
-      "name": "Isona (striga)",
-      "signs": "Umbila omncane, ophuzi njalo obunayo lanxa kulamanzi, lokhula oluncane olamaluba apinki kumbe ansomi phansi.",
-      "checkInField": "Khangela phansi kwezilimo ezithintekileyo: ukhula oluncane olamaluba apinki kumbe ansomi; mba kuhle ubone ukuthi lunamathele empandeni yini.",
-      "keywords": [
-        "isona",
-        "striga",
-        "amaluba apinki",
-        "ukhula oluncane",
-        "amaluba",
-        "phansi",
-        "obunayo"
-      ]
-    }
-  ]
+ "lang": "nd",
+ "note": "Ndebele translation of maize.json (names, signs, field checks) plus keywords for on-device retrieval. Beta: machine-drafted, needs review by a Ndebele-speaking agronomist.",
+ "entries": [
+  {
+   "id": "nitrogen",
+   "name": "Ukuswela kwe-nitrogen",
+   "signs": "Ukuphuzi kuqalisa esihlokweni samahlamvu amadala angaphansi kwehlele phakathi kwehlamvu ngesimo se-V; izilimo zidanile futhi zincane.",
+   "checkInField": "Qathanisa amahlamvu angaphansi lawaphezulu; buza ukuthi umanyolo wafakwa nini; qathanisa lomugca owafakwa umanyolo kuhle.",
+   "keywords": [
+    "ayaphuzi",
+    "kuphuzi",
+    "phuzi",
+    "amahlamvu angaphansi",
+    "amahlamvu amadala",
+    "esihlokweni",
+    "phakathi kwehlamvu",
+    "zincane",
+    "zidanile",
+    "akukhuli"
+   ]
+  },
+  {
+   "id": "waterlogging",
+   "name": "Amanzi amanengi emhlabathini",
+   "signs": "Ukuphuzi kumbe ukuba nsomi lokungakhuli ezindaweni ezingaphansi zesimu ngemva kwezulu elinengi; impande ezinsundu, ezimbalwa kumbe ezinuka kubi.",
+   "checkInField": "Khangela amanzi amileyo kumbe umhlabathi omanzi ngemva kwezulu; siphuna isilimo esisodwa ukhangele impande zibolile kumbe zinuka.",
+   "keywords": [
+    "amanzi amileyo",
+    "umhlabathi omanzi",
+    "manzi",
+    "izikhukhula",
+    "ezindaweni ezingaphansi",
+    "impande zibolile",
+    "kunuka"
+   ]
+  },
+  {
+   "id": "drought",
+   "name": "Ukoma / ukuswela amanzi",
+   "signs": "Amahlamvu ayasonga abe mpunga-luhlaza, ikakhulu emini; izilimo ziyabuya ebusuku nxa inkinga incane.",
+   "checkInField": "Mba u-10 cm: nxa umhlabathi uhlakazeka womile, amanzi mancane. Khangela ukuthi amahlamvu ayavuleka ekuseni.",
+   "keywords": [
+    "ayasonga",
+    "ukusonga",
+    "mpunga",
+    "ayabuna",
+    "womile",
+    "ukoma",
+    "emini",
+    "alikho izulu"
+   ]
+  },
+  {
+   "id": "sulfur",
+   "name": "Ukuswela kwe-sulfur",
+   "signs": "Amahlamvu amatsha aphezulu aphuzi wonke, ngezinye izikhathi alemigqa phakathi kwemithambo; izilimo zincane.",
+   "checkInField": "Qathanisa amahlamvu amatsha aphezulu lamadala angaphansi. Kuvamile emhlabathini wesihlabathi.",
+   "keywords": [
+    "amahlamvu amatsha",
+    "aphezulu",
+    "imigqa",
+    "isihlabathi",
+    "phuzi"
+   ]
+  },
+  {
+   "id": "potassium",
+   "name": "Ukuswela kwe-potassium",
+   "signs": "Amahlamvu amadala ayaphuzi abesensundu emaphethelweni kodwa phakathi kuhlala kuluhlaza; iziqu ezibuthakathaka ziyawa.",
+   "checkInField": "Khangela amaphethelo amahlamvu angaphansi: ukutsha okuphuzi-nsundu kuluhlaza phakathi.",
+   "keywords": [
+    "emaphethelweni",
+    "amaphethelo",
+    "ukutsha",
+    "nsundu",
+    "iziqu ezibuthakathaka",
+    "ziyawa"
+   ]
+  },
+  {
+   "id": "phosphorus",
+   "name": "Ukuswela kwe-phosphorus",
+   "signs": "Izilimo ezincane eziluhlaza okukhulu ezilamaphethelo lezihloko ezinsomi kumbe ezibomvu; ukukhula okuphuzayo ekuqaleni.",
+   "checkInField": "Khangela ukuthi umbala onsomi usezilimweni ezincane endaweni yonke; qathanisa lezilimo zenhlanyelo efanayo kwenye indawo.",
+   "keywords": [
+    "nsomi",
+    "bomvu",
+    "izilimo ezincane",
+    "ukukhula kancane"
+   ]
+  },
+  {
+   "id": "zinc",
+   "name": "Ukuswela kwe-zinc",
+   "signs": "Imigqa ebanzi emhlophe kumbe ephuzi kancane ezinhlangothini zombili zehlamvu kumahlamvu amatsha; amalunga amafitshane.",
+   "checkInField": "Hlola amahlamvu amatsha: imigqa ebanzi elula eqalisa eduze kwesisekelo sehlamvu.",
+   "keywords": [
+    "imigqa emhlophe",
+    "imigqa ebanzi",
+    "emhlophe",
+    "isisekelo sehlamvu"
+   ]
+  },
+  {
+   "id": "fall_armyworm",
+   "name": "Imbungu (fall armyworm)",
+   "signs": "Imigodi engalinganiyo lezindawo ezibonisayo emahlamvini; indle emanzi enjengothuli lwezigodo phakathi kwenhliziyo yombila; imbungu ezile-Y phezu kwekhanda.",
+   "checkInField": "Hamba ngesimo se-W uhlole izilimo ezingu-20: vula inhliziyo, dinga indle lembungu. Bhala ukuthi zingaki ku-20 ezilimeleyo.",
+   "keywords": [
+    "imigodi",
+    "uthuli",
+    "inhliziyo yombila",
+    "imbungu",
+    "izibungu",
+    "indle"
+   ]
+  },
+  {
+   "id": "stalk_borer",
+   "name": "Imbungu yesiqu",
+   "signs": "Imigqa yemigodi emincane emahlamvini lapho evuleka; ihlamvu eliphakathi lifile; imigudu phakathi kwesiqu.",
+   "checkInField": "Donsa ihlamvu eliphakathi: nxa liphuma libolile ngaphansi, dabula isiqu udinge imigudu kumbe imbungu.",
+   "keywords": [
+    "imigodi emincane",
+    "ihlamvu eliphakathi lifile",
+    "imigudu",
+    "isiqu",
+    "imbungu yesiqu"
+   ]
+  },
+  {
+   "id": "streak_virus",
+   "name": "Igciwane lemigqa yombila",
+   "signs": "Imigqa emincane ephuzi eqamukileyo eceleni kwemithambo yamahlamvu amatsha, ezihlanganayo ngemva; izilimo azikhuli nxa zithelelwe zisencane.",
+   "checkInField": "Phatha ihlamvu elitsha ekukhanyeni udinge imigqa emincane ephuzi eqamukileyo eceleni kwemithambo. Bala izilimo ezithintekileyo.",
+   "keywords": [
+    "imigqa",
+    "imigqa emincane",
+    "imithambo",
+    "igciwane"
+   ]
+  },
+  {
+   "id": "mln",
+   "name": "Umkhuhlane obulalayo wombila (MLN)",
+   "signs": "Amabala aphuzi, ngemva ukoma kusukela emaphethelweni kungena phakathi; ihlamvu eliphakathi liyafa; izilimo zingafa kumbe izikhwebu zibole.",
+   "checkInField": "Bhala ukuthi zingaki izilimo ezoma kusukela emaphethelweni lokuthi amahlamvu aphakathi afile yini. Tshela umeluleki wezolimo.",
+   "keywords": [
+    "amabala",
+    "ukoma emaphethelweni",
+    "ziyafa",
+    "izikhwebu zibolile",
+    "ukoma"
+   ]
+  },
+  {
+   "id": "grey_leaf_spot",
+   "name": "Amabala ampunga emahlamvini",
+   "signs": "Amabala amade amancane anjengebhokisi ampunga kumbe ansundu emisa emithanjeni, eqalisa emahlamvini angaphansi nxa kumanzi.",
+   "checkInField": "Khangela amahlamvu angaphansi: amabala anjengebhokisi alezinhlangothi eziqondileyo.",
+   "keywords": [
+    "amabala ampunga",
+    "njengebhokisi",
+    "amabala",
+    "kumanzi",
+    "eziqondileyo"
+   ]
+  },
+  {
+   "id": "leaf_blight",
+   "name": "Ukoma kwamahlamvu (northern leaf blight)",
+   "signs": "Amabala amade anjengogwayi kumbe isikepe, ampunga-luhlaza kumbe ansundu, akhuphuka evela phansi nxa kuqanda kumanzi.",
+   "checkInField": "Linganisa amabala ambalwa: amabala amade anjengeqanda (ama-cm amanengi) atshengisa i-blight.",
+   "keywords": [
+    "njengogwayi",
+    "isikepe",
+    "amabala amade",
+    "kuqanda",
+    "blight"
+   ]
+  },
+  {
+   "id": "striga",
+   "name": "Isona (striga)",
+   "signs": "Umbila omncane, ophuzi njalo obunayo lanxa kulamanzi, lokhula oluncane olamaluba apinki kumbe ansomi phansi.",
+   "checkInField": "Khangela phansi kwezilimo ezithintekileyo: ukhula oluncane olamaluba apinki kumbe ansomi; mba kuhle ubone ukuthi lunamathele empandeni yini.",
+   "keywords": [
+    "isona",
+    "striga",
+    "amaluba apinki",
+    "ukhula oluncane",
+    "amaluba",
+    "phansi",
+    "obunayo"
+   ]
+  },
+  {
+   "id": "magnesium",
+   "name": "Ukuswela imagnesium",
+   "signs": "Amahlamvu amadala alemigqa ephuzi phakathi kwemithambo, eyacina ibe nsundu; izithombo ziluhlaza-phuzi.",
+   "checkInField": "Qathanisa amahlamvu amadala lamatsha; khangela imigqa phakathi kwemithambo emahlamvini aphansi.",
+   "keywords": [
+    "imigqa",
+    "phakathi kwemithambo",
+    "amahlamvu amadala"
+   ]
+  },
+  {
+   "id": "acid_soil",
+   "name": "Umhlabathi olemuncu (acid)",
+   "signs": "Iziqephu zezithombo ezifitshane ezingakhuli kuhle ezilempande ezibuthakathaka.",
+   "checkInField": "Hlolisa umhlabathi (soil test); qathanisa impande zezithombo ezifitshane lezinhle.",
+   "keywords": [
+    "acid",
+    "olemuncu",
+    "lime",
+    "ezifitshane",
+    "impande"
+   ]
+  },
+  {
+   "id": "cutworm",
+   "name": "Icutworm (isibungu esiquma)",
+   "signs": "Izithombo ezincane ziquntwe emhlabathini kumbe ngaphansi kwawo; imigodi emincane emahlamvini okuqala.",
+   "checkInField": "Mba kancane eduze kwezithombo eziqunyiweyo usesha isibungu esigoqekileyo esinsundu-mpunga.",
+   "keywords": [
+    "ziquntwe",
+    "izithombo",
+    "isibungu",
+    "emhlabathini"
+   ]
+  },
+  {
+   "id": "termites",
+   "name": "Umuhlwa",
+   "signs": "Izithombo ziyabuna ziwe; impande lezinqamu kudliwa ngaphakathi; imigudu yomhlabathi phezu kwezinqamu.",
+   "checkInField": "Hwebula isithombo esibunileyo ukhangele imigudu yomhlabathi lomuhlwa omhlophe.",
+   "keywords": [
+    "umuhlwa",
+    "ziyabuna",
+    "ziwe",
+    "imigudu"
+   ]
+  },
+  {
+   "id": "common_rust",
+   "name": "Irust (ukugqwala)",
+   "signs": "Amaqhubu amancane anothuli olunsundu ezinhlangothini zombili zamahlamvu, acina emnyama.",
+   "checkInField": "Hlikihla iqhubu: irust itshiya uthuli olunsundu emunweni.",
+   "keywords": [
+    "rust",
+    "ukugqwala",
+    "uthuli",
+    "amaqhubu"
+   ]
+  },
+  {
+   "id": "ear_rot",
+   "name": "Ukubola kwezikhwebu",
+   "signs": "Isikhunta esipinki kusiya kokubomvu ezikhwebini lenhlamvini, siqala esihlokweni sesikhwebu.",
+   "checkInField": "Ekuvuneni, hlubula amakhoba ezikhwebu ezingu-20 ubale ezilesikhunta.",
+   "keywords": [
+    "ukubola",
+    "isikhunta",
+    "izikhwebu",
+    "pinki"
+   ]
+  },
+  {
+   "id": "smut",
+   "name": "Ismut",
+   "signs": "Amaqhubu ezinqamini, emahlamvini, ezinhlokweni kumbe ezikhwebini aqhuma akhuphe uthuli olumnyama. Head smut: inhloko kumbe isikhwebu kuthathelwa indawo luthuli olumnyama olulemicu.",
+   "checkInField": "Bala izithombo ezilamaqhubu kumbe izinhloko lezikhwebu ezilesmut.",
+   "keywords": [
+    "smut",
+    "uthuli olumnyama",
+    "amaqhubu"
+   ]
+  },
+  {
+   "id": "storage_pests",
+   "name": "Izinambuzane zesiphala (ihuruva leLGB)",
+   "signs": "LGB: imigodi eyindilinga emakhobeni, ezikhwebini lenhlamvini, lothuli oluningi. Ihuruva: inhlamvu ezidliweyo ngaphakathi, amabhungane amancane anomlomo omude.",
+   "checkInField": "Viki linye kumbe amabili, hlunga inhlamvu ezigcinwe usesha amabhungane, imigodi lothuli.",
+   "keywords": [
+    "ihuruva",
+    "isiphala",
+    "amabhungane",
+    "uthuli",
+    "imigodi"
+   ]
+  }
+ ]
 }

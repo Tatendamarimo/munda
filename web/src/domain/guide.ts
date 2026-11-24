@@ -15,6 +15,18 @@ export interface GuideEntry {
   /** What separates this from look-alikes; used to generate discriminating questions. */
   distinguish: string;
   checkInField: string;
+  /** What it looks like at different crop stages. */
+  byStage?: string;
+  /** Season, weather, soil or practice that makes it likely. */
+  likelyWhen?: string;
+  /** What a farmer can do now, without product names or doses. */
+  actNow?: string;
+  /** What to do before and during next season. */
+  prevent?: string;
+  /** Must be reported to the authorities (e.g. MLN, not yet in southern Africa). */
+  report?: boolean;
+  /** What the entry was written from. */
+  sources?: { title: string; url: string }[];
 }
 
 /**

@@ -1,206 +1,303 @@
 {
-  "lang": "sw",
-  "note": "Swahili translation of maize.json (names, signs, field checks) plus keywords for on-device retrieval. Beta: machine-drafted, needs review by a Swahili-speaking agronomist.",
-  "entries": [
-    {
-      "id": "nitrogen",
-      "name": "Upungufu wa naitrojeni",
-      "signs": "Umanjano huanzia ncha ya majani ya zamani ya chini na kushuka katikati ya jani kwa umbo la V; mimea iliyofifia na midogo.",
-      "checkInField": "Linganisha majani ya chini na ya juu; uliza mbolea iliwekwa lini; linganisha na mstari uliowekwa mbolea vizuri.",
-      "keywords": [
-        "manjano",
-        "yanageuka manjano",
-        "majani ya chini",
-        "majani ya zamani",
-        "ncha",
-        "katikati ya jani",
-        "umbo la v",
-        "midogo",
-        "imefifia",
-        "haikui"
-      ]
-    },
-    {
-      "id": "waterlogging",
-      "name": "Maji kujaa shambani",
-      "signs": "Umanjano au rangi ya zambarau na mimea kudumaa sehemu za chini za shamba baada ya mvua kubwa; mizizi ya kahawia, michache au yenye harufu chachu.",
-      "checkInField": "Tafuta maji yaliyosimama au udongo uliolowa baada ya mvua; ng'oa mmea mmoja uone kama mizizi imeoza au inanuka.",
-      "keywords": [
-        "maji yaliyosimama",
-        "udongo umelowa",
-        "imelowa",
-        "mafuriko",
-        "sehemu za chini",
-        "mizizi imeoza",
-        "harufu chachu"
-      ]
-    },
-    {
-      "id": "drought",
-      "name": "Ukame / upungufu wa maji",
-      "signs": "Majani hujikunja na kuwa kijivu-kijani, hasa mchana; mimea hurudi usiku kama tatizo ni dogo.",
-      "checkInField": "Chimba sentimita 10: udongo ukibomoka mkavu, maji ni machache. Angalia kama majani yanafunguka asubuhi.",
-      "keywords": [
-        "kujikunja",
-        "yanajikunja",
-        "kijivu",
-        "kunyauka",
-        "kavu",
-        "ukame",
-        "mchana",
-        "hakuna mvua"
-      ]
-    },
-    {
-      "id": "sulfur",
-      "name": "Upungufu wa salfa",
-      "signs": "Majani machanga ya juu yanakuwa manjano hafifu yote, wakati mwingine na michirizi kati ya mishipa; mimea midogo.",
-      "checkInField": "Linganisha majani machanga ya juu na ya zamani ya chini. Hutokea kwenye udongo wa mchanga usio na mboji.",
-      "keywords": [
-        "majani machanga",
-        "majani ya juu",
-        "michirizi",
-        "mchanga",
-        "manjano hafifu"
-      ]
-    },
-    {
-      "id": "potassium",
-      "name": "Upungufu wa potasiamu",
-      "signs": "Majani ya zamani yanakuwa manjano kisha kahawia pembeni huku katikati ikibaki kijani; mabua dhaifu yanaweza kuanguka.",
-      "checkInField": "Angalia pembe za majani ya chini: kuungua manjano-kahawia na katikati kijani.",
-      "keywords": [
-        "pembeni kahawia",
-        "kuungua",
-        "pembe za majani",
-        "pembeni",
-        "mabua dhaifu",
-        "kuanguka",
-        "katikati kijani"
-      ]
-    },
-    {
-      "id": "phosphorus",
-      "name": "Upungufu wa fosforasi",
-      "signs": "Mimea michanga kijani kibichi na pembe na ncha za majani za zambarau au nyekundu; ukuaji wa polepole mwanzoni.",
-      "checkInField": "Angalia kama rangi ya zambarau iko kwenye mimea michanga eneo lote; linganisha na mimea ya mbegu ile ile mahali pengine.",
-      "keywords": [
-        "zambarau",
-        "nyekundu",
-        "mimea michanga",
-        "ukuaji polepole",
-        "inakua polepole"
-      ]
-    },
-    {
-      "id": "zinc",
-      "name": "Upungufu wa zinki",
-      "signs": "Mikanda mipana myeupe au manjano hafifu pande zote za katikati ya jani kwenye majani machanga; vifundo vifupi.",
-      "checkInField": "Kagua majani machanga: mikanda hafifu mipana inayoanzia karibu na msingi wa jani.",
-      "keywords": [
-        "mikanda myeupe",
-        "mikanda mipana",
-        "mikanda",
-        "msingi wa jani",
-        "vifundo vifupi"
-      ]
-    },
-    {
-      "id": "fall_armyworm",
-      "name": "Viwavijeshi vamizi",
-      "signs": "Matundu yasiyo sawa na madirisha angavu kwenye majani; kinyesi kibichi kama vumbi la mbao ndani ya kikonyo; viwavi wenye Y iliyopinduka kichwani.",
-      "checkInField": "Tembea kwa umbo la W ukague mimea 20: fungua kikonyo, tafuta kinyesi na viwavi. Andika mingapi kati ya 20 imeharibika.",
-      "keywords": [
-        "matundu",
-        "vumbi la mbao",
-        "kikonyo",
-        "viwavi",
-        "kiwavi",
-        "viwavijeshi",
-        "kinyesi"
-      ]
-    },
-    {
-      "id": "stalk_borer",
-      "name": "Vipekecha shina",
-      "signs": "Mistari ya matundu madogo kwenye majani yanapofunguka; jani la katikati limekufa; mashimo ndani ya shina.",
-      "checkInField": "Vuta jani la katikati: likitoka na limeoza chini, pasua shina utafute mashimo au viwavi.",
-      "keywords": [
-        "matundu madogo",
-        "jani la katikati limekufa",
-        "mashimo",
-        "kipekecha",
-        "shina",
-        "viwavi"
-      ]
-    },
-    {
-      "id": "streak_virus",
-      "name": "Virusi vya michirizi ya mahindi",
-      "signs": "Michirizi myembamba ya manjano iliyokatika kando ya mishipa ya majani machanga, inayoungana baadaye; mimea kudumaa ikiambukizwa mapema.",
-      "checkInField": "Shika jani changa dhidi ya mwanga utafute michirizi myembamba ya manjano iliyokatika kando ya mishipa. Hesabu mimea iliyoathirika.",
-      "keywords": [
-        "michirizi",
-        "michirizi myembamba",
-        "mishipa",
-        "virusi",
-        "mistari"
-      ]
-    },
-    {
-      "id": "mln",
-      "name": "Ugonjwa hatari wa mahindi (MLN)",
-      "signs": "Madoa ya manjano, kisha kukauka kutoka pembeni kuelekea ndani; jani la katikati kufa; mimea inaweza kufa au mahindi kuoza.",
-      "checkInField": "Andika mimea mingapi inakauka kutoka pembeni na kama majani ya katikati yamekufa. Mjulishe afisa ugani.",
-      "keywords": [
-        "madoa",
-        "kukauka",
-        "inakufa",
-        "mahindi kuoza",
-        "kukauka pembeni"
-      ]
-    },
-    {
-      "id": "grey_leaf_spot",
-      "name": "Madoa ya kijivu ya majani",
-      "signs": "Madoa marefu, membamba ya mstatili ya kijivu hadi kahawia hafifu yanayoishia kwenye mishipa, kuanzia majani ya chini wakati wa unyevu.",
-      "checkInField": "Angalia majani ya chini: madoa ya mstatili yenye pande zilizonyooka.",
-      "keywords": [
-        "madoa ya kijivu",
-        "mstatili",
-        "madoa",
-        "unyevu",
-        "pande zilizonyooka"
-      ]
-    },
-    {
-      "id": "leaf_blight",
-      "name": "Ukungu wa majani wa kaskazini",
-      "signs": "Madoa marefu ya umbo la sigara au mashua, kijivu-kijani hadi kahawia hafifu, yanayopanda kutoka chini wakati wa baridi na unyevu.",
-      "checkInField": "Pima madoa machache: madoa marefu ya duaradufu (sentimita kadhaa) yanaashiria ukungu.",
-      "keywords": [
-        "sigara",
-        "mashua",
-        "madoa marefu",
-        "duaradufu",
-        "baridi",
-        "ukungu"
-      ]
-    },
-    {
-      "id": "striga",
-      "name": "Kiduha (striga)",
-      "signs": "Mahindi madogo, ya manjano na yanayonyauka hata kukiwa na unyevu, na magugu madogo yenye maua ya waridi au zambarau chini.",
-      "checkInField": "Angalia chini ya mimea iliyoathirika: magugu madogo yenye maua ya waridi au zambarau; chimba kwa uangalifu uone kama yameshikana na mizizi.",
-      "keywords": [
-        "kiduha",
-        "striga",
-        "maua ya waridi",
-        "magugu madogo",
-        "maua",
-        "chini ya mimea",
-        "kunyauka"
-      ]
-    }
-  ]
+ "lang": "sw",
+ "note": "Swahili translation of maize.json (names, signs, field checks) plus keywords for on-device retrieval. Beta: machine-drafted, needs review by a Swahili-speaking agronomist.",
+ "entries": [
+  {
+   "id": "nitrogen",
+   "name": "Upungufu wa naitrojeni",
+   "signs": "Umanjano huanzia ncha ya majani ya zamani ya chini na kushuka katikati ya jani kwa umbo la V; mimea iliyofifia na midogo.",
+   "checkInField": "Linganisha majani ya chini na ya juu; uliza mbolea iliwekwa lini; linganisha na mstari uliowekwa mbolea vizuri.",
+   "keywords": [
+    "manjano",
+    "yanageuka manjano",
+    "majani ya chini",
+    "majani ya zamani",
+    "ncha",
+    "katikati ya jani",
+    "umbo la v",
+    "midogo",
+    "imefifia",
+    "haikui"
+   ]
+  },
+  {
+   "id": "waterlogging",
+   "name": "Maji kujaa shambani",
+   "signs": "Umanjano au rangi ya zambarau na mimea kudumaa sehemu za chini za shamba baada ya mvua kubwa; mizizi ya kahawia, michache au yenye harufu chachu.",
+   "checkInField": "Tafuta maji yaliyosimama au udongo uliolowa baada ya mvua; ng'oa mmea mmoja uone kama mizizi imeoza au inanuka.",
+   "keywords": [
+    "maji yaliyosimama",
+    "udongo umelowa",
+    "imelowa",
+    "mafuriko",
+    "sehemu za chini",
+    "mizizi imeoza",
+    "harufu chachu"
+   ]
+  },
+  {
+   "id": "drought",
+   "name": "Ukame / upungufu wa maji",
+   "signs": "Majani hujikunja na kuwa kijivu-kijani, hasa mchana; mimea hurudi usiku kama tatizo ni dogo.",
+   "checkInField": "Chimba sentimita 10: udongo ukibomoka mkavu, maji ni machache. Angalia kama majani yanafunguka asubuhi.",
+   "keywords": [
+    "kujikunja",
+    "yanajikunja",
+    "kijivu",
+    "kunyauka",
+    "kavu",
+    "ukame",
+    "mchana",
+    "hakuna mvua"
+   ]
+  },
+  {
+   "id": "sulfur",
+   "name": "Upungufu wa salfa",
+   "signs": "Majani machanga ya juu yanakuwa manjano hafifu yote, wakati mwingine na michirizi kati ya mishipa; mimea midogo.",
+   "checkInField": "Linganisha majani machanga ya juu na ya zamani ya chini. Hutokea kwenye udongo wa mchanga usio na mboji.",
+   "keywords": [
+    "majani machanga",
+    "majani ya juu",
+    "michirizi",
+    "mchanga",
+    "manjano hafifu"
+   ]
+  },
+  {
+   "id": "potassium",
+   "name": "Upungufu wa potasiamu",
+   "signs": "Majani ya zamani yanakuwa manjano kisha kahawia pembeni huku katikati ikibaki kijani; mabua dhaifu yanaweza kuanguka.",
+   "checkInField": "Angalia pembe za majani ya chini: kuungua manjano-kahawia na katikati kijani.",
+   "keywords": [
+    "pembeni kahawia",
+    "kuungua",
+    "pembe za majani",
+    "pembeni",
+    "mabua dhaifu",
+    "kuanguka",
+    "katikati kijani"
+   ]
+  },
+  {
+   "id": "phosphorus",
+   "name": "Upungufu wa fosforasi",
+   "signs": "Mimea michanga kijani kibichi na pembe na ncha za majani za zambarau au nyekundu; ukuaji wa polepole mwanzoni.",
+   "checkInField": "Angalia kama rangi ya zambarau iko kwenye mimea michanga eneo lote; linganisha na mimea ya mbegu ile ile mahali pengine.",
+   "keywords": [
+    "zambarau",
+    "nyekundu",
+    "mimea michanga",
+    "ukuaji polepole",
+    "inakua polepole"
+   ]
+  },
+  {
+   "id": "zinc",
+   "name": "Upungufu wa zinki",
+   "signs": "Mikanda mipana myeupe au manjano hafifu pande zote za katikati ya jani kwenye majani machanga; vifundo vifupi.",
+   "checkInField": "Kagua majani machanga: mikanda hafifu mipana inayoanzia karibu na msingi wa jani.",
+   "keywords": [
+    "mikanda myeupe",
+    "mikanda mipana",
+    "mikanda",
+    "msingi wa jani",
+    "vifundo vifupi"
+   ]
+  },
+  {
+   "id": "fall_armyworm",
+   "name": "Viwavijeshi vamizi",
+   "signs": "Matundu yasiyo sawa na madirisha angavu kwenye majani; kinyesi kibichi kama vumbi la mbao ndani ya kikonyo; viwavi wenye Y iliyopinduka kichwani.",
+   "checkInField": "Tembea kwa umbo la W ukague mimea 20: fungua kikonyo, tafuta kinyesi na viwavi. Andika mingapi kati ya 20 imeharibika.",
+   "keywords": [
+    "matundu",
+    "vumbi la mbao",
+    "kikonyo",
+    "viwavi",
+    "kiwavi",
+    "viwavijeshi",
+    "kinyesi"
+   ]
+  },
+  {
+   "id": "stalk_borer",
+   "name": "Vipekecha shina",
+   "signs": "Mistari ya matundu madogo kwenye majani yanapofunguka; jani la katikati limekufa; mashimo ndani ya shina.",
+   "checkInField": "Vuta jani la katikati: likitoka na limeoza chini, pasua shina utafute mashimo au viwavi.",
+   "keywords": [
+    "matundu madogo",
+    "jani la katikati limekufa",
+    "mashimo",
+    "kipekecha",
+    "shina",
+    "viwavi"
+   ]
+  },
+  {
+   "id": "streak_virus",
+   "name": "Virusi vya michirizi ya mahindi",
+   "signs": "Michirizi myembamba ya manjano iliyokatika kando ya mishipa ya majani machanga, inayoungana baadaye; mimea kudumaa ikiambukizwa mapema.",
+   "checkInField": "Shika jani changa dhidi ya mwanga utafute michirizi myembamba ya manjano iliyokatika kando ya mishipa. Hesabu mimea iliyoathirika.",
+   "keywords": [
+    "michirizi",
+    "michirizi myembamba",
+    "mishipa",
+    "virusi",
+    "mistari"
+   ]
+  },
+  {
+   "id": "mln",
+   "name": "Ugonjwa hatari wa mahindi (MLN)",
+   "signs": "Madoa ya manjano, kisha kukauka kutoka pembeni kuelekea ndani; jani la katikati kufa; mimea inaweza kufa au mahindi kuoza.",
+   "checkInField": "Andika mimea mingapi inakauka kutoka pembeni na kama majani ya katikati yamekufa. Mjulishe afisa ugani.",
+   "keywords": [
+    "madoa",
+    "kukauka",
+    "inakufa",
+    "mahindi kuoza",
+    "kukauka pembeni"
+   ]
+  },
+  {
+   "id": "grey_leaf_spot",
+   "name": "Madoa ya kijivu ya majani",
+   "signs": "Madoa marefu, membamba ya mstatili ya kijivu hadi kahawia hafifu yanayoishia kwenye mishipa, kuanzia majani ya chini wakati wa unyevu.",
+   "checkInField": "Angalia majani ya chini: madoa ya mstatili yenye pande zilizonyooka.",
+   "keywords": [
+    "madoa ya kijivu",
+    "mstatili",
+    "madoa",
+    "unyevu",
+    "pande zilizonyooka"
+   ]
+  },
+  {
+   "id": "leaf_blight",
+   "name": "Ukungu wa majani wa kaskazini",
+   "signs": "Madoa marefu ya umbo la sigara au mashua, kijivu-kijani hadi kahawia hafifu, yanayopanda kutoka chini wakati wa baridi na unyevu.",
+   "checkInField": "Pima madoa machache: madoa marefu ya duaradufu (sentimita kadhaa) yanaashiria ukungu.",
+   "keywords": [
+    "sigara",
+    "mashua",
+    "madoa marefu",
+    "duaradufu",
+    "baridi",
+    "ukungu"
+   ]
+  },
+  {
+   "id": "striga",
+   "name": "Kiduha (striga)",
+   "signs": "Mahindi madogo, ya manjano na yanayonyauka hata kukiwa na unyevu, na magugu madogo yenye maua ya waridi au zambarau chini.",
+   "checkInField": "Angalia chini ya mimea iliyoathirika: magugu madogo yenye maua ya waridi au zambarau; chimba kwa uangalifu uone kama yameshikana na mizizi.",
+   "keywords": [
+    "kiduha",
+    "striga",
+    "maua ya waridi",
+    "magugu madogo",
+    "maua",
+    "chini ya mimea",
+    "kunyauka"
+   ]
+  },
+  {
+   "id": "magnesium",
+   "name": "Upungufu wa magnesiamu",
+   "signs": "Majani ya zamani yana michirizi ya njano kati ya mishipa, baadaye hugeuka kahawia; mimea ni kijani-njano.",
+   "checkInField": "Linganisha majani ya zamani na mapya; tafuta michirizi kati ya mishipa kwenye majani ya chini.",
+   "keywords": [
+    "michirizi",
+    "kati ya mishipa",
+    "majani ya zamani"
+   ]
+  },
+  {
+   "id": "acid_soil",
+   "name": "Udongo wenye asidi",
+   "signs": "Sehemu za mimea mifupi inayokua vibaya yenye mizizi dhaifu, mara nyingi ikionyesha upungufu wa virutubisho kadhaa.",
+   "checkInField": "Pima udongo (kila baada ya miaka michache); linganisha mizizi ya mimea mifupi na ile mizuri.",
+   "keywords": [
+    "asidi",
+    "udongo chachu",
+    "chokaa",
+    "mifupi",
+    "mizizi"
+   ]
+  },
+  {
+   "id": "cutworm",
+   "name": "Viwavi wakataji (cutworm)",
+   "signs": "Miche imekatwa kwenye usawa wa ardhi au chini yake; matundu madogo kwenye majani ya kwanza.",
+   "checkInField": "Chimba taratibu karibu na miche iliyokatwa, sentimita chache za juu za udongo, utafute kiwavi aliyejikunja wa kijivu-kahawia.",
+   "keywords": [
+    "imekatwa",
+    "miche",
+    "kiwavi",
+    "ardhini"
+   ]
+  },
+  {
+   "id": "termites",
+   "name": "Mchwa",
+   "signs": "Mimea hunyauka na kuanguka; mizizi na mashina huliwa ndani; vichuguu vya udongo juu ya mashina na mizizi.",
+   "checkInField": "Ng'oa mmea uliyonyauka na utafute njia za udongo na mchwa weupe.",
+   "keywords": [
+    "mchwa",
+    "kunyauka",
+    "kuanguka",
+    "njia za udongo"
+   ]
+  },
+  {
+   "id": "common_rust",
+   "name": "Kutu ya kawaida",
+   "signs": "Vipele vidogo vya unga wa rangi ya mdalasini pande zote mbili za majani, hugeuka vyeusi mazao yanapokomaa.",
+   "checkInField": "Sugua kipele: kutu huacha unga wa kahawia kwenye kidole.",
+   "keywords": [
+    "kutu",
+    "unga",
+    "vipele",
+    "kahawia"
+   ]
+  },
+  {
+   "id": "ear_rot",
+   "name": "Kuoza kwa gunzi",
+   "signs": "Ukungu wa waridi hadi mwekundu kwenye magunzi na nafaka, mara nyingi ukianzia ncha ya gunzi.",
+   "checkInField": "Wakati wa mavuno, fungua maganda ya magunzi 20 na uhesabu yenye ukungu.",
+   "keywords": [
+    "kuoza",
+    "ukungu",
+    "gunzi",
+    "waridi"
+   ]
+  },
+  {
+   "id": "smut",
+   "name": "Fugwe (smut)",
+   "signs": "Uvimbe kwenye mashina, majani, maua au magunzi uliofunikwa na ngozi nyeupe inayopasuka na kutoa unga mweusi. Head smut: ua au gunzi hubadilishwa na unga mweusi wenye nyuzi.",
+   "checkInField": "Hesabu mimea yenye uvimbe au maua na magunzi yenye fugwe.",
+   "keywords": [
+    "fugwe",
+    "smut",
+    "unga mweusi",
+    "uvimbe"
+   ]
+  },
+  {
+   "id": "storage_pests",
+   "name": "Wadudu wa ghalani (dumuzi na LGB)",
+   "signs": "LGB: matundu ya mviringo kwenye maganda, magunzi na nafaka, na unga mwingi. Dumuzi: punje zilizotobolewa ndani, mende wadogo wa kahawia wenye mdomo mrefu.",
+   "checkInField": "Kila wiki moja au mbili, chekecha sampuli ya nafaka iliyohifadhiwa na utafute mende, matundu na unga.",
+   "keywords": [
+    "dumuzi",
+    "ghala",
+    "mende",
+    "unga",
+    "matundu"
+   ]
+  }
+ ]
 }

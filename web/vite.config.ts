@@ -25,7 +25,7 @@ export default defineConfig({
         ],
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,svg,woff2,png}'],
+        globPatterns: ['**/*.{js,css,html,svg,woff2,png,jpg}'],
         navigateFallback: '/index.html',
         // Never cache Firebase/Google API calls; those must hit the network (or fail fast offline).
         navigateFallbackDenylist: [/^\/__/],

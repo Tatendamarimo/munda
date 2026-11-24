@@ -1,294 +1,724 @@
 {
-  "crop": "MAIZE",
-  "version": 1,
-  "note": "Plain-language summary of widely published extension guidance (e.g. FAO, CIMMYT). Reference material for the model, not a diagnosis tool. Single source of truth: the web app imports this file; the Android MaizeGuide is tested against it.",
-  "entries": [
+ "crop": "MAIZE",
+ "version": 2,
+ "note": "Plain-language summary for smallholder farmers. Every entry lists the sources it was written from. Reference material for the model and the farmer, not a diagnosis. Not yet reviewed by an agronomist or extension officer: please confirm before relying on it.",
+ "entries": [
+  {
+   "id": "nitrogen",
+   "name": "Nitrogen deficiency",
+   "category": "NUTRIENT",
+   "keywords": [
+    "yellow",
+    "yellowing",
+    "pale",
+    "light green",
+    "lower leaves",
+    "bottom leaves",
+    "old leaves",
+    "v shape",
+    "v-shape",
+    "midrib",
+    "tip",
+    "stunted",
+    "poor growth",
+    "small",
+    "thin"
+   ],
+   "signs": "Plants pale yellow-green. Yellowing starts at the tip of older, lower leaves and runs along the midrib in a V shape; in bad cases lower leaves turn brown and die (\"firing\").",
+   "distinguish": "Starts on lower, older leaves (sulfur and zinc start on young leaves). The yellow follows the midrib; potassium yellows the leaf edges instead.",
+   "checkInField": "Compare lower and upper leaves of 10 plants; look for the V from the tip along the midrib; compare with a well-fertilized row; note when fertilizer or manure was last applied.",
+   "byStage": "Most likely during fast growth from knee-high, when the plant takes up most of its nitrogen.",
+   "likelyWhen": "After heavy rain or waterlogging (nitrogen is lost from wet, saturated soil); on sandy soils with little organic matter; when no top-dressing was given before the growth spurt.",
+   "actNow": "Top-dress nitrogen (fertilizer or well-rotted manure) while the crop is still growing fast, before tasselling; ask your extension officer how much for your soil.",
+   "prevent": "Split nitrogen: a small amount at planting and most of it just before the fast-growth stage. Add manure or compost; rotate with legumes.",
+   "sources": [
     {
-      "id": "nitrogen",
-      "name": "Nitrogen deficiency",
-      "category": "NUTRIENT",
-      "keywords": [
-        "yellow",
-        "yellowing",
-        "pale",
-        "light green",
-        "lower leaves",
-        "bottom leaves",
-        "old leaves",
-        "v shape",
-        "v-shape",
-        "midrib",
-        "tip",
-        "stunted",
-        "poor growth",
-        "small",
-        "thin"
-      ],
-      "signs": "Yellowing starts at the tip of older, lower leaves and runs down the midrib in a V shape; plants pale and stunted.",
-      "distinguish": "Lower leaves first (sulfur and zinc show on young leaves first). Common after heavy rain on sandy soil or with no top-dressing.",
-      "checkInField": "Compare lower and upper leaves; ask when fertilizer was last applied; compare with a well-fertilized row."
+     "title": "University of Nebraska CropWatch: Key to nutrient deficiencies of corn and sorghum",
+     "url": "https://cropwatch.unl.edu/key-nutrient-deficiencies-corn-and-sorghum/"
     },
     {
-      "id": "waterlogging",
-      "name": "Waterlogging",
-      "category": "WATER",
-      "keywords": [
-        "waterlogged",
-        "standing water",
-        "flood",
-        "flooded",
-        "wet",
-        "low",
-        "low spots",
-        "puddle",
-        "rain",
-        "yellow",
-        "purple",
-        "wilting",
-        "rotten roots",
-        "smell"
-      ],
-      "signs": "Yellowing or purpling and stunting in low parts of the field after heavy rain; roots brown, few, or smelling sour.",
-      "distinguish": "Follows the lie of the land (low spots) rather than rows or random plants; appears within days of heavy rain.",
-      "checkInField": "Look for standing water or wet soil after rain; dig up one plant and check roots for brown rot or sour smell."
+     "title": "Mississippi State University Extension: Corn fertilization (P3591)",
+     "url": "https://extension.msstate.edu/sites/default/files/publications/P3591_web.pdf"
     },
     {
-      "id": "drought",
-      "name": "Drought / moisture stress",
-      "category": "WATER",
-      "keywords": [
-        "dry",
-        "drought",
-        "no rain",
-        "rolling",
-        "rolled",
-        "curling",
-        "wilting",
-        "grey",
-        "gray",
-        "dull",
-        "afternoon",
-        "hot",
-        "cracks"
-      ],
-      "signs": "Leaves roll or curl and look dull grey-green, especially in the afternoon; plants recover overnight if stress is mild.",
-      "distinguish": "Rolling that eases in the morning points to moisture stress; worst on sandy or shallow soils and ridges.",
-      "checkInField": "Dig 10 cm down: if soil crumbles dry, moisture is short. Check whether leaves unroll early morning."
-    },
-    {
-      "id": "sulfur",
-      "name": "Sulfur deficiency",
-      "category": "NUTRIENT",
-      "keywords": [
-        "yellow",
-        "striped",
-        "stripes",
-        "young leaves",
-        "top leaves",
-        "upper leaves",
-        "new leaves",
-        "pale"
-      ],
-      "signs": "Whole young (upper) leaves turn pale yellow, sometimes with light stripes between veins; plants stunted.",
-      "distinguish": "Upper/younger leaves first — the opposite of nitrogen, which starts on lower leaves.",
-      "checkInField": "Compare young top leaves with older lower ones. Common on sandy, low-organic-matter soils."
-    },
-    {
-      "id": "potassium",
-      "name": "Potassium deficiency",
-      "category": "NUTRIENT",
-      "keywords": [
-        "edges",
-        "margins",
-        "brown edges",
-        "burnt",
-        "scorched",
-        "firing",
-        "lower leaves",
-        "lodging",
-        "falling over"
-      ],
-      "signs": "Older leaves yellow then brown along the edges (margins) while the midrib stays green; weak stalks may fall over.",
-      "distinguish": "Edges burn, not the midrib (nitrogen runs down the midrib).",
-      "checkInField": "Look at lower leaf edges for yellow-brown scorching with a green centre."
-    },
-    {
-      "id": "phosphorus",
-      "name": "Phosphorus deficiency",
-      "category": "NUTRIENT",
-      "keywords": [
-        "purple",
-        "reddish",
-        "red",
-        "dark green",
-        "slow",
-        "young plants",
-        "cold",
-        "stunted"
-      ],
-      "signs": "Young plants dark green with purple or reddish leaf edges and tips; slow early growth.",
-      "distinguish": "Mostly in young plants and cold or wet early-season soils; some varieties are naturally purple.",
-      "checkInField": "Check whether purple colour is on young plants across an area; compare with plants of the same seed elsewhere."
-    },
-    {
-      "id": "zinc",
-      "name": "Zinc deficiency",
-      "category": "NUTRIENT",
-      "keywords": [
-        "white",
-        "bands",
-        "white stripes",
-        "young leaves",
-        "pale bands",
-        "short",
-        "bushy"
-      ],
-      "signs": "Broad white or pale yellow bands either side of the midrib on young leaves; short internodes.",
-      "distinguish": "Wide bands near the base of young leaves, not narrow broken streaks (streak virus).",
-      "checkInField": "Examine young leaves for broad pale bands starting near the leaf base."
-    },
-    {
-      "id": "fall_armyworm",
-      "name": "Fall armyworm",
-      "category": "PEST",
-      "keywords": [
-        "holes",
-        "ragged",
-        "eaten",
-        "chewed",
-        "window",
-        "windowpane",
-        "whorl",
-        "funnel",
-        "sawdust",
-        "frass",
-        "droppings",
-        "caterpillar",
-        "worm",
-        "larva",
-        "larvae"
-      ],
-      "signs": "Ragged holes and see-through 'windowpane' patches on leaves; wet sawdust-like droppings (frass) in the whorl; caterpillars inside.",
-      "distinguish": "Fresh frass in the whorl and a caterpillar with an upside-down Y on its head; damage on scattered plants, not in low spots.",
-      "checkInField": "Walk a W pattern, check 20 plants: open the whorl, look for frass and caterpillars. Note how many of 20 are damaged."
-    },
-    {
-      "id": "stalk_borer",
-      "name": "Stalk borer",
-      "category": "PEST",
-      "keywords": [
-        "holes",
-        "shot holes",
-        "row of holes",
-        "dead heart",
-        "dead centre",
-        "tunnel",
-        "stem",
-        "stalk",
-        "broken",
-        "borer"
-      ],
-      "signs": "Rows of small 'shot holes' across leaves as they unroll; dead centre leaf (dead heart); tunnels inside stems.",
-      "distinguish": "Holes in a neat row across the leaf (from feeding in the whorl) and tunnels in the stalk.",
-      "checkInField": "Pull the centre leaf: if it slides out and is rotten at the base, split the stem to look for tunnels or larvae."
-    },
-    {
-      "id": "streak_virus",
-      "name": "Maize streak virus",
-      "category": "DISEASE",
-      "keywords": [
-        "streaks",
-        "streak",
-        "stripes",
-        "lines",
-        "yellow lines",
-        "broken lines",
-        "young leaves",
-        "stunted",
-        "leafhopper"
-      ],
-      "signs": "Narrow, broken yellow streaks along the veins of young leaves, becoming continuous stripes; plants stunted if infected early.",
-      "distinguish": "Thin broken streaks along veins (not broad bands); scattered plants, often near field edges; spread by leafhoppers.",
-      "checkInField": "Hold a young leaf to the light and look for thin broken yellow streaks along veins. Count affected plants."
-    },
-    {
-      "id": "mln",
-      "name": "Maize lethal necrosis",
-      "category": "DISEASE",
-      "keywords": [
-        "drying",
-        "dying",
-        "dead",
-        "margins",
-        "edges",
-        "dead heart",
-        "rotten cob",
-        "mottle",
-        "mottling",
-        "whole plant"
-      ],
-      "signs": "Yellow mottling, then drying from leaf edges inward; dead heart; plants may die or cobs rot. Recorded mainly in East Africa.",
-      "distinguish": "Rapid drying of whole plants and dead heart with mottling; usually needs expert or lab confirmation.",
-      "checkInField": "Note how many plants are drying from the edges and whether centre leaves are dead. Report to an extension officer."
-    },
-    {
-      "id": "grey_leaf_spot",
-      "name": "Grey leaf spot",
-      "category": "DISEASE",
-      "keywords": [
-        "spots",
-        "lesions",
-        "grey",
-        "gray",
-        "tan",
-        "rectangular",
-        "brown spots",
-        "humid",
-        "lower leaves"
-      ],
-      "signs": "Long, narrow rectangular grey to tan lesions that stop at the leaf veins, starting on lower leaves in humid weather.",
-      "distinguish": "Straight-sided rectangles bounded by veins (blight lesions are cigar-shaped).",
-      "checkInField": "Look at lower leaves for rectangular lesions with straight sides."
-    },
-    {
-      "id": "leaf_blight",
-      "name": "Northern leaf blight",
-      "category": "DISEASE",
-      "keywords": [
-        "spots",
-        "lesions",
-        "long spots",
-        "cigar",
-        "boat",
-        "grey-green",
-        "tan",
-        "dead patches",
-        "humid",
-        "cool"
-      ],
-      "signs": "Long cigar- or boat-shaped grey-green to tan lesions on leaves, starting low and moving up in cool, humid weather.",
-      "distinguish": "Elliptical, cigar-shaped lesions not limited by veins.",
-      "checkInField": "Measure a few lesions: long (several cm) elliptical lesions suggest blight."
-    },
-    {
-      "id": "striga",
-      "name": "Striga (witchweed)",
-      "category": "WEED",
-      "keywords": [
-        "weed",
-        "weeds",
-        "pink flowers",
-        "purple flowers",
-        "small plants",
-        "witchweed",
-        "striga",
-        "wilting",
-        "stunted",
-        "yellow"
-      ],
-      "signs": "Maize stunted, yellowing and wilting even with moisture, with small weeds with pink or purple flowers at the base.",
-      "distinguish": "Small pink/purple-flowered weeds attached to maize roots; damage starts before the weed emerges.",
-      "checkInField": "Look at the base of affected plants for small weeds with pink or purple flowers; carefully dig to see if they attach to roots."
+     "title": "Infonet-Biovision: Maize (pests, diseases and crop husbandry)",
+     "url": "https://www.infonet-biovision.org/crops-fruits-vegetables/maize-revised"
     }
-  ]
+   ]
+  },
+  {
+   "id": "potassium",
+   "name": "Potassium deficiency",
+   "category": "NUTRIENT",
+   "keywords": [
+    "edges",
+    "margins",
+    "brown edges",
+    "burnt",
+    "scorched",
+    "firing",
+    "lower leaves",
+    "lodging",
+    "falling over"
+   ],
+   "signs": "Lower leaves yellow and then brown along the edges, starting at the tip; stalks weak and plants may fall over late in the season.",
+   "distinguish": "Burn on leaf edges of older leaves (nitrogen follows the midrib in a V).",
+   "checkInField": "Look at the edges of the lowest leaves on 10 plants; push a few stalks to test their strength.",
+   "byStage": "Older leaves first; weak stalks show near harvest.",
+   "likelyWhen": "Sandy soils (potassium washes out), and fields where stalks and residues are always removed.",
+   "actNow": "Ask your extension officer about potassium fertilizer; a soil test confirms it.",
+   "prevent": "Return crop residues or manure to the field; on sandy soils give potassium during the season, not all before planting.",
+   "sources": [
+    {
+     "title": "University of Nebraska CropWatch: Key to nutrient deficiencies of corn and sorghum",
+     "url": "https://cropwatch.unl.edu/key-nutrient-deficiencies-corn-and-sorghum/"
+    },
+    {
+     "title": "Mississippi State University Extension: Corn fertilization (P3591)",
+     "url": "https://extension.msstate.edu/sites/default/files/publications/P3591_web.pdf"
+    }
+   ]
+  },
+  {
+   "id": "phosphorus",
+   "name": "Phosphorus deficiency",
+   "category": "NUTRIENT",
+   "keywords": [
+    "purple",
+    "reddish",
+    "red",
+    "dark green",
+    "slow",
+    "young plants",
+    "cold",
+    "stunted"
+   ],
+   "signs": "Young plants dark green with purple leaf tips and edges, starting on the lower leaves; growth slow.",
+   "distinguish": "Purple on young plants. Some varieties turn purple more than others, and the colour often fades before plants are waist-high.",
+   "checkInField": "Check young plants after a cold or wet spell; compare varieties and parts of the field.",
+   "byStage": "Young plants, usually before knee-high.",
+   "likelyWhen": "Cool, wet weather followed by warm sun; compacted, very wet or very dry soil; acid soil (below pH 5.5 phosphorus is much less available).",
+   "actNow": "Little helps once seen; plants often recover as roots grow. Note the field for next season.",
+   "prevent": "Place phosphorus near the seed at planting, lime acid soils, and avoid compaction.",
+   "sources": [
+    {
+     "title": "University of Nebraska CropWatch: Key to nutrient deficiencies of corn and sorghum",
+     "url": "https://cropwatch.unl.edu/key-nutrient-deficiencies-corn-and-sorghum/"
+    },
+    {
+     "title": "Mississippi State University Extension: Corn fertilization (P3591)",
+     "url": "https://extension.msstate.edu/sites/default/files/publications/P3591_web.pdf"
+    }
+   ]
+  },
+  {
+   "id": "sulfur",
+   "name": "Sulfur deficiency",
+   "category": "NUTRIENT",
+   "keywords": [
+    "yellow",
+    "striped",
+    "stripes",
+    "young leaves",
+    "top leaves",
+    "upper leaves",
+    "new leaves",
+    "pale"
+   ],
+   "signs": "Whole young (upper) leaves turn evenly pale yellow, without dead patches; plants pale and stunted.",
+   "distinguish": "Young leaves first (nitrogen starts on old leaves). Evenly yellow; zinc gives white bands in the lower half of the leaf instead.",
+   "checkInField": "Compare the newest leaves with the oldest on 10 plants; look for even yellowing on top and green leaves below.",
+   "byStage": "Shows on the youngest leaves.",
+   "actNow": "Ask your extension officer about a sulfur-containing fertilizer or manure; a soil test confirms it before you buy.",
+   "prevent": "Test the soil every few years; add manure or compost.",
+   "sources": [
+    {
+     "title": "University of Nebraska CropWatch: Key to nutrient deficiencies of corn and sorghum",
+     "url": "https://cropwatch.unl.edu/key-nutrient-deficiencies-corn-and-sorghum/"
+    },
+    {
+     "title": "Mississippi State University Extension: Corn fertilization (P3591)",
+     "url": "https://extension.msstate.edu/sites/default/files/publications/P3591_web.pdf"
+    }
+   ]
+  },
+  {
+   "id": "zinc",
+   "name": "Zinc deficiency",
+   "category": "NUTRIENT",
+   "keywords": [
+    "white",
+    "bands",
+    "white stripes",
+    "young leaves",
+    "pale bands",
+    "short",
+    "bushy"
+   ],
+   "signs": "Young leaves have white to pale yellow bands in the lower half of the leaf, either side of the midrib, later turning pale brown or grey; plants pale and short.",
+   "distinguish": "Bands on young leaves (sulfur yellows the whole young leaf evenly; magnesium stripes old leaves).",
+   "checkInField": "Look at the youngest leaves for white bands near the base of the leaf.",
+   "byStage": "Shows on the youngest leaves.",
+   "actNow": "Ask your extension officer about zinc; a soil test confirms it before you buy.",
+   "prevent": "Soil test and add manure or compost.",
+   "sources": [
+    {
+     "title": "University of Nebraska CropWatch: Key to nutrient deficiencies of corn and sorghum",
+     "url": "https://cropwatch.unl.edu/key-nutrient-deficiencies-corn-and-sorghum/"
+    }
+   ]
+  },
+  {
+   "id": "magnesium",
+   "name": "Magnesium deficiency",
+   "category": "NUTRIENT",
+   "keywords": [
+    "stripes",
+    "striped",
+    "between veins",
+    "lower leaves",
+    "old leaves",
+    "rust",
+    "yellow stripes",
+    "interveinal"
+   ],
+   "signs": "Older leaves show yellow stripes between the veins, later turning rust-brown; plants yellow-green.",
+   "distinguish": "Stripes between veins on old leaves (zinc bands and sulfur yellowing are on young leaves).",
+   "checkInField": "Compare old and young leaves; look for stripes between veins on the lower leaves.",
+   "byStage": "Shows on the older leaves.",
+   "likelyWhen": "Acid soils, where magnesium is less available.",
+   "actNow": "Ask your extension officer; liming with dolomitic lime adds magnesium on acid soils.",
+   "prevent": "Soil test and correct acidity.",
+   "sources": [
+    {
+     "title": "University of Nebraska CropWatch: Key to nutrient deficiencies of corn and sorghum",
+     "url": "https://cropwatch.unl.edu/key-nutrient-deficiencies-corn-and-sorghum/"
+    },
+    {
+     "title": "Mississippi State University Extension: Corn fertilization (P3591)",
+     "url": "https://extension.msstate.edu/sites/default/files/publications/P3591_web.pdf"
+    }
+   ]
+  },
+  {
+   "id": "acid_soil",
+   "name": "Acid soil",
+   "category": "NUTRIENT",
+   "keywords": [
+    "acid",
+    "acidic",
+    "sour soil",
+    "lime",
+    "ph",
+    "patches",
+    "stunted",
+    "poor roots",
+    "short"
+   ],
+   "signs": "Patches of short, poorly growing plants with weak roots, often with signs of several deficiencies (purple, yellow) at once.",
+   "distinguish": "Whole patches grow badly even with fertilizer; a soil test shows low pH.",
+   "checkInField": "Get a soil test (every few years); compare roots of stunted and healthy plants.",
+   "likelyWhen": "Below about pH 5.5 maize starts to suffer: aluminium and manganese become toxic and phosphorus, nitrogen, potassium, sulfur and magnesium are harder for roots to take up. High rainfall and years of fertilizer make soil more acid.",
+   "actNow": "Ask your extension officer to interpret a soil test and advise lime.",
+   "prevent": "Lime before the season so it has time to work; the best pH for maize is about 6 to 7.",
+   "sources": [
+    {
+     "title": "Mississippi State University Extension: Corn fertilization (P3591)",
+     "url": "https://extension.msstate.edu/sites/default/files/publications/P3591_web.pdf"
+    }
+   ]
+  },
+  {
+   "id": "waterlogging",
+   "name": "Waterlogging",
+   "category": "WATER",
+   "keywords": [
+    "waterlogged",
+    "standing water",
+    "flood",
+    "flooded",
+    "wet",
+    "low",
+    "low spots",
+    "puddle",
+    "rain",
+    "yellow",
+    "purple",
+    "wilting",
+    "rotten roots",
+    "smell"
+   ],
+   "signs": "Stunted, yellow plants in the low or poorly drained parts of the field after heavy rain; water stands for days.",
+   "distinguish": "Follows the lie of the land (low spots, not rows or random plants) and appears within days of heavy rain. Often followed by nitrogen yellowing because wet soil loses nitrogen.",
+   "checkInField": "Look for standing water or soggy soil after rain; dig up one yellow plant and one healthy one and compare roots.",
+   "likelyWhen": "Heavy or long rains on flat, low-lying, clay or compacted soils with poor drainage.",
+   "actNow": "Open shallow channels to let standing water off. Once the soil drains, top-dress nitrogen to replace what was lost.",
+   "prevent": "Plant on ridges or raised beds in low spots, keep drains open, and choose deep, well-drained land for maize.",
+   "sources": [
+    {
+     "title": "Infonet-Biovision: Maize (pests, diseases and crop husbandry)",
+     "url": "https://www.infonet-biovision.org/crops-fruits-vegetables/maize-revised"
+    },
+    {
+     "title": "Mississippi State University Extension: Corn fertilization (P3591)",
+     "url": "https://extension.msstate.edu/sites/default/files/publications/P3591_web.pdf"
+    }
+   ]
+  },
+  {
+   "id": "drought",
+   "name": "Drought / moisture stress",
+   "category": "WATER",
+   "keywords": [
+    "dry",
+    "drought",
+    "no rain",
+    "rolling",
+    "rolled",
+    "curling",
+    "wilting",
+    "grey",
+    "gray",
+    "dull",
+    "afternoon",
+    "hot",
+    "cracks"
+   ],
+   "signs": "Leaves roll and look dull grey-green, especially in the afternoon; plants recover overnight if stress is mild.",
+   "distinguish": "Rolling that eases in the morning points to moisture stress. Worst on sandy or shallow soils and on ridges.",
+   "checkInField": "Check plants in the morning and afternoon; dig 15 cm and feel whether the soil is dry.",
+   "byStage": "Most damaging at tasselling and cob formation; a dry spell then cuts yield most.",
+   "likelyWhen": "Low or erratic rainfall and late planting into a short season.",
+   "actNow": "Mulch the soil and water at tasselling if you can. If the crop is drying at harvest, harvest promptly: leaving it in the field in drought raises aflatoxin risk.",
+   "prevent": "Plant within about two weeks of the first good rains, when the soil is wet to 30 cm. Use drought-tolerant or early varieties, and keep residues as mulch.",
+   "sources": [
+    {
+     "title": "Infonet-Biovision: Maize (pests, diseases and crop husbandry)",
+     "url": "https://www.infonet-biovision.org/crops-fruits-vegetables/maize-revised"
+    }
+   ]
+  },
+  {
+   "id": "fall_armyworm",
+   "name": "Fall armyworm",
+   "category": "PEST",
+   "keywords": [
+    "holes",
+    "ragged",
+    "eaten",
+    "chewed",
+    "window",
+    "windowpane",
+    "whorl",
+    "funnel",
+    "sawdust",
+    "frass",
+    "droppings",
+    "caterpillar",
+    "worm",
+    "larva",
+    "larvae"
+   ],
+   "signs": "Ragged holes and see-through 'windowpane' patches on leaves; wet sawdust-like droppings (frass) in the whorl; caterpillars inside. Severe attack kills the growing point (dead heart).",
+   "distinguish": "Caterpillar has a pale upside-down Y on its head and four dark dots in a square near the tail. Stalk borer makes small holes in straight rows and tunnels in the stem; cutworm cuts seedlings at the ground.",
+   "checkInField": "From the 2-3 leaf stage, 2-3 times a week: check 20 plants in each of 5 places across the field (100 plants). Count plants with fresh damage or frass in the whorl.",
+   "byStage": "Seedlings: windowpanes, small holes, dead heart. Whorl: ragged holes and frass. Tasselling and cobs: caterpillars bore into cobs and eat the grain.",
+   "likelyWhen": "Late-planted fields are hit hardest; it attacks every crop stage and can arrive in large numbers.",
+   "actNow": "Crush egg masses and caterpillars on each visit; put ash or soil into damaged whorls; keep weeding. If 10-15 of every 100 plants are freshly damaged, contact your AGRITEX/extension officer before spraying.",
+   "prevent": "Plant early with the effective rains. Push-pull (intercrop with desmodium, Brachiaria grass around the edge), timely weeding, and varieties with good husk cover help.",
+   "sources": [
+    {
+     "title": "Infonet-Biovision: Fall armyworm",
+     "url": "https://www.infonet-biovision.org/PlantHealth/MinorPests/Fall-armyworm"
+    },
+    {
+     "title": "Zimbabwe fall armyworm factsheet (Conservation Farming Unit)",
+     "url": "https://cfuzim.org/wp-content/uploads/2018/01/faw1217.pdf"
+    },
+    {
+     "title": "FAO (2021): Fall armyworm management, farmer field school experiences in Africa",
+     "url": "https://www.fao.org/3/cb3890en/cb3890en.pdf"
+    },
+    {
+     "title": "Virginia Cooperative Extension: Fall armyworm identification",
+     "url": "https://www.pubs.ext.vt.edu/444/444-015/444-015.html"
+    }
+   ]
+  },
+  {
+   "id": "stalk_borer",
+   "name": "Maize stalk borer",
+   "category": "PEST",
+   "keywords": [
+    "holes",
+    "shot holes",
+    "row of holes",
+    "dead heart",
+    "dead centre",
+    "tunnel",
+    "stem",
+    "stalk",
+    "broken",
+    "borer"
+   ],
+   "signs": "Small holes in straight rows across the youngest leaves; dead heart in young plants; tunnels with frass inside stems, which may break; older caterpillars bore into cobs.",
+   "distinguish": "Holes in neat rows and tunnels in the stem (fall armyworm leaves ragged holes and wet frass in the whorl).",
+   "checkInField": "Check the newest leaves on 20 plants for rows of small holes; split one damaged stem to look for tunnels and caterpillars.",
+   "byStage": "Seedlings and whorl: rows of holes, dead heart. Later: stem tunnels, broken stalks, cob damage; damaged cobs can grow mould (aflatoxin).",
+   "likelyWhen": "Numbers build up through the season; caterpillars survive the dry season inside old stalks and stubble.",
+   "actNow": "Pull out plants with dead heart. Keep the field weeded, and remove wild sorghum nearby.",
+   "prevent": "After harvest, slash and plough in or destroy old stalks (or burn their leaves if stalks are kept for fencing). Intercrop or rotate with cowpea, soybean or cassava; push-pull with Napier grass and desmodium. Act together with neighbours.",
+   "sources": [
+    {
+     "title": "Infonet-Biovision: African maize stalkborer",
+     "url": "https://infonet-biovision.org/plant_pests/African-maize-stalkborer"
+    },
+    {
+     "title": "Infonet-Biovision: Maize (pests, diseases and crop husbandry)",
+     "url": "https://www.infonet-biovision.org/crops-fruits-vegetables/maize-revised"
+    }
+   ]
+  },
+  {
+   "id": "cutworm",
+   "name": "Cutworm",
+   "category": "PEST",
+   "keywords": [
+    "cut",
+    "cut off",
+    "seedling",
+    "seedlings",
+    "fallen",
+    "base",
+    "ground level",
+    "missing plants",
+    "gap",
+    "grey caterpillar"
+   ],
+   "signs": "Young seedlings cut off at or just below ground level; small holes in the first leaves.",
+   "distinguish": "Plants cut at the base, at night (fall armyworm feeds in the whorl).",
+   "checkInField": "Dig gently around cut seedlings, in the top few cm of soil, for a curled grey-brown caterpillar.",
+   "byStage": "Seedlings only.",
+   "likelyWhen": "Fields with weeds or crop residue at planting, where caterpillars hide.",
+   "actNow": "Dig out and destroy the caterpillars near damaged plants; protect stems with a collar of paper or card; keep natural enemies (wasps, ants).",
+   "prevent": "Remove weeds at least two weeks before planting, and plough and harrow before planting.",
+   "sources": [
+    {
+     "title": "Infonet-Biovision: Maize (pests, diseases and crop husbandry)",
+     "url": "https://www.infonet-biovision.org/crops-fruits-vegetables/maize-revised"
+    }
+   ]
+  },
+  {
+   "id": "termites",
+   "name": "Termites",
+   "category": "PEST",
+   "keywords": [
+    "termite",
+    "termites",
+    "white ants",
+    "wilting",
+    "fallen",
+    "lodging",
+    "soil tunnels",
+    "mud",
+    "roots eaten"
+   ],
+   "signs": "Plants wilt and fall over; roots and stems eaten from inside; soil tunnels running up stems and roots.",
+   "distinguish": "Soil tunnels on stems and roots, and damage worst in dry spells (stalk borer tunnels are inside the stem with frass).",
+   "checkInField": "Pull up a wilted plant and look for soil tunnels and white termites on roots and stem base.",
+   "byStage": "Mostly older plants, from about three months after planting.",
+   "likelyWhen": "Dry spells; fields cultivated for many years; old wood and residue left in the field; maize left standing after it is ready.",
+   "actNow": "Harvest on time and do not leave harvested maize in stooks or heaps where termites are a problem.",
+   "prevent": "Plough to break nests and runways, rotate crops, and remove rotting wood and residue.",
+   "sources": [
+    {
+     "title": "Infonet-Biovision: Maize (pests, diseases and crop husbandry)",
+     "url": "https://www.infonet-biovision.org/crops-fruits-vegetables/maize-revised"
+    }
+   ]
+  },
+  {
+   "id": "storage_pests",
+   "name": "Storage pests (weevil and larger grain borer)",
+   "category": "PEST",
+   "keywords": [
+    "weevil",
+    "weevils",
+    "store",
+    "storage",
+    "stored",
+    "grain dust",
+    "holes in grain",
+    "beetle",
+    "borer",
+    "granary",
+    "powder"
+   ],
+   "signs": "Larger grain borer: neat round holes in husks, cobs and grain, with lots of fine grain dust. Weevil: hollowed kernels with irregular holes; small brown beetles with a long snout.",
+   "distinguish": "Grain borer leaves round holes and fine dust and attacks cobs; weevils have a snout and attack loose grain too.",
+   "checkInField": "Every 1-2 weeks, sieve a sample of stored grain and look for beetles, holes and dust; smell for mustiness.",
+   "byStage": "After harvest, in store (weevils can start in the field).",
+   "likelyWhen": "Maize left in the field after it is ready, grain not dried enough, unshelled cobs, warm humid stores; grain-borer losses can reach about a third of the grain in 3-6 months.",
+   "actNow": "Sort out and use or sell infested grain first; shell and re-dry grain; clean out dust and damaged grain.",
+   "prevent": "Harvest on time; dry grain to about 12-13% (a kernel cracks when bitten); shell before storing; store in airtight or sealed containers in a clean, raised store; inspect regularly.",
+   "sources": [
+    {
+     "title": "Infonet-Biovision: Larger grain borer",
+     "url": "https://infonet-biovision.org/plant_pests/larger-grain-borer-lgb"
+    },
+    {
+     "title": "Infonet-Biovision: Storage pests",
+     "url": "https://infonet-biovision.org/plant_pests/storage-pests"
+    }
+   ]
+  },
+  {
+   "id": "streak_virus",
+   "name": "Maize streak virus",
+   "category": "DISEASE",
+   "keywords": [
+    "streaks",
+    "streak",
+    "stripes",
+    "lines",
+    "yellow lines",
+    "broken lines",
+    "young leaves",
+    "stunted",
+    "leafhopper"
+   ],
+   "signs": "Narrow, broken white-to-yellow streaks running along the leaves, starting as small pale spots at the base of the youngest leaves. Plants infected young are stunted and give small or no cobs.",
+   "distinguish": "Fine broken streaks along the veins on scattered plants, often near grass or field edges (zinc gives broad bands; nutrient problems affect whole areas evenly).",
+   "checkInField": "Look at the youngest leaves of 20 plants for fine broken streaks; note whether affected plants are near grass or the field edge.",
+   "byStage": "Worst when plants are infected young.",
+   "likelyWhen": "Spread by small leafhoppers that breed on wild grasses during the rains; late or staggered planting and fields next to grassland are hit hardest.",
+   "actNow": "There is no cure. Keep grass weeds down around the field.",
+   "prevent": "Plant early and at the same time as neighbours; use streak-tolerant varieties; keep about 10 m of bare ground from earlier maize; remove old cereal residue.",
+   "sources": [
+    {
+     "title": "Infonet-Biovision: Maize (pests, diseases and crop husbandry)",
+     "url": "https://www.infonet-biovision.org/crops-fruits-vegetables/maize-revised"
+    },
+    {
+     "title": "Frontiers in Plant Science (2025): review of maize streak virus",
+     "url": "https://www.frontiersin.org/journals/plant-science/articles/10.3389/fpls.2025.1590870/pdf"
+    }
+   ]
+  },
+  {
+   "id": "mln",
+   "name": "Maize lethal necrosis (MLN)",
+   "category": "DISEASE",
+   "keywords": [
+    "dying",
+    "dead",
+    "necrosis",
+    "mottle",
+    "mottling",
+    "dead heart",
+    "drying",
+    "husks",
+    "whole plant",
+    "many plants",
+    "spreading",
+    "specks"
+   ],
+   "signs": "Fine yellow specks or mottling on young leaves that join into stripes; leaves then die from the edges inward; dead heart; stunted plants with short internodes; husks dry early and cobs are small and poorly filled.",
+   "distinguish": "Many plants die from the leaf edges inward, with dead hearts and early-drying husks (streak gives fine streaks; drought rolls leaves that recover overnight).",
+   "checkInField": "Look for mottled young leaves, dead hearts and drying husks; count affected plants and note where they are.",
+   "byStage": "All stages; plants infected young are hit hardest and may die.",
+   "likelyWhen": "Caused by two viruses together, carried by insects (thrips, aphids, beetles), by seed from infected crops, and on tools and people moving between fields. Continuous maize keeps it going.",
+   "actNow": "Report suspected MLN to AGRITEX / the Ministry of Agriculture straight away: as of 2025 it had not been reported in southern Africa. Pull out and burn suspected plants; do not feed them to livestock; do not save seed; clean tools and do not walk from this field into others.",
+   "prevent": "Use certified disease-free seed; rotate with legumes; leave up to two months with no maize; remove weed and grass hosts.",
+   "report": true,
+   "sources": [
+    {
+     "title": "CIMMYT (Prasanna & Suresh, 2025): Maize lethal necrosis and its management",
+     "url": "https://mln.cimmyt.org/wp-content/uploads/sites/39/2025/10/MAIZE-LETHAL-NECROSIS-MLN-AND-MANAGEMENT.pdf"
+    },
+    {
+     "title": "CIMMYT: MLN symptoms and best practices (flyer)",
+     "url": "https://mln.cimmyt.org/wp-content/uploads/sites/39/2016/06/MLN-FLYER-final-complete.pdf"
+    }
+   ]
+  },
+  {
+   "id": "grey_leaf_spot",
+   "name": "Grey leaf spot",
+   "category": "DISEASE",
+   "keywords": [
+    "spots",
+    "lesions",
+    "grey",
+    "gray",
+    "tan",
+    "rectangular",
+    "brown spots",
+    "humid",
+    "lower leaves"
+   ],
+   "signs": "Long, narrow, rectangular tan-to-grey spots with straight edges, boxed in by the leaf veins; spots join and kill leaves.",
+   "distinguish": "Narrow rectangles limited by the veins (northern leaf blight gives wider cigar-shaped spots).",
+   "checkInField": "Look at the lower and middle leaves of 20 plants for rectangular grey spots between veins.",
+   "likelyWhen": "Long periods of high humidity and wet leaves.",
+   "actNow": "Note the field; losses can reach 30-50% in bad years. Ask your extension officer if it spreads fast before tasselling.",
+   "prevent": "Plant resistant varieties; rotate crops; bury or remove infected residue.",
+   "sources": [
+    {
+     "title": "Infonet-Biovision: Maize (pests, diseases and crop husbandry)",
+     "url": "https://www.infonet-biovision.org/crops-fruits-vegetables/maize-revised"
+    }
+   ]
+  },
+  {
+   "id": "leaf_blight",
+   "name": "Northern leaf blight",
+   "category": "DISEASE",
+   "keywords": [
+    "spots",
+    "lesions",
+    "long spots",
+    "cigar",
+    "boat",
+    "grey-green",
+    "tan",
+    "dead patches",
+    "humid",
+    "cool"
+   ],
+   "signs": "Small oval water-soaked spots that grow into long grey-green to tan cigar-shaped spots; dark velvety spores after rain or dew; badly hit leaves look dried out.",
+   "distinguish": "Long cigar-shaped spots (grey leaf spot is narrow and rectangular between veins). Dried leaves can look like drought.",
+   "checkInField": "Look at the lower leaves of 20 plants for cigar-shaped spots; note how many leaves are affected.",
+   "likelyWhen": "Heavy, frequent rain, very humid air and cool temperatures (about 20-25 C); warm dry weather slows it.",
+   "actNow": "Note the field and keep an eye on upper leaves; ask your extension officer if upper leaves are affected before tasselling.",
+   "prevent": "Plant tolerant or resistant varieties; rotate crops; plough in residue after harvest.",
+   "sources": [
+    {
+     "title": "Infonet-Biovision: Northern leaf blight",
+     "url": "https://www.infonet-biovision.org/PlantHealth/MinorPests/northern-leaf-blight"
+    }
+   ]
+  },
+  {
+   "id": "common_rust",
+   "name": "Common rust",
+   "category": "DISEASE",
+   "keywords": [
+    "rust",
+    "rusty",
+    "brown powder",
+    "pustules",
+    "powdery",
+    "orange",
+    "cinnamon",
+    "dust"
+   ],
+   "signs": "Small powdery cinnamon-brown pustules on both sides of the leaves, turning black as the crop matures.",
+   "distinguish": "Raised powdery pustules that leave brown dust on your finger (leaf spots and blights are flat).",
+   "checkInField": "Rub a pustule: rust leaves brown powder. Note how many leaves are covered.",
+   "likelyWhen": "Spores blow in on the wind; Oxalis (sorrel) weeds can carry it.",
+   "actNow": "Note the field; ask your extension officer if upper leaves are heavily covered before tasselling.",
+   "prevent": "Plant resistant varieties; plough residue deeply; control Oxalis weeds.",
+   "sources": [
+    {
+     "title": "Infonet-Biovision: Maize (pests, diseases and crop husbandry)",
+     "url": "https://www.infonet-biovision.org/crops-fruits-vegetables/maize-revised"
+    }
+   ]
+  },
+  {
+   "id": "ear_rot",
+   "name": "Ear and cob rots",
+   "category": "DISEASE",
+   "keywords": [
+    "mould",
+    "mold",
+    "rotten",
+    "rot",
+    "pink",
+    "red",
+    "cob",
+    "cobs",
+    "grain",
+    "mouldy"
+   ],
+   "signs": "Pink to red mould on cobs and grain, often starting at the cob tip; rotten, light cobs.",
+   "distinguish": "Mould on the cob itself, often where insects or birds damaged it.",
+   "checkInField": "Peel back the husks of 20 cobs at harvest and count mouldy ones.",
+   "byStage": "Cobs, from grain filling to harvest.",
+   "likelyWhen": "Fungi enter through the silk and through holes made by borers, earworms and birds; leaving the crop in the field late raises the risk of toxins (aflatoxin).",
+   "actNow": "Do not eat or feed mouldy cobs to animals (they can carry toxins); sort them out at harvest; harvest on time and dry well.",
+   "prevent": "Control stalk borers and fall armyworm; plant varieties with good husk cover; harvest promptly.",
+   "sources": [
+    {
+     "title": "Infonet-Biovision: Maize (pests, diseases and crop husbandry)",
+     "url": "https://www.infonet-biovision.org/crops-fruits-vegetables/maize-revised"
+    },
+    {
+     "title": "Infonet-Biovision: Storage pests",
+     "url": "https://infonet-biovision.org/plant_pests/storage-pests"
+    }
+   ]
+  },
+  {
+   "id": "smut",
+   "name": "Smut (common and head smut)",
+   "category": "DISEASE",
+   "keywords": [
+    "smut",
+    "gall",
+    "galls",
+    "tumour",
+    "black powder",
+    "black",
+    "swollen",
+    "tassel",
+    "cob"
+   ],
+   "signs": "Common smut: swollen galls on stems, leaves, tassels or cobs, covered by a whitish skin that bursts to release black powder. Head smut: the tassel or cob is replaced by a mass of black spores with threads inside.",
+   "distinguish": "Black powdery galls; head smut has stringy threads among the spores.",
+   "checkInField": "Count plants with galls or smutted tassels and cobs.",
+   "byStage": "Mostly at tasselling and cob formation.",
+   "likelyWhen": "Head smut is carried on seed; spores stay in the soil.",
+   "actNow": "Cut off galls and smutted heads before they burst, and burn or bury them away from the field.",
+   "prevent": "Use clean certified seed and resistant varieties; rotate crops; remove volunteer maize.",
+   "sources": [
+    {
+     "title": "Infonet-Biovision: Maize (pests, diseases and crop husbandry)",
+     "url": "https://www.infonet-biovision.org/crops-fruits-vegetables/maize-revised"
+    }
+   ]
+  },
+  {
+   "id": "striga",
+   "name": "Striga (witchweed)",
+   "category": "WEED",
+   "keywords": [
+    "weed",
+    "weeds",
+    "pink flowers",
+    "purple flowers",
+    "small plants",
+    "witchweed",
+    "striga",
+    "wilting",
+    "stunted",
+    "yellow"
+   ],
+   "signs": "Small plants with pink-purple flowers growing from the roots of maize; the maize is stunted, yellowish and wilts even when the soil is moist. Damage starts before the weed comes up.",
+   "distinguish": "Look for the purple-flowered weed at the base of affected maize.",
+   "checkInField": "Count Striga plants around 20 maize plants; dig gently to see them attached to maize roots.",
+   "byStage": "Damage from early growth; the weed flowers mid-season.",
+   "likelyWhen": "Poor soils low in nitrogen, drier areas, and fields cropped with maize year after year.",
+   "actNow": "Pull Striga out before it flowers and sets seed, and keep weeding.",
+   "prevent": "Intercrop with desmodium (push-pull); rotate with trap crops such as sunflower, pulses or cotton; use Striga-tolerant varieties; improve soil fertility; keep it up for several years.",
+   "sources": [
+    {
+     "title": "Infonet-Biovision: Maize (pests, diseases and crop husbandry)",
+     "url": "https://www.infonet-biovision.org/crops-fruits-vegetables/maize-revised"
+    }
+   ]
+  }
+ ]
 }

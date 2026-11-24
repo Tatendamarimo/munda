@@ -4,6 +4,7 @@ import { causeDisplay } from '../domain/localize';
 import type { PossibleCause } from '../domain/models';
 import { labelLikelihood, useLang, useT } from '../i18n';
 import { KernelMeter } from './components';
+import { GuidePicture } from './GuidePicture';
 
 /** "Check before buying anything": the one thing a farmer should do before spending money. */
 export function CheckFirst({ text }: { text: string }) {
@@ -50,6 +51,8 @@ export function CauseCard({ cause, lead = false, animate = false }: { cause: Pos
           <h3>{d.name}</h3>
           <KernelMeter likelihood={cause.likelihood} animate={animate} />
         </header>
+        {guideFor('MAIZE').get(cause.guideId)?.report && <p className="report-now" role="alert">{t('guide.report')}</p>}
+        <GuidePicture id={cause.guideId} alt={d.name} compact />
         {body}
       </article>
     );

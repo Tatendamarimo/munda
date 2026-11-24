@@ -1,212 +1,309 @@
 {
-  "lang": "pt",
-  "note": "Portuguese translation of maize.json (names, signs, field checks) plus keywords for on-device retrieval. Beta: machine-drafted, needs review by a Portuguese-speaking agronomist.",
-  "entries": [
-    {
-      "id": "nitrogen",
-      "name": "Falta de nitrogénio",
-      "signs": "O amarelecimento começa na ponta das folhas velhas de baixo e desce pela nervura central em forma de V; plantas pálidas e pequenas.",
-      "checkInField": "Compare as folhas de baixo com as de cima; pergunte quando foi aplicado o adubo; compare com uma linha bem adubada.",
-      "keywords": [
-        "amarelando",
-        "amarelas",
-        "amarelo",
-        "amarelecimento",
-        "folhas de baixo",
-        "folhas velhas",
-        "ponta",
-        "nervura",
-        "em v",
-        "pequenas",
-        "palidas",
-        "nao crescem"
-      ]
-    },
-    {
-      "id": "waterlogging",
-      "name": "Encharcamento",
-      "signs": "Amarelecimento ou cor roxa e plantas pequenas nas partes baixas do campo depois de chuva forte; raízes castanhas, poucas ou com cheiro azedo.",
-      "checkInField": "Procure água parada ou solo encharcado depois da chuva; arranque uma planta e veja se as raízes estão podres ou cheiram azedo.",
-      "keywords": [
-        "encharcado",
-        "encharcamento",
-        "agua parada",
-        "alagado",
-        "partes baixas",
-        "raizes castanhas",
-        "cheiro azedo"
-      ]
-    },
-    {
-      "id": "drought",
-      "name": "Seca / falta de água",
-      "signs": "As folhas enrolam e ficam verde-acinzentadas baças, sobretudo à tarde; as plantas recuperam à noite se o stress for leve.",
-      "checkInField": "Cave 10 cm: se a terra se desfaz seca, falta água. Veja se as folhas desenrolam de manhã cedo.",
-      "keywords": [
-        "enroladas",
-        "enrolam",
-        "cinzentas",
-        "murchas",
-        "seco",
-        "seca",
-        "tarde",
-        "sem chuva"
-      ]
-    },
-    {
-      "id": "sulfur",
-      "name": "Falta de enxofre",
-      "signs": "As folhas novas de cima ficam todas amarelo-pálidas, às vezes com riscas claras entre as nervuras; plantas pequenas.",
-      "checkInField": "Compare as folhas novas de cima com as velhas de baixo. Comum em solos arenosos pobres em matéria orgânica.",
-      "keywords": [
-        "folhas novas",
-        "folhas de cima",
-        "riscas",
-        "arenoso",
-        "amarelo palido"
-      ]
-    },
-    {
-      "id": "potassium",
-      "name": "Falta de potássio",
-      "signs": "As folhas velhas ficam amarelas e depois castanhas nas bordas, enquanto a nervura central fica verde; caules fracos que tombam.",
-      "checkInField": "Veja as bordas das folhas de baixo: queimadura amarelo-castanha com o centro verde.",
-      "keywords": [
-        "bordas castanhas",
-        "bordas queimadas",
-        "bordas",
-        "queimadura",
-        "tombam",
-        "caules fracos",
-        "centro verde"
-      ]
-    },
-    {
-      "id": "phosphorus",
-      "name": "Falta de fósforo",
-      "signs": "Plantas novas verde-escuras com bordas e pontas roxas ou avermelhadas; crescimento lento no início.",
-      "checkInField": "Veja se a cor roxa está em plantas novas numa zona inteira; compare com plantas da mesma semente noutro lugar.",
-      "keywords": [
-        "roxo",
-        "roxas",
-        "roxos",
-        "avermelhado",
-        "avermelhadas",
-        "plantas novas",
-        "crescimento lento"
-      ]
-    },
-    {
-      "id": "zinc",
-      "name": "Falta de zinco",
-      "signs": "Faixas largas brancas ou amarelo-pálidas dos dois lados da nervura central nas folhas novas; entrenós curtos.",
-      "checkInField": "Examine as folhas novas: faixas pálidas largas que começam perto da base da folha.",
-      "keywords": [
-        "faixas brancas",
-        "faixas largas",
-        "faixas",
-        "base da folha",
-        "entrenos curtos"
-      ]
-    },
-    {
-      "id": "fall_armyworm",
-      "name": "Lagarta-do-cartucho (lagarta do funil)",
-      "signs": "Buracos irregulares e janelas transparentes nas folhas; fezes húmidas como serradura no funil; lagartas com um Y invertido na cabeça.",
-      "checkInField": "Caminhe em W e veja 20 plantas: abra o funil, procure fezes e lagartas. Anote quantas de 20 estão danificadas.",
-      "keywords": [
-        "buracos",
-        "serradura",
-        "funil",
-        "cartucho",
-        "lagarta",
-        "lagartas",
-        "fezes"
-      ]
-    },
-    {
-      "id": "stalk_borer",
-      "name": "Broca do colmo",
-      "signs": "Filas de furinhos nas folhas quando desenrolam; folha central morta (coração morto); galerias dentro do colmo.",
-      "checkInField": "Puxe a folha central: se sair e estiver podre na base, abra o colmo para procurar galerias ou larvas.",
-      "keywords": [
-        "furinhos",
-        "coracao morto",
-        "galerias",
-        "broca",
-        "colmo",
-        "larvas"
-      ]
-    },
-    {
-      "id": "streak_virus",
-      "name": "Vírus do estriado do milho",
-      "signs": "Riscas amarelas finas e interrompidas ao longo das nervuras das folhas novas, que ficam contínuas; plantas pequenas se infetadas novas.",
-      "checkInField": "Segure uma folha nova contra a luz e procure riscas amarelas finas e interrompidas ao longo das nervuras. Conte as plantas afetadas.",
-      "keywords": [
-        "riscas",
-        "estriado",
-        "riscas finas",
-        "nervuras",
-        "virus",
-        "estrias"
-      ]
-    },
-    {
-      "id": "mln",
-      "name": "Necrose letal do milho",
-      "signs": "Mosqueado amarelo, depois secagem das bordas para dentro; coração morto; as plantas podem morrer ou as maçarocas apodrecer.",
-      "checkInField": "Anote quantas plantas secam a partir das bordas e se as folhas centrais estão mortas. Informe o extensionista.",
-      "keywords": [
-        "mosqueado",
-        "secam",
-        "necrose",
-        "morrem",
-        "macarocas podres",
-        "secagem"
-      ]
-    },
-    {
-      "id": "grey_leaf_spot",
-      "name": "Mancha cinzenta da folha",
-      "signs": "Manchas compridas, estreitas e retangulares, cinzentas a castanho-claras, limitadas pelas nervuras, primeiro nas folhas de baixo com tempo húmido.",
-      "checkInField": "Veja as folhas de baixo: manchas retangulares com lados retos.",
-      "keywords": [
-        "manchas cinzentas",
-        "retangulares",
-        "manchas",
-        "humido",
-        "lados retos"
-      ]
-    },
-    {
-      "id": "leaf_blight",
-      "name": "Helmintosporiose (queima das folhas)",
-      "signs": "Manchas compridas em forma de charuto ou barco, verde-acinzentadas a castanho-claras, que sobem a partir de baixo com tempo fresco e húmido.",
-      "checkInField": "Meça algumas manchas: manchas elípticas compridas (vários cm) sugerem helmintosporiose.",
-      "keywords": [
-        "charuto",
-        "barco",
-        "manchas compridas",
-        "elipticas",
-        "fresco",
-        "helmintosporiose"
-      ]
-    },
-    {
-      "id": "striga",
-      "name": "Striga (erva-de-bruxa)",
-      "signs": "Milho pequeno, amarelo e murcho mesmo com humidade, com ervinhas de flores cor-de-rosa ou roxas junto ao pé.",
-      "checkInField": "Veja junto ao pé das plantas afetadas: ervinhas com flores cor-de-rosa ou roxas; cave com cuidado para ver se estão presas às raízes.",
-      "keywords": [
-        "striga",
-        "erva-de-bruxa",
-        "flores cor-de-rosa",
-        "ervinhas",
-        "flores",
-        "junto ao pe",
-        "murcho"
-      ]
-    }
-  ]
+ "lang": "pt",
+ "note": "Portuguese translation of maize.json (names, signs, field checks) plus keywords for on-device retrieval. Beta: machine-drafted, needs review by a Portuguese-speaking agronomist.",
+ "entries": [
+  {
+   "id": "nitrogen",
+   "name": "Falta de nitrogénio",
+   "signs": "O amarelecimento começa na ponta das folhas velhas de baixo e desce pela nervura central em forma de V; plantas pálidas e pequenas.",
+   "checkInField": "Compare as folhas de baixo com as de cima; pergunte quando foi aplicado o adubo; compare com uma linha bem adubada.",
+   "keywords": [
+    "amarelando",
+    "amarelas",
+    "amarelo",
+    "amarelecimento",
+    "folhas de baixo",
+    "folhas velhas",
+    "ponta",
+    "nervura",
+    "em v",
+    "pequenas",
+    "palidas",
+    "nao crescem"
+   ]
+  },
+  {
+   "id": "waterlogging",
+   "name": "Encharcamento",
+   "signs": "Amarelecimento ou cor roxa e plantas pequenas nas partes baixas do campo depois de chuva forte; raízes castanhas, poucas ou com cheiro azedo.",
+   "checkInField": "Procure água parada ou solo encharcado depois da chuva; arranque uma planta e veja se as raízes estão podres ou cheiram azedo.",
+   "keywords": [
+    "encharcado",
+    "encharcamento",
+    "agua parada",
+    "alagado",
+    "partes baixas",
+    "raizes castanhas",
+    "cheiro azedo"
+   ]
+  },
+  {
+   "id": "drought",
+   "name": "Seca / falta de água",
+   "signs": "As folhas enrolam e ficam verde-acinzentadas baças, sobretudo à tarde; as plantas recuperam à noite se o stress for leve.",
+   "checkInField": "Cave 10 cm: se a terra se desfaz seca, falta água. Veja se as folhas desenrolam de manhã cedo.",
+   "keywords": [
+    "enroladas",
+    "enrolam",
+    "cinzentas",
+    "murchas",
+    "seco",
+    "seca",
+    "tarde",
+    "sem chuva"
+   ]
+  },
+  {
+   "id": "sulfur",
+   "name": "Falta de enxofre",
+   "signs": "As folhas novas de cima ficam todas amarelo-pálidas, às vezes com riscas claras entre as nervuras; plantas pequenas.",
+   "checkInField": "Compare as folhas novas de cima com as velhas de baixo. Comum em solos arenosos pobres em matéria orgânica.",
+   "keywords": [
+    "folhas novas",
+    "folhas de cima",
+    "riscas",
+    "arenoso",
+    "amarelo palido"
+   ]
+  },
+  {
+   "id": "potassium",
+   "name": "Falta de potássio",
+   "signs": "As folhas velhas ficam amarelas e depois castanhas nas bordas, enquanto a nervura central fica verde; caules fracos que tombam.",
+   "checkInField": "Veja as bordas das folhas de baixo: queimadura amarelo-castanha com o centro verde.",
+   "keywords": [
+    "bordas castanhas",
+    "bordas queimadas",
+    "bordas",
+    "queimadura",
+    "tombam",
+    "caules fracos",
+    "centro verde"
+   ]
+  },
+  {
+   "id": "phosphorus",
+   "name": "Falta de fósforo",
+   "signs": "Plantas novas verde-escuras com bordas e pontas roxas ou avermelhadas; crescimento lento no início.",
+   "checkInField": "Veja se a cor roxa está em plantas novas numa zona inteira; compare com plantas da mesma semente noutro lugar.",
+   "keywords": [
+    "roxo",
+    "roxas",
+    "roxos",
+    "avermelhado",
+    "avermelhadas",
+    "plantas novas",
+    "crescimento lento"
+   ]
+  },
+  {
+   "id": "zinc",
+   "name": "Falta de zinco",
+   "signs": "Faixas largas brancas ou amarelo-pálidas dos dois lados da nervura central nas folhas novas; entrenós curtos.",
+   "checkInField": "Examine as folhas novas: faixas pálidas largas que começam perto da base da folha.",
+   "keywords": [
+    "faixas brancas",
+    "faixas largas",
+    "faixas",
+    "base da folha",
+    "entrenos curtos"
+   ]
+  },
+  {
+   "id": "fall_armyworm",
+   "name": "Lagarta-do-cartucho (lagarta do funil)",
+   "signs": "Buracos irregulares e janelas transparentes nas folhas; fezes húmidas como serradura no funil; lagartas com um Y invertido na cabeça.",
+   "checkInField": "Caminhe em W e veja 20 plantas: abra o funil, procure fezes e lagartas. Anote quantas de 20 estão danificadas.",
+   "keywords": [
+    "buracos",
+    "serradura",
+    "funil",
+    "cartucho",
+    "lagarta",
+    "lagartas",
+    "fezes"
+   ]
+  },
+  {
+   "id": "stalk_borer",
+   "name": "Broca do colmo",
+   "signs": "Filas de furinhos nas folhas quando desenrolam; folha central morta (coração morto); galerias dentro do colmo.",
+   "checkInField": "Puxe a folha central: se sair e estiver podre na base, abra o colmo para procurar galerias ou larvas.",
+   "keywords": [
+    "furinhos",
+    "coracao morto",
+    "galerias",
+    "broca",
+    "colmo",
+    "larvas"
+   ]
+  },
+  {
+   "id": "streak_virus",
+   "name": "Vírus do estriado do milho",
+   "signs": "Riscas amarelas finas e interrompidas ao longo das nervuras das folhas novas, que ficam contínuas; plantas pequenas se infetadas novas.",
+   "checkInField": "Segure uma folha nova contra a luz e procure riscas amarelas finas e interrompidas ao longo das nervuras. Conte as plantas afetadas.",
+   "keywords": [
+    "riscas",
+    "estriado",
+    "riscas finas",
+    "nervuras",
+    "virus",
+    "estrias"
+   ]
+  },
+  {
+   "id": "mln",
+   "name": "Necrose letal do milho",
+   "signs": "Mosqueado amarelo, depois secagem das bordas para dentro; coração morto; as plantas podem morrer ou as maçarocas apodrecer.",
+   "checkInField": "Anote quantas plantas secam a partir das bordas e se as folhas centrais estão mortas. Informe o extensionista.",
+   "keywords": [
+    "mosqueado",
+    "secam",
+    "necrose",
+    "morrem",
+    "macarocas podres",
+    "secagem"
+   ]
+  },
+  {
+   "id": "grey_leaf_spot",
+   "name": "Mancha cinzenta da folha",
+   "signs": "Manchas compridas, estreitas e retangulares, cinzentas a castanho-claras, limitadas pelas nervuras, primeiro nas folhas de baixo com tempo húmido.",
+   "checkInField": "Veja as folhas de baixo: manchas retangulares com lados retos.",
+   "keywords": [
+    "manchas cinzentas",
+    "retangulares",
+    "manchas",
+    "humido",
+    "lados retos"
+   ]
+  },
+  {
+   "id": "leaf_blight",
+   "name": "Helmintosporiose (queima das folhas)",
+   "signs": "Manchas compridas em forma de charuto ou barco, verde-acinzentadas a castanho-claras, que sobem a partir de baixo com tempo fresco e húmido.",
+   "checkInField": "Meça algumas manchas: manchas elípticas compridas (vários cm) sugerem helmintosporiose.",
+   "keywords": [
+    "charuto",
+    "barco",
+    "manchas compridas",
+    "elipticas",
+    "fresco",
+    "helmintosporiose"
+   ]
+  },
+  {
+   "id": "striga",
+   "name": "Striga (erva-de-bruxa)",
+   "signs": "Milho pequeno, amarelo e murcho mesmo com humidade, com ervinhas de flores cor-de-rosa ou roxas junto ao pé.",
+   "checkInField": "Veja junto ao pé das plantas afetadas: ervinhas com flores cor-de-rosa ou roxas; cave com cuidado para ver se estão presas às raízes.",
+   "keywords": [
+    "striga",
+    "erva-de-bruxa",
+    "flores cor-de-rosa",
+    "ervinhas",
+    "flores",
+    "junto ao pe",
+    "murcho"
+   ]
+  },
+  {
+   "id": "magnesium",
+   "name": "Deficiência de magnésio",
+   "signs": "Folhas velhas com listras amarelas entre as nervuras, que depois ficam castanhas; plantas verde-amareladas.",
+   "checkInField": "Compare folhas velhas e novas; procure listras entre as nervuras nas folhas de baixo.",
+   "keywords": [
+    "listras",
+    "entre as nervuras",
+    "folhas velhas"
+   ]
+  },
+  {
+   "id": "acid_soil",
+   "name": "Solo ácido",
+   "signs": "Manchas de plantas baixas que crescem mal, com raízes fracas, muitas vezes com várias deficiências ao mesmo tempo.",
+   "checkInField": "Faça análise do solo (de poucos em poucos anos); compare as raízes das plantas baixas e saudáveis.",
+   "keywords": [
+    "ácido",
+    "calcário",
+    "manchas",
+    "baixas",
+    "raízes"
+   ]
+  },
+  {
+   "id": "cutworm",
+   "name": "Lagarta-rosca",
+   "signs": "Plântulas cortadas ao nível do solo ou logo abaixo; pequenos furos nas primeiras folhas.",
+   "checkInField": "Escave com cuidado à volta das plântulas cortadas, nos primeiros centímetros do solo, à procura de uma lagarta cinzento-castanha enrolada.",
+   "keywords": [
+    "cortadas",
+    "plântulas",
+    "lagarta",
+    "nível do solo"
+   ]
+  },
+  {
+   "id": "termites",
+   "name": "Térmitas (salalé)",
+   "signs": "As plantas murcham e caem; raízes e caules comidos por dentro; galerias de terra sobre caules e raízes.",
+   "checkInField": "Arranque uma planta murcha e procure galerias de terra e térmitas brancas.",
+   "keywords": [
+    "térmitas",
+    "salalé",
+    "murcham",
+    "caem",
+    "galerias"
+   ]
+  },
+  {
+   "id": "common_rust",
+   "name": "Ferrugem comum",
+   "signs": "Pequenas pústulas em pó cor de canela nas duas faces das folhas, que escurecem no fim do ciclo.",
+   "checkInField": "Esfregue uma pústula: a ferrugem deixa pó castanho no dedo.",
+   "keywords": [
+    "ferrugem",
+    "pó",
+    "pústulas",
+    "canela"
+   ]
+  },
+  {
+   "id": "ear_rot",
+   "name": "Podridão da maçaroca",
+   "signs": "Bolor rosa a vermelho nas maçarocas e grãos, muitas vezes a partir da ponta da maçaroca.",
+   "checkInField": "Na colheita, abra o folhelho de 20 maçarocas e conte as que têm bolor.",
+   "keywords": [
+    "podridão",
+    "bolor",
+    "maçaroca",
+    "rosa"
+   ]
+  },
+  {
+   "id": "smut",
+   "name": "Carvão (comum e da inflorescência)",
+   "signs": "Galhas em caules, folhas, pendões ou maçarocas, cobertas por uma pele esbranquiçada que rebenta em pó preto. Carvão da inflorescência: pendão ou maçaroca substituído por massa preta com fios.",
+   "checkInField": "Conte as plantas com galhas ou pendões e maçarocas com carvão.",
+   "keywords": [
+    "carvão",
+    "galhas",
+    "pó preto"
+   ]
+  },
+  {
+   "id": "storage_pests",
+   "name": "Pragas do celeiro (gorgulho e broca-grande)",
+   "signs": "Broca-grande: furos redondos e limpos no folhelho, maçarocas e grãos, com muito pó. Gorgulho: grãos ocos, pequenos besouros castanhos com focinho comprido.",
+   "checkInField": "A cada 1-2 semanas, peneire uma amostra do grão guardado e procure insetos, furos e pó.",
+   "keywords": [
+    "gorgulho",
+    "celeiro",
+    "armazém",
+    "pó",
+    "furos"
+   ]
+  }
+ ]
 }

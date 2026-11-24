@@ -2,6 +2,7 @@ import { ChevronRight } from 'lucide-react';
 import { guideFor, type GuideCategory } from '../domain/guide';
 import { localizedEntry } from '../domain/localize';
 import { useLang, useT } from '../i18n';
+import { GuidePicture, GuideThumb } from './GuidePicture';
 import { PageHead } from './Header';
 import { ReadAloud } from './ReadAloud';
 import { back, href } from './router';
@@ -25,6 +26,7 @@ export function GuidePage() {
               <p className="tag" style={{ marginTop: 8 }}>{t(`guide.categories.${cat}`)}</p>
               {list.map((e) => (
                 <a key={e.id} className="plot-row" href={href({ name: 'guideEntry', id: e.id })}>
+                  <GuideThumb id={e.id} />
                   <span style={{ flex: 1 }}><b>{localizedEntry(e, lang).name}</b></span>
                   <ChevronRight size={20} className="muted" aria-hidden="true" />
                 </a>
@@ -37,6 +39,16 @@ export function GuidePage() {
   );
 }
 
+function GuideSection({ title, text }: { title: string; text?: string }) {
+  if (!text) return null;
+  return (
+    <section className="card stack" style={{ gap: 6 }}>
+      <h3 className="section-title">{title}</h3>
+      <p>{text}</p>
+    </section>
+  );
+}
+
 export function GuideEntryPage({ id }: { id: string }) {
   const t = useT();
   const lang = useLang();
@@ -45,20 +57,34 @@ export function GuideEntryPage({ id }: { id: string }) {
   const e = localizedEntry(entry, lang);
   return (
     <>
-      <PageHead onBack={back} title={t('guide.title')} right={<ReadAloud text={[e.name, t('guide.signs'), e.signs, t('guide.check'), e.checkInField].join('. ')} />} />
+      <PageHead onBack={back} title={t('guide.title')} right={<ReadAloud text={[e.name, t('guide.signs'), e.signs, t('guide.check'), e.checkInField, entry.actNow ? `${t('guide.actNow')}. ${entry.actNow}` : ''].filter(Boolean).join('. ')} />} />
       <div className="page" style={{ gap: 14 }}>
         <div>
           <p className="tag">{t(`guide.categories.${entry.category}`)}</p>
           <h2 className="page-title">{e.name}</h2>
         </div>
+        <GuidePicture id={entry.id} alt={e.name} />
         <section className="card stack" style={{ gap: 6 }}>
           <h3 className="section-title">{t('guide.signs')}</h3>
           <p>{e.signs}</p>
         </section>
+        {entry.report && <p className="report-now" role="alert">{t('guide.report')}</p>}
         <aside className="check-first">
           <p className="check-first-title">{t('guide.check')}</p>
           <p>{e.checkInField}</p>
         </aside>
+        {/* The richer sections are English until translated; they fall back like everything else. */}
+        <GuideSection title={t('guide.byStage')} text={entry.byStage} />
+        <GuideSection title={t('guide.likelyWhen')} text={entry.likelyWhen} />
+        <GuideSection title={t('guide.actNow')} text={entry.actNow} />
+        <GuideSection title={t('guide.prevent')} text={entry.prevent} />
+        {entry.sources && entry.sources.length > 0 && (
+          <section className="stack guide-sources" style={{ gap: 6 }}>
+            <p className="tag">{t('guide.sources')}</p>
+            <ul>{entry.sources.map((src) => <li key={src.url}><a href={src.url} target="_blank" rel="noreferrer">{src.title}</a></li>)}</ul>
+            <p className="muted small">{t('guide.unchecked')}</p>
+          </section>
+        )}
       </div>
     </>
   );

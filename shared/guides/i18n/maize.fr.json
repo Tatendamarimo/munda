@@ -1,219 +1,315 @@
 {
-  "lang": "fr",
-  "note": "French translation of maize.json (names, signs, field checks) plus keywords for on-device retrieval. Beta: machine-drafted, needs review by a French-speaking agronomist.",
-  "entries": [
-    {
-      "id": "nitrogen",
-      "name": "Carence en azote",
-      "signs": "Le jaunissement commence à la pointe des feuilles âgées du bas et descend le long de la nervure centrale en forme de V ; plants pâles et chétifs.",
-      "checkInField": "Comparez les feuilles du bas et du haut ; demandez quand l’engrais a été appliqué ; comparez avec une ligne bien fertilisée.",
-      "keywords": [
-        "jaunissent",
-        "jaunissement",
-        "jaune",
-        "jaunes",
-        "feuilles du bas",
-        "vieilles feuilles",
-        "pointe",
-        "nervure centrale",
-        "en v",
-        "chetifs",
-        "chetif",
-        "petits",
-        "pales"
-      ]
-    },
-    {
-      "id": "waterlogging",
-      "name": "Excès d’eau (asphyxie)",
-      "signs": "Jaunissement ou violacé et nanisme dans les parties basses du champ après de fortes pluies ; racines brunes, peu nombreuses ou à l’odeur aigre.",
-      "checkInField": "Cherchez de l’eau stagnante ou un sol détrempé après la pluie ; arrachez un plant et regardez si les racines sont brunes ou sentent l’aigre.",
-      "keywords": [
-        "eau stagnante",
-        "detrempe",
-        "inonde",
-        "inondation",
-        "bas-fond",
-        "creux",
-        "racines brunes",
-        "odeur aigre",
-        "fortes pluies"
-      ]
-    },
-    {
-      "id": "drought",
-      "name": "Sécheresse / stress hydrique",
-      "signs": "Les feuilles s’enroulent et deviennent gris-vert terne, surtout l’après-midi ; les plants récupèrent la nuit si le stress est léger.",
-      "checkInField": "Creusez 10 cm : si la terre s’effrite sèche, l’eau manque. Regardez si les feuilles se déroulent tôt le matin.",
-      "keywords": [
-        "enroulees",
-        "enroulent",
-        "roulees",
-        "gris",
-        "fletrissement",
-        "fanees",
-        "sec",
-        "seche",
-        "secheresse",
-        "apres-midi",
-        "pas de pluie"
-      ]
-    },
-    {
-      "id": "sulfur",
-      "name": "Carence en soufre",
-      "signs": "Les jeunes feuilles du haut deviennent jaune pâle en entier, parfois avec des stries claires entre les nervures ; plants chétifs.",
-      "checkInField": "Comparez les jeunes feuilles du haut avec les vieilles du bas. Fréquent sur sols sableux pauvres en matière organique.",
-      "keywords": [
-        "jeunes feuilles",
-        "feuilles du haut",
-        "stries",
-        "sableux",
-        "jaune pale"
-      ]
-    },
-    {
-      "id": "potassium",
-      "name": "Carence en potassium",
-      "signs": "Les vieilles feuilles jaunissent puis brunissent sur les bords tandis que la nervure centrale reste verte ; tiges faibles qui peuvent verser.",
-      "checkInField": "Regardez les bords des feuilles du bas : brûlure jaune-brun avec un centre vert.",
-      "keywords": [
-        "bords bruns",
-        "bords",
-        "brulure",
-        "brules",
-        "grilles",
-        "verse",
-        "tiges faibles",
-        "centre vert"
-      ]
-    },
-    {
-      "id": "phosphorus",
-      "name": "Carence en phosphore",
-      "signs": "Jeunes plants vert foncé avec des bords et pointes de feuilles violets ou rougeâtres ; croissance lente au début.",
-      "checkInField": "Vérifiez si la couleur violette est sur les jeunes plants de toute une zone ; comparez avec des plants de la même semence ailleurs.",
-      "keywords": [
-        "violet",
-        "violets",
-        "violacees",
-        "rougeatre",
-        "jeunes plants",
-        "croissance lente"
-      ]
-    },
-    {
-      "id": "zinc",
-      "name": "Carence en zinc",
-      "signs": "Larges bandes blanches ou jaune pâle de chaque côté de la nervure centrale sur les jeunes feuilles ; entre-nœuds courts.",
-      "checkInField": "Examinez les jeunes feuilles : larges bandes pâles qui partent de la base de la feuille.",
-      "keywords": [
-        "bandes blanches",
-        "larges bandes",
-        "bandes",
-        "base de la feuille",
-        "entre-noeuds courts"
-      ]
-    },
-    {
-      "id": "fall_armyworm",
-      "name": "Chenille légionnaire d’automne",
-      "signs": "Trous déchiquetés et plages translucides sur les feuilles ; déjections humides comme de la sciure dans le cornet ; chenilles avec un Y inversé sur la tête.",
-      "checkInField": "Marchez en W et examinez 20 plants : ouvrez le cornet, cherchez déjections et chenilles. Notez combien sur 20 sont touchés.",
-      "keywords": [
-        "trous",
-        "dechiquetes",
-        "sciure",
-        "cornet",
-        "chenille",
-        "chenilles",
-        "legionnaire",
-        "dejections"
-      ]
-    },
-    {
-      "id": "stalk_borer",
-      "name": "Foreur de tige",
-      "signs": "Rangées de petits trous sur les feuilles qui se déroulent ; feuille centrale morte (cœur mort) ; galeries dans les tiges.",
-      "checkInField": "Tirez la feuille centrale : si elle sort et est pourrie à la base, fendez la tige pour chercher galeries ou larves.",
-      "keywords": [
-        "petits trous",
-        "coeur mort",
-        "galeries",
-        "foreur",
-        "tige",
-        "larves"
-      ]
-    },
-    {
-      "id": "streak_virus",
-      "name": "Virus de la striure du maïs",
-      "signs": "Fines stries jaunes interrompues le long des nervures des jeunes feuilles, devenant continues ; plants chétifs si infectés jeunes.",
-      "checkInField": "Tenez une jeune feuille à la lumière et cherchez de fines stries jaunes interrompues le long des nervures. Comptez les plants touchés.",
-      "keywords": [
-        "stries",
-        "striure",
-        "fines stries",
-        "nervures",
-        "rayures",
-        "virus"
-      ]
-    },
-    {
-      "id": "mln",
-      "name": "Nécrose létale du maïs",
-      "signs": "Marbrure jaune, puis dessèchement des bords vers l’intérieur ; cœur mort ; les plants peuvent mourir ou les épis pourrir.",
-      "checkInField": "Notez combien de plants sèchent depuis les bords et si les feuilles centrales sont mortes. Signalez-le au conseiller agricole.",
-      "keywords": [
-        "marbrure",
-        "dessechement",
-        "necrose",
-        "meurent",
-        "epis pourris",
-        "sechent"
-      ]
-    },
-    {
-      "id": "grey_leaf_spot",
-      "name": "Cercosporiose (taches grises)",
-      "signs": "Longues taches rectangulaires étroites grises à beiges limitées par les nervures, d’abord sur les feuilles du bas par temps humide.",
-      "checkInField": "Regardez les feuilles du bas : taches rectangulaires à bords droits.",
-      "keywords": [
-        "taches grises",
-        "rectangulaires",
-        "taches",
-        "humide",
-        "bords droits"
-      ]
-    },
-    {
-      "id": "leaf_blight",
-      "name": "Helminthosporiose du nord",
-      "signs": "Longues taches en forme de cigare ou de bateau, gris-vert à beige, qui montent depuis le bas par temps frais et humide.",
-      "checkInField": "Mesurez quelques taches : de longues taches elliptiques (plusieurs cm) font penser à l’helminthosporiose.",
-      "keywords": [
-        "cigare",
-        "bateau",
-        "longues taches",
-        "elliptiques",
-        "frais",
-        "helminthosporiose"
-      ]
-    },
-    {
-      "id": "striga",
-      "name": "Striga (herbe sorcière)",
-      "signs": "Maïs chétif, jaunissant et flétri même avec de l’humidité, avec de petites herbes à fleurs roses ou violettes au pied.",
-      "checkInField": "Regardez au pied des plants touchés : petites herbes à fleurs roses ou violettes ; creusez doucement pour voir si elles sont attachées aux racines.",
-      "keywords": [
-        "striga",
-        "herbe sorciere",
-        "fleurs roses",
-        "petites herbes",
-        "fleurs",
-        "au pied",
-        "fletri"
-      ]
-    }
-  ]
+ "lang": "fr",
+ "note": "French translation of maize.json (names, signs, field checks) plus keywords for on-device retrieval. Beta: machine-drafted, needs review by a French-speaking agronomist.",
+ "entries": [
+  {
+   "id": "nitrogen",
+   "name": "Carence en azote",
+   "signs": "Le jaunissement commence à la pointe des feuilles âgées du bas et descend le long de la nervure centrale en forme de V ; plants pâles et chétifs.",
+   "checkInField": "Comparez les feuilles du bas et du haut ; demandez quand l’engrais a été appliqué ; comparez avec une ligne bien fertilisée.",
+   "keywords": [
+    "jaunissent",
+    "jaunissement",
+    "jaune",
+    "jaunes",
+    "feuilles du bas",
+    "vieilles feuilles",
+    "pointe",
+    "nervure centrale",
+    "en v",
+    "chetifs",
+    "chetif",
+    "petits",
+    "pales"
+   ]
+  },
+  {
+   "id": "waterlogging",
+   "name": "Excès d’eau (asphyxie)",
+   "signs": "Jaunissement ou violacé et nanisme dans les parties basses du champ après de fortes pluies ; racines brunes, peu nombreuses ou à l’odeur aigre.",
+   "checkInField": "Cherchez de l’eau stagnante ou un sol détrempé après la pluie ; arrachez un plant et regardez si les racines sont brunes ou sentent l’aigre.",
+   "keywords": [
+    "eau stagnante",
+    "detrempe",
+    "inonde",
+    "inondation",
+    "bas-fond",
+    "creux",
+    "racines brunes",
+    "odeur aigre",
+    "fortes pluies"
+   ]
+  },
+  {
+   "id": "drought",
+   "name": "Sécheresse / stress hydrique",
+   "signs": "Les feuilles s’enroulent et deviennent gris-vert terne, surtout l’après-midi ; les plants récupèrent la nuit si le stress est léger.",
+   "checkInField": "Creusez 10 cm : si la terre s’effrite sèche, l’eau manque. Regardez si les feuilles se déroulent tôt le matin.",
+   "keywords": [
+    "enroulees",
+    "enroulent",
+    "roulees",
+    "gris",
+    "fletrissement",
+    "fanees",
+    "sec",
+    "seche",
+    "secheresse",
+    "apres-midi",
+    "pas de pluie"
+   ]
+  },
+  {
+   "id": "sulfur",
+   "name": "Carence en soufre",
+   "signs": "Les jeunes feuilles du haut deviennent jaune pâle en entier, parfois avec des stries claires entre les nervures ; plants chétifs.",
+   "checkInField": "Comparez les jeunes feuilles du haut avec les vieilles du bas. Fréquent sur sols sableux pauvres en matière organique.",
+   "keywords": [
+    "jeunes feuilles",
+    "feuilles du haut",
+    "stries",
+    "sableux",
+    "jaune pale"
+   ]
+  },
+  {
+   "id": "potassium",
+   "name": "Carence en potassium",
+   "signs": "Les vieilles feuilles jaunissent puis brunissent sur les bords tandis que la nervure centrale reste verte ; tiges faibles qui peuvent verser.",
+   "checkInField": "Regardez les bords des feuilles du bas : brûlure jaune-brun avec un centre vert.",
+   "keywords": [
+    "bords bruns",
+    "bords",
+    "brulure",
+    "brules",
+    "grilles",
+    "verse",
+    "tiges faibles",
+    "centre vert"
+   ]
+  },
+  {
+   "id": "phosphorus",
+   "name": "Carence en phosphore",
+   "signs": "Jeunes plants vert foncé avec des bords et pointes de feuilles violets ou rougeâtres ; croissance lente au début.",
+   "checkInField": "Vérifiez si la couleur violette est sur les jeunes plants de toute une zone ; comparez avec des plants de la même semence ailleurs.",
+   "keywords": [
+    "violet",
+    "violets",
+    "violacees",
+    "rougeatre",
+    "jeunes plants",
+    "croissance lente"
+   ]
+  },
+  {
+   "id": "zinc",
+   "name": "Carence en zinc",
+   "signs": "Larges bandes blanches ou jaune pâle de chaque côté de la nervure centrale sur les jeunes feuilles ; entre-nœuds courts.",
+   "checkInField": "Examinez les jeunes feuilles : larges bandes pâles qui partent de la base de la feuille.",
+   "keywords": [
+    "bandes blanches",
+    "larges bandes",
+    "bandes",
+    "base de la feuille",
+    "entre-noeuds courts"
+   ]
+  },
+  {
+   "id": "fall_armyworm",
+   "name": "Chenille légionnaire d’automne",
+   "signs": "Trous déchiquetés et plages translucides sur les feuilles ; déjections humides comme de la sciure dans le cornet ; chenilles avec un Y inversé sur la tête.",
+   "checkInField": "Marchez en W et examinez 20 plants : ouvrez le cornet, cherchez déjections et chenilles. Notez combien sur 20 sont touchés.",
+   "keywords": [
+    "trous",
+    "dechiquetes",
+    "sciure",
+    "cornet",
+    "chenille",
+    "chenilles",
+    "legionnaire",
+    "dejections"
+   ]
+  },
+  {
+   "id": "stalk_borer",
+   "name": "Foreur de tige",
+   "signs": "Rangées de petits trous sur les feuilles qui se déroulent ; feuille centrale morte (cœur mort) ; galeries dans les tiges.",
+   "checkInField": "Tirez la feuille centrale : si elle sort et est pourrie à la base, fendez la tige pour chercher galeries ou larves.",
+   "keywords": [
+    "petits trous",
+    "coeur mort",
+    "galeries",
+    "foreur",
+    "tige",
+    "larves"
+   ]
+  },
+  {
+   "id": "streak_virus",
+   "name": "Virus de la striure du maïs",
+   "signs": "Fines stries jaunes interrompues le long des nervures des jeunes feuilles, devenant continues ; plants chétifs si infectés jeunes.",
+   "checkInField": "Tenez une jeune feuille à la lumière et cherchez de fines stries jaunes interrompues le long des nervures. Comptez les plants touchés.",
+   "keywords": [
+    "stries",
+    "striure",
+    "fines stries",
+    "nervures",
+    "rayures",
+    "virus"
+   ]
+  },
+  {
+   "id": "mln",
+   "name": "Nécrose létale du maïs",
+   "signs": "Marbrure jaune, puis dessèchement des bords vers l’intérieur ; cœur mort ; les plants peuvent mourir ou les épis pourrir.",
+   "checkInField": "Notez combien de plants sèchent depuis les bords et si les feuilles centrales sont mortes. Signalez-le au conseiller agricole.",
+   "keywords": [
+    "marbrure",
+    "dessechement",
+    "necrose",
+    "meurent",
+    "epis pourris",
+    "sechent"
+   ]
+  },
+  {
+   "id": "grey_leaf_spot",
+   "name": "Cercosporiose (taches grises)",
+   "signs": "Longues taches rectangulaires étroites grises à beiges limitées par les nervures, d’abord sur les feuilles du bas par temps humide.",
+   "checkInField": "Regardez les feuilles du bas : taches rectangulaires à bords droits.",
+   "keywords": [
+    "taches grises",
+    "rectangulaires",
+    "taches",
+    "humide",
+    "bords droits"
+   ]
+  },
+  {
+   "id": "leaf_blight",
+   "name": "Helminthosporiose du nord",
+   "signs": "Longues taches en forme de cigare ou de bateau, gris-vert à beige, qui montent depuis le bas par temps frais et humide.",
+   "checkInField": "Mesurez quelques taches : de longues taches elliptiques (plusieurs cm) font penser à l’helminthosporiose.",
+   "keywords": [
+    "cigare",
+    "bateau",
+    "longues taches",
+    "elliptiques",
+    "frais",
+    "helminthosporiose"
+   ]
+  },
+  {
+   "id": "striga",
+   "name": "Striga (herbe sorcière)",
+   "signs": "Maïs chétif, jaunissant et flétri même avec de l’humidité, avec de petites herbes à fleurs roses ou violettes au pied.",
+   "checkInField": "Regardez au pied des plants touchés : petites herbes à fleurs roses ou violettes ; creusez doucement pour voir si elles sont attachées aux racines.",
+   "keywords": [
+    "striga",
+    "herbe sorciere",
+    "fleurs roses",
+    "petites herbes",
+    "fleurs",
+    "au pied",
+    "fletri"
+   ]
+  },
+  {
+   "id": "magnesium",
+   "name": "Carence en magnésium",
+   "signs": "Les feuilles âgées montrent des stries jaunes entre les nervures, qui brunissent ensuite ; plantes vert-jaune.",
+   "checkInField": "Comparez feuilles âgées et jeunes ; cherchez des stries entre les nervures sur les feuilles du bas.",
+   "keywords": [
+    "stries",
+    "entre les nervures",
+    "feuilles âgées"
+   ]
+  },
+  {
+   "id": "acid_soil",
+   "name": "Sol acide",
+   "signs": "Zones de plantes courtes qui poussent mal, aux racines faibles, souvent avec plusieurs carences à la fois.",
+   "checkInField": "Faites analyser le sol (tous les quelques ans) ; comparez les racines des plantes courtes et saines.",
+   "keywords": [
+    "acide",
+    "chaux",
+    "zones",
+    "courtes",
+    "racines"
+   ]
+  },
+  {
+   "id": "cutworm",
+   "name": "Vers gris (noctuelles)",
+   "signs": "Jeunes plants coupés au ras du sol ou juste en dessous ; petits trous dans les premières feuilles.",
+   "checkInField": "Grattez doucement autour des plants coupés, dans les premiers centimètres de sol, pour trouver une chenille gris-brun enroulée.",
+   "keywords": [
+    "coupés",
+    "plantules",
+    "chenille",
+    "ras du sol"
+   ]
+  },
+  {
+   "id": "termites",
+   "name": "Termites (fourmis blanches)",
+   "signs": "Les plantes flétrissent et tombent ; racines et tiges rongées de l'intérieur ; galeries de terre sur les tiges et racines.",
+   "checkInField": "Arrachez une plante flétrie et cherchez des galeries de terre et des termites blancs.",
+   "keywords": [
+    "termites",
+    "flétrissent",
+    "tombent",
+    "galeries"
+   ]
+  },
+  {
+   "id": "common_rust",
+   "name": "Rouille commune",
+   "signs": "Petites pustules poudreuses couleur cannelle sur les deux faces des feuilles, qui noircissent en fin de cycle.",
+   "checkInField": "Frottez une pustule : la rouille laisse une poudre brune sur le doigt.",
+   "keywords": [
+    "rouille",
+    "poudre",
+    "pustules",
+    "cannelle"
+   ]
+  },
+  {
+   "id": "ear_rot",
+   "name": "Pourriture des épis",
+   "signs": "Moisissure rose à rouge sur les épis et les grains, souvent à partir de la pointe de l'épi.",
+   "checkInField": "À la récolte, ouvrez les spathes de 20 épis et comptez ceux qui sont moisis.",
+   "keywords": [
+    "pourriture",
+    "moisissure",
+    "épis",
+    "rose"
+   ]
+  },
+  {
+   "id": "smut",
+   "name": "Charbon (commun et des inflorescences)",
+   "signs": "Galles sur tiges, feuilles, panicules ou épis, couvertes d'une peau blanchâtre qui éclate en poudre noire. Charbon des inflorescences : panicule ou épi remplacé par une masse noire à filaments.",
+   "checkInField": "Comptez les plantes avec galles ou panicules et épis charbonnés.",
+   "keywords": [
+    "charbon",
+    "galles",
+    "poudre noire"
+   ]
+  },
+  {
+   "id": "storage_pests",
+   "name": "Ravageurs des stocks (charançon et grand capucin)",
+   "signs": "Grand capucin : trous ronds nets dans spathes, épis et grains, avec beaucoup de poussière. Charançon : grains évidés, petits coléoptères bruns à long rostre.",
+   "checkInField": "Toutes les 1 à 2 semaines, tamisez un échantillon du stock et cherchez insectes, trous et poussière.",
+   "keywords": [
+    "charançon",
+    "stock",
+    "grenier",
+    "poussière",
+    "trous"
+   ]
+  }
+ ]
 }

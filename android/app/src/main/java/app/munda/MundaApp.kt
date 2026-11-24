@@ -5,6 +5,7 @@ import app.munda.data.Connectivity
 import app.munda.data.PrefsStore
 import app.munda.data.WeatherRepo
 import app.munda.domain.GuideText
+import app.munda.domain.MaizeGuide
 import app.munda.i18n.I18n
 import app.munda.data.ObservationRepository
 import app.munda.data.RemoteSettings
@@ -21,6 +22,11 @@ import com.google.firebase.initialize
 
 /** Manual DI: the graph is small enough that a framework would cost more than it saves. */
 class AppContainer(app: Application) {
+    init {
+        // The guide is shared/guides/maize.json, the same file the web app reads.
+        MaizeGuide.source = { app.assets.open("guides/maize.json").bufferedReader().use { it.readText() } }
+    }
+
     /** The web app's text and guide translations, from shared/ (bundled as assets). */
     val i18n = I18n.load { name -> app.assets.open("i18n/$name").bufferedReader().use { it.readText() } }
     val guideText = GuideText.load { name -> runCatching { app.assets.open("guides/i18n/$name").bufferedReader().use { it.readText() } }.getOrNull() }

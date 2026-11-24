@@ -272,13 +272,14 @@ fun GuideScreen(vm: FarmViewModel, onEntry: (String) -> Unit) {
         Page {
             Text(s.t("guide.subtitle"), style = MaterialTheme.typography.bodyMedium, color = c.ink2)
             guide.entries.groupBy { it.category }.forEach { (cat, entries) ->
-                Tag(s.t("guide.${cat.name}"))
+                Tag(s.t("guide.categories.${cat.name}"))
                 entries.forEach { e ->
                     val loc = vm.c.guideText.localized(e, s.lang)
                     Row(
                         Modifier.fillMaxWidth().clip(RoundedCornerShape(18.dp)).background(c.card).clickable { onEntry(e.id) }.padding(14.dp),
-                        verticalAlignment = Alignment.CenterVertically,
+                        verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp),
                     ) {
+                        GuideThumb(e.id)
                         Column(Modifier.weight(1f)) {
                             Text(loc.name, style = MaterialTheme.typography.titleSmall)
                             Text(loc.signs, style = MaterialTheme.typography.labelSmall, color = c.ink2, maxLines = 2)
@@ -294,18 +295,43 @@ fun GuideScreen(vm: FarmViewModel, onEntry: (String) -> Unit) {
 @Composable
 fun GuideEntryScreen(vm: FarmViewModel, id: String, onBack: () -> Unit) {
     val s = strings()
+    val c = LocalMunda.current
+    val context = LocalContext.current
     val e = Guides.forCrop(Crop.MAIZE).get(id) ?: return
     val loc = vm.c.guideText.localized(e, s.lang)
     Column(Modifier.verticalScroll(rememberScrollState()).padding(bottom = 24.dp)) {
-        PageHead(loc.name, onBack, right = { ReadAloud("${loc.name}. ${loc.signs}. ${s.t("guide.check")}. ${loc.checkInField}") })
+        PageHead(s.t("guide.title"), onBack, right = { ReadAloud(listOfNotNull(loc.name, loc.signs, s.t("guide.check"), loc.checkInField, e.actNow?.let { "${s.t("guide.actNow")}. $it" }).joinToString(". ")) })
         Page {
+            Tag(s.t("guide.categories.${e.category.name}"))
+            Text(loc.name, style = MaterialTheme.typography.headlineMedium)
+            GuidePicture(e.id, loc.name)
             CardBox {
-                Tag(s.t("guide.signs"))
+                Text(s.t("guide.signs"), style = MaterialTheme.typography.titleSmall)
                 Text(loc.signs, style = MaterialTheme.typography.bodyLarge)
             }
+            if (e.report) ReportNow()
             CheckFirst(loc.checkInField)
+            listOf("guide.byStage" to e.byStage, "guide.likelyWhen" to e.likelyWhen, "guide.actNow" to e.actNow, "guide.prevent" to e.prevent).forEach { (k, v) ->
+                if (v != null) CardBox { Text(s.t(k), style = MaterialTheme.typography.titleSmall); Text(v, style = MaterialTheme.typography.bodyMedium) }
+            }
+            if (e.sources.isNotEmpty()) {
+                Tag(s.t("guide.sources"))
+                e.sources.forEach { src ->
+                    Text("• ${src.title}", Modifier.clickable { context.startActivity(android.content.Intent(android.content.Intent.ACTION_VIEW, android.net.Uri.parse(src.url))) },
+                        style = MaterialTheme.typography.bodySmall, color = c.leaf)
+                }
+                Text(s.t("guide.unchecked"), style = MaterialTheme.typography.bodySmall, color = c.ink2)
+            }
         }
     }
+}
+
+/** For problems that must be reported (e.g. MLN): a plain, red instruction. */
+@Composable
+fun ReportNow() {
+    val c = LocalMunda.current
+    Text(strings().t("guide.report"), Modifier.fillMaxWidth().clip(RoundedCornerShape(14.dp)).background(c.rustWash).padding(12.dp),
+        style = MaterialTheme.typography.titleSmall, color = c.rust)
 }
 
 // ---------------- Me ----------------

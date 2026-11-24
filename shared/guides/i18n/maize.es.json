@@ -1,215 +1,312 @@
 {
-  "lang": "es",
-  "note": "Spanish translation of maize.json (names, signs, field checks) plus keywords for on-device retrieval. Beta: machine-drafted, needs review by a Spanish-speaking agronomist.",
-  "entries": [
-    {
-      "id": "nitrogen",
-      "name": "Deficiencia de nitrógeno",
-      "signs": "El amarillamiento empieza en la punta de las hojas viejas de abajo y baja por la nervadura central en forma de V; plantas pálidas y pequeñas.",
-      "checkInField": "Compare las hojas de abajo con las de arriba; pregunte cuándo se aplicó el fertilizante; compare con un surco bien abonado.",
-      "keywords": [
-        "amarillas",
-        "amarillo",
-        "amarillean",
-        "amarillamiento",
-        "hojas de abajo",
-        "hojas viejas",
-        "punta",
-        "nervadura",
-        "en v",
-        "pequenas",
-        "palidas",
-        "no crecen"
-      ]
-    },
-    {
-      "id": "waterlogging",
-      "name": "Encharcamiento",
-      "signs": "Amarillamiento o color morado y plantas enanas en las partes bajas del campo después de lluvias fuertes; raíces cafés, pocas o con olor agrio.",
-      "checkInField": "Busque agua estancada o suelo empapado tras la lluvia; arranque una planta y revise si las raíces están podridas o huelen agrio.",
-      "keywords": [
-        "encharcado",
-        "encharcamiento",
-        "agua estancada",
-        "empapado",
-        "inundado",
-        "partes bajas",
-        "raices cafes",
-        "olor agrio"
-      ]
-    },
-    {
-      "id": "drought",
-      "name": "Sequía / estrés hídrico",
-      "signs": "Las hojas se enrollan y se ven gris verdoso opaco, sobre todo en la tarde; las plantas se recuperan de noche si el estrés es leve.",
-      "checkInField": "Excave 10 cm: si la tierra se desmorona seca, falta agua. Vea si las hojas se desenrollan temprano en la mañana.",
-      "keywords": [
-        "enrolladas",
-        "se enrollan",
-        "enrollan",
-        "grises",
-        "marchitas",
-        "seco",
-        "sequia",
-        "tarde",
-        "sin lluvia"
-      ]
-    },
-    {
-      "id": "sulfur",
-      "name": "Deficiencia de azufre",
-      "signs": "Las hojas jóvenes de arriba se ponen amarillo pálido completas, a veces con rayas claras entre nervaduras; plantas pequeñas.",
-      "checkInField": "Compare las hojas jóvenes de arriba con las viejas de abajo. Común en suelos arenosos con poca materia orgánica.",
-      "keywords": [
-        "hojas jovenes",
-        "hojas de arriba",
-        "rayas",
-        "arenoso",
-        "amarillo palido"
-      ]
-    },
-    {
-      "id": "potassium",
-      "name": "Deficiencia de potasio",
-      "signs": "Las hojas viejas se ponen amarillas y luego cafés en los bordes mientras la nervadura central sigue verde; tallos débiles que se acaman.",
-      "checkInField": "Mire los bordes de las hojas de abajo: quemadura amarillo-café con el centro verde.",
-      "keywords": [
-        "bordes cafes",
-        "bordes quemados",
-        "bordes",
-        "quemadura",
-        "acame",
-        "tallos debiles",
-        "centro verde"
-      ]
-    },
-    {
-      "id": "phosphorus",
-      "name": "Deficiencia de fósforo",
-      "signs": "Plantas jóvenes verde oscuro con bordes y puntas moradas o rojizas; crecimiento lento al inicio.",
-      "checkInField": "Revise si el color morado está en plantas jóvenes en toda una zona; compare con plantas de la misma semilla en otro lugar.",
-      "keywords": [
-        "morado",
-        "moradas",
-        "morados",
-        "rojizo",
-        "rojizas",
-        "plantas jovenes",
-        "crecimiento lento"
-      ]
-    },
-    {
-      "id": "zinc",
-      "name": "Deficiencia de zinc",
-      "signs": "Franjas anchas blancas o amarillo pálido a ambos lados de la nervadura central en hojas jóvenes; entrenudos cortos.",
-      "checkInField": "Revise las hojas jóvenes: franjas pálidas anchas que empiezan cerca de la base de la hoja.",
-      "keywords": [
-        "franjas blancas",
-        "franjas anchas",
-        "franjas",
-        "base de la hoja",
-        "entrenudos cortos"
-      ]
-    },
-    {
-      "id": "fall_armyworm",
-      "name": "Gusano cogollero",
-      "signs": "Agujeros irregulares y ventanas transparentes en las hojas; excremento húmedo como aserrín en el cogollo; larvas con una Y invertida en la cabeza.",
-      "checkInField": "Camine en W y revise 20 plantas: abra el cogollo, busque excremento y gusanos. Anote cuántas de 20 están dañadas.",
-      "keywords": [
-        "agujeros",
-        "aserrin",
-        "cogollo",
-        "gusano",
-        "gusanos",
-        "cogollero",
-        "excremento",
-        "larvas"
-      ]
-    },
-    {
-      "id": "stalk_borer",
-      "name": "Barrenador del tallo",
-      "signs": "Filas de agujeritos en las hojas al desenrollarse; hoja central muerta (corazón muerto); túneles dentro del tallo.",
-      "checkInField": "Jale la hoja central: si sale y está podrida en la base, abra el tallo para buscar túneles o larvas.",
-      "keywords": [
-        "agujeritos",
-        "corazon muerto",
-        "tuneles",
-        "barrenador",
-        "tallo",
-        "larvas"
-      ]
-    },
-    {
-      "id": "streak_virus",
-      "name": "Virus del rayado del maíz",
-      "signs": "Rayas amarillas finas y cortadas a lo largo de las nervaduras de hojas jóvenes, que se vuelven continuas; plantas enanas si se infectan jóvenes.",
-      "checkInField": "Ponga una hoja joven a contraluz y busque rayas amarillas finas y cortadas a lo largo de las nervaduras. Cuente las plantas afectadas.",
-      "keywords": [
-        "rayas",
-        "rayado",
-        "rayas finas",
-        "nervaduras",
-        "virus",
-        "estrias"
-      ]
-    },
-    {
-      "id": "mln",
-      "name": "Necrosis letal del maíz",
-      "signs": "Moteado amarillo, luego secado desde los bordes hacia adentro; corazón muerto; las plantas pueden morir o las mazorcas pudrirse.",
-      "checkInField": "Anote cuántas plantas se secan desde los bordes y si las hojas centrales están muertas. Avise a su técnico agrícola.",
-      "keywords": [
-        "moteado",
-        "se secan",
-        "necrosis",
-        "mueren",
-        "mazorcas podridas",
-        "secado"
-      ]
-    },
-    {
-      "id": "grey_leaf_spot",
-      "name": "Mancha gris de la hoja",
-      "signs": "Manchas largas, angostas y rectangulares, grises a café claro, limitadas por las nervaduras, primero en hojas de abajo con clima húmedo.",
-      "checkInField": "Revise las hojas de abajo: manchas rectangulares con lados rectos.",
-      "keywords": [
-        "manchas grises",
-        "rectangulares",
-        "manchas",
-        "humedo",
-        "lados rectos"
-      ]
-    },
-    {
-      "id": "leaf_blight",
-      "name": "Tizón foliar del norte",
-      "signs": "Manchas largas en forma de puro o bote, gris verdoso a café claro, que suben desde abajo con clima fresco y húmedo.",
-      "checkInField": "Mida algunas manchas: manchas elípticas largas (varios cm) sugieren tizón.",
-      "keywords": [
-        "puro",
-        "bote",
-        "manchas largas",
-        "elipticas",
-        "fresco",
-        "tizon"
-      ]
-    },
-    {
-      "id": "striga",
-      "name": "Striga (hierba bruja)",
-      "signs": "Maíz pequeño, amarillo y marchito aun con humedad, con hierbitas de flores rosadas o moradas al pie.",
-      "checkInField": "Mire al pie de las plantas afectadas: hierbitas con flores rosadas o moradas; excave con cuidado para ver si están pegadas a las raíces.",
-      "keywords": [
-        "striga",
-        "hierba bruja",
-        "flores rosadas",
-        "hierbitas",
-        "flores",
-        "al pie",
-        "marchito"
-      ]
-    }
-  ]
+ "lang": "es",
+ "note": "Spanish translation of maize.json (names, signs, field checks) plus keywords for on-device retrieval. Beta: machine-drafted, needs review by a Spanish-speaking agronomist.",
+ "entries": [
+  {
+   "id": "nitrogen",
+   "name": "Deficiencia de nitrógeno",
+   "signs": "El amarillamiento empieza en la punta de las hojas viejas de abajo y baja por la nervadura central en forma de V; plantas pálidas y pequeñas.",
+   "checkInField": "Compare las hojas de abajo con las de arriba; pregunte cuándo se aplicó el fertilizante; compare con un surco bien abonado.",
+   "keywords": [
+    "amarillas",
+    "amarillo",
+    "amarillean",
+    "amarillamiento",
+    "hojas de abajo",
+    "hojas viejas",
+    "punta",
+    "nervadura",
+    "en v",
+    "pequenas",
+    "palidas",
+    "no crecen"
+   ]
+  },
+  {
+   "id": "waterlogging",
+   "name": "Encharcamiento",
+   "signs": "Amarillamiento o color morado y plantas enanas en las partes bajas del campo después de lluvias fuertes; raíces cafés, pocas o con olor agrio.",
+   "checkInField": "Busque agua estancada o suelo empapado tras la lluvia; arranque una planta y revise si las raíces están podridas o huelen agrio.",
+   "keywords": [
+    "encharcado",
+    "encharcamiento",
+    "agua estancada",
+    "empapado",
+    "inundado",
+    "partes bajas",
+    "raices cafes",
+    "olor agrio"
+   ]
+  },
+  {
+   "id": "drought",
+   "name": "Sequía / estrés hídrico",
+   "signs": "Las hojas se enrollan y se ven gris verdoso opaco, sobre todo en la tarde; las plantas se recuperan de noche si el estrés es leve.",
+   "checkInField": "Excave 10 cm: si la tierra se desmorona seca, falta agua. Vea si las hojas se desenrollan temprano en la mañana.",
+   "keywords": [
+    "enrolladas",
+    "se enrollan",
+    "enrollan",
+    "grises",
+    "marchitas",
+    "seco",
+    "sequia",
+    "tarde",
+    "sin lluvia"
+   ]
+  },
+  {
+   "id": "sulfur",
+   "name": "Deficiencia de azufre",
+   "signs": "Las hojas jóvenes de arriba se ponen amarillo pálido completas, a veces con rayas claras entre nervaduras; plantas pequeñas.",
+   "checkInField": "Compare las hojas jóvenes de arriba con las viejas de abajo. Común en suelos arenosos con poca materia orgánica.",
+   "keywords": [
+    "hojas jovenes",
+    "hojas de arriba",
+    "rayas",
+    "arenoso",
+    "amarillo palido"
+   ]
+  },
+  {
+   "id": "potassium",
+   "name": "Deficiencia de potasio",
+   "signs": "Las hojas viejas se ponen amarillas y luego cafés en los bordes mientras la nervadura central sigue verde; tallos débiles que se acaman.",
+   "checkInField": "Mire los bordes de las hojas de abajo: quemadura amarillo-café con el centro verde.",
+   "keywords": [
+    "bordes cafes",
+    "bordes quemados",
+    "bordes",
+    "quemadura",
+    "acame",
+    "tallos debiles",
+    "centro verde"
+   ]
+  },
+  {
+   "id": "phosphorus",
+   "name": "Deficiencia de fósforo",
+   "signs": "Plantas jóvenes verde oscuro con bordes y puntas moradas o rojizas; crecimiento lento al inicio.",
+   "checkInField": "Revise si el color morado está en plantas jóvenes en toda una zona; compare con plantas de la misma semilla en otro lugar.",
+   "keywords": [
+    "morado",
+    "moradas",
+    "morados",
+    "rojizo",
+    "rojizas",
+    "plantas jovenes",
+    "crecimiento lento"
+   ]
+  },
+  {
+   "id": "zinc",
+   "name": "Deficiencia de zinc",
+   "signs": "Franjas anchas blancas o amarillo pálido a ambos lados de la nervadura central en hojas jóvenes; entrenudos cortos.",
+   "checkInField": "Revise las hojas jóvenes: franjas pálidas anchas que empiezan cerca de la base de la hoja.",
+   "keywords": [
+    "franjas blancas",
+    "franjas anchas",
+    "franjas",
+    "base de la hoja",
+    "entrenudos cortos"
+   ]
+  },
+  {
+   "id": "fall_armyworm",
+   "name": "Gusano cogollero",
+   "signs": "Agujeros irregulares y ventanas transparentes en las hojas; excremento húmedo como aserrín en el cogollo; larvas con una Y invertida en la cabeza.",
+   "checkInField": "Camine en W y revise 20 plantas: abra el cogollo, busque excremento y gusanos. Anote cuántas de 20 están dañadas.",
+   "keywords": [
+    "agujeros",
+    "aserrin",
+    "cogollo",
+    "gusano",
+    "gusanos",
+    "cogollero",
+    "excremento",
+    "larvas"
+   ]
+  },
+  {
+   "id": "stalk_borer",
+   "name": "Barrenador del tallo",
+   "signs": "Filas de agujeritos en las hojas al desenrollarse; hoja central muerta (corazón muerto); túneles dentro del tallo.",
+   "checkInField": "Jale la hoja central: si sale y está podrida en la base, abra el tallo para buscar túneles o larvas.",
+   "keywords": [
+    "agujeritos",
+    "corazon muerto",
+    "tuneles",
+    "barrenador",
+    "tallo",
+    "larvas"
+   ]
+  },
+  {
+   "id": "streak_virus",
+   "name": "Virus del rayado del maíz",
+   "signs": "Rayas amarillas finas y cortadas a lo largo de las nervaduras de hojas jóvenes, que se vuelven continuas; plantas enanas si se infectan jóvenes.",
+   "checkInField": "Ponga una hoja joven a contraluz y busque rayas amarillas finas y cortadas a lo largo de las nervaduras. Cuente las plantas afectadas.",
+   "keywords": [
+    "rayas",
+    "rayado",
+    "rayas finas",
+    "nervaduras",
+    "virus",
+    "estrias"
+   ]
+  },
+  {
+   "id": "mln",
+   "name": "Necrosis letal del maíz",
+   "signs": "Moteado amarillo, luego secado desde los bordes hacia adentro; corazón muerto; las plantas pueden morir o las mazorcas pudrirse.",
+   "checkInField": "Anote cuántas plantas se secan desde los bordes y si las hojas centrales están muertas. Avise a su técnico agrícola.",
+   "keywords": [
+    "moteado",
+    "se secan",
+    "necrosis",
+    "mueren",
+    "mazorcas podridas",
+    "secado"
+   ]
+  },
+  {
+   "id": "grey_leaf_spot",
+   "name": "Mancha gris de la hoja",
+   "signs": "Manchas largas, angostas y rectangulares, grises a café claro, limitadas por las nervaduras, primero en hojas de abajo con clima húmedo.",
+   "checkInField": "Revise las hojas de abajo: manchas rectangulares con lados rectos.",
+   "keywords": [
+    "manchas grises",
+    "rectangulares",
+    "manchas",
+    "humedo",
+    "lados rectos"
+   ]
+  },
+  {
+   "id": "leaf_blight",
+   "name": "Tizón foliar del norte",
+   "signs": "Manchas largas en forma de puro o bote, gris verdoso a café claro, que suben desde abajo con clima fresco y húmedo.",
+   "checkInField": "Mida algunas manchas: manchas elípticas largas (varios cm) sugieren tizón.",
+   "keywords": [
+    "puro",
+    "bote",
+    "manchas largas",
+    "elipticas",
+    "fresco",
+    "tizon"
+   ]
+  },
+  {
+   "id": "striga",
+   "name": "Striga (hierba bruja)",
+   "signs": "Maíz pequeño, amarillo y marchito aun con humedad, con hierbitas de flores rosadas o moradas al pie.",
+   "checkInField": "Mire al pie de las plantas afectadas: hierbitas con flores rosadas o moradas; excave con cuidado para ver si están pegadas a las raíces.",
+   "keywords": [
+    "striga",
+    "hierba bruja",
+    "flores rosadas",
+    "hierbitas",
+    "flores",
+    "al pie",
+    "marchito"
+   ]
+  },
+  {
+   "id": "magnesium",
+   "name": "Deficiencia de magnesio",
+   "signs": "Las hojas viejas tienen rayas amarillas entre las nervaduras que luego se vuelven pardas; plantas verde-amarillentas.",
+   "checkInField": "Compare hojas viejas y nuevas; busque rayas entre las nervaduras en las hojas de abajo.",
+   "keywords": [
+    "rayas",
+    "entre nervaduras",
+    "hojas viejas"
+   ]
+  },
+  {
+   "id": "acid_soil",
+   "name": "Suelo ácido",
+   "signs": "Manchones de plantas bajas que crecen mal, con raíces débiles, a menudo con varias deficiencias a la vez.",
+   "checkInField": "Haga un análisis de suelo (cada pocos años); compare las raíces de plantas bajas y sanas.",
+   "keywords": [
+    "ácido",
+    "cal",
+    "manchones",
+    "bajas",
+    "raíces"
+   ]
+  },
+  {
+   "id": "cutworm",
+   "name": "Gusano cortador",
+   "signs": "Plántulas cortadas a ras del suelo o justo debajo; agujeros pequeños en las primeras hojas.",
+   "checkInField": "Escarbe con cuidado alrededor de las plántulas cortadas, en los primeros centímetros del suelo, buscando una oruga gris-parda enroscada.",
+   "keywords": [
+    "cortadas",
+    "plántulas",
+    "oruga",
+    "ras del suelo"
+   ]
+  },
+  {
+   "id": "termites",
+   "name": "Termitas",
+   "signs": "Las plantas se marchitan y caen; raíces y tallos comidos por dentro; túneles de tierra sobre tallos y raíces.",
+   "checkInField": "Arranque una planta marchita y busque túneles de tierra y termitas blancas.",
+   "keywords": [
+    "termitas",
+    "marchitan",
+    "caen",
+    "túneles"
+   ]
+  },
+  {
+   "id": "common_rust",
+   "name": "Roya común",
+   "signs": "Pústulas pequeñas polvorientas color canela en ambas caras de las hojas, que se vuelven negras al madurar.",
+   "checkInField": "Frote una pústula: la roya deja polvo pardo en el dedo.",
+   "keywords": [
+    "roya",
+    "polvo",
+    "pústulas",
+    "canela"
+   ]
+  },
+  {
+   "id": "ear_rot",
+   "name": "Pudrición de mazorca",
+   "signs": "Moho rosa a rojo en mazorcas y granos, a menudo desde la punta de la mazorca.",
+   "checkInField": "En la cosecha, abra las hojas de 20 mazorcas y cuente las que tienen moho.",
+   "keywords": [
+    "pudrición",
+    "moho",
+    "mazorca",
+    "rosa"
+   ]
+  },
+  {
+   "id": "smut",
+   "name": "Carbón (común y de la espiga)",
+   "signs": "Agallas en tallos, hojas, espigas o mazorcas, cubiertas por una piel blanquecina que revienta en polvo negro. Carbón de la espiga: espiga o mazorca reemplazada por una masa negra con hilos.",
+   "checkInField": "Cuente las plantas con agallas o espigas y mazorcas con carbón.",
+   "keywords": [
+    "carbón",
+    "huitlacoche",
+    "agallas",
+    "polvo negro"
+   ]
+  },
+  {
+   "id": "storage_pests",
+   "name": "Plagas del almacén (gorgojo y barrenador mayor)",
+   "signs": "Barrenador mayor: agujeros redondos y limpios en hojas, mazorcas y granos, con mucho polvo. Gorgojo: granos huecos, escarabajos pequeños pardos con hocico largo.",
+   "checkInField": "Cada 1-2 semanas, cierna una muestra del grano almacenado y busque insectos, agujeros y polvo.",
+   "keywords": [
+    "gorgojo",
+    "almacén",
+    "troje",
+    "polvo",
+    "agujeros"
+   ]
+  }
+ ]
 }

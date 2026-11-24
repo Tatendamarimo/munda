@@ -25,7 +25,19 @@ data class GuideEntry(
     /** What separates this from look-alikes; used to generate discriminating questions. */
     val distinguish: String,
     val checkInField: String,
+    /** What it looks like at different crop stages. */
+    val byStage: String? = null,
+    /** Season, weather, soil or practice that makes it likely. */
+    val likelyWhen: String? = null,
+    /** What a farmer can do now, without product names or doses. */
+    val actNow: String? = null,
+    val prevent: String? = null,
+    /** Must be reported to the authorities (e.g. MLN). */
+    val report: Boolean = false,
+    val sources: List<GuideSource> = emptyList(),
 )
+
+data class GuideSource(val title: String, val url: String)
 
 interface SymptomGuide {
     val crop: Crop

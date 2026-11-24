@@ -61,6 +61,8 @@ export const es: Messages = {
     trend: 'Área afectada en el tiempo', heavyRain: 'Lluvia fuerte',
   },
   guide: {
+    byStage: 'En cada etapa', likelyWhen: 'Cuándo es probable', actNow: 'Qué hacer ahora', prevent: 'Próxima temporada', sources: 'Redactado a partir de', report: 'Repórtelo de inmediato al servicio de extensión o al Ministerio de Agricultura.', unchecked: 'Aún no revisado por un agrónomo. Confirme con su extensionista antes de gastar dinero.',
+    photoBy: 'Foto: {credit}', drawing: 'Dibujo, no una foto', source: 'Ver la fuente',
     title: 'Guía del maíz', subtitle: 'Problemas comunes, cómo se ven y cómo revisarlos. Funciona sin señal.', signs: 'Cómo se ve', check: 'Cómo revisar en el campo',
     categories: { NUTRIENT: 'Nutrientes', WATER: 'Agua', PEST: 'Plagas', DISEASE: 'Enfermedades', WEED: 'Malezas' },
   },

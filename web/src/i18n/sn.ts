@@ -143,6 +143,8 @@ export const sn: Messages = {
     heavyRain: 'Mvura yakawanda',
   },
   guide: {
+    byStage: 'Padanho rimwe nerimwe', likelyWhen: 'Rinowanzoitika riini', actNow: 'Zvokuita izvozvi', prevent: 'Mwaka unotevera', sources: 'Zvakanyorwa kubva ku', report: 'Zivisa AGRITEX kana Ministry of Agriculture nekukurumidza.', unchecked: 'Hazvisati zvaongororwa nenyanzvi yezvekurima. Bvunza mupi wezano wezvekurima usati washandisa mari.',
+    photoBy: 'Mufananidzo: {credit}', drawing: 'Mufananidzo wakadhirowewa, kwete foto', source: 'Ona kwazvakabva',
     title: 'Gwara rechibage',
     subtitle: 'Matambudziko anowanzoitika, kuti anoita sei, uye kuti ungaatarisa sei. Rinoshanda pasina network.',
     signs: 'Zvaanoita',

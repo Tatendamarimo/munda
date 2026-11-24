@@ -1,104 +1,342 @@
 {
-  "lang": "sn",
-  "note": "Shona translation of maize.json (names, signs, field checks) plus Shona keywords for on-device retrieval. Draft: needs review by a Shona-speaking agronomist or extension officer.",
-  "entries": [
-    {
-      "id": "nitrogen",
-      "name": "Kushaya nitrogen",
-      "signs": "Kuita yellow kunotanga kumuromo wemashizha ekare ari pasi kuchienda nepakati peshizha sechimiro cheV; miti inochenuruka uye haikuri.",
-      "checkInField": "Enzanisa mashizha ari pasi neari kumusoro; yeuka kuti fetiraiza yakaiswa rini; enzanisa nemutsetse wakaiswa fetiraiza zvakanaka.",
-      "keywords": ["kuita yellow", "yero", "mashizha ari pasi", "mashizha epasi", "mashizha ekare", "midiki", "haikuri", "kuchenuruka", "kuchena", "chimiro chev", "pakati peshizha", "kumuromo"]
-    },
-    {
-      "id": "waterlogging",
-      "name": "Mvura yakawandisa muvhu",
-      "signs": "Kuita yellow kana pepuru uye kusakura munzvimbo dzakaderera dzemunda mushure memvura yakawanda; midzi mitsvuku, mishoma, kana inonhuwa.",
-      "checkInField": "Tarisa kana mvura yakamira kana ivhu rakanyorova mushure memvura; chera muti mumwe chete wotarisa kana midzi yaora kana kunhuwa.",
-      "keywords": ["mvura yakawanda", "mvura yakamira", "panyoro", "rakanyorova", "kunyorova", "pakaderera", "mupata", "midzi yaora", "kunhuwa", "dope", "madhaka"]
-    },
-    {
-      "id": "drought",
-      "name": "Kushaya mvura muvhu",
-      "signs": "Mashizha anopeta kana kumonereka uye anoita grey, kunyanya masikati; miti inodzoka usiku kana dambudziko riri diki.",
-      "checkInField": "Chera 10 cm pasi: kana ivhu richiparara rakaoma, mvura shoma. Tarisa kana mashizha achivhurika mangwanani.",
-      "keywords": ["kupeta", "kupetana", "kumonereka", "kusvava", "kuoma", "rakaoma", "masikati", "zuva", "kupisa", "hapana mvura", "grey"]
-    },
-    {
-      "id": "sulfur",
-      "name": "Kushaya sulfur",
-      "signs": "Mashizha matsva ari kumusoro anoita yellow yakachenuruka, dzimwe nguva aine mitsetse pakati petsinga; miti haikuri.",
-      "checkInField": "Enzanisa mashizha matsva ari kumusoro neekare ari pasi. Zvinowanzoitika muvhu rejecha risina manyowa.",
-      "keywords": ["mashizha matsva", "mashizha ari kumusoro", "kumusoro", "mitsetse", "jecha", "rejecha", "kuchenuruka"]
-    },
-    {
-      "id": "potassium",
-      "name": "Kushaya potassium",
-      "signs": "Mashizha ekare anoita yellow ozoita brown kumicheto asi pakati pachiri girini; madzinde asina simba anogona kuwira pasi.",
-      "checkInField": "Tarisa micheto yemashizha ari pasi kuti haina kutsva yellow-brown pakati pachiri girini.",
-      "keywords": ["kutsva", "kupiswa", "kumicheto", "micheto", "brown", "pakati pachiri girini", "madzinde", "kuwira pasi", "kurara pasi"]
-    },
-    {
-      "id": "phosphorus",
-      "name": "Kushaya phosphorus",
-      "signs": "Miti midiki yakasvibira zvakanyanya ine micheto nemiromo yemashizha yakaita pepuru kana tsvuku; kukura kunononoka pakutanga.",
-      "checkInField": "Tarisa kana ruvara rwepepuru rwuri pamiti midiki munzvimbo yose; enzanisa nemiti yembeu imwe chete kune imwe nzvimbo.",
-      "keywords": ["pepuru", "purple", "tsvuku", "kutsvuka", "kumicheto", "miti midiki", "kunonoka kukura", "ichangobuda"]
-    },
-    {
-      "id": "zinc",
-      "name": "Kushaya zinc",
-      "signs": "Mitsetse mikuru michena kana yellow yakachenuruka kumativi ose epakati peshizha pamashizha matsva; madzinde mapfupi.",
-      "checkInField": "Tarisa mashizha matsva kuti ane mitsetse mikuru yakachenuruka inotangira pazasi peshizha.",
-      "keywords": ["mitsetse mikuru", "michena", "chena", "mashizha matsva", "pazasi peshizha", "mapfupi"]
-    },
-    {
-      "id": "fall_armyworm",
-      "name": "Mhashu yefall armyworm (makonye)",
-      "signs": "Maburi akashata nenzvimbo dzinoonekera pamashizha; tsvina yakanyorova inenge hupfu mumoyo wechibage; makonye ane Y yakatarisa pasi pamusoro.",
-      "checkInField": "Famba sechimiro cheW, tarisa miti 20: vhura moyo wechibage, tsvaga tsvina nemakonye. Nyora kuti mingani pa20 yakakuvara.",
-      "keywords": ["maburi", "makonye", "honye", "gonye", "hupfu", "tsvina", "moyo wechibage", "mukati", "kudyiwa", "zvipembenene"]
-    },
-    {
-      "id": "stalk_borer",
-      "name": "Gonye remudzinde (stalk borer)",
-      "signs": "Mitsetse yemaburi madiki pamashizha paanovhurika; shizha repakati rakafa; migero mukati medzinde.",
-      "checkInField": "Dhonza shizha repakati: kana richibuda uye rakaora pazasi, tsemura dzinde utarise migero kana makonye.",
-      "keywords": ["maburi madiki", "shizha repakati rakafa", "dzinde", "mudzinde", "migero", "gonye remudzinde"]
-    },
-    {
-      "id": "streak_virus",
-      "name": "Chirwere chemitsetse (maize streak virus)",
-      "signs": "Mitsetse mitete yellow yakadambuka inotevera tsinga dzemashizha matsva, yozobatana; miti haikuri kana yabatwa ichiri midiki.",
-      "checkInField": "Bata shizha idiki uritarise nechiedza; tsvaga mitsetse mitete yellow yakadambuka inotevera tsinga. Verenga miti yabatwa.",
-      "keywords": ["mitsetse mitete", "mitsetse", "yakadambuka", "tsinga", "mashizha matsva", "haikuri"]
-    },
-    {
-      "id": "mln",
-      "name": "Chirwere chinouraya chibage (MLN)",
-      "signs": "Yellow ine mavara, yozooma kubva kumicheto ichipinda mukati; shizha repakati rinofa; miti inogona kufa kana miguri kuora.",
-      "checkInField": "Nyora kuti miti mingani iri kuoma kubva kumicheto uye kana mashizha epakati akafa. Zivisa mudzidzisi wezvekurima.",
-      "keywords": ["kuoma kubva kumicheto", "kufa", "miguri kuora", "kuora", "mavara", "shizha repakati"]
-    },
-    {
-      "id": "grey_leaf_spot",
-      "name": "Mavara egrey pamashizha (grey leaf spot)",
-      "signs": "Mavara marefu, mitete akaita sebhokisi egrey kana brown anomira patsinga, achitangira pamashizha epasi kana kuchinyorova.",
-      "checkInField": "Tarisa mashizha epasi kuti ane mavara akaita sebhokisi ane mativi akatwasuka.",
-      "keywords": ["mavara", "grey", "sebhokisi", "mativi akatwasuka", "kunyorova", "kunaya", "mashizha epasi"]
-    },
-    {
-      "id": "leaf_blight",
-      "name": "Kuoma kwemashizha (northern leaf blight)",
-      "signs": "Mavara marefu akaita sefodya kana chikepe egrey-girini kusvika brown pamashizha, achitangira pasi achikwira kumusoro kana kuchitonhora uye kunyorova.",
-      "checkInField": "Yera mamwe mavara: mavara marefu (macm akati wandei) ane chimiro chezai anoratidza blight.",
-      "keywords": ["mavara marefu", "sefodya", "sechikepe", "kutonhora", "kunyorova", "mavara"]
-    },
-    {
-      "id": "striga",
-      "name": "Bise (striga)",
-      "signs": "Chibage hachikuri, chinoita yellow uye kusvava kunyange paine mvura, paine sora diki rine maruva epinki kana pepuru pazasi pemiti.",
-      "checkInField": "Tarisa pazasi pemiti yabatwa kuti pane sora diki rine maruva epinki kana pepuru; chera zvakanaka uone kana rakabatana nemidzi.",
-      "keywords": ["bise", "sora", "sora diki", "maruva", "epinki", "pinki", "pink", "kusvava", "kunyange ivhu rakanyorova", "pazasi"]
-    }
-  ]
+ "lang": "sn",
+ "note": "Shona translation of maize.json (names, signs, field checks) plus Shona keywords for on-device retrieval. Draft: needs review by a Shona-speaking agronomist or extension officer.",
+ "entries": [
+  {
+   "id": "nitrogen",
+   "name": "Kushaya nitrogen",
+   "signs": "Kuita yellow kunotanga kumuromo wemashizha ekare ari pasi kuchienda nepakati peshizha sechimiro cheV; miti inochenuruka uye haikuri.",
+   "checkInField": "Enzanisa mashizha ari pasi neari kumusoro; yeuka kuti fetiraiza yakaiswa rini; enzanisa nemutsetse wakaiswa fetiraiza zvakanaka.",
+   "keywords": [
+    "kuita yellow",
+    "yero",
+    "mashizha ari pasi",
+    "mashizha epasi",
+    "mashizha ekare",
+    "midiki",
+    "haikuri",
+    "kuchenuruka",
+    "kuchena",
+    "chimiro chev",
+    "pakati peshizha",
+    "kumuromo"
+   ]
+  },
+  {
+   "id": "waterlogging",
+   "name": "Mvura yakawandisa muvhu",
+   "signs": "Kuita yellow kana pepuru uye kusakura munzvimbo dzakaderera dzemunda mushure memvura yakawanda; midzi mitsvuku, mishoma, kana inonhuwa.",
+   "checkInField": "Tarisa kana mvura yakamira kana ivhu rakanyorova mushure memvura; chera muti mumwe chete wotarisa kana midzi yaora kana kunhuwa.",
+   "keywords": [
+    "mvura yakawanda",
+    "mvura yakamira",
+    "panyoro",
+    "rakanyorova",
+    "kunyorova",
+    "pakaderera",
+    "mupata",
+    "midzi yaora",
+    "kunhuwa",
+    "dope",
+    "madhaka"
+   ]
+  },
+  {
+   "id": "drought",
+   "name": "Kushaya mvura muvhu",
+   "signs": "Mashizha anopeta kana kumonereka uye anoita grey, kunyanya masikati; miti inodzoka usiku kana dambudziko riri diki.",
+   "checkInField": "Chera 10 cm pasi: kana ivhu richiparara rakaoma, mvura shoma. Tarisa kana mashizha achivhurika mangwanani.",
+   "keywords": [
+    "kupeta",
+    "kupetana",
+    "kumonereka",
+    "kusvava",
+    "kuoma",
+    "rakaoma",
+    "masikati",
+    "zuva",
+    "kupisa",
+    "hapana mvura",
+    "grey"
+   ]
+  },
+  {
+   "id": "sulfur",
+   "name": "Kushaya sulfur",
+   "signs": "Mashizha matsva ari kumusoro anoita yellow yakachenuruka, dzimwe nguva aine mitsetse pakati petsinga; miti haikuri.",
+   "checkInField": "Enzanisa mashizha matsva ari kumusoro neekare ari pasi. Zvinowanzoitika muvhu rejecha risina manyowa.",
+   "keywords": [
+    "mashizha matsva",
+    "mashizha ari kumusoro",
+    "kumusoro",
+    "mitsetse",
+    "jecha",
+    "rejecha",
+    "kuchenuruka"
+   ]
+  },
+  {
+   "id": "potassium",
+   "name": "Kushaya potassium",
+   "signs": "Mashizha ekare anoita yellow ozoita brown kumicheto asi pakati pachiri girini; madzinde asina simba anogona kuwira pasi.",
+   "checkInField": "Tarisa micheto yemashizha ari pasi kuti haina kutsva yellow-brown pakati pachiri girini.",
+   "keywords": [
+    "kutsva",
+    "kupiswa",
+    "kumicheto",
+    "micheto",
+    "brown",
+    "pakati pachiri girini",
+    "madzinde",
+    "kuwira pasi",
+    "kurara pasi"
+   ]
+  },
+  {
+   "id": "phosphorus",
+   "name": "Kushaya phosphorus",
+   "signs": "Miti midiki yakasvibira zvakanyanya ine micheto nemiromo yemashizha yakaita pepuru kana tsvuku; kukura kunononoka pakutanga.",
+   "checkInField": "Tarisa kana ruvara rwepepuru rwuri pamiti midiki munzvimbo yose; enzanisa nemiti yembeu imwe chete kune imwe nzvimbo.",
+   "keywords": [
+    "pepuru",
+    "purple",
+    "tsvuku",
+    "kutsvuka",
+    "kumicheto",
+    "miti midiki",
+    "kunonoka kukura",
+    "ichangobuda"
+   ]
+  },
+  {
+   "id": "zinc",
+   "name": "Kushaya zinc",
+   "signs": "Mitsetse mikuru michena kana yellow yakachenuruka kumativi ose epakati peshizha pamashizha matsva; madzinde mapfupi.",
+   "checkInField": "Tarisa mashizha matsva kuti ane mitsetse mikuru yakachenuruka inotangira pazasi peshizha.",
+   "keywords": [
+    "mitsetse mikuru",
+    "michena",
+    "chena",
+    "mashizha matsva",
+    "pazasi peshizha",
+    "mapfupi"
+   ]
+  },
+  {
+   "id": "fall_armyworm",
+   "name": "Mhashu yefall armyworm (makonye)",
+   "signs": "Maburi akashata nenzvimbo dzinoonekera pamashizha; tsvina yakanyorova inenge hupfu mumoyo wechibage; makonye ane Y yakatarisa pasi pamusoro.",
+   "checkInField": "Famba sechimiro cheW, tarisa miti 20: vhura moyo wechibage, tsvaga tsvina nemakonye. Nyora kuti mingani pa20 yakakuvara.",
+   "keywords": [
+    "maburi",
+    "makonye",
+    "honye",
+    "gonye",
+    "hupfu",
+    "tsvina",
+    "moyo wechibage",
+    "mukati",
+    "kudyiwa",
+    "zvipembenene"
+   ]
+  },
+  {
+   "id": "stalk_borer",
+   "name": "Gonye remudzinde (stalk borer)",
+   "signs": "Mitsetse yemaburi madiki pamashizha paanovhurika; shizha repakati rakafa; migero mukati medzinde.",
+   "checkInField": "Dhonza shizha repakati: kana richibuda uye rakaora pazasi, tsemura dzinde utarise migero kana makonye.",
+   "keywords": [
+    "maburi madiki",
+    "shizha repakati rakafa",
+    "dzinde",
+    "mudzinde",
+    "migero",
+    "gonye remudzinde"
+   ]
+  },
+  {
+   "id": "streak_virus",
+   "name": "Chirwere chemitsetse (maize streak virus)",
+   "signs": "Mitsetse mitete yellow yakadambuka inotevera tsinga dzemashizha matsva, yozobatana; miti haikuri kana yabatwa ichiri midiki.",
+   "checkInField": "Bata shizha idiki uritarise nechiedza; tsvaga mitsetse mitete yellow yakadambuka inotevera tsinga. Verenga miti yabatwa.",
+   "keywords": [
+    "mitsetse mitete",
+    "mitsetse",
+    "yakadambuka",
+    "tsinga",
+    "mashizha matsva",
+    "haikuri"
+   ]
+  },
+  {
+   "id": "mln",
+   "name": "Chirwere chinouraya chibage (MLN)",
+   "signs": "Yellow ine mavara, yozooma kubva kumicheto ichipinda mukati; shizha repakati rinofa; miti inogona kufa kana miguri kuora.",
+   "checkInField": "Nyora kuti miti mingani iri kuoma kubva kumicheto uye kana mashizha epakati akafa. Zivisa mudzidzisi wezvekurima.",
+   "keywords": [
+    "kuoma kubva kumicheto",
+    "kufa",
+    "miguri kuora",
+    "kuora",
+    "mavara",
+    "shizha repakati"
+   ]
+  },
+  {
+   "id": "grey_leaf_spot",
+   "name": "Mavara egrey pamashizha (grey leaf spot)",
+   "signs": "Mavara marefu, mitete akaita sebhokisi egrey kana brown anomira patsinga, achitangira pamashizha epasi kana kuchinyorova.",
+   "checkInField": "Tarisa mashizha epasi kuti ane mavara akaita sebhokisi ane mativi akatwasuka.",
+   "keywords": [
+    "mavara",
+    "grey",
+    "sebhokisi",
+    "mativi akatwasuka",
+    "kunyorova",
+    "kunaya",
+    "mashizha epasi"
+   ]
+  },
+  {
+   "id": "leaf_blight",
+   "name": "Kuoma kwemashizha (northern leaf blight)",
+   "signs": "Mavara marefu akaita sefodya kana chikepe egrey-girini kusvika brown pamashizha, achitangira pasi achikwira kumusoro kana kuchitonhora uye kunyorova.",
+   "checkInField": "Yera mamwe mavara: mavara marefu (macm akati wandei) ane chimiro chezai anoratidza blight.",
+   "keywords": [
+    "mavara marefu",
+    "sefodya",
+    "sechikepe",
+    "kutonhora",
+    "kunyorova",
+    "mavara"
+   ]
+  },
+  {
+   "id": "striga",
+   "name": "Bise (striga)",
+   "signs": "Chibage hachikuri, chinoita yellow uye kusvava kunyange paine mvura, paine sora diki rine maruva epinki kana pepuru pazasi pemiti.",
+   "checkInField": "Tarisa pazasi pemiti yabatwa kuti pane sora diki rine maruva epinki kana pepuru; chera zvakanaka uone kana rakabatana nemidzi.",
+   "keywords": [
+    "bise",
+    "sora",
+    "sora diki",
+    "maruva",
+    "epinki",
+    "pinki",
+    "pink",
+    "kusvava",
+    "kunyange ivhu rakanyorova",
+    "pazasi"
+   ]
+  },
+  {
+   "id": "magnesium",
+   "name": "Kushaya magnesium",
+   "signs": "Mashizha ekare ane mitsetse ye yellow pakati petsinga, inozoita sengura; miti yakasvibira-yero.",
+   "checkInField": "Enzanisa mashizha ekare nematsva; tarisa mitsetse pakati petsinga pamashizha ari pasi.",
+   "keywords": [
+    "mitsetse",
+    "pakati petsinga",
+    "mashizha ekare",
+    "sengura"
+   ]
+  },
+  {
+   "id": "acid_soil",
+   "name": "Ivhu rine acid",
+   "signs": "Mapoka emiti mipfupi isingakuri zvakanaka ine midzi isina simba, kazhinji ichiratidza kushaya zvinhu zvakawanda pamwe chete.",
+   "checkInField": "Ita soil test (makore mashoma ega ega); enzanisa midzi yemiti mipfupi neyakanaka.",
+   "keywords": [
+    "ivhu rinovava",
+    "acid",
+    "lime",
+    "mapoka",
+    "mipfupi",
+    "midzi"
+   ]
+  },
+  {
+   "id": "cutworm",
+   "name": "Cutworm (honye inotema)",
+   "signs": "Miti midiki yakatemwa pasi chaipo kana pasi pevhu; maburi madiki pamashizha ekutanga.",
+   "checkInField": "Chera zvinyoro-nyoro pedyo nemiti yakatemwa, mumasendimita mashoma ekutanga evhu, utsvage honye yakapetana ine ruvara rwe grey-brown.",
+   "keywords": [
+    "yakatemwa",
+    "kutemwa",
+    "miti midiki",
+    "pasi",
+    "honye",
+    "yawira"
+   ]
+  },
+  {
+   "id": "termites",
+   "name": "Majuru",
+   "signs": "Miti inosvava uye inowira; midzi nedzinde zvinodyiwa mukati; migero yevhu inokwira padzinde nemidzi.",
+   "checkInField": "Dzura muti wasvava utarise migero yevhu nemajuru machena pamidzi nepasi pedzinde.",
+   "keywords": [
+    "majuru",
+    "muchenje",
+    "kusvava",
+    "yawira",
+    "migero yevhu",
+    "midzi yadyiwa"
+   ]
+  },
+  {
+   "id": "common_rust",
+   "name": "Rust (ngura)",
+   "signs": "Mapundu madiki ane hupfu hwe brown pamativi ese emashizha, anozoita matema kana chibage chava kukura.",
+   "checkInField": "Kwizha pundu: rust inosiya hupfu hwe brown pamunwe. Verenga mashizha akafukidzwa.",
+   "keywords": [
+    "ngura",
+    "rust",
+    "hupfu",
+    "mapundu",
+    "brown"
+   ]
+  },
+  {
+   "id": "ear_rot",
+   "name": "Kuora kwemaguru",
+   "signs": "Huswa hwe pink kusvika tsvuku pamaguru nembeu, kazhinji huchitangira kumuromo weguru; maguru akaora uye akareruka.",
+   "checkInField": "Pakukohwa, svuura makoko emaguru 20 uverenge ane huswa.",
+   "keywords": [
+    "kuora",
+    "huswa",
+    "maguru",
+    "pink",
+    "tsvuku",
+    "mbeu dzaora"
+   ]
+  },
+  {
+   "id": "smut",
+   "name": "Smut (common ne head smut)",
+   "signs": "Zvibundu pamadzinde, mashizha, mhanda kana maguru, zvakafukidzwa neganda jena rinoputika rikabudisa hupfu hutema. Head smut: mhanda kana guru rinotsiviwa nehupfu hutema une tambo.",
+   "checkInField": "Verenga miti ine zvibundu kana mhanda nemaguru ane smut.",
+   "keywords": [
+    "smut",
+    "zvibundu",
+    "hupfu hutema",
+    "mhanda",
+    "guru"
+   ]
+  },
+  {
+   "id": "storage_pests",
+   "name": "Zvipukanana zvemudura (huruva neLGB)",
+   "signs": "LGB: maburi akatenderera mumakoko, maguru nembeu, ine hupfu hwakawanda. Huruva: mbeu dzakabudiswa mukati, tumbuyu tudiki twe brown tune muromo murefu.",
+   "checkInField": "Vhiki imwe kana mbiri dzega dzega, sefa mbeu dziri mudura utsvage tumbuyu, maburi nehupfu.",
+   "keywords": [
+    "huruva",
+    "mudura",
+    "dura",
+    "mbeu dzakachekwa",
+    "hupfu",
+    "tumbuyu",
+    "maburi"
+   ]
+  }
+ ]
 }

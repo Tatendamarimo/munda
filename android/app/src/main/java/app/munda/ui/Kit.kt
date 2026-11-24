@@ -368,6 +368,8 @@ fun CauseCard(cause: PossibleCause, display: CauseDisplay, lead: Boolean, animat
             if (!lead) Icon(Icons.Outlined.ExpandMore, null, Modifier.rotate(if (open) 180f else 0f), tint = c.ink2)
         }
         if (open) {
+            if (lead && Guides.forCrop(Crop.MAIZE).get(cause.guideId)?.report == true) ReportNow()
+            if (lead) GuidePicture(cause.guideId, display.name, compact = true)
             Evidence(cause.supporting, cause.againstOrMissing)
             CheckFirst(display.check)
             display.modelCheck?.let { Text("${s.t("result.modelNote")}: $it", style = MaterialTheme.typography.bodySmall, color = c.ink2) }
