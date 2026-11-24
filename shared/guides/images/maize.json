@@ -4,6 +4,24 @@
   "file": "acid_soil.jpg",
   "confirmed": false
  },
+ "common_rust": {
+  "kind": "photo",
+  "file": "common_rust.jpg",
+  "author": "Daren Mueller, Iowa State University, Bugwood.org",
+  "license": "CC BY 3.0 us",
+  "source": "https://commons.wikimedia.org/wiki/File:Puccinia_sorghi_(04).jpg",
+  "title": "Puccinia sorghi (04).jpg",
+  "confirmed": false
+ },
+ "cutworm": {
+  "kind": "photo",
+  "file": "cutworm.jpg",
+  "author": "W.M. Hantsbarger, Bugwood.org",
+  "license": "CC BY 3.0 us",
+  "source": "https://commons.wikimedia.org/wiki/File:Agrotis_ipsilon_larva.jpg",
+  "title": "Agrotis ipsilon larva.jpg",
+  "confirmed": false
+ },
  "drought": {
   "kind": "photo",
   "file": "drought.jpg",
@@ -11,6 +29,15 @@
   "license": "CC BY 2.0",
   "source": "https://commons.wikimedia.org/wiki/File:Drought-stressed_corn,_western_Tennessee-Kentucky_border.jpg",
   "title": "Drought-stressed corn, western Tennessee-Kentucky border.jpg",
+  "confirmed": false
+ },
+ "ear_rot": {
+  "kind": "photo",
+  "file": "ear_rot.jpg",
+  "author": "UIUC",
+  "license": "CC BY-SA 3.0 nl",
+  "source": "https://commons.wikimedia.org/wiki/File:Corn_mold.jpg",
+  "title": "Corn mold.jpg",
   "confirmed": false
  },
  "fall_armyworm": {
@@ -66,6 +93,15 @@
   "license": "CC BY-SA 4.0",
   "source": "https://commons.wikimedia.org/wiki/File:K-deficient_maize_on_Cedara_2_2003-01-13.jpg",
   "title": "K-deficient maize on Cedara 2 2003-01-13.jpg",
+  "confirmed": false
+ },
+ "smut": {
+  "kind": "photo",
+  "file": "smut.jpg",
+  "author": "Jamain",
+  "license": "CC BY-SA 3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Ustilago_maydis_J1b.jpg",
+  "title": "Ustilago maydis J1b.jpg",
   "confirmed": false
  },
  "streak_virus": {
