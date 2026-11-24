@@ -35,29 +35,11 @@ export function QueuedBadge() {
   return <Badge tone="pending" icon={<CloudUpload {...ic} />}>{t('enums.sync.QUEUED')}</Badge>;
 }
 
-const KERNELS = 5;
-const filled: Record<Likelihood, number> = { LOW: 1, MEDIUM: 3, HIGH: 4 };
-
-/**
- * Likelihood as maize kernels. "Likely" fills four of five, never five: Munda never claims
- * certainty, and the meter says so without words. Words sit beside it so colour isn't needed.
- */
+/** Qualitative likelihood only: never presented as a diagnostic percentage. */
 export function KernelMeter({ likelihood, animate = false }: { likelihood: Likelihood; animate?: boolean }) {
   const lang = useLang();
-  const n = filled[likelihood];
-  const label = labelLikelihood(likelihood, lang);
-  return (
-    <div className={`kernels kernels-${likelihood.toLowerCase()}${animate ? ' kernels-animate' : ''}`} role="img" aria-label={`${label}: ${n}/${KERNELS}`}>
-      <span className="kernels-label">{label}</span>
-      <span className="kernels-row" title="Munda never fills the fifth kernel: it can't be certain from a description.">
-        {Array.from({ length: KERNELS }, (_, i) => (
-          <svg key={i} viewBox="0 0 10 14" className={i < n ? 'kernel kernel-on' : 'kernel'} style={{ animationDelay: `${120 + i * 90}ms` }}>
-            <path d="M5 .8C8 .8 9.4 4 9.4 7.6 9.4 11 7.4 13.2 5 13.2S.6 11 .6 7.6C.6 4 2 .8 5 .8Z" />
-          </svg>
-        ))}
-      </span>
-    </div>
-  );
+  const t = useT();
+  return <div className={`likelihood likelihood-${likelihood.toLowerCase()}${animate ? ' likelihood-enter' : ''}`} title={t('studio.likelihoodHelp')}><span className="likelihood-leaf" aria-hidden="true" />{labelLikelihood(likelihood, lang)}</div>;
 }
 
 /** One possible cause, laid out like an entry on an agronomist's scouting sheet. */

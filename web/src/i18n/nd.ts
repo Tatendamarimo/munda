@@ -1,7 +1,56 @@
-import type { Messages } from './en';
+import { en, type Messages } from './en';
 
 /** Ndebele (isiNdebele, Zimbabwe). Beta: machine-drafted, needs native-speaker review. */
 export const nd: Messages = {
+  // New interface copy uses explicit English fallback until reviewed translations are available.
+  studio: {
+    act: 'Hlola ungakasebenzisi imali',
+    activity: 'Imisebenzi yasensimini',
+    checking: 'Ihlola okungenziwa yi-AI yalefoni.',
+    cloudOnly: 'I-AI ye-cloud iyatholakala uma ulenethiwekhi.',
+    companion: 'Umngane wakho wensimu',
+    deviceHelp: 'Hlola okungenziwa yilefoni ungakayi ensimini.',
+    download: 'Lungisa i-AI engadingi inethiwekhi ungakayi ensimini.',
+    emptyHelp: 'Ubone okungajwayelekanga? Kubhale kanye. IMunda ihlanganisa okubonileyo isizini yonke.',
+    emptyTitle: 'Indaba yensimu yakho iqala lapha.',
+    example: 'Isibonelo nje',
+    extentHelp: 'Indawo ethintekileyo njengokuba utshilo, hayi isilinganiso esilinganisiweyo.',
+    few: 'Izithombo ezimbalwa',
+    fieldCheck: 'Ukuhlola insimu',
+    firstCheck: 'Qala ukuhlola insimu kwakho kokuqala',
+    guideEmpty: 'Akulalutho oluvumelanayo esiqondisweni. Zama elinye ilizwi.',
+    guideSearch: 'Dinga izibonakaliso, inkinga kumbe okumele kuhlolwe',
+    hideExample: 'Fihla isibonelo',
+    journal: 'Ipulazi lakho, ukuhlola ngakunye.',
+    journalHelp: 'Ukuhlola ngakunye kwengeza ulwazi. Buyela ensimini ubone okuguqukileyo.',
+    learn: 'Hlola isiqondiso',
+    library: 'Ulwazi oluncinyane lusiza kakhulu.',
+    libraryHelp: 'Hlola isiqondiso sombila. Sisebenza kungelanethiwekhi.',
+    likelihoodHelp: 'Imbangela engaba khona, okumele kuhlolwe, hayi okuqinisekisiweyo.',
+    localFirst: 'Efonini nxa kusenzeka. Ku-cloud nxa kudingeka.',
+    mapNote: 'Umfanekiso wamasimu · hayisiyo imephu yeqiniso',
+    matches: 'Okusekelayo: {n}',
+    missing: 'Okusamele kuhlolwe',
+    most: 'Insimu yonke',
+    observe: 'Bona izibonakaliso',
+    overview: 'Ukubona ipulazi',
+    patches: 'Iziqephu',
+    privatePhoto: 'Izithombe zihlala efonini nxa kusetshenziswa i-AI yefoni. I-AI ye-cloud yamukela isithombe nxa kusetshenziswa leyondlela. Izithombe kazigcinwa embikweni wakho.',
+    profile: 'Yenza iMunda ibe ngeyakho.',
+    profileHelp: 'Ulimi lwakho, indawo yakho, labantu obathembayo emacebisweni.',
+    rainLegend: 'Izulu elibikiweyo',
+    recent: 'Ukuhlola kwakamuva',
+    sampleFarm: 'Ipulazi lesibonelo · idatha yesibonelo, ayikho i-AI yeqiniso',
+    sampleHelp: 'Lesi yisibonelo, hayisiyo impendulo ye-AI yefoni yakho.',
+    sampleTitle: 'Kusukela esibonakalisweni esincane kusiya esinyathelweni esisizayo.',
+    seeExample: 'Bona isibonelo',
+    skip: 'Yeqela kokuphakathi',
+    supported: 'I-AI engadingi inethiwekhi isilungile kulefoni.',
+    understand: 'Hlola imbangela ezingaba khona',
+    unknown: 'Akwaziwa',
+    voiceHelp: 'Ukubhala ngelizwi kungadinga inethiwekhi kungathumela ilizwi kubaniki bale sevisi. Ukubhala ngesandla kusebenza kungelanethiwekhi.',
+    voiceOffline: 'Ukubhala ngelizwi kudinga inethiwekhi lapha. Ungabhala ngesandla.',
+  },
   common: { back: 'Buyela emuva', close: 'Vala', continue: 'Qhubeka', save: 'Gcina', cancel: 'Yekela', notSure: 'Angazi', seeAll: 'Bona konke', beta: 'Beta', loading: 'Kuyalayisha', done: 'Kuphelile', details: 'Imininingwane' },
   tabs: { home: 'Ekhaya', plots: 'Amasimu', guide: 'Isiqondiso', me: 'Mina' },
   status: {
@@ -14,21 +63,24 @@ export const nd: Messages = {
     aiDownloadDetail: 'Landa i-AI yefoni ungakayi ensimini, ukuze iMunda isebenze kungelanethiwekhi.',
   },
   welcome: {
+    ...en.welcome,
     title: 'Yazi okumele ukuhlole ensimini yakho.',
-    lede: 'Thatha isithombe kumbe utsho okubonayo. IMunda ibuza imibuzo embalwa, ibe isitshengisa okungaba yimbangela, ukuthi iqiniseka kangakanani, lokumele ukuhlole ungakachithi imali. Isebenza kungelanethiwekhi.',
+
     setup: 'Lungisa le foni', setupOffline: 'Xhumana leinthanethi ukuze ulungise', settingUp: 'Kulungiswa le foni',
-    fineprint: 'Ukulungisa kudinga inethiwekhi kanye kuphela. Ngemva kwalokho iMunda isebenza kungelanethiwekhi. Izithombe kaziphumi efonini yakho.',
+
     sample: 'Amahlamvu angaphansi ayaphuzi kusukela esihlokweni ngemva kwezulu elinengi.',
   },
   home: {
+    ...en.home,
     groupAlert: 'Kuqinisekiswe yisikhulu sakho',
     greeting: 'Salibonani, {name}', greetingNoName: 'Salibonani', cropLine: 'Umbila', weeks: 'Amaviki {weeks}',
     statPlots: 'Amasimu', statNeedsCheck: 'Hlola', statSynced: 'Kuthunyelwe', statSaved: 'Kusefonini',
-    checkCrop: 'Hlola isilimo', checkCropSub: 'Thatha isithombe sehlamvu eligulayo · kungelanethiwekhi', alert: 'Isixwayiso', timeline: 'Umlando wesimu',
+    checkCrop: 'Hlola isilimo',  alert: 'Isixwayiso', timeline: 'Umlando wesimu',
     emptyHint: 'Hamba ensimini yakho uhlole izilimo zakuqala ezikhangeleka zigula. IMunda iyakhumbula isimu ngasinye.',
     temp: '{temp}°', rainOn: 'Izulu {day}', noRain: 'Insuku ezomileyo ziyeza', today: 'Lamuhla',
   },
   observe: {
+    ...en.observe,
     stepOf: 'Isinyathelo {n} kwezingu-{total}', describeTitle: 'Ubonani?', describeHint: 'Thatha isithombe, khuluma kumbe ubhale. Okukodwa kwanele.',
     takePhoto: 'Thatha isithombe', takePhotoSub: 'Sehlamvu eligulayo, eduze', changePhoto: 'Ntshintsha isithombe', removePhoto: 'Susa isithombe',
     speak: 'Khuluma', stop: 'Ima', listening: 'Kulalelwa…', type: 'Bhala', placeholder: 'Amahlamvu angaphansi ayaphuzi njalo izilimo zincane.',
@@ -38,7 +90,7 @@ export const nd: Messages = {
     choosingOnDevice: 'IMunda ikhetha imibuzo kule foni',
     questionsUnavailable: 'Imibuzo eyengezelelweyo idinga i-AI yefoni kumbe inethiwekhi. Impendulo zakho zanele ukugcina umbhalo omuhle.',
     questionsFailed: 'Imibuzo eyengezelelweyo kayitholakali khathesi.', showCauses: 'Tshengisa okungaba yimbangela',
-    writing: 'Kubhalwa umbhalo wakho', queuedLede: 'Okuchazileyo lempendulo zakho kugciniwe. IMunda izabhala umbhalo lapho inethiwekhi ibuya.',
+    writing: 'Kubhalwa umbhalo wakho',
     saveForLater: 'Gcina okwesikhathi esizayo', photoUsed: 'Isithombe sehlamvu',
   },
   result: {
@@ -49,12 +101,13 @@ export const nd: Messages = {
     setExtension: 'Faka umeluleki wakho wezolimo ekhasini likaMina ukuze umfonele usuka lapha.', save: 'Gcina umbhalo', seconds: '{s} s', uncertainty: 'Okungantshintsha lokhu',
   },
   record: {
+    ...en.record,
     recorded: 'Kubhaliwe', crop: 'Isilimo', affected: 'Okuthintekileyo', rain: 'Izulu, amaviki 2', noticed: 'Kwabonwa', notAvailable: 'Umbhalo lo kawutholakali kule foni.',
     loading: 'Kulayishwa umbhalo', queued: 'IMunda izabhala umbhalo lapho le foni ithola inethiwekhi.', error: 'IMunda ayikwazanga ukubhala umbhalo lo: {error}',
     review: 'Ukuhlolwa komlando', reviewAfterRecord: 'Kwenziwa ngemva kokubhalwa komlando.',
     reviewPending: 'Ulenethiwekhi, iMunda iqathanisa umbhalo lo lezangaphambili zalesi simu lamanye amasimu akho.', reviewFailed: 'Ukuhlolwa akuphelanga. Umbhalo wakho ugciniwe.',
     basedOn: 'Kusekelwe kumibhalo engu-{n} yangaphambili.', nextChecks: 'Okumele kwenziwe', causesWithHistory: 'Izimbangela, lomlando', whatRecorded: 'Okubhaliweyo',
-    photoNote: 'Isithombe sehlamvu sasetshenziswa kulo mbhalo. Izithombe kazithunyelwa.',
+
   },
   plots: {
     title: 'Amasimu ami', map: 'Imephu yamasimu', empty: 'Akukabi lamasimu. Hlola isilimo uphe isimu ibizo; iMunda igcina umlando wesimu ngasinye.',
@@ -78,8 +131,9 @@ export const nd: Messages = {
   },
   readAloud: { play: 'Bala ngelizwi', stop: 'Yekela ukubala' },
   live: {
+    ...en.live,
     title: 'IMunda iyacabanga',
-    onDevice: 'Efonini le. Kakukho okuphuma efonini yakho.',
+
     cloud: 'Ku-cloud, ngeGemini.',
     read: 'Ibale izimpendulo zakho',
     compared: 'Iqathanise lokungu-{n} okusesiqondisweni',
@@ -102,7 +156,8 @@ export const nd: Messages = {
     reviewFailed: 'Ukuhlola umlando kwehlulekile',
   },
   banner: {
-    offline: 'Akulanethiwekhi. IMunda iyaqhubeka isebenza efonini le.',
+    ...en.banner,
+
     syncing: 'Inethiwekhi ibuyile. Kuyathunyelwa njalo kuhlolwa ku-cloud…',
     reviewed: 'Ukuhlola kwe-cloud kungeziwe · {plot}',
   },

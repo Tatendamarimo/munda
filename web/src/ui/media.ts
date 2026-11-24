@@ -38,13 +38,13 @@ export const dictationSupported = Boolean(SR);
  * Browser dictation. Note: Chrome on desktop sends audio to a speech service, so dictation needs
  * signal there; typing always works offline. Safari on iOS may recognise on-device.
  */
-export function startDictation(onSegment: (text: string) => void, onPartial: (text: string) => void, onStop: (error?: string) => void): () => void {
+export function startDictation(onSegment: (text: string) => void, onPartial: (text: string) => void, onStop: (error?: string) => void, lang = 'en'): () => void {
   if (!SR) {
     onStop('Dictation isn’t supported in this browser. You can type instead.');
     return () => {};
   }
   const r = new SR();
-  r.lang = 'en-US';
+  r.lang = lang;
   r.continuous = true;
   r.interimResults = true;
   let error: string | undefined;
@@ -66,6 +66,6 @@ export function startDictation(onSegment: (text: string) => void, onPartial: (te
       : `Dictation stopped (${e.error}). You can keep typing.`;
   };
   r.onend = () => onStop(error);
-  r.start();
+  try { r.start(); } catch { onStop('Dictation could not start. You can type instead.'); }
   return () => r.stop();
 }

@@ -1,5 +1,5 @@
 import { Download, Wifi, WifiOff } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useId, useRef } from 'react';
 import { mundaAi } from '../ai/mundaAi';
 import { connectivity } from '../data/connectivity';
 import { useStore } from '../data/store';
@@ -11,6 +11,17 @@ export function StatusPill({ light = false }: { light?: boolean }) {
   const online = useStore(connectivity);
   const local = useStore(mundaAi.local);
   const [open, setOpen] = useState(false);
+  const panelId = useId();
+  const root = useRef<HTMLDivElement>(null);
+  const trigger = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    if (!open) return;
+    const outside = (e: PointerEvent) => { if (!root.current?.contains(e.target as Node)) setOpen(false); };
+    const escape = (e: KeyboardEvent) => { if (e.key === 'Escape') { setOpen(false); trigger.current?.focus(); } };
+    document.addEventListener('pointerdown', outside);
+    document.addEventListener('keydown', escape);
+    return () => { document.removeEventListener('pointerdown', outside); document.removeEventListener('keydown', escape); };
+  }, [open]);
   useEffect(() => {
     if (local.state !== 'DOWNLOADING') return;
     const id = setInterval(() => void mundaAi.refreshLocalStatus(), 5000);
@@ -25,13 +36,13 @@ export function StatusPill({ light = false }: { light?: boolean }) {
     : { text: t('status.aiChecking'), tone: 'pending' };
 
   return (
-    <div className={`status${light ? ' status-light' : ''}`}>
-      <button className="status-btn" aria-expanded={open} aria-controls="status-panel" onClick={() => setOpen((v) => !v)}>
+    <div ref={root} className={`status${light ? ' status-light' : ''}`}>
+      <button ref={trigger} className="status-btn" aria-expanded={open} aria-controls={panelId} onClick={() => setOpen((v) => !v)}>
         {online ? <Wifi size={15} strokeWidth={2.25} aria-label={t('status.online')} /> : <WifiOff size={15} strokeWidth={2.25} aria-label={t('status.offline')} />}
         <span className={`status-dot dot-${ai.tone}`} aria-hidden="true" />
         <span>{ai.text}</span>
       </button>
-      {open && <StatusDetails id="status-panel" />}
+      {open && <StatusDetails id={panelId} />}
     </div>
   );
 }
@@ -41,7 +52,7 @@ export function StatusDetails({ id }: { id?: string }) {
   const online = useStore(connectivity);
   const local = useStore(mundaAi.local);
   return (
-    <div id={id} className={id ? 'status-panel' : 'stack'} role={id ? 'dialog' : undefined} aria-label={id ? t('me.offlineAi') : undefined}>
+    <div id={id} className={id ? 'status-panel' : 'stack'} role={id ? 'region' : undefined} aria-label={id ? t('me.offlineAi') : undefined}>
       <p>{online ? t('status.onlineDetail') : t('status.offlineDetail')}</p>
       <p>
         {local.state === 'AVAILABLE' && t('status.aiReadyDetail')}

@@ -187,8 +187,9 @@ export function ObservePage() {
   const index = steps.indexOf(step);
   return (
     <div className="flow">
-      <PageHead onBack={goBack} right={<ReadAloud text={readText()} />} />
+      <PageHead title={t('studio.fieldCheck')} onBack={goBack} right={<ReadAloud text={readText()} />} />
       <div className="page" style={{ gap: 18 }}>
+        <p className="flow-progress-label">{t('observe.stepOf', { n: index + 1, total: steps.length })}</p>
         <div className="dots" role="progressbar" aria-valuemin={1} aria-valuemax={steps.length} aria-valuenow={index + 1} aria-label={t('observe.stepOf', { n: index + 1, total: steps.length })}>
           {steps.map((s, i) => <i key={s} className={i <= index ? 'on' : ''} />)}
         </div>
@@ -251,6 +252,8 @@ function Question({ title, origin, children }: { title: string; origin: Inferenc
 
 function Describe({ form, edit, canContinue, onNext }: { form: Form; edit: (p: Partial<Form>) => void; canContinue: boolean; onNext: () => void }) {
   const t = useT();
+  const online = useStore(connectivity);
+  const lang = useLang();
   const [typing, setTyping] = useState(form.description !== '');
   const [listening, setListening] = useState(false);
   const [partial, setPartial] = useState('');
@@ -262,6 +265,7 @@ function Describe({ form, edit, canContinue, onNext }: { form: Form; edit: (p: P
 
   const toggleMic = () => {
     if (listening) { stopRef.current(); return; }
+    if (!online) { setProblem(t('studio.voiceOffline')); return; }
     setProblem(undefined);
     setListening(true);
     setTyping(true);
@@ -269,6 +273,7 @@ function Describe({ form, edit, canContinue, onNext }: { form: Form; edit: (p: P
       (seg) => edit({ description: `${desc.current.trimEnd()} ${seg}`.trim() }),
       setPartial,
       (err) => { setListening(false); setPartial(''); setProblem(err); },
+      lang,
     );
   };
 
@@ -304,7 +309,7 @@ function Describe({ form, edit, canContinue, onNext }: { form: Form; edit: (p: P
 
       <div className="duo">
         {dictationSupported && (
-          <button type="button" className={`duo-btn${listening ? ' is-live' : ''}`} onClick={toggleMic} aria-pressed={listening}>
+          <button type="button" className={`duo-btn${listening ? ' is-live' : ''}`} onClick={toggleMic} disabled={!online && !listening} aria-describedby="voice-note" aria-pressed={listening}>
             {listening ? <Square size={18} strokeWidth={2.5} aria-hidden="true" /> : <Mic size={18} strokeWidth={2.25} aria-hidden="true" />}
             {listening ? t('observe.stop') : t('observe.speak')}
           </button>
@@ -314,6 +319,8 @@ function Describe({ form, edit, canContinue, onNext }: { form: Form; edit: (p: P
         </button>
       </div>
 
+      {dictationSupported && <p id="voice-note" className="hint voice-note">{t('studio.voiceHelp')}</p>}
+      <p className="hint privacy-note">{t('studio.privatePhoto')}</p>
       {typing && (
         <textarea rows={4} value={form.description} placeholder={t('observe.placeholder')} aria-label={t('observe.describeTitle')} autoFocus={!listening} onChange={(e) => edit({ description: e.target.value })} />
       )}

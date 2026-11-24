@@ -36,7 +36,7 @@ function FieldMap({ plots }: { plots: PlotSummary[] }) {
   });
   return (
     <section className="stack" style={{ gap: 8 }} aria-label={t('plots.map')}>
-      <p className="tag">{t('plots.map')}</p>
+      <p className="tag">{t('studio.mapNote')}</p>
       <div className="plot-field-map">
         {plots.map((p, i) => (
           <a key={p.key} href={href({ name: 'plot', key: p.key })} className={`plot-field plot-field-${p.status}`} style={{ gridColumn: `span ${spans[i]}`, ['--rows' as string]: `${[-24, 18, -8, 30, 4][i % 5]}deg` }}>

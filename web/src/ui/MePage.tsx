@@ -1,4 +1,4 @@
-import { MapPin } from 'lucide-react';
+import { MapPin, Sprout } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { prefs, updatePrefs } from '../data/prefs';
 import { useStore } from '../data/store';
@@ -27,7 +27,8 @@ export function MePage() {
   return (
     <>
       <PageHead title={t('me.title')} />
-      <div className="page" style={{ gap: 14 }}>
+      <div className="page" style={{ gap: 20 }}>
+        <div className="me-intro"><span className="empty-icon"><Sprout size={28} aria-hidden="true" /></span><div><h2>{t('studio.profile')}</h2><p>{t('studio.profileHelp')}</p></div></div>
         <section className="card stack">
           <h2 className="section-title">{t('me.language')}</h2>
           <div className="lang-chips" role="group" aria-label={t('me.language')}>

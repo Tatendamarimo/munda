@@ -1,7 +1,56 @@
-import type { Messages } from './en';
+import { en, type Messages } from './en';
 
 /** Swahili. Beta: machine-drafted, needs native-speaker review. */
 export const sw: Messages = {
+  // New interface copy uses explicit English fallback until reviewed translations are available.
+  studio: {
+    act: 'Kagua kabla ya kutumia pesa',
+    activity: 'Shughuli za shambani',
+    checking: 'Inakagua uwezo wa AI wa kifaa hiki.',
+    cloudOnly: 'AI ya wingu inapatikana ukiwa mtandaoni.',
+    companion: 'Mwenzako wa shambani',
+    deviceHelp: 'Kagua kifaa hiki kinaweza nini kabla ya kwenda shambani.',
+    download: 'Andaa AI ya nje ya mtandao kabla ya kwenda shambani.',
+    emptyHelp: 'Umeona kitu kisicho cha kawaida? Kirekodi mara moja. Munda inaunganisha ulichoona msimu mzima.',
+    emptyTitle: 'Hadithi ya shamba lako inaanzia hapa.',
+    example: 'Mfano tu',
+    extentHelp: 'Eneo lililoathirika kama ulivyoripoti, si asilimia iliyopimwa.',
+    few: 'Mimea michache',
+    fieldCheck: 'Ukaguzi wa shamba',
+    firstCheck: 'Anza ukaguzi wako wa kwanza',
+    guideEmpty: 'Hakuna kinacholingana katika mwongozo. Jaribu neno lingine.',
+    guideSearch: 'Tafuta dalili, matatizo au ukaguzi',
+    hideExample: 'Ficha mfano',
+    journal: 'Shamba lako, ukaguzi mmoja baada ya mwingine.',
+    journalHelp: 'Kila ukaguzi unaongeza taarifa. Rudi shambani uone kilichobadilika.',
+    learn: 'Gundua mwongozo',
+    library: 'Maarifa kidogo yanasaidia sana.',
+    libraryHelp: 'Gundua mwongozo wa mahindi. Unafanya kazi bila mtandao.',
+    likelihoodHelp: 'Kisababishi kinachowezekana cha kukagua, si utambuzi uliothibitishwa.',
+    localFirst: 'Kwenye kifaa inapowezekana. Wingu inapohitajika.',
+    mapNote: 'Mchoro wa mashamba · si ramani halisi',
+    matches: 'Ishara zinazounga mkono: {n}',
+    missing: 'Kinachohitaji kukaguliwa bado',
+    most: 'Shamba lote',
+    observe: 'Tambua dalili',
+    overview: 'Muhtasari wa shamba',
+    patches: 'Sehemu sehemu',
+    privatePhoto: 'Picha zinabaki kwenye kifaa AI ya kifaa ikitumika. AI ya wingu hupokea picha njia hiyo ikitumika. Picha hazihifadhiwi kwenye ripoti yako.',
+    profile: 'Ifanye Munda iwe yako.',
+    profileHelp: 'Lugha yako, mahali pako, na watu unaowaamini kwa ushauri.',
+    rainLegend: 'Mvua iliyoripotiwa',
+    recent: 'Ukaguzi wa karibuni',
+    sampleFarm: 'Shamba la mfano · data ya mfano, hakuna AI halisi',
+    sampleHelp: 'Huu ni mfano, si jibu la AI kutoka kifaa chako.',
+    sampleTitle: 'Kutoka dalili ndogo hadi hatua muhimu inayofuata.',
+    seeExample: 'Ona mfano',
+    skip: 'Ruka hadi maudhui',
+    supported: 'AI ya nje ya mtandao iko tayari kwenye kifaa hiki.',
+    understand: 'Chunguza visababishi vinavyowezekana',
+    unknown: 'Haijulikani',
+    voiceHelp: 'Kuandika kwa sauti kunaweza kuhitaji mtandao na kutuma sauti kwa mtoa huduma. Kuandika kwa mkono kunafanya kazi bila mtandao.',
+    voiceOffline: 'Kuandika kwa sauti kunahitaji mtandao hapa. Unaweza kuandika kwa mkono.',
+  },
   common: { back: 'Rudi', close: 'Funga', continue: 'Endelea', save: 'Hifadhi', cancel: 'Ghairi', notSure: 'Sina uhakika', seeAll: 'Ona yote', beta: 'Beta', loading: 'Inapakia', done: 'Imekamilika', details: 'Maelezo zaidi' },
   tabs: { home: 'Nyumbani', plots: 'Mashamba', guide: 'Mwongozo', me: 'Mimi' },
   status: {
@@ -14,21 +63,24 @@ export const sw: Messages = {
     aiDownloadDetail: 'Pakua AI ya nje ya mtandao kabla ya kwenda shambani, ili Munda ifanye kazi bila mtandao.',
   },
   welcome: {
+    ...en.welcome,
     title: 'Jua cha kukagua shambani mwako.',
-    lede: 'Piga picha au sema unachoona. Munda inauliza maswali machache, kisha inaonyesha visababishi vinavyowezekana, uhakika wake, na cha kukagua kabla ya kutumia pesa. Inafanya kazi bila mtandao.',
+
     setup: 'Andaa kifaa hiki', setupOffline: 'Unganisha intaneti ili kuandaa', settingUp: 'Inaandaa kifaa hiki',
-    fineprint: 'Maandalizi yanahitaji mtandao mara moja tu. Baada ya hapo Munda inafanya kazi bila mtandao. Picha haziondoki kwenye kifaa chako.',
+
     sample: 'Majani ya chini yanageuka manjano kuanzia ncha baada ya mvua kubwa.',
   },
   home: {
+    ...en.home,
     groupAlert: 'Imethibitishwa na afisa wako',
     greeting: 'Habari, {name}', greetingNoName: 'Habari', cropLine: 'Mahindi', weeks: 'Wiki {weeks}',
     statPlots: 'Mashamba', statNeedsCheck: 'Ya kukagua', statSynced: 'Imesawazishwa', statSaved: 'Kwenye simu',
-    checkCrop: 'Kagua zao', checkCropSub: 'Piga picha jani lililougua · bila mtandao', alert: 'Tahadhari', timeline: 'Historia ya shamba',
+    checkCrop: 'Kagua zao',  alert: 'Tahadhari', timeline: 'Historia ya shamba',
     emptyHint: 'Tembea shambani mwako ukague mimea ya kwanza inayoonekana kuugua. Munda hukumbuka kila shamba.',
     temp: '{temp}°', rainOn: 'Mvua {day}', noRain: 'Siku kavu zinakuja', today: 'Leo',
   },
   observe: {
+    ...en.observe,
     stepOf: 'Hatua {n} kati ya {total}', describeTitle: 'Unaona nini?', describeHint: 'Piga picha, sema au andika. Kimoja kinatosha.',
     takePhoto: 'Piga picha', takePhotoSub: 'Ya jani lililougua, karibu', changePhoto: 'Badilisha picha', removePhoto: 'Ondoa picha',
     speak: 'Sema', stop: 'Simama', listening: 'Inasikiliza…', type: 'Andika', placeholder: 'Majani ya chini ni ya manjano na mimea ni midogo.',
@@ -38,7 +90,7 @@ export const sw: Messages = {
     choosingOnDevice: 'Munda inachagua maswali kwenye kifaa hiki',
     questionsUnavailable: 'Maswali ya ziada yanahitaji AI ya nje ya mtandao au mtandao. Majibu yako yanatosha kwa kumbukumbu nzuri.',
     questionsFailed: 'Maswali ya ziada hayapatikani sasa.', showCauses: 'Onyesha visababishi vinavyowezekana',
-    writing: 'Inaandika kumbukumbu yako', queuedLede: 'Maelezo na majibu yako yamehifadhiwa. Munda itaandika kumbukumbu mtandao ukirudi.',
+    writing: 'Inaandika kumbukumbu yako',
     saveForLater: 'Hifadhi kwa baadaye', photoUsed: 'Picha ya jani',
   },
   result: {
@@ -49,12 +101,13 @@ export const sw: Messages = {
     setExtension: 'Ongeza afisa ugani wako kwenye ukurasa wa Mimi ili umpigie kutoka hapa.', save: 'Hifadhi kumbukumbu', seconds: 'sek {s}', uncertainty: 'Kinachoweza kubadilisha hili',
   },
   record: {
+    ...en.record,
     recorded: 'Imerekodiwa', crop: 'Zao', affected: 'Kilichoathirika', rain: 'Mvua, wiki 2', noticed: 'Ilionekana', notAvailable: 'Kumbukumbu hii haipatikani kwenye kifaa hiki.',
     loading: 'Inapakia kumbukumbu', queued: 'Munda itaandika kumbukumbu kifaa hiki kikipata mtandao.', error: 'Munda haikuweza kuandika kumbukumbu hii: {error}',
     review: 'Ukaguzi wa historia', reviewAfterRecord: 'Hufanyika baada ya kumbukumbu kuandikwa.',
     reviewPending: 'Ukiwa mtandaoni, Munda inalinganisha kumbukumbu hii na za awali za shamba hili na mashamba yako mengine.', reviewFailed: 'Ukaguzi haukukamilika. Kumbukumbu yako imehifadhiwa.',
     basedOn: 'Kwa kuzingatia kumbukumbu {n} za awali.', nextChecks: 'Cha kufanya baadaye', causesWithHistory: 'Visababishi, pamoja na historia', whatRecorded: 'Kilichorekodiwa',
-    photoNote: 'Picha ya jani ilitumika kwa kumbukumbu hii. Picha hazipakiwi mtandaoni.',
+
   },
   plots: {
     title: 'Mashamba yangu', map: 'Ramani ya mashamba', empty: 'Bado hakuna mashamba. Kagua zao na upe shamba jina; Munda huhifadhi historia ya kila shamba.',
@@ -78,8 +131,9 @@ export const sw: Messages = {
   },
   readAloud: { play: 'Soma kwa sauti', stop: 'Acha kusoma' },
   live: {
+    ...en.live,
     title: 'Inafikiria',
-    onDevice: 'Kwenye kifaa hiki. Hakuna kinachotoka kwenye simu yako.',
+
     cloud: 'Kwenye wingu, kwa Gemini.',
     read: 'Imesoma majibu yako',
     compared: 'Imelinganisha na maingizo {n} ya mwongozo',
@@ -102,7 +156,8 @@ export const sw: Messages = {
     reviewFailed: 'Ukaguzi wa historia umeshindikana',
   },
   banner: {
-    offline: 'Hakuna mtandao. Munda inaendelea kufanya kazi kwenye kifaa hiki.',
+    ...en.banner,
+
     syncing: 'Mtandao umerudi. Inatuma na kukagua kwenye wingu…',
     reviewed: 'Ukaguzi wa historia wa wingu umeongezwa · {plot}',
   },

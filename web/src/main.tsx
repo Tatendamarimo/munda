@@ -14,6 +14,7 @@ import '@fontsource-variable/bricolage-grotesque/wght.css';
 import '@fontsource/atkinson-hyperlegible-next/latin-400.css';
 import '@fontsource/atkinson-hyperlegible-next/latin-700.css';
 import './ui/styles.css';
+import './ui/refined.css';
 
 function NotConfigured() {
   return (
@@ -26,7 +27,9 @@ function NotConfigured() {
 
 const root = createRoot(document.getElementById('root')!);
 
-if (firebaseConfigured) {
+if (import.meta.env.DEV && new URLSearchParams(location.search).has('demo')) {
+  void import('./dev/designPreview').then(({ startDesignPreview }) => startDesignPreview(root));
+} else if (firebaseConfigured) {
   firebase();
   settings.refresh();
   session.start();

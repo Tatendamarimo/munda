@@ -1,7 +1,56 @@
-import type { Messages } from './en';
+import { en, type Messages } from './en';
 
 /** Portuguese (Mozambique/Angola/Brazil). Beta: machine-drafted, needs native-speaker review. */
 export const pt: Messages = {
+  // New interface copy uses explicit English fallback until reviewed translations are available.
+  studio: {
+    act: 'Verifique antes de gastar',
+    activity: 'Atividade no campo',
+    checking: 'A verificar as capacidades de IA deste dispositivo.',
+    cloudOnly: 'A IA na nuvem está disponível com ligação.',
+    companion: 'O seu companheiro de campo',
+    deviceHelp: 'Veja o que este dispositivo consegue fazer antes de ir ao campo.',
+    download: 'Prepare a IA offline antes da próxima ida ao campo.',
+    emptyHelp: 'Reparou em algo fora do normal? Registe uma vez. O Munda junta as observações ao longo da época.',
+    emptyTitle: 'A história da sua machamba começa aqui.',
+    example: 'Exemplo ilustrativo',
+    extentHelp: 'Área afetada declarada, não uma percentagem medida.',
+    few: 'Poucas plantas',
+    fieldCheck: 'Verificação no campo',
+    firstCheck: 'Comece a sua primeira verificação',
+    guideEmpty: 'Nenhuma entrada correspondente no guia. Tente outra palavra.',
+    guideSearch: 'Procurar sinais, problemas ou verificações',
+    hideExample: 'Ocultar exemplo',
+    journal: 'A sua machamba, uma observação de cada vez.',
+    journalHelp: 'Cada verificação acrescenta contexto. Volte a um talhão para ver o que mudou.',
+    learn: 'Explorar o guia',
+    library: 'Um pouco de conhecimento ajuda muito.',
+    libraryHelp: 'Explore o guia do milho. Funciona sem rede.',
+    likelihoodHelp: 'Uma explicação possível para verificar, não um diagnóstico confirmado.',
+    localFirst: 'No dispositivo quando possível. Na nuvem quando necessário.',
+    mapNote: 'Vista dos talhões · esquema, não um mapa geográfico',
+    matches: 'Observações a favor: {n}',
+    missing: 'O que ainda falta verificar',
+    most: 'Toda a machamba',
+    observe: 'Repare nos sinais',
+    overview: 'Resumo da machamba',
+    patches: 'Manchas',
+    privatePhoto: 'As fotos ficam no dispositivo com a IA local. A IA na nuvem recebe a foto se essa via for usada. As fotos não são guardadas no seu relatório.',
+    profile: 'Torne o Munda seu.',
+    profileHelp: 'A sua língua, o seu lugar e as pessoas em quem confia para conselhos.',
+    rainLegend: 'Chuva registada',
+    recent: 'Verificações recentes',
+    sampleFarm: 'Machamba exemplo · dados de pré-visualização, sem IA real',
+    sampleHelp: 'Isto é um exemplo, não um resultado de IA do seu dispositivo.',
+    sampleTitle: 'De um pequeno sinal a um próximo passo útil.',
+    seeExample: 'Ver um exemplo',
+    skip: 'Saltar para o conteúdo',
+    supported: 'A IA offline está pronta neste dispositivo.',
+    understand: 'Explorar causas possíveis',
+    unknown: 'Desconhecido',
+    voiceHelp: 'O ditado do navegador pode precisar de ligação e enviar áudio ao seu fornecedor. Escrever funciona offline.',
+    voiceOffline: 'O ditado precisa de ligação aqui. Pode escrever.',
+  },
   common: { back: 'Voltar', close: 'Fechar', continue: 'Continuar', save: 'Guardar', cancel: 'Cancelar', notSure: 'Não tenho certeza', seeAll: 'Ver tudo', beta: 'Beta', loading: 'A carregar', done: 'Feito', details: 'Detalhes' },
   tabs: { home: 'Início', plots: 'Talhões', guide: 'Guia', me: 'Eu' },
   status: {
@@ -14,21 +63,24 @@ export const pt: Messages = {
     aiDownloadDetail: 'Transfira a IA offline antes de ir à machamba, para o Munda funcionar sem rede.',
   },
   welcome: {
+    ...en.welcome,
     title: 'Saiba o que verificar a seguir na sua machamba.',
-    lede: 'Tire uma foto ou diga o que vê. O Munda faz algumas perguntas e mostra as causas possíveis, quão certo está e o que verificar antes de gastar dinheiro. Funciona sem rede.',
+
     setup: 'Configurar este aparelho', setupOffline: 'Ligue-se à internet para configurar', settingUp: 'A configurar este aparelho',
-    fineprint: 'A configuração precisa de rede uma vez. Depois, o Munda funciona offline. As fotos nunca saem do seu aparelho.',
+
     sample: 'Folhas de baixo a amarelar desde a ponta depois de chuva forte.',
   },
   home: {
+    ...en.home,
     groupAlert: 'Confirmado pelo seu extensionista',
     greeting: 'Olá, {name}', greetingNoName: 'Olá', cropLine: 'Milho', weeks: '{weeks} semanas',
     statPlots: 'Talhões', statNeedsCheck: 'A verificar', statSynced: 'Sincronizado', statSaved: 'No aparelho',
-    checkCrop: 'Examinar uma cultura', checkCropSub: 'Fotografe a folha doente · sem rede', alert: 'Aviso', timeline: 'Histórico do talhão',
+    checkCrop: 'Examinar uma cultura',  alert: 'Aviso', timeline: 'Histórico do talhão',
     emptyHint: 'Percorra a sua machamba e examine as primeiras plantas que parecem doentes. O Munda lembra-se de cada talhão.',
     temp: '{temp}°', rainOn: 'Chuva {day}', noRain: 'Dias secos pela frente', today: 'Hoje',
   },
   observe: {
+    ...en.observe,
     stepOf: 'Passo {n} de {total}', describeTitle: 'O que está a ver?', describeHint: 'Tire uma foto, fale ou escreva. Basta um.',
     takePhoto: 'Tirar uma foto', takePhotoSub: 'Da folha doente, de perto', changePhoto: 'Mudar a foto', removePhoto: 'Remover a foto',
     speak: 'Falar', stop: 'Parar', listening: 'A ouvir…', type: 'Escrever', placeholder: 'As folhas de baixo estão amarelas e as plantas são pequenas.',
@@ -38,7 +90,7 @@ export const pt: Messages = {
     choosingOnDevice: 'O Munda está a escolher perguntas neste aparelho',
     questionsUnavailable: 'As perguntas extra precisam da IA offline ou de rede. As suas respostas chegam para um bom registo.',
     questionsFailed: 'As perguntas extra não estão disponíveis agora.', showCauses: 'Ver causas possíveis',
-    writing: 'A escrever o seu registo', queuedLede: 'A sua descrição e respostas estão guardadas. O Munda escreve o registo quando a rede voltar.',
+    writing: 'A escrever o seu registo',
     saveForLater: 'Guardar para depois', photoUsed: 'Foto da folha',
   },
   result: {
@@ -49,12 +101,13 @@ export const pt: Messages = {
     setExtension: 'Adicione o seu extensionista em Eu para lhe ligar daqui.', save: 'Guardar registo', seconds: '{s} s', uncertainty: 'O que mudaria isto',
   },
   record: {
+    ...en.record,
     recorded: 'Registado', crop: 'Cultura', affected: 'Afetado', rain: 'Chuva, 2 semanas', noticed: 'Notado', notAvailable: 'Este registo não está disponível neste aparelho.',
     loading: 'A carregar registo', queued: 'O Munda escreve o registo quando este aparelho tiver rede.', error: 'O Munda não conseguiu escrever este registo: {error}',
     review: 'Revisão do histórico', reviewAfterRecord: 'Feita depois de escrever o registo.',
     reviewPending: 'Com rede, o Munda compara este registo com os anteriores deste talhão e dos outros.', reviewFailed: 'A revisão não terminou. O seu registo está guardado.',
     basedOn: 'Com base em {n} registos anteriores.', nextChecks: 'O que fazer a seguir', causesWithHistory: 'Causas possíveis, com o histórico', whatRecorded: 'O que foi registado',
-    photoNote: 'Foi usada uma foto da folha neste registo. As fotos não são enviadas.',
+
   },
   plots: {
     title: 'Os meus talhões', map: 'Mapa dos talhões', empty: 'Ainda não há talhões. Examine uma cultura e dê nome ao talhão; o Munda guarda o histórico de cada um.',
@@ -78,8 +131,9 @@ export const pt: Messages = {
   },
   readAloud: { play: 'Ler em voz alta', stop: 'Parar a leitura' },
   live: {
+    ...en.live,
     title: 'A analisar',
-    onDevice: 'Neste dispositivo. Nada sai do seu telemóvel.',
+
     cloud: 'Na nuvem, com o Gemini.',
     read: 'Respostas lidas',
     compared: 'Comparado com {n} entradas do guia',
@@ -102,7 +156,8 @@ export const pt: Messages = {
     reviewFailed: 'A revisão do histórico falhou',
   },
   banner: {
-    offline: 'Sem rede. O Munda continua a funcionar neste dispositivo.',
+    ...en.banner,
+
     syncing: 'De volta à rede. A sincronizar e rever na nuvem…',
     reviewed: 'Revisão do histórico adicionada · {plot}',
   },

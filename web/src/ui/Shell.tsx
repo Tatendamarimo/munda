@@ -1,4 +1,5 @@
-import { lazy, Suspense, useSyncExternalStore } from 'react';
+import { lazy, Suspense, useSyncExternalStore, useEffect } from 'react';
+import { useT } from '../i18n';
 import { session } from '../data/session';
 import { useStore } from '../data/store';
 import { ConnectionBanner } from './ConnectionBanner';
@@ -41,17 +42,20 @@ function screenFor(r: Route) {
  * sequence). Wide screens: the same tabs as a left rail, so a cooperative's laptop gets the same app.
  */
 export function Shell() {
+  const t = useT();
   const s = useStore(session);
   const route = useRoute();
   const wide = useWide();
+  useEffect(() => { window.scrollTo({ top: 0, behavior: 'instant' }); }, [route]);
   if (s.kind !== 'ready') return <Welcome state={s} />;
 
   const tab = tabOf(route);
   const flow = tab === null;
   return (
     <div className={`app${wide ? ' app-wide' : ''}`}>
+      <a className="skip-link" href="#main-content" onClick={(e) => { e.preventDefault(); document.getElementById('main-content')?.focus(); }}>{t('studio.skip')}</a>
       {(wide || !flow) && <TabBar active={tab} />}
-      <main className={flow && !wide ? 'screen screen-flow' : 'screen'}>
+      <main id="main-content" tabIndex={-1} className={flow && !wide ? 'screen screen-flow' : 'screen'}>
         <ConnectionBanner />
         {screenFor(route)}
       </main>

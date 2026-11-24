@@ -1,7 +1,56 @@
-import type { Messages } from './en';
+import { en, type Messages } from './en';
 
 /** French. Beta: machine-drafted, needs native-speaker review. */
 export const fr: Messages = {
+  // New interface copy uses explicit English fallback until reviewed translations are available.
+  studio: {
+    act: 'Vérifiez avant de dépenser',
+    activity: 'Activité au champ',
+    checking: 'Vérification des capacités d’IA de cet appareil.',
+    cloudOnly: 'L’IA cloud est disponible avec une connexion.',
+    companion: 'Votre compagnon de terrain',
+    deviceHelp: 'Vérifiez ce que cet appareil peut faire avant d’aller au champ.',
+    download: 'Préparez l’IA hors ligne avant votre prochaine visite au champ.',
+    emptyHelp: 'Vous remarquez quelque chose d’inhabituel ? Notez-le une fois. Munda rassemble vos observations au fil de la saison.',
+    emptyTitle: 'L’histoire de votre champ commence ici.',
+    example: 'Exemple illustratif',
+    extentHelp: 'Surface touchée déclarée, pas un pourcentage mesuré.',
+    few: 'Quelques plants',
+    fieldCheck: 'Diagnostic au champ',
+    firstCheck: 'Commencer votre premier diagnostic',
+    guideEmpty: 'Aucune fiche correspondante. Essayez un autre mot.',
+    guideSearch: 'Chercher des signes, problèmes ou vérifications',
+    hideExample: 'Masquer l’exemple',
+    journal: 'Votre ferme, une observation à la fois.',
+    journalHelp: 'Chaque diagnostic ajoute du contexte. Revenez sur une parcelle pour voir ce qui a changé.',
+    learn: 'Explorer le guide',
+    library: 'Un peu de savoir va loin.',
+    libraryHelp: 'Explorez le guide du maïs. Fonctionne sans réseau.',
+    likelihoodHelp: 'Une explication possible à vérifier, pas un diagnostic confirmé.',
+    localFirst: 'Sur l’appareil quand c’est possible. Dans le cloud si nécessaire.',
+    mapNote: 'Vue des parcelles · schéma, pas une carte géographique',
+    matches: 'Observations à l’appui : {n}',
+    missing: 'Ce qui reste à vérifier',
+    most: 'Tout le champ',
+    observe: 'Repérez les signes',
+    overview: 'Vue de la ferme',
+    patches: 'Par plaques',
+    privatePhoto: 'Les photos restent sur l’appareil avec l’IA locale. L’IA cloud reçoit une photo si cette voie est utilisée. Les photos ne sont pas stockées dans votre rapport.',
+    profile: 'Personnalisez Munda.',
+    profileHelp: 'Votre langue, votre lieu et les personnes de confiance pour vos conseils.',
+    rainLegend: 'Pluie signalée',
+    recent: 'Derniers diagnostics',
+    sampleFarm: 'Ferme exemple · données d’aperçu, pas d’IA réelle',
+    sampleHelp: 'Ceci est un exemple, pas un résultat d’IA de votre appareil.',
+    sampleTitle: 'D’un petit signe à une prochaine étape utile.',
+    seeExample: 'Voir un exemple',
+    skip: 'Aller au contenu',
+    supported: 'L’IA hors ligne est prête sur cet appareil.',
+    understand: 'Explorer les causes possibles',
+    unknown: 'Inconnu',
+    voiceHelp: 'La dictée du navigateur peut nécessiter une connexion et envoyer l’audio à son fournisseur. La saisie fonctionne hors ligne.',
+    voiceOffline: 'La dictée nécessite une connexion ici. Vous pouvez taper.',
+  },
   common: { back: 'Retour', close: 'Fermer', continue: 'Continuer', save: 'Enregistrer', cancel: 'Annuler', notSure: 'Je ne sais pas', seeAll: 'Tout voir', beta: 'Bêta', loading: 'Chargement', done: 'Terminé', details: 'Détails' },
   tabs: { home: 'Accueil', plots: 'Parcelles', guide: 'Guide', me: 'Moi' },
   status: {
@@ -14,21 +63,24 @@ export const fr: Messages = {
     aiDownloadDetail: 'Téléchargez l’IA hors ligne avant d’aller au champ, pour que Munda fonctionne sans réseau.',
   },
   welcome: {
+    ...en.welcome,
     title: 'Sachez quoi vérifier ensuite dans votre champ.',
-    lede: 'Prenez une photo ou dites ce que vous voyez. Munda pose quelques questions, puis montre les causes possibles, son degré de certitude et quoi vérifier avant de dépenser de l’argent. Fonctionne sans réseau.',
+
     setup: 'Configurer cet appareil', setupOffline: 'Connectez-vous à internet pour configurer', settingUp: 'Configuration de cet appareil',
-    fineprint: 'La configuration demande du réseau une seule fois. Ensuite, Munda fonctionne hors ligne. Les photos ne quittent jamais votre appareil.',
+
     sample: 'Feuilles du bas qui jaunissent depuis la pointe après de fortes pluies.',
   },
   home: {
+    ...en.home,
     groupAlert: 'Confirmé par votre conseiller',
     greeting: 'Bonjour, {name}', greetingNoName: 'Bonjour', cropLine: 'Maïs', weeks: '{weeks} semaines',
     statPlots: 'Parcelles', statNeedsCheck: 'À vérifier', statSynced: 'Synchronisé', statSaved: 'Sur l’appareil',
-    checkCrop: 'Examiner une culture', checkCropSub: 'Photographiez la feuille malade · sans réseau', alert: 'Alerte', timeline: 'Historique de la parcelle',
+    checkCrop: 'Examiner une culture',  alert: 'Alerte', timeline: 'Historique de la parcelle',
     emptyHint: 'Parcourez votre champ et examinez les premières plantes qui semblent malades. Munda se souvient de chaque parcelle.',
     temp: '{temp}°', rainOn: 'Pluie {day}', noRain: 'Jours secs à venir', today: 'Aujourd’hui',
   },
   observe: {
+    ...en.observe,
     stepOf: 'Étape {n} sur {total}', describeTitle: 'Que voyez-vous ?', describeHint: 'Prenez une photo, parlez ou écrivez. Un seul suffit.',
     takePhoto: 'Prendre une photo', takePhotoSub: 'De la feuille malade, de près', changePhoto: 'Changer la photo', removePhoto: 'Retirer la photo',
     speak: 'Parler', stop: 'Arrêter', listening: 'J’écoute…', type: 'Écrire', placeholder: 'Les feuilles du bas sont jaunes et les plants sont petits.',
@@ -38,7 +90,7 @@ export const fr: Messages = {
     choosingOnDevice: 'Munda choisit des questions sur cet appareil',
     questionsUnavailable: 'Les questions supplémentaires demandent l’IA hors ligne ou du réseau. Vos réponses suffisent pour une bonne fiche.',
     questionsFailed: 'Les questions supplémentaires ne sont pas disponibles pour le moment.', showCauses: 'Voir les causes possibles',
-    writing: 'Rédaction de votre fiche', queuedLede: 'Votre description et vos réponses sont enregistrées. Munda rédigera la fiche au retour du réseau.',
+    writing: 'Rédaction de votre fiche',
     saveForLater: 'Enregistrer pour plus tard', photoUsed: 'Photo de la feuille',
   },
   result: {
@@ -49,12 +101,13 @@ export const fr: Messages = {
     setExtension: 'Ajoutez votre conseiller agricole dans Moi pour l’appeler d’ici.', save: 'Enregistrer la fiche', seconds: '{s} s', uncertainty: 'Ce qui changerait cela',
   },
   record: {
+    ...en.record,
     recorded: 'Enregistré', crop: 'Culture', affected: 'Touché', rain: 'Pluie, 2 semaines', noticed: 'Remarqué', notAvailable: 'Cette fiche n’est pas disponible sur cet appareil.',
     loading: 'Chargement de la fiche', queued: 'Munda rédigera la fiche quand cet appareil retrouvera le réseau.', error: 'Munda n’a pas pu rédiger cette fiche : {error}',
     review: 'Analyse de l’historique', reviewAfterRecord: 'Se fait après la rédaction de la fiche.',
     reviewPending: 'En ligne, Munda compare cette fiche aux précédentes de cette parcelle et de vos autres parcelles.', reviewFailed: 'L’analyse n’a pas abouti. Votre fiche est enregistrée.',
     basedOn: 'Basé sur {n} fiches précédentes.', nextChecks: 'À faire ensuite', causesWithHistory: 'Causes possibles, avec l’historique', whatRecorded: 'Ce qui a été noté',
-    photoNote: 'Une photo de feuille a servi pour cette fiche. Les photos ne sont pas envoyées.',
+
   },
   plots: {
     title: 'Mes parcelles', map: 'Carte des parcelles', empty: 'Pas encore de parcelle. Examinez une culture et nommez sa parcelle ; Munda garde l’historique de chacune.',
@@ -78,8 +131,9 @@ export const fr: Messages = {
   },
   readAloud: { play: 'Lire à voix haute', stop: 'Arrêter la lecture' },
   live: {
+    ...en.live,
     title: 'Analyse en cours',
-    onDevice: 'Sur cet appareil. Rien ne quitte votre téléphone.',
+
     cloud: 'Dans le cloud, avec Gemini.',
     read: 'Réponses lues',
     compared: 'Comparé à {n} fiches du guide',
@@ -102,7 +156,8 @@ export const fr: Messages = {
     reviewFailed: 'L’analyse de l’historique a échoué',
   },
   banner: {
-    offline: 'Pas de réseau. Munda continue de fonctionner sur cet appareil.',
+    ...en.banner,
+
     syncing: 'De retour en ligne. Synchronisation et analyse dans le cloud…',
     reviewed: 'Analyse de l’historique ajoutée · {plot}',
   },

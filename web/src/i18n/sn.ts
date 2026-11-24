@@ -1,10 +1,59 @@
-import type { Messages } from './en';
+import { en, type Messages } from './en';
 
 /**
  * Shona (chiShona). Draft: needs native-speaker review before release.
  * Farming words farmers commonly use in English (e.g. "yellow", "fetiraiza") are kept as spoken.
  */
 export const sn: Messages = {
+  // New interface copy uses explicit English fallback until reviewed translations are available.
+  studio: {
+    act: 'Tarisa usati washandisa mari',
+    activity: 'Zviitiko zvemumunda',
+    checking: 'Kutarisa kuti AI yefoni ino inogona kuitei.',
+    cloudOnly: 'AI ye cloud inowanikwa kana uine network.',
+    companion: 'Shamwari yako yemumunda',
+    deviceHelp: 'Tarisa zvinogona kuitwa nefoni ino usati waenda kumunda.',
+    download: 'Gadzirira AI isingadi network usati waenda kumunda.',
+    emptyHelp: 'Waona chimwe chinhu chisina kujairika? Chinyore kamwe. Munda inounganidza zvawakaona mwaka wose.',
+    emptyTitle: 'Nyaya yemunda wako inotangira pano.',
+    example: 'Muenzaniso chete',
+    extentHelp: 'Nzvimbo yakabatwa sezvawakataura, kwete chiyero chakayerwa.',
+    few: 'Miti mishoma',
+    fieldCheck: 'Kutarisa munda',
+    firstCheck: 'Tanga kutarisa munda kwako kwekutanga',
+    guideEmpty: 'Hapana zvinoenderana mugwaro. Edza rimwe izwi.',
+    guideSearch: 'Tsvaga zviratidzo, matambudziko kana zvekutarisa',
+    hideExample: 'Viga muenzaniso',
+    journal: 'Purazi rako, kutarisa kumwe nekumwe.',
+    journalHelp: 'Kutarisa kwega kwega kunowedzera ruzivo. Dzokera kumunda kuti uone zvachinja.',
+    learn: 'Ongorora gwaro',
+    library: 'Ruzivo shoma runobatsira zvikuru.',
+    libraryHelp: 'Ongorora gwaro rechibage. Rinoshanda pasina network.',
+    likelihoodHelp: 'Chikonzero chingangove, chekutarisa, kwete chokwadi chakasimbiswa.',
+    localFirst: 'Pafoni kana zvichikwanisika. Cloud kana zvichidiwa.',
+    mapNote: 'Mufananidzo weminda · hausi mepu chaiyo',
+    matches: 'Zvinotsigira: {n}',
+    missing: 'Zvichiri kuda kutariswa',
+    most: 'Munda wose',
+    observe: 'Ona zviratidzo',
+    overview: 'Muonero wepurazi',
+    patches: 'Mapoka',
+    privatePhoto: 'Mifananidzo inoramba iri pafoni kana AI yefoni ichishandiswa. AI ye cloud inogamuchira mufananidzo kana nzira iyoyo ikashandiswa. Mifananidzo haichengetwe mumushumo wako.',
+    profile: 'Ita Munda yako.',
+    profileHelp: 'Mutauro wako, nzvimbo yako, nevanhu vaunovimba navo pamazano.',
+    rainLegend: 'Mvura yakataurwa',
+    recent: 'Zvichangobva kutariswa',
+    sampleFarm: 'Purazi remuenzaniso · data remuenzaniso, hapana AI chaiyo',
+    sampleHelp: 'Uyu muenzaniso, kwete mhinduro yeAI yepafoni yako.',
+    sampleTitle: 'Kubva pachiratidzo chidiki kusvika padanho rinobatsira.',
+    seeExample: 'Ona muenzaniso',
+    skip: 'Svetukira kune zviri mukati',
+    supported: 'AI isingadi network yagadzirira pafoni ino.',
+    understand: 'Ongorora zvingangove zvakonzera',
+    unknown: 'Hazvizivikanwi',
+    voiceHelp: 'Kunyora nezwi kunogona kuda network uye kunogona kutumira izwi kune vanopa sevhisi iyi. Kunyora nemaoko kunoshanda pasina network.',
+    voiceOffline: 'Kunyora nezwi kunoda network pano. Unogona kunyora nemaoko.',
+  },
   common: {
     back: 'Dzokera',
     close: 'Vhara',
@@ -35,15 +84,17 @@ export const sn: Messages = {
     aiDownloadDetail: 'Dhawunirodha AI yepafoni usati waenda kumunda, kuitira kuti Munda ishande pasina network.',
   },
   welcome: {
+    ...en.welcome,
     title: 'Ziva zvekutarisa mumunda mako.',
-    lede: 'Tora mufananidzo kana kuti taura zvauri kuona. Munda inobvunza mibvunzo mishoma, yobva yaratidza zvingangove zvakonzera, kuti ine chokwadi zvakadii, uye zvekutarisa usati washandisa mari. Inoshanda pasina network.',
+
     setup: 'Gadzirira mudziyo uyu',
     setupOffline: 'Batanidza paindaneti kuti ugadzirire',
     settingUp: 'Kugadzirira mudziyo uyu',
-    fineprint: 'Kugadzirira kunoda network kamwe chete. Mushure maizvozvo Munda inoshanda pasina network. Mifananidzo haibvi pamudziyo wako.',
+
     sample: 'Mashizha epasi ari kuita yellow kubva kumuromo mushure memvura yakawanda.',
   },
   home: {
+    ...en.home,
     groupAlert: 'Zvasimbiswa nemupi wezano wako',
     greeting: 'Mhoro, {name}',
     greetingNoName: 'Mhoro',
@@ -54,7 +105,7 @@ export const sn: Messages = {
     statSynced: 'Zvatumirwa',
     statSaved: 'Zviri pano',
     checkCrop: 'Ongorora chirimwa',
-    checkCropSub: 'Tora mufananidzo weshizha rinorwara · pasina network',
+
     alert: 'Yambiro',
     timeline: 'Nhoroondo yemunda',
     emptyHint: 'Famba mumunda mako wotarisa miti yekutanga inoratidza dambudziko. Munda inoyeuka munda wega wega.',
@@ -64,6 +115,7 @@ export const sn: Messages = {
     today: 'Nhasi',
   },
   observe: {
+    ...en.observe,
     stepOf: 'Danho {n} pa {total}',
     describeTitle: 'Uri kuonei?',
     describeHint: 'Tora mufananidzo, taura kana kunyora. Chimwe chete chakakwana.',
@@ -91,7 +143,7 @@ export const sn: Messages = {
     questionsFailed: 'Mimwe mibvunzo haiwanikwe parizvino.',
     showCauses: 'Ratidza zvingangove zvakonzera',
     writing: 'Kunyora chinyorwa chemunda',
-    queuedLede: 'Zvawataura nemhinduro zvachengetwa. Munda ichanyora chinyorwa kana network yadzoka.',
+
     saveForLater: 'Chengetedza gare gare',
     photoUsed: 'Mufananidzo weshizha',
   },
@@ -112,6 +164,7 @@ export const sn: Messages = {
     uncertainty: 'Zvingachinja izvi',
   },
   record: {
+    ...en.record,
     recorded: 'Zvakanyorwa',
     crop: 'Chirimwa',
     affected: 'Zvabatwa',
@@ -129,7 +182,7 @@ export const sn: Messages = {
     nextChecks: 'Zvekuita zvinotevera',
     causesWithHistory: 'Zvingangove zvakonzera, nenhoroondo',
     whatRecorded: 'Zvakanyorwa',
-    photoNote: 'Mufananidzo weshizha wakashandiswa pachinyorwa ichi. Mifananidzo haitumirwi.',
+
   },
   plots: {
     title: 'Minda yangu', map: 'Mepu yeminda',
@@ -174,8 +227,9 @@ export const sn: Messages = {
   },
   readAloud: { play: 'Verenga zvinonzwika', stop: 'Mira kuverenga' },
   live: {
+    ...en.live,
     title: 'Munda iri kufunga',
-    onDevice: 'Pafoni ino. Hapana chinobuda pafoni yako.',
+
     cloud: 'Mu cloud, neGemini.',
     read: 'Yaverenga mhinduro dzako',
     compared: 'Yafananidza nezvinyorwa {n} zvegwaro',
@@ -198,7 +252,8 @@ export const sn: Messages = {
     reviewFailed: 'Ongororo yenhoroondo yakundikana',
   },
   banner: {
-    offline: 'Hapana network. Munda inoramba ichishanda pafoni ino.',
+    ...en.banner,
+
     syncing: 'Network yadzoka. Kutumira nekuongorora mu cloud…',
     reviewed: 'Ongororo ye cloud yawedzerwa · {plot}',
   },

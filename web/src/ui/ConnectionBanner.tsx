@@ -1,5 +1,6 @@
 import { CloudUpload, History, WifiOff } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { mundaAi } from '../ai/mundaAi';
 import { connectivity } from '../data/connectivity';
 import { useStore } from '../data/store';
 import { useT } from '../i18n';
@@ -15,6 +16,7 @@ const SHOW_REVIEW_MS = 8000;
 export function ConnectionBanner() {
   const t = useT();
   const online = useStore(connectivity);
+  const local = useStore(mundaAi.local);
   const { busy, lastReview } = useStore(syncProcessor.activity);
   const [, tick] = useState(0);
   const fresh = lastReview !== null && Date.now() - lastReview.at < SHOW_REVIEW_MS;
@@ -25,7 +27,7 @@ export function ConnectionBanner() {
   }, [fresh, lastReview]);
 
   if (!online) {
-    return <div className="banner banner-offline" role="status"><WifiOff size={16} strokeWidth={2.5} aria-hidden="true" />{t('banner.offline')}</div>;
+    return <div className="banner banner-offline" role="status"><WifiOff size={16} strokeWidth={2.5} aria-hidden="true" />{t(local.state === 'AVAILABLE' ? 'status.aiReadyDetail' : 'status.offlineDetail')}</div>;
   }
   if (busy) {
     return <div className="banner banner-sync" role="status"><CloudUpload size={16} strokeWidth={2.5} aria-hidden="true" />{t('banner.syncing')}</div>;

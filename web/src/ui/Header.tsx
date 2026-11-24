@@ -3,33 +3,11 @@ import type { ReactNode } from 'react';
 import { useT } from '../i18n';
 import { href } from './router';
 
-/** Ground line of the hill, so the plants stand on it. */
-const groundY = (x: number) => 96 - 8 * Math.sin((x / 220) * Math.PI + 0.5);
-
-/**
- * Beside the greeting: a sun, a hill and a few maize plants that sway slightly. Drawn, not a
- * photo, so it's sharp at any size, costs nothing offline and never looks like stock.
- */
+/** Restrained contour lines echo cultivated land without adding clip-art plants. */
 function FieldScene() {
-  const plants = [22, 48, 76, 102, 130, 156, 184].map((x, i) => ({ x, y: groundY(x), h: 44 + ((i * 7) % 4) * 5, delay: (i % 3) * 0.6 }));
-  return (
-    <svg className="hero-scene" viewBox="0 0 220 100" aria-hidden="true">
-      <circle className="scene-sun" cx="176" cy="22" r="13" />
-      <path className="scene-hill" d={`M0 ${groundY(0)}${Array.from({ length: 12 }, (_, i) => ` L${i * 20} ${groundY(i * 20).toFixed(1)}`).join('')} V110 H0Z`} />
-      {plants.map((p) => (
-        <g key={p.x} className="scene-plant" transform={`translate(${p.x} ${p.y.toFixed(1)})`}>
-          <g style={{ animationDelay: `${p.delay}s` }}>
-            <path className="stalk" d={`M0 0V${-p.h}`} />
-            <path className="leaf" d={`M0 ${-p.h * 0.3}C5 ${-p.h * 0.42} 12 ${-p.h * 0.42} 17 ${-p.h * 0.3}C12 ${-p.h * 0.34} 6 ${-p.h * 0.32} 0 ${-p.h * 0.24}Z`} />
-            <path className="leaf" d={`M0 ${-p.h * 0.5}C-5 ${-p.h * 0.62} -12 ${-p.h * 0.62} -17 ${-p.h * 0.5}C-12 ${-p.h * 0.54} -6 ${-p.h * 0.52} 0 ${-p.h * 0.44}Z`} />
-            <path className="leaf" d={`M0 ${-p.h * 0.7}C4 ${-p.h * 0.8} 9 ${-p.h * 0.8} 13 ${-p.h * 0.72}C9 ${-p.h * 0.75} 4 ${-p.h * 0.73} 0 ${-p.h * 0.65}Z`} />
-            <ellipse className="cob" cx="-2.5" cy={-p.h * 0.6} rx="2.2" ry="5" />
-            <path className="stalk" d={`M0 ${-p.h}l-3 -6M0 ${-p.h}l3 -6M0 ${-p.h}v-7`} />
-          </g>
-        </g>
-      ))}
-    </svg>
-  );
+  return <svg className="hero-scene" viewBox="0 0 220 100" fill="none" aria-hidden="true">
+    {[0,1,2,3,4,5,6].map((n) => <path key={n} d={`M${-20+n*5} ${100+n*7}C${70+n*8} ${-30+n*7} ${130+n*9} ${130+n*3} 240 ${4+n*12}`} stroke={n===3 ? '#E3C66B' : '#C5D9B7'} strokeOpacity={n===3 ? .5 : .3} strokeWidth={n===3 ? 1.2 : .7} />)}
+  </svg>;
 }
 
 /** The deep-green home header. Children carry the greeting, stats and anything screen-specific. */

@@ -19,3 +19,6 @@ web/e2e/screenshots/
 dev-dist/
 
 .superpowers/
+
+# Firebase deploy cache
+.firebase/

@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import { Search } from 'lucide-react';
 import { ChevronRight } from 'lucide-react';
 import { guideFor, type GuideCategory } from '../domain/guide';
 import { localizedEntry } from '../domain/localize';
@@ -12,25 +14,32 @@ const ORDER: GuideCategory[] = ['PEST', 'DISEASE', 'NUTRIENT', 'WATER', 'WEED'];
 export function GuidePage() {
   const t = useT();
   const lang = useLang();
-  const entries = guideFor('MAIZE').entries;
+  const [search, setSearch] = useState('');
+  const query = search.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase().trim();
+  const entries = guideFor('MAIZE').entries.filter((e) => {
+    const local = localizedEntry(e, lang);
+    return [local.name, local.signs, local.checkInField].join(' ').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase().includes(query);
+  });
   return (
     <>
       <PageHead title={t('guide.title')} />
       <div className="page">
         <p className="muted">{t('guide.subtitle')}</p>
+        <label className="guide-search"><Search size={21} aria-hidden="true" /><input type="search" value={search} onChange={(e) => setSearch(e.target.value)} placeholder={t('studio.guideSearch')} aria-label={t('studio.guideSearch')} /></label>
+        {entries.length === 0 && <p className="hint-card" role="status">{t('studio.guideEmpty')}</p>}
         {ORDER.map((cat) => {
           const list = entries.filter((e) => e.category === cat);
           if (!list.length) return null;
           return (
-            <section key={cat} className="stack" style={{ gap: 8 }}>
+            <section key={cat} className="guide-category">
               <p className="tag" style={{ marginTop: 8 }}>{t(`guide.categories.${cat}`)}</p>
-              {list.map((e) => (
+              <div className="guide-list">{list.map((e) => (
                 <a key={e.id} className="plot-row" href={href({ name: 'guideEntry', id: e.id })}>
                   <GuideThumb id={e.id} />
                   <span style={{ flex: 1 }}><b>{localizedEntry(e, lang).name}</b></span>
                   <ChevronRight size={20} className="muted" aria-hidden="true" />
                 </a>
-              ))}
+              ))}</div>
             </section>
           );
         })}

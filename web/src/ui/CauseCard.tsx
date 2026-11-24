@@ -1,8 +1,8 @@
-import { Check, ChevronDown, Eye, X } from 'lucide-react';
+import { Check, ChevronDown, Eye, CircleHelp } from 'lucide-react';
 import { guideFor } from '../domain/guide';
 import { causeDisplay } from '../domain/localize';
 import type { PossibleCause } from '../domain/models';
-import { labelLikelihood, useLang, useT } from '../i18n';
+import { useLang, useT } from '../i18n';
 import { KernelMeter } from './components';
 import { GuidePicture } from './GuidePicture';
 
@@ -23,7 +23,7 @@ function Evidence({ cause }: { cause: PossibleCause }) {
   return (
     <ul className="evidence" aria-label={`${t('result.fits')} / ${t('result.gaps')}`}>
       {cause.supporting.map((s) => <li key={`+${s}`} className="ev-yes"><Check size={17} strokeWidth={2.6} aria-label={t('result.fits')} />{s}</li>)}
-      {cause.againstOrMissing.map((s) => <li key={`-${s}`} className="ev-no"><X size={17} strokeWidth={2.6} aria-label={t('result.gaps')} />{s}</li>)}
+      {cause.againstOrMissing.map((s) => <li key={`-${s}`} className="ev-no"><CircleHelp size={17} strokeWidth={2.6} aria-label={t('result.gaps')} />{s}</li>)}
     </ul>
   );
 }
@@ -53,15 +53,19 @@ export function CauseCard({ cause, lead = false, animate = false }: { cause: Pos
           <KernelMeter likelihood={cause.likelihood} animate={animate} />
         </header>
         {guideFor('MAIZE').get(cause.guideId)?.report && <p className="report-now" role="alert">{t('guide.report')}</p>}
-        <GuidePicture id={cause.guideId} alt={d.name} compact />
-        {body}
+        <p className="cause-context">{t('studio.matches', { n: cause.supporting.length })} · {t('studio.likelihoodHelp')}</p>
+        <CheckFirst text={d.check} />
+        <Evidence cause={cause} />
+        <details className="cause-illustration"><summary>{t('guide.signs')}</summary><GuidePicture id={cause.guideId} alt={d.name} compact /></details>
+        {!cause.guideId && <p className="outside-guide">{t('result.outsideGuide')}</p>}
+        {d.modelCheck && <p className="model-note"><b>{t('result.modelNote')}:</b> {d.modelCheck}</p>}
       </article>
     );
   }
   return (
     <details className="cause-row">
       <summary>
-        <span><b>{d.name}</b><small>{labelLikelihood(cause.likelihood, lang)}</small></span>
+        <span><b>{d.name}</b></span>
         <KernelMeter likelihood={cause.likelihood} />
         <ChevronDown className="chev" size={20} aria-hidden="true" />
       </summary>

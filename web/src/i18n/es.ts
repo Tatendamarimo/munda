@@ -1,7 +1,56 @@
-import type { Messages } from './en';
+import { en, type Messages } from './en';
 
 /** Spanish. Beta: machine-drafted, needs native-speaker review. */
 export const es: Messages = {
+  // New interface copy uses explicit English fallback until reviewed translations are available.
+  studio: {
+    act: 'Revise antes de gastar',
+    activity: 'Actividad en el campo',
+    checking: 'Comprobando la IA de este dispositivo.',
+    cloudOnly: 'La IA en la nube está disponible con conexión.',
+    companion: 'Su compañero de campo',
+    deviceHelp: 'Vea qué puede hacer este dispositivo antes de ir al campo.',
+    download: 'Prepare la IA sin conexión antes de su próxima visita al campo.',
+    emptyHelp: '¿Nota algo inusual? Regístrelo una vez. Munda reúne sus observaciones a lo largo de la temporada.',
+    emptyTitle: 'La historia de su campo empieza aquí.',
+    example: 'Ejemplo ilustrativo',
+    extentHelp: 'Área afectada declarada, no un porcentaje medido.',
+    few: 'Pocas plantas',
+    fieldCheck: 'Revisión de campo',
+    firstCheck: 'Empiece su primera revisión',
+    guideEmpty: 'No hay entradas en la guía. Pruebe otra palabra.',
+    guideSearch: 'Buscar señales, problemas o revisiones',
+    hideExample: 'Ocultar ejemplo',
+    journal: 'Su finca, una observación a la vez.',
+    journalHelp: 'Cada revisión suma contexto. Vuelva a una parcela para ver qué cambió.',
+    learn: 'Explorar la guía',
+    library: 'Un poco de conocimiento rinde mucho.',
+    libraryHelp: 'Explore la guía del maíz. Funciona sin señal.',
+    likelihoodHelp: 'Una explicación posible para revisar, no un diagnóstico confirmado.',
+    localFirst: 'En el dispositivo cuando se puede. En la nube cuando hace falta.',
+    mapNote: 'Vista de parcelas · esquema, no un mapa geográfico',
+    matches: 'Observaciones a favor: {n}',
+    missing: 'Lo que falta revisar',
+    most: 'Todo el campo',
+    observe: 'Note las señales',
+    overview: 'Resumen de la finca',
+    patches: 'Manchones',
+    privatePhoto: 'Las fotos se quedan en el dispositivo con la IA local. La IA en la nube recibe la foto si se usa esa vía. Las fotos no se guardan en su informe.',
+    profile: 'Haga suyo Munda.',
+    profileHelp: 'Su idioma, su lugar y las personas en quienes confía para consejos.',
+    rainLegend: 'Lluvia reportada',
+    recent: 'Revisiones recientes',
+    sampleFarm: 'Finca de ejemplo · datos de muestra, sin IA real',
+    sampleHelp: 'Esto es un ejemplo, no un resultado de IA de su dispositivo.',
+    sampleTitle: 'De una pequeña señal a un siguiente paso útil.',
+    seeExample: 'Ver un ejemplo',
+    skip: 'Saltar al contenido',
+    supported: 'La IA sin conexión está lista en este dispositivo.',
+    understand: 'Explorar posibles causas',
+    unknown: 'Desconocido',
+    voiceHelp: 'El dictado del navegador puede necesitar conexión y enviar audio a su proveedor. Escribir funciona sin conexión.',
+    voiceOffline: 'El dictado necesita conexión aquí. Puede escribir.',
+  },
   common: { back: 'Atrás', close: 'Cerrar', continue: 'Continuar', save: 'Guardar', cancel: 'Cancelar', notSure: 'No estoy seguro', seeAll: 'Ver todo', beta: 'Beta', loading: 'Cargando', done: 'Listo', details: 'Detalles' },
   tabs: { home: 'Inicio', plots: 'Parcelas', guide: 'Guía', me: 'Yo' },
   status: {
@@ -14,21 +63,24 @@ export const es: Messages = {
     aiDownloadDetail: 'Descargue la IA sin conexión antes de ir al campo, para que Munda funcione sin señal.',
   },
   welcome: {
+    ...en.welcome,
     title: 'Sepa qué revisar en su campo.',
-    lede: 'Tome una foto o diga lo que ve. Munda hace unas preguntas y muestra las causas posibles, qué tan seguro está y qué revisar antes de gastar dinero. Funciona sin señal.',
+
     setup: 'Configurar este dispositivo', setupOffline: 'Conéctese a internet para configurar', settingUp: 'Configurando este dispositivo',
-    fineprint: 'La configuración necesita señal una vez. Después, Munda funciona sin conexión. Las fotos nunca salen de su dispositivo.',
+
     sample: 'Hojas de abajo amarillas desde la punta después de lluvias fuertes.',
   },
   home: {
+    ...en.home,
     groupAlert: 'Confirmado por su extensionista',
     greeting: 'Hola, {name}', greetingNoName: 'Hola', cropLine: 'Maíz', weeks: '{weeks} semanas',
     statPlots: 'Parcelas', statNeedsCheck: 'Por revisar', statSynced: 'Sincronizado', statSaved: 'En el teléfono',
-    checkCrop: 'Revisar un cultivo', checkCropSub: 'Fotografíe la hoja enferma · sin señal', alert: 'Alerta', timeline: 'Historial de la parcela',
+    checkCrop: 'Revisar un cultivo',  alert: 'Alerta', timeline: 'Historial de la parcela',
     emptyHint: 'Recorra su campo y revise las primeras plantas que se vean mal. Munda recuerda cada parcela.',
     temp: '{temp}°', rainOn: 'Lluvia el {day}', noRain: 'Días secos por delante', today: 'Hoy',
   },
   observe: {
+    ...en.observe,
     stepOf: 'Paso {n} de {total}', describeTitle: '¿Qué ve?', describeHint: 'Tome una foto, hable o escriba. Con una basta.',
     takePhoto: 'Tomar una foto', takePhotoSub: 'De la hoja enferma, de cerca', changePhoto: 'Cambiar la foto', removePhoto: 'Quitar la foto',
     speak: 'Hablar', stop: 'Parar', listening: 'Escuchando…', type: 'Escribir', placeholder: 'Las hojas de abajo están amarillas y las plantas son pequeñas.',
@@ -38,7 +90,7 @@ export const es: Messages = {
     choosingOnDevice: 'Munda está eligiendo preguntas en este dispositivo',
     questionsUnavailable: 'Las preguntas extra necesitan la IA sin conexión o señal. Sus respuestas bastan para un buen registro.',
     questionsFailed: 'Las preguntas extra no están disponibles ahora.', showCauses: 'Ver causas posibles',
-    writing: 'Escribiendo su registro', queuedLede: 'Su descripción y respuestas están guardadas. Munda escribirá el registro cuando vuelva la señal.',
+    writing: 'Escribiendo su registro',
     saveForLater: 'Guardar para después', photoUsed: 'Foto de la hoja',
   },
   result: {
@@ -49,12 +101,13 @@ export const es: Messages = {
     setExtension: 'Agregue a su técnico agrícola en Yo para llamarlo desde aquí.', save: 'Guardar registro', seconds: '{s} s', uncertainty: 'Qué cambiaría esto',
   },
   record: {
+    ...en.record,
     recorded: 'Registrado', crop: 'Cultivo', affected: 'Afectado', rain: 'Lluvia, 2 semanas', noticed: 'Notado', notAvailable: 'Este registro no está disponible en este dispositivo.',
     loading: 'Cargando registro', queued: 'Munda escribirá el registro cuando este dispositivo tenga señal.', error: 'Munda no pudo escribir este registro: {error}',
     review: 'Revisión del historial', reviewAfterRecord: 'Se hace después de escribir el registro.',
     reviewPending: 'Con señal, Munda compara este registro con los anteriores de esta parcela y de sus otras parcelas.', reviewFailed: 'La revisión no terminó. Su registro está guardado.',
     basedOn: 'Según {n} registros anteriores.', nextChecks: 'Qué hacer después', causesWithHistory: 'Causas posibles, con el historial', whatRecorded: 'Lo que se registró',
-    photoNote: 'Se usó una foto de la hoja para este registro. Las fotos no se suben.',
+
   },
   plots: {
     title: 'Mis parcelas', map: 'Mapa de parcelas', empty: 'Aún no hay parcelas. Revise un cultivo y nombre su parcela; Munda guarda el historial de cada una.',
@@ -78,8 +131,9 @@ export const es: Messages = {
   },
   readAloud: { play: 'Leer en voz alta', stop: 'Dejar de leer' },
   live: {
+    ...en.live,
     title: 'Analizando',
-    onDevice: 'En este dispositivo. Nada sale de su teléfono.',
+
     cloud: 'En la nube, con Gemini.',
     read: 'Respuestas leídas',
     compared: 'Comparado con {n} entradas de la guía',
@@ -102,7 +156,8 @@ export const es: Messages = {
     reviewFailed: 'La revisión del historial falló',
   },
   banner: {
-    offline: 'Sin señal. Munda sigue funcionando en este dispositivo.',
+    ...en.banner,
+
     syncing: 'De nuevo en línea. Sincronizando y revisando en la nube…',
     reviewed: 'Revisión del historial añadida · {plot}',
   },

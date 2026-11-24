@@ -1,3 +1,4 @@
+import { BotanicalPlate } from './illustrations/BotanicalPlate';
 import { guideImage } from '../domain/guideImages';
 import { useT } from '../i18n';
 
@@ -8,7 +9,7 @@ export function GuidePicture({ id, alt, compact = false }: { id: string | null |
   if (!img) return null;
   return (
     <figure className={`guide-pic${compact ? ' guide-pic-compact' : ''}`}>
-      <img src={img.url} alt={alt} loading="lazy" decoding="async" />
+      {img.kind === 'drawing' ? <BotanicalPlate problem={id!} /> : <img src={img.url} alt={alt} loading="lazy" decoding="async" />}
       <figcaption>
         {img.kind === 'photo' ? t('guide.photoBy', { credit: img.credit }) : t('guide.drawing')}
         {img.source && !compact && <> · <a href={img.source} target="_blank" rel="noreferrer">{t('guide.source')}</a></>}
@@ -19,5 +20,5 @@ export function GuidePicture({ id, alt, compact = false }: { id: string | null |
 
 export function GuideThumb({ id }: { id: string }) {
   const img = guideImage(id);
-  return img ? <img className="guide-thumb" src={img.url} alt="" loading="lazy" decoding="async" /> : null;
+  return img ? img.kind === 'drawing' ? <span className="guide-thumb botanical-thumb"><BotanicalPlate problem={id} thumbnail /></span> : <img className="guide-thumb" src={img.url} alt="" loading="lazy" decoding="async" /> : null;
 }
