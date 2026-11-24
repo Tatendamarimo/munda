@@ -28,6 +28,21 @@ const languageLines = (lang?: Lang): string[] =>
 const entryLine = (e: GuideEntry) => `id=${e.id} | ${e.name} | signs: ${e.signs} | tells apart: ${e.distinguish} | check: ${e.checkInField}`;
 
 /** Prompts mirror Prompts.kt on Android and are sized for Gemini Nano's small context. */
+/**
+ * Step 0 when the farmer gives only a photo: describe what is visible, in plain words, so retrieval
+ * and the questions work as if the farmer had described it. Never a cause: that comes later, checked.
+ */
+export function photoPrompt(crop: Crop, outputLang?: Lang): string {
+  return [
+    `Look at this photo a ${cropName(crop)} farmer took of a problem in their field.`,
+    'Describe only what you can see, in one or two short sentences a farmer would use: which leaves or parts (lower, upper, whorl, stem, cob), colours, patterns (tip, edges, stripes, V shape, spots, holes), insects, droppings, mould, how much of the plant.',
+    'Do not name a disease, pest or deficiency, and do not give advice.',
+    'clear: false if the photo does not show a plant clearly enough to describe (too dark, blurry, far away, not a plant).',
+    ...languageLines(outputLang),
+    'Respond with JSON only.',
+  ].join('\n');
+}
+
 export function questionsPrompt(i: ObservationInput, candidates: GuideEntry[], outputLang?: Lang): string {
   return [
     `You help a ${cropName(i.crop)} farmer narrow down what might be wrong in their field.`,

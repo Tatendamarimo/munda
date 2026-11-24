@@ -1,4 +1,4 @@
-import { Camera, Mic, PenLine, Square, X } from 'lucide-react';
+import { Camera, Image as ImageIcon, Mic, PenLine, Square, X } from 'lucide-react';
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { mundaAi } from '../ai/mundaAi';
 import type { ObservationInput } from '../ai/prompts';
@@ -263,6 +263,28 @@ function Describe({ form, edit, canContinue, onNext }: { form: Form; edit: (p: P
   desc.current = form.description;
   useEffect(() => () => stopRef.current(), []);
 
+  // Photo only: Munda describes the visible signs so matching and questions work as if the farmer
+  // had described it. Filled in when the box is empty (marked as Munda's words), offered otherwise.
+  const local = useStore(mundaAi.local);
+  const [seen, setSeen] = useState<{ kind: 'idle' | 'reading' | 'filled' | 'unclear' } | { kind: 'suggest'; signs: string }>({ kind: 'idle' });
+  const seenFor = useRef<string | null>(null);
+  useEffect(() => {
+    const photo = form.photo;
+    if (!photo) { seenFor.current = null; setSeen({ kind: 'idle' }); return; }
+    if (seenFor.current === photo.previewUrl) return;
+    seenFor.current = photo.previewUrl;
+    const route = decideRoute(0, local.state, online, settings.maxOnDeviceChars).route;
+    if (route === 'QUEUE_UNTIL_ONLINE') return;
+    setSeen({ kind: 'reading' });
+    void mundaAi.describePhoto(photo.base64, 'MAIZE', route).then((out) => {
+      if (seenFor.current !== photo.previewUrl) return;
+      if (out.kind !== 'done') { setSeen({ kind: 'idle' }); return; }
+      if (!out.value.clear) { setSeen({ kind: 'unclear' }); return; }
+      if (!desc.current.trim()) { edit({ description: out.value.signs }); setTyping(true); setSeen({ kind: 'filled' }); }
+      else setSeen({ kind: 'suggest', signs: out.value.signs });
+    });
+  }, [form.photo]); // eslint-disable-line react-hooks/exhaustive-deps
+
   const toggleMic = () => {
     if (listening) { stopRef.current(); return; }
     if (!online) { setProblem(t('studio.voiceOffline')); return; }
@@ -306,6 +328,20 @@ function Describe({ form, edit, canContinue, onNext }: { form: Form; edit: (p: P
           <input type="file" accept="image/jpeg,image/png" capture="environment" onChange={(e) => void onPhoto(e.target.files?.[0])} hidden />
         </label>
       )}
+      {/* No capture attribute: phones offer the gallery (a photo taken earlier, or one sent by a neighbour). */}
+      <label className="text-btn gallery-btn">
+        <ImageIcon size={18} strokeWidth={2.25} aria-hidden="true" />{t('observe.fromGallery')}
+        <input type="file" accept="image/jpeg,image/png" onChange={(e) => void onPhoto(e.target.files?.[0])} hidden />
+      </label>
+      <p className="hint">{t('observe.photoTips')}</p>
+      {seen.kind === 'reading' && <Working>{t('observe.reading')}</Working>}
+      {seen.kind === 'unclear' && <p className="hint error">{t('observe.unclear')}</p>}
+      {seen.kind === 'suggest' && (
+        <div className="seen-card">
+          <p>{seen.signs}</p>
+          <button type="button" className="btn btn-ghost" onClick={() => { edit({ description: `${desc.current.trimEnd()} ${seen.signs}`.trim() }); setSeen({ kind: 'filled' }); }}>{t('observe.addSeen')}</button>
+        </div>
+      )}
 
       <div className="duo">
         {dictationSupported && (
@@ -321,6 +357,7 @@ function Describe({ form, edit, canContinue, onNext }: { form: Form; edit: (p: P
 
       {dictationSupported && <p id="voice-note" className="hint voice-note">{t('studio.voiceHelp')}</p>}
       <p className="hint privacy-note">{t('studio.privatePhoto')}</p>
+      {seen.kind === 'filled' && typing && <p className="hint seen-note">{t('observe.seenNote')}</p>}
       {typing && (
         <textarea rows={4} value={form.description} placeholder={t('observe.placeholder')} aria-label={t('observe.describeTitle')} autoFocus={!listening} onChange={(e) => edit({ description: e.target.value })} />
       )}

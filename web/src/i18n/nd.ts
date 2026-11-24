@@ -81,6 +81,12 @@ export const nd: Messages = {
   },
   observe: {
     ...en.observe,
+    fromGallery: 'Khetha kuma-gallery',
+    photoTips: 'Okungcono: ihlamvu elilodwa eligulayo eduze, ekukhanyeni, ubusuthathe isithombo sonke.',
+    reading: 'IMunda ikhangela isithombe sakho…',
+    seenNote: 'IMunda ibhale lokhu kusukela esithombeni sakho. Lungisa okungaqondanga.',
+    unclear: 'IMunda ayibonanga inkinga kuhle. Zama ihlamvu elilodwa eligulayo eduze, ekukhanyeni.',
+    addSeen: 'Engeza okubonwa yiMunda',
     stepOf: 'Isinyathelo {n} kwezingu-{total}', describeTitle: 'Ubonani?', describeHint: 'Thatha isithombe, khuluma kumbe ubhale. Okukodwa kwanele.',
     takePhoto: 'Thatha isithombe', takePhotoSub: 'Sehlamvu eligulayo, eduze', changePhoto: 'Ntshintsha isithombe', removePhoto: 'Susa isithombe',
     speak: 'Khuluma', stop: 'Ima', listening: 'Kulalelwa…', type: 'Bhala', placeholder: 'Amahlamvu angaphansi ayaphuzi njalo izilimo zincane.',

@@ -116,6 +116,12 @@ export const sn: Messages = {
   },
   observe: {
     ...en.observe,
+    fromGallery: 'Sarudza kubva mugallery',
+    photoTips: 'Zvakanakisa: shizha rimwe rarwara riri pedyo, pachiedza, wobva watora muti wose.',
+    reading: 'Munda iri kutarisa mufananidzo wako…',
+    seenNote: 'Munda yanyora izvi kubva pamufananidzo wako. Gadzirisa chero chisiri chokwadi.',
+    unclear: 'Munda haina kuona dambudziko zvakajeka. Edza shizha rimwe rarwara riri pedyo, pachiedza.',
+    addSeen: 'Wedzera zvinoonekwa naMunda',
     stepOf: 'Danho {n} pa {total}',
     describeTitle: 'Uri kuonei?',
     describeHint: 'Tora mufananidzo, taura kana kunyora. Chimwe chete chakakwana.',

@@ -88,6 +88,12 @@ export const en = {
     today: 'Today',
   },
   observe: {
+    fromGallery: 'Choose from gallery',
+    photoTips: 'Best: one sick leaf close up in daylight, then the whole plant.',
+    reading: 'Munda is looking at your photo…',
+    seenNote: 'Munda wrote this from your photo. Change anything that’s wrong.',
+    unclear: 'Munda couldn’t see the problem clearly. Try one sick leaf, close up, in daylight.',
+    addSeen: 'Add what Munda sees',
     stepOf: 'Step {n} of {total}',
     describeTitle: 'What do you see?',
     describeHint: 'Take a photo, speak or type. Any one is enough.',

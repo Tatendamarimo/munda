@@ -81,6 +81,12 @@ export const fr: Messages = {
   },
   observe: {
     ...en.observe,
+    fromGallery: 'Choisir dans la galerie',
+    photoTips: 'Idéal : une feuille malade de près, en plein jour, puis la plante entière.',
+    reading: 'Munda regarde votre photo…',
+    seenNote: 'Munda a écrit ceci à partir de votre photo. Corrigez ce qui est faux.',
+    unclear: 'Munda ne voit pas bien le problème. Essayez une feuille malade, de près, en plein jour.',
+    addSeen: 'Ajouter ce que voit Munda',
     stepOf: 'Étape {n} sur {total}', describeTitle: 'Que voyez-vous ?', describeHint: 'Prenez une photo, parlez ou écrivez. Un seul suffit.',
     takePhoto: 'Prendre une photo', takePhotoSub: 'De la feuille malade, de près', changePhoto: 'Changer la photo', removePhoto: 'Retirer la photo',
     speak: 'Parler', stop: 'Arrêter', listening: 'J’écoute…', type: 'Écrire', placeholder: 'Les feuilles du bas sont jaunes et les plants sont petits.',

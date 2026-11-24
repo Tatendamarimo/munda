@@ -519,3 +519,6 @@ progress { width: 100%; height: 8px; accent-color: var(--leaf); }
 .group-alert { display: flex; gap: 11px; padding: 13px 14px; border-radius: 18px; background: var(--forest); color: #fff; font-size: .9rem; line-height: 1.4; }
 .group-alert svg { color: var(--maize); flex: none; }
 @media (prefers-reduced-motion: reduce) { .live-dot svg { animation: none; } }
+.gallery-btn { display: inline-flex; align-items: center; gap: 8px; justify-self: start; cursor: pointer; }
+.seen-card { display: grid; gap: 8px; padding: 12px 14px; border-radius: var(--r-md); background: var(--wash); border: 1px dashed var(--leaf-2); }
+.seen-note { color: var(--leaf); font-weight: 700; }

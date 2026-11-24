@@ -1,18 +1,18 @@
 import { getGenerativeModel, InferenceMode, InferenceSource, type GenerativeModel, type LanguageModelCreateOptions, type Part } from 'firebase/ai';
 import { guideFor } from '../domain/guide';
 import type { FieldRecord, FollowUpQuestion, InferenceOrigin } from '../domain/models';
-import { parseQuestions, parseRecord, type Result } from '../domain/parser';
+import { parsePhotoSigns, parseQuestions, parseRecord, type PhotoSigns, type Result } from '../domain/parser';
 import type { LocalModelState, Route } from '../domain/routing';
 import { connectivity } from '../data/connectivity';
 import { firebase } from '../data/firebase';
 import { settings } from '../data/settings';
 import { Store } from '../data/store';
-import { questionsPrompt, recordPrompt, retrievalText, type ObservationInput } from './prompts';
+import { photoPrompt, questionsPrompt, recordPrompt, retrievalText, type ObservationInput } from './prompts';
 import { language } from '../i18n';
 
 /** Only cloud calls get the farmer's language; on-device stays English (see prompts.languageLines). */
 const cloudLang = (route: Route) => (route === 'CLOUD' ? language.value : undefined);
-import { questionsSchema, recordSchema } from './schemas';
+import { photoSchema, questionsSchema, recordSchema } from './schemas';
 import { withFallback } from './fallback';
 
 export type AiOutcome<T> =
@@ -59,11 +59,11 @@ class MundaAi {
   readonly local = new Store<LocalModelInfo>({ state: 'UNKNOWN', progress: null });
   private models = new Map<string, GenerativeModel>();
 
-  private model(kind: 'questions' | 'record', mode: 'hybrid' | 'cloud', cloudModel = settings.cloudModel): GenerativeModel {
+  private model(kind: 'questions' | 'record' | 'photo', mode: 'hybrid' | 'cloud', cloudModel = settings.cloudModel): GenerativeModel {
     const key = `${kind}:${mode}:${cloudModel}`;
     let m = this.models.get(key);
     if (!m) {
-      const schema = kind === 'questions' ? questionsSchema : recordSchema;
+      const schema = kind === 'questions' ? questionsSchema : kind === 'photo' ? photoSchema : recordSchema;
       m = getGenerativeModel(firebase().ai, {
         mode: mode === 'hybrid' ? InferenceMode.PREFER_ON_DEVICE : InferenceMode.ONLY_IN_CLOUD,
         inCloudParams: {
@@ -118,6 +118,11 @@ class MundaAi {
     return this.run('questions', questionsPrompt(input, candidates, cloudLang(route)), input.photoBase64, route, parseQuestions);
   }
 
+  /** Photo only: what is visible, in words, so matching and questions work as if the farmer had described it. */
+  async describePhoto(photoBase64: string, crop: ObservationInput['crop'], route: Route): Promise<AiOutcome<PhotoSigns>> {
+    return this.run('photo', photoPrompt(crop, cloudLang(route)), photoBase64, route, parsePhotoSigns);
+  }
+
   /** The guide entries a record is built from, so the screen can show what's being weighed. */
   recordCandidates(input: ObservationInput) {
     return guideFor(input.crop).relevant(retrievalText(input), input.core, input.stage, 5);
@@ -135,7 +140,7 @@ class MundaAi {
     return this.run('record', recordPrompt(input, candidates, cloudLang(route)), input.photoBase64, route, (t) => parseRecord(t, guide, allowed), onText);
   }
 
-  private async run<T>(kind: 'questions' | 'record', prompt: string, photo: string | null, route: Route, parse: (t: string) => Result<T>, onText?: (text: string) => void): Promise<AiOutcome<T>> {
+  private async run<T>(kind: 'questions' | 'record' | 'photo', prompt: string, photo: string | null, route: Route, parse: (t: string) => Result<T>, onText?: (text: string) => void): Promise<AiOutcome<T>> {
     const started = performance.now();
     const parts: Array<string | Part> = photo ? [{ type: 'inlineData', inlineData: { mimeType: 'image/jpeg', data: photo } }, prompt] : [prompt];
 

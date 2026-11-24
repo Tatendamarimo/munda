@@ -81,6 +81,12 @@ export const sw: Messages = {
   },
   observe: {
     ...en.observe,
+    fromGallery: 'Chagua kutoka kwenye picha',
+    photoTips: 'Bora: jani moja lenye ugonjwa karibu, mchana, kisha mmea mzima.',
+    reading: 'Munda inaangalia picha yako…',
+    seenNote: 'Munda imeandika hili kutoka kwenye picha yako. Rekebisha chochote kisicho sahihi.',
+    unclear: 'Munda haikuona tatizo vizuri. Jaribu jani moja lenye ugonjwa, karibu, mchana.',
+    addSeen: 'Ongeza kile Munda inaona',
     stepOf: 'Hatua {n} kati ya {total}', describeTitle: 'Unaona nini?', describeHint: 'Piga picha, sema au andika. Kimoja kinatosha.',
     takePhoto: 'Piga picha', takePhotoSub: 'Ya jani lililougua, karibu', changePhoto: 'Badilisha picha', removePhoto: 'Ondoa picha',
     speak: 'Sema', stop: 'Simama', listening: 'Inasikiliza…', type: 'Andika', placeholder: 'Majani ya chini ni ya manjano na mimea ni midogo.',

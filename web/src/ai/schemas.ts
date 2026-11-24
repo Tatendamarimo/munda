@@ -64,3 +64,11 @@ export const reviewSchema = obj(
   },
   ['summary', 'patterns', 'updatedCauses', 'nextChecks'],
 );
+
+export const photoSchema = obj(
+  {
+    signs: str('One or two short sentences: only what is visible, no cause or advice.'),
+    clear: { type: 'boolean' },
+  },
+  ['signs', 'clear'],
+);

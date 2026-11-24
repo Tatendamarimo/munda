@@ -167,3 +167,16 @@ export function parseReview(raw: string | null | undefined, knownIds: Set<string
     return fail(String(e instanceof Error ? e.message : e));
   }
 }
+
+export interface PhotoSigns { signs: string; clear: boolean }
+
+/** What the AI saw in a photo; an empty description counts as unclear. */
+export function parsePhotoSigns(raw: string | null | undefined): Result<PhotoSigns> {
+  try {
+    const o = parseObject(raw);
+    const signs = clean(o.signs, 300);
+    return ok({ signs, clear: signs !== '' && o.clear !== false });
+  } catch (e) {
+    return fail(String(e instanceof Error ? e.message : e));
+  }
+}
