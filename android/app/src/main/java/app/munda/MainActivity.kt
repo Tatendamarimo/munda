@@ -73,7 +73,7 @@ private fun MundaNav(farm: FarmViewModel, app: MundaApp) {
                     NavigationBarItem(
                         selected = current == t.route, onClick = { nav.navigate(t.route) { popUpTo("home") { saveState = true }; launchSingleTop = true; restoreState = true } },
                         icon = { Icon(t.icon, null) }, label = { Text(s.t(t.key)) },
-                        colors = NavigationBarItemDefaults.colors(selectedIconColor = LocalMunda.current.forest, indicatorColor = LocalMunda.current.sprout),
+                        colors = NavigationBarItemDefaults.colors(selectedIconColor = LocalMunda.current.forest, selectedTextColor = LocalMunda.current.forest, indicatorColor = LocalMunda.current.sprout),
                     )
                 }
             }
