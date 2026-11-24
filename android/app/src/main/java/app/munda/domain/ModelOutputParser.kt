@@ -45,6 +45,15 @@ object ModelOutputParser {
         val nextChecks: List<String>? = null,
     )
 
+    @Serializable private data class PhotoDto(val signs: String? = null, val clear: Boolean? = null)
+
+    /** What the AI saw in a photo; an empty description counts as unclear (web: parsePhotoSigns). */
+    fun parsePhotoSigns(raw: String?): Result<PhotoSigns> = runCatching {
+        val dto = json.decodeFromString(PhotoDto.serializer(), extractJsonObject(raw))
+        val signs = dto.signs?.clean(300).orEmpty()
+        PhotoSigns(signs, signs.isNotEmpty() && dto.clear != false)
+    }
+
     fun parseQuestions(raw: String?): Result<List<FollowUpQuestion>> = runCatching {
         json.decodeFromString(QuestionsDto.serializer(), extractJsonObject(raw)).questions.orEmpty()
             .mapNotNull { q ->
@@ -159,3 +168,5 @@ object ModelOutputParser {
     private const val MAX_NOTE = 400
     private const val MAX_RELATED = 10
 }
+
+data class PhotoSigns(val signs: String, val clear: Boolean)

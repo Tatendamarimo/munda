@@ -76,6 +76,15 @@ sealed interface RecordState {
     data class Problem(val message: String) : RecordState
 }
 
+/** What Munda saw in the farmer's photo (photo-first checks). */
+sealed interface Seen {
+    data object Idle : Seen
+    data object Reading : Seen
+    data object Filled : Seen
+    data object Unclear : Seen
+    data class Suggest(val signs: String) : Seen
+}
+
 /** Firestore rules need a description; a photo alone is a complete observation for the farmer. */
 private const val PHOTO_ONLY = "Leaf photo only; the farmer gave no description."
 /** Long enough to see the tile light up before the next question slides in. */
@@ -95,6 +104,9 @@ class ObserveViewModel(private val c: AppContainer, app: Application) : ViewMode
     private var recordJob: Job? = null
     private var advanceJob: Job? = null
     private var questionsKey: String? = null
+    private val _seen = MutableStateFlow<Seen>(Seen.Idle)
+    val seen: StateFlow<Seen> = _seen.asStateFlow()
+    private var seenJob: Job? = null
     /** The farmer's language, English name, for cloud calls. Set by the screen. */
     var language: String? = null
 
@@ -116,8 +128,37 @@ class ObserveViewModel(private val c: AppContainer, app: Application) : ViewMode
     fun steps(): List<Step> = Step.entries.filter { it != Step.FOLLOWUPS || hasFollowUps }
 
     fun edit(transform: (ObserveForm) -> ObserveForm) {
+        val before = _form.value.photo
         _form.update { transform(it).let { f -> f.copy(description = f.description.take(Normalize.MAX_DESCRIPTION)) } }
         if (_record.value !is RecordState.Building) _record.value = RecordState.Idle
+        if (_form.value.photo !== before) describePhoto()
+    }
+
+    /**
+     * Photo only: Munda describes the visible signs so matching and questions work as if the farmer
+     * had described it. Filled in when the description is empty (marked as Munda's words), offered otherwise.
+     */
+    private fun describePhoto() {
+        seenJob?.cancel()
+        val photo = _form.value.photo ?: run { _seen.value = Seen.Idle; return }
+        val r = route.value.route
+        if (r == Route.QUEUE_UNTIL_ONLINE) { _seen.value = Seen.Idle; return }
+        _seen.value = Seen.Reading
+        seenJob = viewModelScope.launch {
+            _seen.value = when (val out = c.ai.describePhoto(photo, _form.value.crop, r, language)) {
+                is AiOutcome.Done -> when {
+                    !out.value.clear -> Seen.Unclear
+                    _form.value.description.isBlank() -> { _form.update { it.copy(description = out.value.signs) }; Seen.Filled }
+                    else -> Seen.Suggest(out.value.signs)
+                }
+                else -> Seen.Idle
+            }
+        }
+    }
+
+    fun acceptSeen(signs: String) {
+        _form.update { it.copy(description = (it.description.trimEnd() + " " + signs).trim().take(Normalize.MAX_DESCRIPTION)) }
+        _seen.value = Seen.Filled
     }
 
     val canDescribe get() = description.isNotEmpty()
@@ -322,6 +363,22 @@ private fun DescribeStep(vm: ObserveViewModel, form: ObserveForm) {
             IconButton({ gallery.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)) }) { Icon(Icons.Outlined.AddPhotoAlternate, null, tint = c.ink2) }
         }
     }
+    val seen by vm.seen.collectAsStateWithLifecycle()
+    TextButton({ gallery.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)) }) {
+        Icon(Icons.Outlined.PhotoLibrary, null, Modifier.size(18.dp), tint = c.leaf); Spacer(Modifier.width(8.dp))
+        Text(s.t("observe.fromGallery"), color = c.leaf, style = MaterialTheme.typography.labelLarge)
+    }
+    Text(s.t("observe.photoTips"), style = MaterialTheme.typography.bodySmall, color = c.ink2)
+    when (val sn = seen) {
+        Seen.Reading -> Working(s.t("observe.reading"))
+        Seen.Unclear -> Text(s.t("observe.unclear"), style = MaterialTheme.typography.bodySmall, color = c.alert)
+        is Seen.Suggest -> Column(Modifier.fillMaxWidth().clip(RoundedCornerShape(14.dp)).background(c.leafWash).padding(12.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            Text(sn.signs, style = MaterialTheme.typography.bodyMedium)
+            MainButton(s.t("observe.addSeen"), { vm.acceptSeen(sn.signs); typing = true }, kind = ButtonKind.GHOST)
+        }
+        else -> Unit
+    }
+    LaunchedEffect(seen) { if (seen == Seen.Filled) typing = true }
     Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
         @Composable fun RowScope.Duo(text: String, icon: androidx.compose.ui.graphics.vector.ImageVector, live: Boolean, onClick: () -> Unit) = Row(
             Modifier.weight(1f).heightIn(min = 48.dp).clip(RoundedCornerShape(14.dp)).background(if (live) c.rust else c.leafWash).clickable(onClick = onClick).padding(12.dp),
@@ -339,6 +396,7 @@ private fun DescribeStep(vm: ObserveViewModel, form: ObserveForm) {
         }
         Duo(s.t("observe.type"), Icons.Outlined.Edit, false) { typing = true }
     }
+    if (typing && seen == Seen.Filled) Text(s.t("observe.seenNote"), style = MaterialTheme.typography.labelMedium, color = c.leaf)
     if (typing) OutlinedTextField(
         form.description, { v -> vm.edit { it.copy(description = v) } }, Modifier.fillMaxWidth(), minLines = 4, shape = RoundedCornerShape(14.dp),
         placeholder = { Text(s.t("observe.placeholder")) },

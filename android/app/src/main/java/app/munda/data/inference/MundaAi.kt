@@ -6,6 +6,7 @@ import app.munda.data.Connectivity
 import app.munda.data.RemoteSettings
 import app.munda.domain.CoreAnswers
 import app.munda.domain.Crop
+import app.munda.domain.PhotoSigns
 import app.munda.domain.Guides
 import app.munda.domain.CropStage
 import app.munda.domain.FieldRecord
@@ -157,6 +158,13 @@ class MundaAi(
     }
 
     // ---------- Step 2: field record ----------
+
+    private val photoHybrid by lazy { hybrid(Prompts.photoSchema, maxOut = 120) }
+    private val photoCloud = { name: String -> cloud(Prompts.photoSchema, name) }
+
+    /** Photo only: the visible signs in words, so matching and questions work as if the farmer had described it. */
+    suspend fun describePhoto(photo: Bitmap, crop: Crop, route: Route, language: String? = null): AiOutcome<PhotoSigns> =
+        run(photoHybrid, photoCloud, Prompts.photo(crop, language.cloudOnly(route)), photo, route) { ModelOutputParser.parsePhotoSigns(it) }
 
     /** The guide entries a record is built from, so the screen can show what's being weighed. */
     fun recordCandidates(input: ObservationInput) = Guides.forCrop(input.crop).relevant(input.retrievalText, input.core, input.stage, limit = 5)

@@ -1,5 +1,6 @@
 package app.munda.data.inference
 
+import app.munda.domain.Crop
 import app.munda.domain.FieldRecord
 import app.munda.domain.GuideEntry
 import app.munda.domain.Likelihood
@@ -19,6 +20,23 @@ import java.time.ZoneOffset
 internal object Prompts {
 
     // ---------- Follow-up questions (on-device first) ----------
+
+    val photoSchema: Schema = Schema.obj(
+        mapOf(
+            "signs" to Schema.string("One or two short sentences: only what is visible, no cause or advice."),
+            "clear" to Schema.boolean(),
+        ),
+    )
+
+    /** Photo only: describe what is visible so matching and questions work (web: photoPrompt). Never a cause. */
+    fun photo(crop: Crop, outputLanguage: String? = null): String = buildString {
+        appendLine("Look at this photo a ${crop.label.lowercase()} farmer took of a problem in their field.")
+        appendLine("Describe only what you can see, in one or two short sentences a farmer would use: which leaves or parts (lower, upper, whorl, stem, cob), colours, patterns (tip, edges, stripes, V shape, spots, holes), insects, droppings, mould, how much of the plant.")
+        appendLine("Do not name a disease, pest or deficiency, and do not give advice.")
+        appendLine("clear: false if the photo does not show a plant clearly enough to describe (too dark, blurry, far away, not a plant).")
+        appendLanguage(outputLanguage)
+        append("Respond with JSON only.")
+    }
 
     val questionsSchema: Schema = Schema.obj(
         mapOf(
