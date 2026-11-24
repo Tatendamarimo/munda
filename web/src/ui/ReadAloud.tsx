@@ -30,7 +30,8 @@ type State = 'idle' | 'loading' | 'playing';
  * offline, or if that fails, the device's most natural voice. Hidden when neither is available:
  * better no button than the wrong language.
  */
-export function ReadAloud({ text }: { text: string }) {
+/** prefetch: start making the cloud voice when the screen opens, so the tap plays at once (it takes 10-20 s). */
+export function ReadAloud({ text, prefetch = false }: { text: string; prefetch?: boolean }) {
   const t = useT();
   const lang = useLang();
   const online = useStore(connectivity);
@@ -48,6 +49,7 @@ export function ReadAloud({ text }: { text: string }) {
     setState('idle');
   };
   useEffect(() => stop, []);
+  useEffect(() => { if (prefetch && online && text.trim()) cloudSpeech(text).catch(() => {}); }, [prefetch, online, text]);
   useEffect(() => { stop(); }, [text, lang]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (!text.trim() || (!online && !voice)) return <span className="icon-spacer" />;

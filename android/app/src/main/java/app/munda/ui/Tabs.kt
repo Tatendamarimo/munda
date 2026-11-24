@@ -300,7 +300,7 @@ fun GuideEntryScreen(vm: FarmViewModel, id: String, onBack: () -> Unit) {
     val e = Guides.forCrop(Crop.MAIZE).get(id) ?: return
     val loc = vm.c.guideText.localized(e, s.lang)
     Column(Modifier.verticalScroll(rememberScrollState()).padding(bottom = 24.dp)) {
-        PageHead(s.t("guide.title"), onBack, right = { ReadAloud(listOfNotNull(loc.name, loc.signs, s.t("guide.check"), loc.checkInField, e.actNow?.let { "${s.t("guide.actNow")}. $it" }).joinToString(". ")) })
+        PageHead(s.t("guide.title"), onBack, right = { ReadAloud(listOfNotNull(loc.name, loc.signs, s.t("guide.check"), loc.checkInField, e.actNow?.takeIf { s.lang == "en" }?.let { "${s.t("guide.actNow")}. $it" }).joinToString(". ")) })
         Page {
             Tag(s.t("guide.categories.${e.category.name}"))
             Text(loc.name, style = MaterialTheme.typography.headlineMedium)
