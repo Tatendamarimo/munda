@@ -20,9 +20,9 @@ sealed interface SessionState {
 }
 
 /**
- * Tenancy comes from an `orgId` custom claim (set by an admin backend for real farm groups).
- * Without one, users land in the shared "demo" org, which mirrors the default in
- * firestore.rules. The org is cached locally so the app keeps working offline.
+ * Tenancy comes from an `orgId` custom claim (set by an admin backend for cooperatives and
+ * extension groups). Without one, a user has a private farm of their own, `u-<uid>`, matching
+ * myOrg() in firestore.rules and orgFor() on the web. Cached locally so it works offline.
  */
 class Session(context: Context) {
     private val auth = Firebase.auth
@@ -33,8 +33,12 @@ class Session(context: Context) {
     init {
         val user = auth.currentUser
         val cachedOrg = prefs.getString(KEY_ORG, null)
-        _state.value = if (user != null && cachedOrg != null) SessionState.Ready(user.uid, cachedOrg)
-        else SessionState.NeedsActivation
+        _state.value = if (user != null && cachedOrg != null) {
+            // A cached "demo" (from before private farms) becomes the private farm.
+            val org = orgFor(user.uid, cachedOrg)
+            if (org != cachedOrg) prefs.edit { putString(KEY_ORG, org) }
+            SessionState.Ready(user.uid, org)
+        } else SessionState.NeedsActivation
     }
 
     val ready: SessionState.Ready? get() = _state.value as? SessionState.Ready
@@ -46,7 +50,7 @@ class Session(context: Context) {
             val user = auth.currentUser ?: auth.signInAnonymously().await().user
                 ?: error("Sign-in returned no user")
             val claims = user.getIdToken(true).await().claims
-            val orgId = (claims["orgId"] as? String)?.takeIf { it.isNotBlank() } ?: DEFAULT_ORG
+            val orgId = orgFor(user.uid, claims["orgId"] as? String)
             prefs.edit { putString(KEY_ORG, orgId) }
             SessionState.Ready(user.uid, orgId)
         } catch (e: Exception) {
@@ -55,9 +59,13 @@ class Session(context: Context) {
         }
     }
 
-    private companion object {
-        const val TAG = "Session"
-        const val KEY_ORG = "org_id"
-        const val DEFAULT_ORG = "demo"
+    companion object {
+        private const val TAG = "Session"
+        private const val KEY_ORG = "org_id"
+        /** The old shared farm everyone without a group used to land in. */
+        private const val LEGACY_SHARED_ORG = "demo"
+
+        fun orgFor(uid: String, claim: String?): String =
+            claim?.takeIf { it.isNotBlank() && it != LEGACY_SHARED_ORG } ?: "u-$uid"
     }
 }

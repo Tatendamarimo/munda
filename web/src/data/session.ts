@@ -11,12 +11,21 @@ export type SessionState =
   | { kind: 'error'; message: string };
 
 const ORG_KEY = 'munda.orgId';
-const DEFAULT_ORG = 'demo';
+/** The old shared farm everyone without a group used to land in; nobody belongs there now. */
+const LEGACY_SHARED_ORG = 'demo';
 
 /**
- * Tenancy comes from an `orgId` custom claim (set by an admin backend for real farm groups);
- * without one, users share the "demo" org, matching firestore.rules. The org is cached locally
- * so the app keeps working offline. Same model as the Android client.
+ * The farm a user's records live in. A cooperative or extension group is an `orgId` custom
+ * claim set by an admin; everyone else gets a private farm of their own, `u-<uid>`. Must match
+ * myOrg() in firestore.rules and Session.kt on Android.
+ */
+export function orgFor(uid: string, claim: unknown): string {
+  return typeof claim === 'string' && claim !== '' && claim !== LEGACY_SHARED_ORG ? claim : `u-${uid}`;
+}
+
+/**
+ * Signs in anonymously (no email or password) and works out the user's farm (orgFor). The farm
+ * is cached locally so the app keeps working offline. Same model as the Android client.
  */
 class Session extends Store<SessionState> {
   constructor() {
@@ -26,8 +35,12 @@ class Session extends Store<SessionState> {
   start() {
     onAuthStateChanged(firebase().auth, (user) => {
       if (this.value.kind === 'activating') return;
-      const org = safeGet(ORG_KEY);
-      this.set(user && org ? { kind: 'ready', uid: user.uid, orgId: org } : { kind: 'needsActivation' });
+      const cached = safeGet(ORG_KEY);
+      if (!user || !cached) { this.set({ kind: 'needsActivation' }); return; }
+      // Works offline: a cached "demo" (from before private farms) becomes the private farm.
+      const orgId = orgFor(user.uid, cached);
+      if (orgId !== cached) safeSet(ORG_KEY, orgId);
+      this.set({ kind: 'ready', uid: user.uid, orgId });
     });
   }
 
@@ -42,7 +55,7 @@ class Session extends Store<SessionState> {
       const auth = firebase().auth;
       const user: User = auth.currentUser ?? (await signInAnonymously(auth)).user;
       const claims = (await getIdTokenResult(user, true)).claims;
-      const orgId = typeof claims.orgId === 'string' && claims.orgId ? claims.orgId : DEFAULT_ORG;
+      const orgId = orgFor(user.uid, claims.orgId);
       safeSet(ORG_KEY, orgId);
       this.set({ kind: 'ready', uid: user.uid, orgId });
     } catch (e) {

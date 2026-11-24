@@ -5,7 +5,9 @@ import { initializeTestEnvironment, assertSucceeds, assertFails } from '@firebas
 import { doc, setDoc, updateDoc, deleteDoc, getDoc, serverTimestamp } from 'firebase/firestore';
 
 let env;
-const ORG = 'demo';
+// A cooperative set up by an admin (orgId claim). People without one have a private farm.
+const ORG = 'wedza-coop';
+const member = (uid) => env.authenticatedContext(uid, { orgId: ORG });
 
 before(async () => {
   env = await initializeTestEnvironment({
@@ -28,12 +30,12 @@ const valid = (id, uid, overrides = {}) => ({
 const ref = (ctx, id) => doc(ctx.firestore(), `orgs/${ORG}/observations/${id}`);
 
 test('author can create a valid observation, including one recorded offline days ago', async () => {
-  const alice = env.authenticatedContext('alice');
+  const alice = member('alice');
   await assertSucceeds(setDoc(ref(alice, 'o1'), valid('o1', 'alice')));
 });
 
 test('pending observation (no record yet) is allowed', async () => {
-  const alice = env.authenticatedContext('alice');
+  const alice = member('alice');
   await assertSucceeds(setDoc(ref(alice, 'o1'), valid('o1', 'alice', { record: null, origin: 'PENDING' })));
 });
 
@@ -44,13 +46,13 @@ test('unauthenticated users cannot read or write', async () => {
 });
 
 test('cannot create on behalf of someone else, or with a mismatched id', async () => {
-  const alice = env.authenticatedContext('alice');
+  const alice = member('alice');
   await assertFails(setDoc(ref(alice, 'o1'), valid('o1', 'bob')));
   await assertFails(setDoc(ref(alice, 'o1'), valid('other', 'alice')));
 });
 
 test('rejects unknown fields, future timestamps, bad enums and oversized text', async () => {
-  const alice = env.authenticatedContext('alice');
+  const alice = member('alice');
   await assertFails(setDoc(ref(alice, 'o1'), valid('o1', 'alice', { isAdmin: true })));
   await assertFails(setDoc(ref(alice, 'o2'), valid('o2', 'alice', { createdAtMillis: Date.now() + 86400000 })));
   await assertFails(setDoc(ref(alice, 'o3'), valid('o3', 'alice', { origin: 'MAGIC' })));
@@ -59,22 +61,35 @@ test('rejects unknown fields, future timestamps, bad enums and oversized text', 
 });
 
 test('other org members can read but not modify', async () => {
-  const alice = env.authenticatedContext('alice');
+  const alice = member('alice');
   await setDoc(ref(alice, 'o1'), valid('o1', 'alice'));
-  const bob = env.authenticatedContext('bob');
+  const bob = member('bob');
   await assertSucceeds(getDoc(ref(bob, 'o1')));
   await assertFails(updateDoc(ref(bob, 'o1'), { reviewStatus: 'DONE', updatedAt: serverTimestamp() }));
 });
 
 test('users in another org cannot read', async () => {
-  const alice = env.authenticatedContext('alice');
+  const alice = member('alice');
   await setDoc(ref(alice, 'o1'), valid('o1', 'alice'));
   const eve = env.authenticatedContext('eve', { orgId: 'other-coop' });
   await assertFails(getDoc(ref(eve, 'o1')));
 });
 
+test('a farmer without a group has a private farm nobody else can see', async () => {
+  const solo = (uid) => env.authenticatedContext(uid);
+  const mine = (ctx, uid, id) => doc(ctx.firestore(), `orgs/u-${uid}/observations/${id}`);
+  await assertSucceeds(setDoc(mine(solo('tendai'), 'tendai', 'o1'), valid('o1', 'tendai', { orgId: 'u-tendai' })));
+  await assertSucceeds(getDoc(mine(solo('tendai'), 'tendai', 'o1')));
+  await assertFails(getDoc(mine(solo('rudo'), 'tendai', 'o1')));
+  await assertFails(setDoc(mine(solo('rudo'), 'tendai', 'o2'), valid('o2', 'rudo', { orgId: 'u-tendai' })));
+  // Nobody can use the old shared farm any more, with or without a "demo" claim.
+  const shared = (ctx, id) => doc(ctx.firestore(), `orgs/demo/observations/${id}`);
+  await assertFails(setDoc(shared(solo('tendai'), 'o3'), valid('o3', 'tendai', { orgId: 'demo' })));
+  await assertFails(getDoc(shared(env.authenticatedContext('x', { orgId: 'demo' }), 'o3')));
+});
+
 test('author can add record and review, but cannot rewrite the observation or delete it', async () => {
-  const alice = env.authenticatedContext('alice');
+  const alice = member('alice');
   await setDoc(ref(alice, 'o1'), valid('o1', 'alice', { record: null, origin: 'PENDING' }));
   await assertSucceeds(updateDoc(ref(alice, 'o1'), {
     record: { summary: 's', symptoms: [], possibleCauses: [], urgency: 'ROUTINE', uncertaintyNote: 'n' },

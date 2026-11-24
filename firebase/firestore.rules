@@ -2,12 +2,16 @@ rules_version = '2';
 
 // Munda: orgs/{orgId}/observations/{id}
 // An org is a farm, cooperative or extension group. Tenancy comes from an `orgId` custom claim
-// set by an admin backend; users without one share the "demo" org (matches Session.kt).
+// set by an admin backend; a user without one has a private farm of their own, `u-<uid>`
+// (matches orgFor() in web/src/data/session.ts and Session.kt).
 service cloud.firestore {
   match /databases/{database}/documents {
 
     function signedIn() { return request.auth != null; }
-    function myOrg() { return request.auth.token.get('orgId', 'demo'); }
+    function myOrg() {
+      let claim = request.auth.token.get('orgId', '');
+      return claim != '' && claim != 'demo' ? claim : 'u-' + request.auth.uid;
+    }
     function inOrg(orgId) { return signedIn() && orgId == myOrg(); }
 
     function isStr(v, min, max) { return v is string && v.size() >= min && v.size() <= max; }
