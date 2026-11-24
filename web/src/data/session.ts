@@ -1,5 +1,6 @@
 import { getIdTokenResult, onAuthStateChanged, signInAnonymously, type User } from 'firebase/auth';
 import { firebase } from './firebase';
+import { group } from './group';
 import { Store } from './store';
 
 export type SessionState =
@@ -33,6 +34,12 @@ class Session extends Store<SessionState> {
   }
 
   start() {
+    // Joining or leaving a group switches which farm new checks go to.
+    group.subscribe(() => {
+      const r = this.ready;
+      if (!r) return;
+      this.set({ ...r, orgId: group.value?.orgId ?? orgFor(r.uid, safeGet(ORG_KEY)) });
+    });
     onAuthStateChanged(firebase().auth, (user) => {
       if (this.value.kind === 'activating') return;
       const cached = safeGet(ORG_KEY);
@@ -40,7 +47,7 @@ class Session extends Store<SessionState> {
       // Works offline: a cached "demo" (from before private farms) becomes the private farm.
       const orgId = orgFor(user.uid, cached);
       if (orgId !== cached) safeSet(ORG_KEY, orgId);
-      this.set({ kind: 'ready', uid: user.uid, orgId });
+      this.set({ kind: 'ready', uid: user.uid, orgId: group.value?.orgId ?? orgId });
     });
   }
 
@@ -57,7 +64,7 @@ class Session extends Store<SessionState> {
       const claims = (await getIdTokenResult(user, true)).claims;
       const orgId = orgFor(user.uid, claims.orgId);
       safeSet(ORG_KEY, orgId);
-      this.set({ kind: 'ready', uid: user.uid, orgId });
+      this.set({ kind: 'ready', uid: user.uid, orgId: group.value?.orgId ?? orgId });
     } catch (e) {
       console.warn('Activation failed', e);
       this.set({ kind: 'error', message: "Couldn't set up. Connect to the internet once and try again." });

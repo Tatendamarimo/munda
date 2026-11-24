@@ -4,6 +4,8 @@ import { mundaAi } from '../ai/mundaAi';
 import type { ObservationInput } from '../ai/prompts';
 import { connectivity } from '../data/connectivity';
 import { repository } from '../data/repository';
+import { prefs } from '../data/prefs';
+import { placeCell } from '../data/weather';
 import { session } from '../data/session';
 import { settings } from '../data/settings';
 import { useStore } from '../data/store';
@@ -148,6 +150,8 @@ export function ObservePage() {
       description, core: form.core, followUps: followUps(), hadPhoto: form.photo !== null,
       record: done?.record ?? null, origin: done?.origin ?? 'PENDING', createdAtMillis: Date.now(),
       reviewStatus: 'NOT_STARTED', review: null, recordError: null,
+      // Only the typed area and a ~5 km square, for the group officer's map; never an exact position.
+      area: prefs.value.place.trim() || null, cell: placeCell.value,
     };
     repository.create(o);
     try { localStorage.setItem(LAST_PLOT, o.plot); } catch { /* best effort */ }

@@ -6,6 +6,7 @@ import { freshWeather, weather } from '../data/weather';
 import { farmSummary, latestAlert, plotsFrom, timeline } from '../domain/farm';
 import { labelPattern, labelStage, useLang, useT, weekday } from '../i18n';
 import { Hero } from './Header';
+import { GroupAlertCard } from './GroupAlertCard';
 import { href, navigate } from './router';
 import { StatusPill } from './StatusPill';
 import { TimelineBars } from './TimelineBars';
@@ -62,6 +63,7 @@ export function HomePage() {
       </button>
 
       <div className="page" style={{ marginTop: 16 }}>
+        <GroupAlertCard />
         {alert && (
           <a className="alert-card" href={href({ name: 'record', id: alert.observation.id })}>
             <TriangleAlert size={22} strokeWidth={2.25} aria-hidden="true" />

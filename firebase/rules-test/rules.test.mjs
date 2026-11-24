@@ -103,3 +103,49 @@ test('author can add record and review, but cannot rewrite the observation or de
   await assertFails(updateDoc(ref(alice, 'o1'), { reviewStatus: 'DONE' })); // missing server timestamp
   await assertFails(deleteDoc(ref(alice, 'o1')));
 });
+
+// ---- Groups (a cooperative with an extension officer) ----
+const G = 'g-7KQ2MX';
+const gdoc = (ctx, path) => doc(ctx.firestore(), path);
+const user = (uid) => env.authenticatedContext(uid);
+async function makeGroup(officer = 'olivia') {
+  const o = user(officer);
+  await assertSucceeds(setDoc(gdoc(o, `orgs/${G}`), { name: 'Wedza coop', createdBy: officer, createdAt: serverTimestamp() }));
+  await assertSucceeds(setDoc(gdoc(o, `orgs/${G}/members/${officer}`), { role: 'officer', name: 'Olivia', joinedAt: serverTimestamp() }));
+}
+
+test('an officer creates a group; only the creator can be its officer', async () => {
+  await makeGroup();
+  await assertFails(setDoc(gdoc(user('fred'), `orgs/${G}/members/fred`), { role: 'officer', name: 'Fred', joinedAt: serverTimestamp() }));
+  await assertFails(setDoc(gdoc(user('x'), 'orgs/not-a-group'), { name: 'n', createdBy: 'x', createdAt: serverTimestamp() }));
+});
+
+test('a farmer joins with the code and reports into the group; the officer reads it', async () => {
+  await makeGroup();
+  const fred = user('fred');
+  await assertSucceeds(setDoc(gdoc(fred, `orgs/${G}/members/fred`), { role: 'farmer', name: 'Fred', joinedAt: serverTimestamp() }));
+  await assertSucceeds(setDoc(gdoc(fred, `orgs/${G}/observations/o1`), valid('o1', 'fred', { orgId: G, area: 'Wedza', cell: '-18.60,31.55' })));
+  await assertSucceeds(getDoc(gdoc(user('olivia'), `orgs/${G}/observations/o1`)));
+  // Not a member: cannot read or write the group.
+  await assertFails(getDoc(gdoc(user('eve'), `orgs/${G}/observations/o1`)));
+  await assertFails(setDoc(gdoc(user('eve'), `orgs/${G}/observations/o2`), valid('o2', 'eve', { orgId: G })));
+  // Cannot join a group that doesn't exist.
+  await assertFails(setDoc(gdoc(user('eve'), 'orgs/g-AAAAAA/members/eve'), { role: 'farmer', name: 'Eve', joinedAt: serverTimestamp() }));
+});
+
+test('only the officer confirms alerts; members read them', async () => {
+  await makeGroup();
+  const fred = user('fred');
+  await setDoc(gdoc(fred, `orgs/${G}/members/fred`), { role: 'farmer', name: 'Fred', joinedAt: serverTimestamp() });
+  const alert = (by) => ({ problem: 'fall_armyworm', area: 'Wedza', count: 4, message: 'Fall armyworm confirmed on 4 farms. Check your maize.', confirmedBy: by, createdAt: serverTimestamp() });
+  await assertSucceeds(setDoc(gdoc(user('olivia'), `orgs/${G}/alerts/a1`), alert('olivia')));
+  await assertFails(setDoc(gdoc(fred, `orgs/${G}/alerts/a2`), alert('fred')));
+  await assertSucceeds(getDoc(gdoc(fred, `orgs/${G}/alerts/a1`)));
+  await assertFails(getDoc(gdoc(user('eve'), `orgs/${G}/alerts/a1`)));
+});
+
+test('a check may carry a coarse area, nothing finer', async () => {
+  const alice = member('alice');
+  await assertSucceeds(setDoc(ref(alice, 'o9'), valid('o9', 'alice', { area: 'Wedza', cell: '-18.60,31.55' })));
+  await assertFails(setDoc(ref(alice, 'o10'), valid('o10', 'alice', { lat: -18.6123, lng: 31.5711 })));
+});

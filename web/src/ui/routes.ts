@@ -6,6 +6,8 @@ export type Route =
   | { name: 'guide' }
   | { name: 'guideEntry'; id: string }
   | { name: 'me' }
+  /** The extension officer's live view of their group. */
+  | { name: 'area' }
   | { name: 'observe' }
   | { name: 'record'; id: string };
 
@@ -21,6 +23,7 @@ export function parseRoute(hash: string): Route {
     case 'plots': return b === undefined ? { name: 'plots' } : id ? { name: 'plot', key: id } : { name: 'home' };
     case 'guide': return b === undefined ? { name: 'guide' } : id ? { name: 'guideEntry', id } : { name: 'home' };
     case 'me': return b === undefined ? { name: 'me' } : { name: 'home' };
+    case 'area': return b === undefined ? { name: 'area' } : { name: 'home' };
     case 'observe': return b === undefined ? { name: 'observe' } : { name: 'home' };
     case 'o': return id ? { name: 'record', id } : { name: 'home' };
     default: return { name: 'home' };
@@ -35,6 +38,7 @@ export function href(r: Route): string {
     case 'guide': return '#/guide';
     case 'guideEntry': return `#/guide/${encodeURIComponent(r.id)}`;
     case 'me': return '#/me';
+    case 'area': return '#/area';
     case 'observe': return '#/observe';
     case 'record': return `#/o/${encodeURIComponent(r.id)}`;
   }
@@ -46,7 +50,7 @@ export function tabOf(r: Route): Tab | null {
     case 'home': return 'home';
     case 'plots': case 'plot': case 'record': return 'plots';
     case 'guide': case 'guideEntry': return 'guide';
-    case 'me': return 'me';
+    case 'me': case 'area': return 'me';
     case 'observe': return null;
   }
 }

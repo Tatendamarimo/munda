@@ -6,6 +6,7 @@ import { connectivity } from '../data/connectivity';
 import { freshWeather, placeNotFound, setWeatherEnabled, weather, weatherEnabled } from '../data/weather';
 import { LANG_CODES, LANGS, setLanguage, useLang, useT } from '../i18n';
 import { PageHead } from './Header';
+import { GroupCard } from './GroupCard';
 import { StatusDetails } from './StatusPill';
 
 /** A text field that saves when the farmer leaves it, so typing never fights re-renders. */
@@ -58,6 +59,8 @@ export function MePage() {
           {weatherOn && notFound && <p className="hint error">{t('me.placeNotFound', { place: notFound })}</p>}
           {weatherOn && !w && !notFound && online && <p className="hint">{t('me.weatherNone')}</p>}
         </section>
+
+        <GroupCard />
 
         <section className="card stack">
           <h2 className="section-title">{t('me.extension')}</h2>

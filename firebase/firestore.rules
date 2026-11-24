@@ -4,6 +4,8 @@ rules_version = '2';
 // An org is a farm, cooperative or extension group. Tenancy comes from an `orgId` custom claim
 // set by an admin backend; a user without one has a private farm of their own, `u-<uid>`
 // (matches orgFor() in web/src/data/session.ts and Session.kt).
+// A group (`g-XXXXXX`, the id is its join code) is created by an extension officer; farmers join
+// with the code and report into it; the officer sees the group's checks and confirms alerts.
 service cloud.firestore {
   match /databases/{database}/documents {
 
@@ -12,7 +14,10 @@ service cloud.firestore {
       let claim = request.auth.token.get('orgId', '');
       return claim != '' && claim != 'demo' ? claim : 'u-' + request.auth.uid;
     }
-    function inOrg(orgId) { return signedIn() && orgId == myOrg(); }
+    function memberDoc(orgId) { return /databases/$(database)/documents/orgs/$(orgId)/members/$(request.auth.uid); }
+    function isMember(orgId) { return signedIn() && exists(memberDoc(orgId)); }
+    function isOfficer(orgId) { return isMember(orgId) && get(memberDoc(orgId)).data.role == 'officer'; }
+    function inOrg(orgId) { return signedIn() && (orgId == myOrg() || isMember(orgId)); }
 
     function isStr(v, min, max) { return v is string && v.size() >= min && v.size() <= max; }
     function optStr(v, max) { return v == null || (v is string && v.size() <= max); }
@@ -52,7 +57,10 @@ service cloud.firestore {
         && request.resource.data.keys().hasOnly([
              'schemaVersion', 'id', 'orgId', 'ownerUid', 'plot', 'plotKey', 'crop', 'cropStage', 'description',
              'core', 'followUps', 'hadPhoto', 'record', 'origin', 'createdAtMillis', 'reviewStatus', 'review',
-             'recordError', 'syncedAt'])
+             'recordError', 'syncedAt', 'area', 'cell'])
+        // Only a typed place name and a coarse map square (a few km), never an exact position.
+        && optStr(request.resource.data.get('area', null), 64)
+        && optStr(request.resource.data.get('cell', null), 24)
         && request.resource.data.schemaVersion == 1
         && request.resource.data.id == obsId
         && request.resource.data.orgId == orgId
@@ -90,6 +98,45 @@ service cloud.firestore {
 
       // Field history is the product; no client-side deletes (handle via admin tooling).
       allow delete: if false;
+    }
+
+    match /orgs/{orgId} {
+      allow get: if isMember(orgId);
+      allow create: if signedIn() && orgId.matches('g-[A-Z2-9]{6}')
+        && request.resource.data.keys().hasOnly(['name', 'createdBy', 'createdAt'])
+        && isStr(request.resource.data.name, 1, 60)
+        && request.resource.data.createdBy == request.auth.uid
+        && request.resource.data.createdAt == request.time;
+      allow update, delete: if false;
+    }
+
+    match /orgs/{orgId}/members/{uid} {
+      allow read: if isMember(orgId);
+      // The group's creator joins as its officer; anyone with the code joins as a farmer.
+      allow create: if signedIn() && uid == request.auth.uid && orgId.matches('g-[A-Z2-9]{6}')
+        && request.resource.data.keys().hasOnly(['role', 'name', 'joinedAt'])
+        && optStr(request.resource.data.name, 40)
+        && request.resource.data.joinedAt == request.time
+        && ((request.resource.data.role == 'officer'
+              && getAfter(/databases/$(database)/documents/orgs/$(orgId)).data.createdBy == request.auth.uid)
+          || (request.resource.data.role == 'farmer'
+              && exists(/databases/$(database)/documents/orgs/$(orgId))));
+      allow delete: if signedIn() && uid == request.auth.uid;
+      allow update: if false;
+    }
+
+    match /orgs/{orgId}/alerts/{alertId} {
+      allow read: if isMember(orgId);
+      // Only the group's officer confirms an alert; it carries an area and a count, never a farm.
+      allow create: if isOfficer(orgId)
+        && request.resource.data.keys().hasOnly(['problem', 'area', 'count', 'message', 'confirmedBy', 'createdAt'])
+        && isStr(request.resource.data.problem, 1, 80)
+        && optStr(request.resource.data.area, 64)
+        && request.resource.data.count is int
+        && isStr(request.resource.data.message, 1, 280)
+        && request.resource.data.confirmedBy == request.auth.uid
+        && request.resource.data.createdAt == request.time;
+      allow update, delete: if false;
     }
 
     match /{document=**} {

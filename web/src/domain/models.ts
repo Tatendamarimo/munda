@@ -180,6 +180,10 @@ export interface Observation {
   reviewStatus: ReviewStatus;
   review: HistoryReview | null;
   recordError: string | null;
+  /** The farmer's typed area (e.g. "Wedza"), for the group officer's view. */
+  area?: string | null;
+  /** A coarse map square, about 5 km ("-18.60,31.55"); never an exact position. */
+  cell?: string | null;
 }
 
 export const Limits = {

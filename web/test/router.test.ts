@@ -10,6 +10,7 @@ describe('routes', () => {
     expect(parseRoute('#/guide')).toEqual({ name: 'guide' });
     expect(parseRoute('#/guide/fall_armyworm')).toEqual({ name: 'guideEntry', id: 'fall_armyworm' });
     expect(parseRoute('#/me')).toEqual({ name: 'me' });
+    expect(parseRoute('#/area')).toEqual({ name: 'area' });
     expect(parseRoute('#/observe')).toEqual({ name: 'observe' });
     expect(parseRoute('#/o/abc123')).toEqual({ name: 'record', id: 'abc123' });
   });
@@ -24,7 +25,7 @@ describe('routes', () => {
   });
 
   it('round-trips', () => {
-    for (const h of ['#/', '#/plots', '#/plots/RIVER-PLOT', '#/guide', '#/guide/striga', '#/me', '#/observe', '#/o/abc']) {
+    for (const h of ['#/', '#/plots', '#/plots/RIVER-PLOT', '#/guide', '#/guide/striga', '#/me', '#/area', '#/observe', '#/o/abc']) {
       expect(href(parseRoute(h))).toBe(h);
     }
   });

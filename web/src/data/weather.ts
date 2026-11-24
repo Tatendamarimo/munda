@@ -1,5 +1,6 @@
 import { connectivity } from './connectivity';
 import { prefs } from './prefs';
+import { coarseCell } from '../domain/groups';
 import { Store } from './store';
 
 /**
@@ -95,6 +96,10 @@ export function parseGeocode(json: unknown): Coords | null {
   return { latitude: num(best.latitude)!, longitude: num(best.longitude)!, label };
 }
 
+const CELL = 'munda.placeCell';
+/** The farmer's area as a coarse map square (about 5 km), stored with each check for the group map. */
+export const placeCell = new Store<string | null>(typeof window === 'undefined' ? null : (() => { try { return localStorage.getItem(CELL); } catch { return null; } })());
+
 /** Set when the typed area couldn't be found, so Me can say so instead of showing nothing. */
 export const placeNotFound = new Store<string | null>(null);
 
@@ -122,6 +127,9 @@ export async function refreshWeather(force = false): Promise<void> {
     if (!located && place && !found) { weather.set(null); try { localStorage.removeItem(CACHE); } catch { /* best effort */ } }
     const coords = located ?? found;
     if (!coords) return;
+    const cell = coarseCell(coords.latitude, coords.longitude);
+    placeCell.set(cell);
+    try { localStorage.setItem(CELL, cell); } catch { /* best effort */ }
     const url = `https://api.open-meteo.com/v1/forecast?latitude=${coords.latitude.toFixed(2)}&longitude=${coords.longitude.toFixed(2)}`
       + '&current=temperature_2m&daily=precipitation_sum&forecast_days=3&timezone=auto';
     const res = await fetch(url);

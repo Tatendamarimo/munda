@@ -134,6 +134,8 @@ function toCreateMap(o: Observation) {
     reviewStatus: o.reviewStatus,
     review: null,
     recordError: o.recordError,
+    area: o.area ?? null,
+    cell: o.cell ?? null,
     syncedAt: serverTimestamp(),
   };
 }
@@ -193,6 +195,8 @@ function toItem(d: DocumentSnapshot): ObservationItem[] {
       reviewStatus: RS.parse(x.reviewStatus),
       review: rev ? toReview(rev) : null,
       recordError: typeof x.recordError === 'string' ? x.recordError : null,
+      area: typeof x.area === 'string' ? x.area : null,
+      cell: typeof x.cell === 'string' ? x.cell : null,
     };
     return [{ observation, synced: !d.metadata.hasPendingWrites }];
   } catch (e) {

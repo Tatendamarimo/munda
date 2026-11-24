@@ -1,4 +1,4 @@
-import { useSyncExternalStore } from 'react';
+import { lazy, Suspense, useSyncExternalStore } from 'react';
 import { session } from '../data/session';
 import { useStore } from '../data/store';
 import { ConnectionBanner } from './ConnectionBanner';
@@ -7,6 +7,8 @@ import { HomePage } from './HomePage';
 import { ObservePage } from './ObservePage';
 import { GuideEntryPage, GuidePage } from './GuidePage';
 import { MePage } from './MePage';
+// Officers only, and it brings the map library: loaded on demand so farmers' app stays small.
+const AreaPage = lazy(() => import('./AreaPage').then((m) => ({ default: m.AreaPage })));
 import { PlotPage } from './PlotPage';
 import { PlotsPage } from './PlotsPage';
 import { tabOf, useRoute, type Route } from './router';
@@ -30,6 +32,7 @@ function screenFor(r: Route) {
     case 'guide': return <GuidePage />;
     case 'guideEntry': return <GuideEntryPage key={r.id} id={r.id} />;
     case 'me': return <MePage />;
+    case 'area': return <Suspense fallback={null}><AreaPage /></Suspense>;
   }
 }
 

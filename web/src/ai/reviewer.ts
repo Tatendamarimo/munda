@@ -33,9 +33,11 @@ function reviewModel(name: string): GenerativeModel {
  */
 export async function reviewObservation(target: Observation): Promise<HistoryReview> {
   const since = target.createdAtMillis - settings.historyLookbackDays * DAY;
+  // In a group farm, history is this farmer's own: other members' plots aren't their farm.
+  const own = (list: Observation[]) => list.filter((o) => o.ownerUid === target.ownerUid);
   const [plotHistory, farmHistory] = await Promise.all([
-    repository.historyForPlot(target.orgId, target.plotKey, since),
-    repository.recentOnFarm(target.orgId, since),
+    repository.historyForPlot(target.orgId, target.plotKey, since).then(own),
+    repository.recentOnFarm(target.orgId, since).then(own),
   ]);
   const rules = evaluateHistory(target, plotHistory, farmHistory, settings.thresholds);
   const history = [...new Map([...plotHistory, ...farmHistory].filter((o) => o.id !== target.id && o.crop === target.crop).map((o) => [o.id, o])).values()];
