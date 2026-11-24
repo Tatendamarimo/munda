@@ -154,6 +154,8 @@ class ObservationRepository {
         "reviewStatus" to reviewStatus.name,
         "review" to null,
         "recordError" to recordError,
+        "area" to area,
+        "cell" to cell,
         "syncedAt" to FieldValue.serverTimestamp(),
     )
 
@@ -203,6 +205,8 @@ class ObservationRepository {
                 reviewStatus = ReviewStatus.parse(getString("reviewStatus")),
                 review = (get("review") as? Map<*, *>)?.toReview(),
                 recordError = getString("recordError"),
+                area = getString("area"),
+                cell = getString("cell"),
             )
         } catch (e: Exception) {
             Log.w(TAG, "Skipping malformed observation ${this.id}", e)

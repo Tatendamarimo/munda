@@ -2,6 +2,7 @@ package app.munda
 
 import android.app.Application
 import app.munda.data.Connectivity
+import app.munda.data.GroupRepo
 import app.munda.data.PendingPhotos
 import app.munda.data.PrefsStore
 import app.munda.data.WeatherRepo
@@ -22,7 +23,7 @@ import com.google.firebase.firestore.persistentCacheSettings
 import com.google.firebase.initialize
 
 /** Manual DI: the graph is small enough that a framework would cost more than it saves. */
-class AppContainer(app: Application) {
+class AppContainer(val app: Application) {
     init {
         // The guide is shared/guides/maize.json, the same file the web app reads.
         MaizeGuide.source = { app.assets.open("guides/maize.json").bufferedReader().use { it.readText() } }
@@ -36,7 +37,8 @@ class AppContainer(app: Application) {
     val connectivity = Connectivity(app)
     val weather = WeatherRepo(app, prefs, connectivity)
     val settings = RemoteSettings()
-    val session = Session(app)
+    val groups = GroupRepo(app)
+    val session = Session(app, groups.group)
     val repository = ObservationRepository()
     val ai = MundaAi(settings, connectivity)
     val reviewer = HistoryReviewer(settings, repository) { prefs.value.lang?.let { i18n.info(it).english } }

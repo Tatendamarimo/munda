@@ -159,6 +159,9 @@ data class Observation(
     val reviewStatus: ReviewStatus,
     val review: HistoryReview?,
     val recordError: String? = null,
+    /** The farmer's typed place and a ~5 km square, for a group officer's map; never an exact position. */
+    val area: String? = null,
+    val cell: String? = null,
 )
 
 object Normalize {

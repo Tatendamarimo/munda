@@ -234,6 +234,8 @@ class ObserveViewModel(private val c: AppContainer, app: Application) : ViewMode
             description = description, core = f.core, followUps = followUps(), hadPhoto = f.photo != null,
             record = done?.record, origin = done?.origin ?: InferenceOrigin.PENDING, createdAtMillis = System.currentTimeMillis(),
             reviewStatus = ReviewStatus.NOT_STARTED, review = null,
+            // Only the typed place and a ~5 km square, for a group officer's map; never an exact position.
+            area = c.prefs.value.place.trim().ifEmpty { null }, cell = c.weather.cell.value,
         )
         c.repository.create(o)
         // Not finished yet: keep the photo on this phone only, to finish the check from it later.

@@ -3,7 +3,10 @@ package app.munda.ui
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import app.munda.AppContainer
+import app.munda.data.Group
+import app.munda.data.GroupAlert
 import app.munda.data.ObservationItem
+import app.munda.work.AlertWorker
 import app.munda.data.Prefs
 import app.munda.data.SessionState
 import app.munda.data.inference.LocalModelInfo
@@ -17,6 +20,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
@@ -42,8 +47,18 @@ class FarmViewModel(val c: AppContainer) : ViewModel() {
     private val _reviewAdded = MutableStateFlow<ReviewAdded?>(null)
     val reviewAdded: StateFlow<ReviewAdded?> = _reviewAdded.asStateFlow()
 
+    val group: StateFlow<Group?> = c.groups.group
+    private val _groupProblem = MutableStateFlow<String?>(null)
+    val groupProblem: StateFlow<String?> = _groupProblem.asStateFlow()
+
+    /** Confirmed alerts from the group's officer, newest first. */
+    val alerts: StateFlow<List<GroupAlert>> = c.groups.group
+        .flatMapLatest { g -> if (g == null) flowOf(emptyList()) else c.groups.alerts(g.orgId) }
+        .stateIn(viewModelScope, SharingStarted.Eagerly, emptyList())
+
+    // In a group the farm holds everyone's checks; a farmer's own screens show only theirs (web: useObservations).
     val items: StateFlow<List<ObservationItem>?> = c.session.state
-        .flatMapLatest { s -> if (s is SessionState.Ready) c.repository.observeRecent(s.orgId) else emptyFlow() }
+        .flatMapLatest { s -> if (s is SessionState.Ready) c.repository.observeRecent(s.orgId).map { l -> l.filter { it.observation.ownerUid == s.uid } } else emptyFlow() }
         .onEach { reconcileBackgroundWork(it); noticeReviews(it) }
         .stateIn(viewModelScope, SharingStarted.Eagerly, null)
 
@@ -59,6 +74,21 @@ class FarmViewModel(val c: AppContainer) : ViewModel() {
     }
 
     fun downloadModel() = viewModelScope.launch { c.ai.ensureLocalModel() }
+
+    /** Joining needs signal once: the rules check the group exists. */
+    fun joinGroup(code: String) = viewModelScope.launch {
+        val s = c.session.privateReady ?: return@launch
+        _groupProblem.value = null
+        if (!online.value) { _groupProblem.value = "group.needsSignal"; return@launch }
+        runCatching { c.groups.join(s.uid, code, c.prefs.value.name) }
+            .onSuccess { AlertWorker.schedule(c.app) }
+            .onFailure { _groupProblem.value = "group.notFound" }
+    }
+
+    fun leaveGroup() = viewModelScope.launch {
+        val s = c.session.privateReady ?: return@launch
+        c.groups.leave(s.uid); AlertWorker.cancel(c.app)
+    }
 
     fun setLanguage(lang: String) = c.prefs.update { it.copy(lang = lang) }
     fun setName(name: String) = c.prefs.update { it.copy(name = name.trim().take(40)) }

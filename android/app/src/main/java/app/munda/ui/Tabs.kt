@@ -99,6 +99,7 @@ fun HomeScreen(vm: FarmViewModel, onCheck: () -> Unit, onOpen: (String) -> Unit,
         }
         Page {
             Spacer(Modifier.height(0.dp).offset(y = (-36).dp))
+            vm.alerts.collectAsStateWithLifecycle().value.firstOrNull()?.let { GroupAlertCard(it) }
             if (alert != null) {
                 Row(
                     Modifier.offset(y = (-22).dp).fillMaxWidth().clip(RoundedCornerShape(18.dp)).background(c.husk).clickable { onOpen(alert.observation.id) }.padding(14.dp),
@@ -397,6 +398,7 @@ fun MeScreen(vm: FarmViewModel) {
                 SavedField(s.t("me.extName"), p.extension?.name.orEmpty(), "", { vm.setExtension(it, p.extension?.phone.orEmpty()) })
                 SavedField(s.t("me.extPhone"), p.extension?.phone.orEmpty(), "", { vm.setExtension(p.extension?.name.orEmpty(), it) })
             }
+            GroupCard(vm)
             CardBox {
                 Text(s.t("me.offlineAi"), style = MaterialTheme.typography.titleSmall)
                 StatusDetails(online, local, vm::downloadModel)

@@ -27,6 +27,9 @@ class WeatherRepo(context: Context, private val prefs: PrefsStore, private val c
     private val json = Json { ignoreUnknownKeys = true }
     private val _weather = MutableStateFlow(readCache())
     val weather: StateFlow<Weather?> = _weather.asStateFlow()
+    /** The ~5 km square of the farmer's place (web: placeCell), stamped on checks for a group's map. */
+    private val _cell = MutableStateFlow(sp.getString(KEY_CELL, null))
+    val cell: StateFlow<String?> = _cell.asStateFlow()
     private val _notFound = MutableStateFlow<String?>(null)
     val placeNotFound: StateFlow<String?> = _notFound.asStateFlow()
 
@@ -40,6 +43,7 @@ class WeatherRepo(context: Context, private val prefs: PrefsStore, private val c
             val found = WeatherRules.parsePlace(get("https://geocoding-api.open-meteo.com/v1/search?count=10&name=" + URLEncoder.encode(place, "UTF-8")))
             _notFound.value = if (found == null) place else null
             if (found == null) { clear(); return@runCatching }
+            GroupRepo.coarseCell(found.latitude, found.longitude).let { _cell.value = it; sp.edit { putString(KEY_CELL, it) } }
             val body = get("https://api.open-meteo.com/v1/forecast?latitude=%.2f&longitude=%.2f".format(java.util.Locale.ROOT, found.latitude, found.longitude) +
                 "&current=temperature_2m&daily=precipitation_sum&forecast_days=3&timezone=auto")
             WeatherRules.parseForecast(body, System.currentTimeMillis())?.copy(where = found.label)?.let { w ->
@@ -60,5 +64,5 @@ class WeatherRepo(context: Context, private val prefs: PrefsStore, private val c
         json.decodeFromString(Cached.serializer(), sp.getString(KEY, null) ?: return null).let { Weather(it.tempC, it.rainSoon, it.rainDay, it.rainAt, it.at, it.where) }
     }.getOrNull()
 
-    private companion object { const val KEY = "forecast"; const val MAX_AGE = 3 * 3_600_000L }
+    private companion object { const val KEY = "forecast"; const val KEY_CELL = "cell"; const val MAX_AGE = 3 * 3_600_000L }
 }
