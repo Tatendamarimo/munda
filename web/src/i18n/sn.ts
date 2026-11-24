@@ -158,7 +158,7 @@ export const sn: Messages = {
     place: 'Nzvimbo yako',
     placePlaceholder: 'Hwedza',
     weather: 'Mamiriro ekunze kwandiri',
-    weatherHelp: 'Inoshandisa nzvimbo yauri kana pane network kuratidza mvura iri kuuya. Hapana chinochengetwa kunze kwefotokasiti.',
+    weatherHelp: 'Inoshandisa nzvimbo yauri kana pane network kuratidza mvura iri kuuya. Hapana chinochengetwa kunze kwefotokasiti.', weatherNone: 'Mamiriro ekunze haasati awanikwa. Bvumira location yeMunda, kana kuti nyora nzvimbo yako pamusoro.', weatherFor: 'Mamiriro ekunze e{place}', placeNotFound: 'Hatina kuwana “{place}”. Edza guta riri pedyo.',
     weatherOn: 'Shandisa nzvimbo yangu',
     weatherOff: 'Dzima',
     extension: 'Mudzidzisi wezvekurima',

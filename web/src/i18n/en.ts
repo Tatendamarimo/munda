@@ -156,7 +156,7 @@ export const en = {
     place: 'Your area',
     placePlaceholder: 'Hwedza',
     weather: 'Weather for my location',
-    weatherHelp: 'Uses your location when online to show rain ahead. Nothing is stored except the forecast.',
+    weatherHelp: 'Uses your location when online to show rain ahead. Nothing is stored except the forecast.', weatherNone: 'No weather yet. Allow location for Munda, or type your area above.', weatherFor: 'Weather for {place}', placeNotFound: 'Couldn’t find “{place}”. Try the nearest town.',
     weatherOn: 'Use my location',
     weatherOff: 'Turn off',
     extension: 'Extension officer',

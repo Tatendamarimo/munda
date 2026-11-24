@@ -5,6 +5,7 @@ import { mundaAi } from './ai/mundaAi';
 import { firebase, firebaseConfigured } from './data/firebase';
 import { session } from './data/session';
 import { settings } from './data/settings';
+import { prefs } from './data/prefs';
 import { refreshWeather } from './data/weather';
 import { language } from './i18n';
 import { syncProcessor } from './sync/syncProcessor';
@@ -35,6 +36,9 @@ if (firebaseConfigured) {
   document.documentElement.lang = language.value;
   void refreshWeather();
   window.addEventListener('online', () => void refreshWeather());
+  // A newly typed area can stand in for blocked location.
+  let place = prefs.value.place;
+  prefs.subscribe(() => { if (prefs.value.place !== place) { place = prefs.value.place; void refreshWeather(true); } });
   root.render(<StrictMode><Shell /></StrictMode>);
 } else {
   root.render(<StrictMode><NotConfigured /></StrictMode>);

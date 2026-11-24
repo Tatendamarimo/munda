@@ -2,7 +2,8 @@ import { MapPin } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { prefs, updatePrefs } from '../data/prefs';
 import { useStore } from '../data/store';
-import { freshWeather, setWeatherEnabled, weather, weatherEnabled } from '../data/weather';
+import { connectivity } from '../data/connectivity';
+import { freshWeather, placeNotFound, setWeatherEnabled, weather, weatherEnabled } from '../data/weather';
 import { LANG_CODES, LANGS, setLanguage, useLang, useT } from '../i18n';
 import { PageHead } from './Header';
 import { StatusDetails } from './StatusPill';
@@ -19,6 +20,8 @@ export function MePage() {
   const lang = useLang();
   const p = useStore(prefs);
   const weatherOn = useStore(weatherEnabled);
+  const online = useStore(connectivity);
+  const notFound = useStore(placeNotFound);
   const w = freshWeather(useStore(weather), Date.now());
   return (
     <>
@@ -51,7 +54,9 @@ export function MePage() {
           <button className={`btn ${weatherOn ? 'btn-ghost' : 'btn-primary'}`} onClick={() => setWeatherEnabled(!weatherOn)}>
             <MapPin size={18} strokeWidth={2.25} aria-hidden="true" />{weatherOn ? t('me.weatherOff') : t('me.weatherOn')}
           </button>
-          {weatherOn && w && <p className="small">{t('home.temp', { temp: w.tempC })}</p>}
+          {weatherOn && w && <p className="small">{w.where ? `${t('me.weatherFor', { place: w.where })} · ` : ''}{t('home.temp', { temp: w.tempC })}</p>}
+          {weatherOn && notFound && <p className="hint error">{t('me.placeNotFound', { place: notFound })}</p>}
+          {weatherOn && !w && !notFound && online && <p className="hint">{t('me.weatherNone')}</p>}
         </section>
 
         <section className="card stack">

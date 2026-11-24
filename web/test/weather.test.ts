@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { cropWeeks } from '../src/data/prefs';
-import { freshWeather, parseOpenMeteo } from '../src/data/weather';
+import { freshWeather, parseGeocode, parseOpenMeteo } from '../src/data/weather';
 
 const now = Date.UTC(2026, 10, 24, 9); // Tuesday 24 Nov 2026
 const sample = {
@@ -45,5 +45,18 @@ describe('stale forecasts', () => {
   it('drops rain whose day has already passed', () => {
     const rainedYesterday = { ...w, rainAt: now - 20 * H, rainDay: 1 };
     expect(freshWeather(rainedYesterday, now + 2 * H)).toMatchObject({ rainSoon: false, rainDay: null, rainAt: null, tempC: 24 });
+  });
+});
+
+describe('finding a typed place when location is blocked', () => {
+  it('takes the first match', () => {
+    expect(parseGeocode({ results: [{ name: 'Marondera', country: 'Zimbabwe', latitude: -18.19, longitude: 31.55 }, { latitude: 1, longitude: 2 }] })).toEqual({ latitude: -18.19, longitude: 31.55, label: 'Marondera, Zimbabwe' });
+    expect(parseGeocode({ results: [{ name: 'X', latitude: 1, longitude: 2 }] })?.label).toBe('X');
+  });
+  it('returns null when nothing matched', () => {
+    expect(parseGeocode({})).toBeNull();
+    expect(parseGeocode({ results: [] })).toBeNull();
+    expect(parseGeocode({ results: [{ name: 'x' }] })).toBeNull();
+    expect(parseGeocode(null)).toBeNull();
   });
 });

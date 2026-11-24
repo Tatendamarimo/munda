@@ -67,7 +67,7 @@ export const fr: Messages = {
   me: {
     title: 'Moi', language: 'Langue', betaNote: 'Les langues bêta sont des brouillons jusqu’à leur relecture par un locuteur natif.',
     name: 'Votre nom', namePlaceholder: 'Mamie', place: 'Votre région', placePlaceholder: 'Hwedza', weather: 'Météo de ma position',
-    weatherHelp: 'Utilise votre position en ligne pour annoncer la pluie. Seule la prévision est gardée.', weatherOn: 'Utiliser ma position', weatherOff: 'Désactiver',
+    weatherHelp: 'Utilise votre position en ligne pour annoncer la pluie. Seule la prévision est gardée.', weatherNone: 'Pas encore de météo. Autorisez la localisation pour Munda ou saisissez votre zone ci-dessus.', weatherFor: 'Météo pour {place}', placeNotFound: '« {place} » introuvable. Essayez la ville la plus proche.', weatherOn: 'Utiliser ma position', weatherOff: 'Désactiver',
     extension: 'Conseiller agricole', extensionHelp: 'La personne à appeler pour de l’aide. Munda affiche un bouton d’appel sur les résultats.',
     extName: 'Nom', extPhone: 'Téléphone', offlineAi: 'IA hors ligne',
     about: 'Munda vous aide à bien observer et à décider quoi vérifier. Il ne pose pas de diagnostic. En cas de doute ou de problème grave, parlez à votre conseiller agricole.',

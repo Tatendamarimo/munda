@@ -67,7 +67,7 @@ export const sw: Messages = {
   me: {
     title: 'Mimi', language: 'Lugha', betaNote: 'Lugha za beta ni rasimu hadi mzungumzaji asilia azikague.',
     name: 'Jina lako', namePlaceholder: 'Bibi', place: 'Eneo lako', placePlaceholder: 'Hwedza', weather: 'Hali ya hewa ya mahali nilipo',
-    weatherHelp: 'Hutumia mahali ulipo ukiwa mtandaoni kuonyesha mvua ijayo. Utabiri pekee ndio huhifadhiwa.', weatherOn: 'Tumia mahali nilipo', weatherOff: 'Zima',
+    weatherHelp: 'Hutumia mahali ulipo ukiwa mtandaoni kuonyesha mvua ijayo. Utabiri pekee ndio huhifadhiwa.', weatherNone: 'Bado hakuna hali ya hewa. Ruhusu Munda kutumia mahali ulipo, au andika eneo lako hapo juu.', weatherFor: 'Hali ya hewa ya {place}', placeNotFound: 'Hatukupata “{place}”. Jaribu mji ulio karibu.', weatherOn: 'Tumia mahali nilipo', weatherOff: 'Zima',
     extension: 'Afisa ugani', extensionHelp: 'Unayempigia kwa msaada. Munda huonyesha kitufe cha kupiga simu kwenye matokeo.',
     extName: 'Jina', extPhone: 'Simu', offlineAi: 'AI ya nje ya mtandao',
     about: 'Munda inakusaidia kuchunguza kwa makini na kuamua cha kukagua. Haitoi uchunguzi wa uhakika. Kwa hali mbaya au zenye shaka, ongea na afisa ugani wako.',
