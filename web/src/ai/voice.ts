@@ -44,11 +44,14 @@ export function cloudSpeech(text: string): Promise<Speech> {
       },
     },
   });
-  const p = model.generateContent(speechPrompt(text), { timeout: 30_000 }).then((res) => {
+  const m = model;
+  const once = async (): Promise<Speech | null> => {
+    const res = await m.generateContent(speechPrompt(text), { timeout: 30_000 });
     const part = res.response.inlineDataParts()?.find((x) => x.inlineData.mimeType.startsWith('audio/'));
-    if (!part) throw new Error('No audio in the response');
-    return { samples: pcmFromBase64(part.inlineData.data), rate: sampleRateOf(part.inlineData.mimeType) };
-  });
+    return part ? { samples: pcmFromBase64(part.inlineData.data), rate: sampleRateOf(part.inlineData.mimeType) } : null;
+  };
+  // The preview voice model now and then answers without audio; one retry fixes it.
+  const p = once().then(async (s) => s ?? (await once()) ?? Promise.reject(new Error('No audio in the response')));
   p.catch(() => cache.delete(text));
   cache.set(text, p);
   if (cache.size > MAX_CACHED) cache.delete(cache.keys().next().value!);
