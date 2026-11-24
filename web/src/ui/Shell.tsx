@@ -1,6 +1,7 @@
 import { useSyncExternalStore } from 'react';
 import { session } from '../data/session';
 import { useStore } from '../data/store';
+import { ConnectionBanner } from './ConnectionBanner';
 import { RecordPage } from './RecordPage';
 import { HomePage } from './HomePage';
 import { ObservePage } from './ObservePage';
@@ -47,7 +48,10 @@ export function Shell() {
   return (
     <div className={`app${wide ? ' app-wide' : ''}`}>
       {(wide || !flow) && <TabBar active={tab} />}
-      <main className={flow && !wide ? 'screen screen-flow' : 'screen'}>{screenFor(route)}</main>
+      <main className={flow && !wide ? 'screen screen-flow' : 'screen'}>
+        <ConnectionBanner />
+        {screenFor(route)}
+      </main>
     </div>
   );
 }

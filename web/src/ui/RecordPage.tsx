@@ -8,6 +8,7 @@ import type { PatternKind } from '../domain/models';
 import { formatDate, labelArea, labelOnset, labelPattern, labelRain, labelSource, labelStage, useLang, useT } from '../i18n';
 import { Badge, QueuedBadge, SyncBadge, Working } from './components';
 import { PageHead } from './Header';
+import { HybridTrail } from './HybridTrail';
 import { CallOfficer, CauseList, RecordView } from './RecordView';
 import { back, href } from './router';
 
@@ -48,6 +49,8 @@ export function RecordPage({ id }: { id: string }) {
           <SyncBadge synced={item.synced} />
           <span className="muted small">{formatDate(o.createdAtMillis, lang)}</span>
         </div>
+
+        <HybridTrail observation={o} synced={item.synced} />
 
         {o.record ? (
           <RecordView record={o.record} origin={o.origin} />

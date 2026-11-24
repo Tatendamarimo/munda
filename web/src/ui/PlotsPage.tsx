@@ -1,5 +1,5 @@
 import { ChevronRight, Sprout } from 'lucide-react';
-import { plotsFrom, timeline, type TimelinePoint } from '../domain/farm';
+import { plotsFrom, timeline, type PlotSummary, type TimelinePoint } from '../domain/farm';
 import { relativeTime, useLang, useT } from '../i18n';
 import { Working } from './components';
 import { PageHead } from './Header';
@@ -19,6 +19,27 @@ export function Trend({ points }: { points: TimelinePoint[] }) {
   );
 }
 
+/**
+ * The farm at a glance: each plot a field with crop rows, coloured by how it's doing. Not to
+ * scale (Munda doesn't know plot shapes); it's for seeing which plot needs a visit.
+ */
+function FieldMap({ plots }: { plots: PlotSummary[] }) {
+  const t = useT();
+  return (
+    <section className="stack" style={{ gap: 8 }} aria-label={t('plots.map')}>
+      <p className="tag">{t('plots.map')}</p>
+      <div className="field-map">
+        {plots.map((p, i) => (
+          <a key={p.key} href={href({ name: 'plot', key: p.key })} className={`field field-${p.status}${i % 5 === 0 ? ' field-wide' : ''}`} style={{ ['--rows' as string]: `${[-24, 18, -8, 30, 4][i % 5]}deg` }}>
+            <b>{p.name}</b>
+            <small>{t(`enums.plotStatus.${p.status}`)}</small>
+          </a>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 export function PlotsPage() {
   const t = useT();
   const lang = useLang();
@@ -33,7 +54,7 @@ export function PlotsPage() {
         {items === null ? <Working>{t('common.loading')}</Working>
           : plots.length === 0 ? (
             <div className="hint-card stack"><Sprout size={26} strokeWidth={1.75} aria-hidden="true" /><p>{t('plots.empty')}</p></div>
-          ) : plots.map((p) => (
+          ) : [<FieldMap key="map" plots={plots} />, ...plots.map((p) => (
             <a key={p.key} className="plot-row" href={href({ name: 'plot', key: p.key })}>
               <span className={`dot dot-${p.status}`} aria-label={t(`enums.plotStatus.${p.status}`)} />
               <span style={{ flex: 1 }}>
@@ -43,7 +64,7 @@ export function PlotsPage() {
               <Trend points={timeline(observations, p.key)} />
               <ChevronRight size={20} className="muted" aria-hidden="true" />
             </a>
-          ))}
+          ))]}
       </div>
     </>
   );
