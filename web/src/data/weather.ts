@@ -79,22 +79,27 @@ export function setWeatherEnabled(on: boolean) {
 
 export interface Coords { latitude: number; longitude: number; label?: string }
 
-/** First match from Open-Meteo's place search, with "Name, Country" so the farmer can see what matched. */
+type Place = { latitude?: unknown; longitude?: unknown; name?: unknown; admin1?: unknown; country?: unknown; feature_code?: unknown };
+const text = (x: unknown) => (typeof x === 'string' ? x : '');
+
+/**
+ * Best match from Open-Meteo's place search: a town or village (feature code PPL…) before a
+ * mountain or river of the same name. The label names the province so a wrong match shows.
+ */
 export function parseGeocode(json: unknown): Coords | null {
   const r = (json as { results?: unknown } | null)?.results;
-  const first = Array.isArray(r) ? (r[0] as { latitude?: unknown; longitude?: unknown; name?: unknown; country?: unknown } | undefined) : undefined;
-  const latitude = num(first?.latitude);
-  const longitude = num(first?.longitude);
-  if (latitude === null || longitude === null) return null;
-  const label = [first?.name, first?.country].filter((x): x is string => typeof x === 'string' && x !== '').join(', ');
-  return { latitude, longitude, label };
+  const all = Array.isArray(r) ? (r as Place[]).filter((p) => num(p?.latitude) !== null && num(p?.longitude) !== null) : [];
+  const best = all.find((p) => text(p.feature_code).startsWith('PPL')) ?? all[0];
+  if (!best) return null;
+  const label = [text(best.name), text(best.admin1).replace(/ Province$/, ''), text(best.country)].filter(Boolean).join(', ');
+  return { latitude: num(best.latitude)!, longitude: num(best.longitude)!, label };
 }
 
 /** Set when the typed area couldn't be found, so Me can say so instead of showing nothing. */
 export const placeNotFound = new Store<string | null>(null);
 
 async function geocode(place: string): Promise<Coords | null> {
-  const res = await fetch(`https://geocoding-api.open-meteo.com/v1/search?count=1&name=${encodeURIComponent(place)}`);
+  const res = await fetch(`https://geocoding-api.open-meteo.com/v1/search?count=10&name=${encodeURIComponent(place)}`);
   return res.ok ? parseGeocode(await res.json()) : null;
 }
 
@@ -108,7 +113,7 @@ export async function refreshWeather(force = false): Promise<void> {
   const cached = weather.value;
   if (!force && cached && Date.now() - cached.at < MAX_AGE) return;
   try {
-    // Device location first; if it's blocked or unavailable, the area typed on Me (e.g. "Hwedza").
+    // Device location first; if it's blocked or unavailable, the area typed on Me (e.g. "Wedza").
     const located = 'geolocation' in navigator ? await position().then((p) => p.coords, () => null) : null;
     const place = prefs.value.place.trim();
     const found = located ? null : place ? await geocode(place) : null;

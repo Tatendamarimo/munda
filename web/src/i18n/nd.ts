@@ -66,7 +66,7 @@ export const nd: Messages = {
   },
   me: {
     title: 'Mina', language: 'Ulimi', betaNote: 'Izilimi ze-beta zisengamabhalo okuqala kuze kube yilapho umkhulumi wazo ezihlola.',
-    name: 'Ibizo lakho', namePlaceholder: 'Gogo', place: 'Indawo yakho', placePlaceholder: 'Hwedza', weather: 'Isimo sezulu lapho engikhona',
+    name: 'Ibizo lakho', namePlaceholder: 'Gogo', place: 'Indawo yakho', placePlaceholder: 'Wedza', weather: 'Isimo sezulu lapho engikhona',
     weatherHelp: 'Isebenzisa indawo okuyo ulenethiwekhi ukutshengisa izulu elizayo. Kugcinwa isibikezelo kuphela.', weatherNone: 'Isimo sezulu kasikatholakali. Vumela i-location yeMunda, kumbe ubhale indawo yakho ngaphezulu.', weatherFor: 'Isimo sezulu se-{place}', placeNotFound: 'Asiyitholanga “{place}”. Zama idolobho eliseduze.', weatherOn: 'Sebenzisa indawo yami', weatherOff: 'Cima',
     extension: 'Umeluleki wezolimo', extensionHelp: 'Omfonelayo nxa udinga uncedo. IMunda itshengisa inkinobho yokufona emiphumeleni.',
     extName: 'Ibizo', extPhone: 'Ifoni', offlineAi: 'I-AI yefoni',

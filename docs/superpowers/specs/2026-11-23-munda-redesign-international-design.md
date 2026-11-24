@@ -4,7 +4,7 @@
 
 ## Intent
 
-Munda is a hackathon entry (hybrid on-device/cloud AI) and a tool real smallholder farmers should be able to adopt anywhere, starting from the story of the owner's grandmother's maize in Hwedza. Two audiences, one app:
+Munda is a hackathon entry (hybrid on-device/cloud AI) and a tool real smallholder farmers should be able to adopt anywhere, starting from the story of the owner's grandmother's maize in Wedza. Two audiences, one app:
 
 - **Farmers:** a farmer with little reading, no signal and a sick plant can photograph it, tap a few pictures and get "check this before buying anything" in their own language.
 - **Judges:** it looks like a real, well-funded farm product and makes the hybrid AI story visible (on-device in the field, cloud patterns across the farm's history).

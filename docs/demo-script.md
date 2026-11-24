@@ -26,4 +26,4 @@ Film indoors near a window. Screen-record the MacBook (QuickTime: File → New S
 - [ ] Munda added to the iPhone home screen from the hosted URL (Safari → Share → Add to Home Screen)
 - [ ] One full dry run with Wi-Fi off (on this Intel MacBook Nano takes 60–75 s per record; film the full wait once, speed it up in the edit)
 - [ ] Do Not Disturb on both devices
-- [ ] Name and area set on Me (e.g. Gogo, Hwedza); extension officer number added so the call button shows
+- [ ] Name and area set on Me (e.g. Gogo, Wedza); extension officer number added so the call button shows

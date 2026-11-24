@@ -53,6 +53,14 @@ describe('finding a typed place when location is blocked', () => {
     expect(parseGeocode({ results: [{ name: 'Marondera', country: 'Zimbabwe', latitude: -18.19, longitude: 31.55 }, { latitude: 1, longitude: 2 }] })).toEqual({ latitude: -18.19, longitude: 31.55, label: 'Marondera, Zimbabwe' });
     expect(parseGeocode({ results: [{ name: 'X', latitude: 1, longitude: 2 }] })?.label).toBe('X');
   });
+  it('prefers a town or village over a mountain, and names the province', () => {
+    const json = { results: [
+      { name: 'Wedza', admin1: 'Midlands Province', country: 'Zimbabwe', latitude: -20.25, longitude: 29.86, feature_code: 'MT' },
+      { name: 'Wedza', admin1: 'Mashonaland East Province', country: 'Zimbabwe', latitude: -18.62, longitude: 31.57, feature_code: 'PPL' },
+    ] };
+    expect(parseGeocode(json)).toEqual({ latitude: -18.62, longitude: 31.57, label: 'Wedza, Mashonaland East, Zimbabwe' });
+  });
+
   it('returns null when nothing matched', () => {
     expect(parseGeocode({})).toBeNull();
     expect(parseGeocode({ results: [] })).toBeNull();

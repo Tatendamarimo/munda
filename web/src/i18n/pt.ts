@@ -66,7 +66,7 @@ export const pt: Messages = {
   },
   me: {
     title: 'Eu', language: 'Língua', betaNote: 'As línguas beta são rascunhos até serem revistas por um falante nativo.',
-    name: 'O seu nome', namePlaceholder: 'Avó', place: 'A sua zona', placePlaceholder: 'Hwedza', weather: 'Tempo na minha localização',
+    name: 'O seu nome', namePlaceholder: 'Avó', place: 'A sua zona', placePlaceholder: 'Wedza', weather: 'Tempo na minha localização',
     weatherHelp: 'Usa a sua localização com rede para mostrar chuva. Só a previsão é guardada.', weatherNone: 'Ainda sem meteorologia. Permita a localização ao Munda ou escreva a sua zona acima.', weatherFor: 'Meteorologia para {place}', placeNotFound: 'Não encontrámos “{place}”. Tente a cidade mais próxima.', weatherOn: 'Usar a minha localização', weatherOff: 'Desligar',
     extension: 'Extensionista', extensionHelp: 'A quem liga para pedir ajuda. O Munda mostra um botão de chamada nos resultados.',
     extName: 'Nome', extPhone: 'Telefone', offlineAi: 'IA offline',
