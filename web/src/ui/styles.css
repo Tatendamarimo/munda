@@ -488,3 +488,6 @@ progress { width: 100%; height: 8px; accent-color: var(--leaf); }
   .page > *, .action-card, .live-step, .live-cause, .trail-step, .field, .banner, .scene-plant > g, .caret, .live-step.is-active .live-mark, .banner-sync svg { animation: none; }
 }
 .page > .badge { justify-self: start; }
+.spin { animation: spin 900ms linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .spin { animation: none; } }

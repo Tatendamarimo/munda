@@ -10,6 +10,9 @@ import { firebase } from './firebase';
 const DEFAULTS = {
   cloud_model: 'gemini-3.7-flash',
   review_model: 'gemini-3.7-flash',
+  // Read-aloud voice (Gemini text-to-speech). Voice names: the Chirp 3 HD / Gemini TTS list.
+  tts_model: 'gemini-2.5-flash-preview-tts',
+  tts_voice: 'Sulafat',
   // Chrome's on-device limit is ~9k tokens including prompt and guide excerpts.
   max_on_device_chars: 6000,
   history_lookback_days: 120,
@@ -44,6 +47,8 @@ class Settings {
 
   get cloudModel() { return this.str('cloud_model'); }
   get reviewModel() { return this.str('review_model'); }
+  get ttsModel() { return this.str('tts_model'); }
+  get ttsVoice() { return this.str('tts_voice'); }
   get maxOnDeviceChars() { return clamp(this.num('max_on_device_chars'), 500, 20_000); }
   get historyLookbackDays() { return clamp(this.num('history_lookback_days'), 7, 730); }
   get aiReviewEnabled() { return this.bool('ai_review_enabled'); }
