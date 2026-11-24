@@ -60,13 +60,14 @@ function observationBlock(i: ObservationInput): string[] {
 export function recordPrompt(i: ObservationInput, candidates: GuideEntry[], outputLang?: Lang): string {
   return [
     `You help a ${cropName(i.crop)} farmer record a field observation. You do NOT diagnose.`,
-    'List up to 3 POSSIBLE causes, most likely first, using only the guide entries below (or "other").',
+    'List up to 3 POSSIBLE causes, most likely first. Prefer the guide entries below (use their id).',
+    'If none of them fits what was observed, you may add ONE other cause from your own knowledge with guideId "other"; it must fit the observations, and checkNext must say what would confirm it.',
     'Rules:',
     '- likelihood HIGH only if at least 2 observations support it and nothing contradicts it. Otherwise MEDIUM or LOW.',
     '- supporting: only things the farmer actually said or the photo clearly shows.',
     "- againstOrMissing: a fact that contradicts it, or a fact we still don't know (e.g. \"not said whether lower leaves are worse\"). Never a check or an action; those go in checkNext.",
     '- If the farmer reports heavy rain or flooding, weigh waterlogging and nitrogen loss by leaching seriously.',
-    '- checkNext: something the farmer can check with their eyes or hands. No product names or doses.',
+    '- checkNext: something the farmer can check with their eyes or hands. No product names or doses, ever.',
     '- urgency: URGENT only for a pest or disease that can spread fast, or risk to most of the field; ROUTINE if minor.',
     '- Use short, plain words.',
     '',

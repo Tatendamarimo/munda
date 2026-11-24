@@ -26,3 +26,12 @@ describe('output language in cloud prompts', () => {
     expect(reviewPrompt(target, [], [], [])).not.toContain('Write all text values');
   });
 });
+
+describe('guide first, Gemini allowed beyond it', () => {
+  it('prefers the guide and allows one cause from its own knowledge', () => {
+    const p = recordPrompt(input, cands);
+    expect(p).toContain('Prefer the guide entries below');
+    expect(p).toContain('ONE other cause from your own knowledge');
+    expect(p).toContain('No product names');
+  });
+});

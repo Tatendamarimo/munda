@@ -41,6 +41,7 @@ export const fr: Messages = {
     saveForLater: 'Enregistrer pour plus tard', photoUsed: 'Photo de la feuille',
   },
   result: {
+    outsideGuide: 'Absent du guide de Munda : suggestion de Gemini. Vérifiez avec votre conseiller agricole.',
     title: 'Causes possibles', subtitle: 'Pas un diagnostic. Ce qui correspond, ce qui ne correspond pas et quoi vérifier.',
     fits: 'Correspond à ce que vous avez vu', gaps: 'Ne correspond pas, ou encore inconnu', checkFirst: 'Vérifiez avant d’acheter quoi que ce soit',
     checkNext: 'À vérifier ensuite', modelNote: 'Note de Munda', otherCauses: 'Autres causes possibles', callExtension: 'Appeler le conseiller',

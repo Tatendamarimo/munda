@@ -192,6 +192,7 @@
   "result.gaps": "Ne correspond pas, ou encore inconnu",
   "result.modelNote": "Note de Munda",
   "result.otherCauses": "Autres causes possibles",
+  "result.outsideGuide": "Absent du guide de Munda : suggestion de Gemini. Vérifiez avec votre conseiller agricole.",
   "result.save": "Enregistrer la fiche",
   "result.seconds": "{s} s",
   "result.setExtension": "Ajoutez votre conseiller agricole dans Moi pour l’appeler d’ici.",

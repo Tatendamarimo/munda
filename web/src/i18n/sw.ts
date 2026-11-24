@@ -41,6 +41,7 @@ export const sw: Messages = {
     saveForLater: 'Hifadhi kwa baadaye', photoUsed: 'Picha ya jani',
   },
   result: {
+    outsideGuide: 'Haimo kwenye mwongozo wa Munda: pendekezo la Gemini mwenyewe. Thibitisha na afisa ugani.',
     title: 'Visababishi vinavyowezekana', subtitle: 'Si uchunguzi wa uhakika. Kinacholingana, kisicholingana, na cha kukagua.',
     fits: 'Inalingana na ulichoona', gaps: 'Hailingani, au bado haijulikani', checkFirst: 'Kagua kabla ya kununua chochote',
     checkNext: 'Kagua kinachofuata', modelNote: 'Maelezo ya Munda', otherCauses: 'Visababishi vingine', callExtension: 'Mpigie afisa ugani',

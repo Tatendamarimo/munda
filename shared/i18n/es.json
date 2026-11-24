@@ -192,6 +192,7 @@
   "result.gaps": "No coincide o aún no se sabe",
   "result.modelNote": "Nota de Munda",
   "result.otherCauses": "Otras causas posibles",
+  "result.outsideGuide": "No está en la guía de Munda: sugerencia propia de Gemini. Confírmelo con su extensionista.",
   "result.save": "Guardar registro",
   "result.seconds": "{s} s",
   "result.setExtension": "Agregue a su técnico agrícola en Yo para llamarlo desde aquí.",

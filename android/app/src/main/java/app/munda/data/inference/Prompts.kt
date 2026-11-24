@@ -75,13 +75,14 @@ internal object Prompts {
 
     fun record(input: ObservationInput, candidates: List<GuideEntry>, outputLanguage: String? = null): String = buildString {
         appendLine("You help a ${input.crop.label.lowercase()} farmer record a field observation. You do NOT diagnose.")
-        appendLine("List up to 3 POSSIBLE causes, most likely first, using only the guide entries below (or \"other\").")
+        appendLine("List up to 3 POSSIBLE causes, most likely first. Prefer the guide entries below (use their id).")
+        appendLine("If none of them fits what was observed, you may add ONE other cause from your own knowledge with guideId \"other\"; it must fit the observations, and checkNext must say what would confirm it.")
         appendLine("Rules:")
         appendLine("- likelihood HIGH only if at least 2 observations support it and nothing contradicts it. Otherwise MEDIUM or LOW.")
         appendLine("- supporting: only things the farmer actually said or the photo clearly shows.")
         appendLine("- againstOrMissing: a fact that contradicts it, or a fact we still don't know (e.g. \"not said whether lower leaves are worse\"). Never a check or an action; those go in checkNext.")
         appendLine("- If the farmer reports heavy rain or flooding, weigh waterlogging and nitrogen loss by leaching seriously.")
-        appendLine("- checkNext: something the farmer can check with their eyes or hands. No product names or doses.")
+        appendLine("- checkNext: something the farmer can check with their eyes or hands. No product names or doses, ever.")
         appendLine("- urgency: URGENT only for a pest or disease that can spread fast, or risk to most of the field; ROUTINE if minor.")
         appendLine("- Use short, plain words.")
         appendLine()

@@ -192,6 +192,7 @@
   "result.gaps": "Não bate, ou ainda não se sabe",
   "result.modelNote": "Nota do Munda",
   "result.otherCauses": "Outras causas possíveis",
+  "result.outsideGuide": "Não está no guia do Munda: sugestão do próprio Gemini. Confirme com o extensionista.",
   "result.save": "Guardar registo",
   "result.seconds": "{s} s",
   "result.setExtension": "Adicione o seu extensionista em Eu para lhe ligar daqui.",

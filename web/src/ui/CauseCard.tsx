@@ -39,6 +39,7 @@ export function CauseCard({ cause, lead = false, animate = false }: { cause: Pos
   const d = causeDisplay(cause, lang, guideFor('MAIZE'));
   const body = (
     <>
+      {!cause.guideId && <p className="outside-guide">{t('result.outsideGuide')}</p>}
       <Evidence cause={cause} />
       <CheckFirst text={d.check} />
       {d.modelCheck && <p className="model-note"><b>{t('result.modelNote')}:</b> {d.modelCheck}</p>}

@@ -1,4 +1,9 @@
 {
+ "acid_soil": {
+  "kind": "drawing",
+  "file": "acid_soil.jpg",
+  "confirmed": false
+ },
  "drought": {
   "kind": "photo",
   "file": "drought.jpg",
@@ -24,6 +29,11 @@
   "license": "CC BY-SA 4.0",
   "source": "https://commons.wikimedia.org/wiki/File:Northern_corn_leaf_blight.JPG",
   "title": "Northern corn leaf blight.JPG",
+  "confirmed": false
+ },
+ "magnesium": {
+  "kind": "drawing",
+  "file": "magnesium.jpg",
   "confirmed": false
  },
  "mln": {
@@ -75,6 +85,11 @@
  "sulfur": {
   "kind": "drawing",
   "file": "sulfur.jpg",
+  "confirmed": false
+ },
+ "termites": {
+  "kind": "drawing",
+  "file": "termites.jpg",
   "confirmed": false
  },
  "zinc": {

@@ -41,6 +41,7 @@ export const pt: Messages = {
     saveForLater: 'Guardar para depois', photoUsed: 'Foto da folha',
   },
   result: {
+    outsideGuide: 'Não está no guia do Munda: sugestão do próprio Gemini. Confirme com o extensionista.',
     title: 'Causas possíveis', subtitle: 'Não é um diagnóstico. O que bate certo, o que não bate e o que verificar.',
     fits: 'Bate com o que viu', gaps: 'Não bate, ou ainda não se sabe', checkFirst: 'Verifique antes de comprar qualquer coisa',
     checkNext: 'Verificar a seguir', modelNote: 'Nota do Munda', otherCauses: 'Outras causas possíveis', callExtension: 'Ligar ao extensionista',

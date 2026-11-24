@@ -93,6 +93,7 @@ export const en = {
     photoUsed: 'Leaf photo',
   },
   result: {
+    outsideGuide: 'Not in Munda’s guide: Gemini’s own suggestion. Check with your extension officer.',
     title: 'Possible causes',
     subtitle: 'Not a diagnosis. What fits, what doesn’t, and what to check.',
     fits: 'Fits what you saw',

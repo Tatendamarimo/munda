@@ -192,6 +192,7 @@
   "result.gaps": "Doesn’t fit, or still unknown",
   "result.modelNote": "Munda’s own note",
   "result.otherCauses": "Other possible causes",
+  "result.outsideGuide": "Not in Munda’s guide: Gemini’s own suggestion. Check with your extension officer.",
   "result.save": "Save record",
   "result.seconds": "{s} s",
   "result.setExtension": "Add your extension officer on the Me page to call them from here.",

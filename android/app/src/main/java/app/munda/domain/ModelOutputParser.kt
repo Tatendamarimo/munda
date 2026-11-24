@@ -96,17 +96,29 @@ object ModelOutputParser {
         val nextChecks: List<String>,
     )
 
+    /** A dose or rate: advice never carries one, whatever the model says (web: parser.ts DOSE). */
+    private val DOSE = Regex("""\b\d+([.,]\d+)?\s?(ml|mls|millilit(re|er)s?|l|lit(re|er)s?|g|grams?|kg|kgs|cc|tonnes?)\b|\bper\s+(hectare|ha|acre|lit(re|er)|knapsack)\b""", RegexOption.IGNORE_CASE)
+    private fun String.noDose() = !DOSE.containsMatchIn(this)
+    const val OUTSIDE_GUIDE_CHECK = "Check with your extension officer before buying anything."
+    /** Gemini's own suggestion outside the guide: unverified, so never "Likely", and one per answer. */
+    private const val MAX_OUTSIDE_GUIDE = 1
+
     private fun causes(raw: List<CauseDto>?, guide: SymptomGuide, allowedGuideIds: Set<String>, max: Int): List<PossibleCause> {
+        var outside = 0
         val parsed = raw.orEmpty().mapNotNull { c ->
-            val guideId = c.guideId?.trim()?.takeIf { it in allowedGuideIds }
-            val name = c.name?.clean(MAX_ITEM)?.takeIf { it.isNotBlank() } ?: guide.get(guideId)?.name ?: return@mapNotNull null
-            val supporting = c.supporting.cleanList(MAX_ITEM, 4)
-            val check = c.checkNext?.clean(MAX_CHECK)?.takeIf { it.isNotBlank() }
-                ?: guide.get(guideId)?.checkInField
-                ?: return@mapNotNull null
+            // Any real guide entry counts, even one the shortlist missed: its text is checked.
+            val id = c.guideId?.trim()
+            val guideId = id?.takeIf { it in allowedGuideIds || guide.get(it) != null }
+            val entry = guide.get(guideId)
+            if (entry == null && outside >= MAX_OUTSIDE_GUIDE) return@mapNotNull null
+            val name = c.name?.clean(MAX_ITEM)?.takeIf { it.isNotBlank() } ?: entry?.name ?: return@mapNotNull null
+            val supporting = c.supporting.cleanList(MAX_ITEM, 4).filter { it.noDose() }
+            val proposed = c.checkNext?.clean(MAX_CHECK)?.takeIf { it.isNotBlank() }
+            val check = proposed?.takeIf { it.noDose() } ?: entry?.checkInField ?: proposed?.let { OUTSIDE_GUIDE_CHECK } ?: return@mapNotNull null
             var likelihood = Likelihood.parse(c.likelihood)
-            if (likelihood == Likelihood.HIGH && supporting.size < MIN_SUPPORT_FOR_HIGH) likelihood = Likelihood.MEDIUM
-            PossibleCause(guideId, name, likelihood, supporting, c.againstOrMissing.cleanList(MAX_ITEM, 4), check)
+            if (likelihood == Likelihood.HIGH && (supporting.size < MIN_SUPPORT_FOR_HIGH || entry == null)) likelihood = Likelihood.MEDIUM
+            if (entry == null) outside++
+            PossibleCause(guideId, name, likelihood, supporting, c.againstOrMissing.cleanList(MAX_ITEM, 4).filter { it.noDose() }, check)
         }.distinctBy { it.guideId ?: it.name.lowercase() }
 
         // Only one cause may be "Likely": keep the best-supported one, downgrade the rest.

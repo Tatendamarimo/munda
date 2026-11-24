@@ -41,6 +41,7 @@ export const nd: Messages = {
     saveForLater: 'Gcina okwesikhathi esizayo', photoUsed: 'Isithombe sehlamvu',
   },
   result: {
+    outsideGuide: 'Akukho esiqondisweni sikaMunda: umbono kaGemini kuphela. Buza isikhulu sezolimo.',
     title: 'Okungaba yimbangela', subtitle: 'Akusikho ukuhlola kwesiqiniseko. Okuvumelanayo, okungavumelaniyo, lokumele kuhlolwe.',
     fits: 'Kuvumelana lokubonileyo', gaps: 'Akuvumelani, kumbe kakukaziwa', checkFirst: 'Hlola ungakathengi lutho',
     checkNext: 'Hlola okulandelayo', modelNote: 'Okubhalwe yiMunda', otherCauses: 'Ezinye izimbangela', callExtension: 'Fonela umeluleki',

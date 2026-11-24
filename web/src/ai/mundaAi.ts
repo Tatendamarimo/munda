@@ -127,7 +127,8 @@ class MundaAi {
    */
   async buildRecord(input: ObservationInput, route: Route, onText?: (text: string) => void): Promise<AiOutcome<FieldRecord>> {
     const guide = guideFor(input.crop);
-    const candidates = this.recordCandidates(input);
+    // The cloud model gets the whole guide (it has room); Nano gets the 5 best matches.
+    const candidates = route === 'CLOUD' ? guide.entries : this.recordCandidates(input);
     const allowed = new Set(candidates.map((e) => e.id));
     return this.run('record', recordPrompt(input, candidates, cloudLang(route)), input.photoBase64, route, (t) => parseRecord(t, guide, allowed), onText);
   }

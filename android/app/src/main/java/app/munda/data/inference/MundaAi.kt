@@ -160,7 +160,8 @@ class MundaAi(
     /** [onText] receives the answer so far while it's written (streamed), for the live screen. */
     suspend fun buildRecord(input: ObservationInput, route: Route, language: String? = null, onText: ((String) -> Unit)? = null): AiOutcome<FieldRecord> {
         val guide = Guides.forCrop(input.crop)
-        val candidates = recordCandidates(input)
+        // The cloud model gets the whole guide (it has room); Nano gets the 5 best matches.
+        val candidates = if (route == Route.CLOUD) guide.entries else recordCandidates(input)
         val allowed = candidates.map { it.id }.toSet()
         return run(recordHybrid, recordCloud, Prompts.record(input, candidates, language.cloudOnly(route)), input.photo, route, onText) { text ->
             ModelOutputParser.parseRecord(text, guide, allowed)

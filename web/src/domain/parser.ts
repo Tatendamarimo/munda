@@ -57,23 +57,37 @@ function cleanList(v: unknown, maxLen: number, max: number): string[] {
 const asArray = (v: unknown): Record<string, unknown>[] =>
   Array.isArray(v) ? v.filter((x): x is Record<string, unknown> => typeof x === 'object' && x !== null) : [];
 
+/** A dose or rate ("50 kg per hectare", "2 ml/litre"): advice never carries one, whatever the model says. */
+const DOSE = /\b\d+([.,]\d+)?\s?(ml|mls|millilit(re|er)s?|l|lit(re|er)s?|g|grams?|kg|kgs|cc|tonnes?)\b|\bper\s+(hectare|ha|acre|lit(re|er)|knapsack)\b/i;
+const noDose = (s: string) => !DOSE.test(s);
+/** Gemini's own suggestion outside the guide: unverified, so never "Likely", and only one per answer. */
+const MAX_OUTSIDE_GUIDE = 1;
+export const OUTSIDE_GUIDE_CHECK = 'Check with your extension officer before buying anything.';
+
 function causes(raw: unknown, guide: SymptomGuide, allowed: Set<string>, max: number): PossibleCause[] {
   const parsed: PossibleCause[] = [];
   const seen = new Set<string>();
+  let outside = 0;
   for (const c of asArray(raw)) {
-    const gid = typeof c.guideId === 'string' && allowed.has(c.guideId.trim()) ? c.guideId.trim() : null;
+    // Any real guide entry counts, even one the shortlist (allowed) missed: its text is checked.
+    const id = typeof c.guideId === 'string' ? c.guideId.trim() : '';
+    const gid = allowed.has(id) || guide.get(id) ? id : null;
     const entry = guide.get(gid);
+    if (!entry && outside >= MAX_OUTSIDE_GUIDE) continue;
     const name = clean(c.name, MAX.item) || entry?.name;
     if (!name) continue;
-    const check = clean(c.checkNext, MAX.check) || entry?.checkInField;
+    const proposed = clean(c.checkNext, MAX.check);
+    const check = (proposed && noDose(proposed) ? proposed : '') || entry?.checkInField || (proposed ? OUTSIDE_GUIDE_CHECK : '');
     if (!check) continue;
-    const supporting = cleanList(c.supporting, MAX.item, 4);
+    const supporting = cleanList(c.supporting, MAX.item, 4).filter(noDose);
     let likelihood = Likelihood.parseLoose(c.likelihood);
     if (likelihood === 'HIGH' && supporting.length < MIN_SUPPORT_FOR_HIGH) likelihood = 'MEDIUM';
+    if (likelihood === 'HIGH' && !entry) likelihood = 'MEDIUM';
     const key = gid ?? name.toLowerCase();
     if (seen.has(key)) continue;
     seen.add(key);
-    parsed.push({ guideId: gid, name, likelihood, supporting, againstOrMissing: cleanList(c.againstOrMissing, MAX.item, 4), checkNext: check });
+    if (!entry) outside++;
+    parsed.push({ guideId: gid, name, likelihood, supporting, againstOrMissing: cleanList(c.againstOrMissing, MAX.item, 4).filter(noDose), checkNext: check });
   }
   // Only one cause may be "Likely": keep the best supported, downgrade the rest.
   parsed.sort((a, b) => Likelihood.rank(b.likelihood) - Likelihood.rank(a.likelihood) || b.supporting.length - a.supporting.length);

@@ -368,6 +368,8 @@ fun CauseCard(cause: PossibleCause, display: CauseDisplay, lead: Boolean, animat
             if (!lead) Icon(Icons.Outlined.ExpandMore, null, Modifier.rotate(if (open) 180f else 0f), tint = c.ink2)
         }
         if (open) {
+            if (cause.guideId == null) Text(s.t("result.outsideGuide"), Modifier.fillMaxWidth().clip(RoundedCornerShape(10.dp)).background(c.skyWash).padding(horizontal = 12.dp, vertical = 8.dp),
+                style = MaterialTheme.typography.labelMedium, color = c.sky)
             if (lead && Guides.forCrop(Crop.MAIZE).get(cause.guideId)?.report == true) ReportNow()
             if (lead) GuidePicture(cause.guideId, display.name, compact = true)
             Evidence(cause.supporting, cause.againstOrMissing)

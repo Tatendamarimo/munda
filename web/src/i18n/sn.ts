@@ -95,6 +95,7 @@ export const sn: Messages = {
     photoUsed: 'Mufananidzo weshizha',
   },
   result: {
+    outsideGuide: 'Hazvisi mugwaro raMunda: pfungwa yaGemini chete. Bvunza mupi wezano wezvekurima.',
     title: 'Zvingangove zvakonzera',
     subtitle: 'Hakusi kuongorora kwechokwadi. Zvinoenderana, zvisingaenderani, uye zvekutarisa.',
     fits: 'Zvinoenderana nezvawaona',
