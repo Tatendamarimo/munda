@@ -99,10 +99,13 @@ export function ObservePage() {
 
   const buildRecord = () => {
     if (route.route === 'QUEUE_UNTIL_ONLINE') { setRecord({ kind: 'problem', message: route.reason }); return; }
-    setRecord({ kind: 'building' });
+    const inp = input(true);
+    const started = { kind: 'building', text: '', startedAt: performance.now(), route: route.route, candidates: mundaAi.recordCandidates(inp) } as const;
+    setRecord(started);
     // Only the latest build may land: after Back and a changed answer, an earlier one is stale.
     const seq = ++recordSeq.current;
-    void mundaAi.buildRecord(input(true), route.route).then((out) => {
+    const onText = (text: string) => { if (seq === recordSeq.current) setRecord((r) => (r.kind === 'building' ? { ...r, text } : r)); };
+    void mundaAi.buildRecord(inp, route.route, onText).then((out) => {
       if (seq !== recordSeq.current) return;
       setRecord(out.kind === 'done' ? { kind: 'done', record: out.value, origin: out.origin, latencyMs: out.latencyMs } : { kind: 'problem', message: out.reason });
     });

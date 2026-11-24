@@ -116,14 +116,23 @@ class MundaAi {
     return this.run('questions', questionsPrompt(input, candidates, cloudLang(route)), input.photoBase64, route, parseQuestions);
   }
 
-  async buildRecord(input: ObservationInput, route: Route): Promise<AiOutcome<FieldRecord>> {
-    const guide = guideFor(input.crop);
-    const candidates = guide.relevant(retrievalText(input), input.core, input.stage, 5);
-    const allowed = new Set(candidates.map((e) => e.id));
-    return this.run('record', recordPrompt(input, candidates, cloudLang(route)), input.photoBase64, route, (t) => parseRecord(t, guide, allowed));
+  /** The guide entries a record is built from, so the screen can show what's being weighed. */
+  recordCandidates(input: ObservationInput) {
+    return guideFor(input.crop).relevant(retrievalText(input), input.core, input.stage, 5);
   }
 
-  private async run<T>(kind: 'questions' | 'record', prompt: string, photo: string | null, route: Route, parse: (t: string) => Result<T>): Promise<AiOutcome<T>> {
+  /**
+   * `onText` receives the answer so far while it's written (streamed), for a live preview. It
+   * restarts from '' if a retry or the cloud fallback begins a new attempt.
+   */
+  async buildRecord(input: ObservationInput, route: Route, onText?: (text: string) => void): Promise<AiOutcome<FieldRecord>> {
+    const guide = guideFor(input.crop);
+    const candidates = this.recordCandidates(input);
+    const allowed = new Set(candidates.map((e) => e.id));
+    return this.run('record', recordPrompt(input, candidates, cloudLang(route)), input.photoBase64, route, (t) => parseRecord(t, guide, allowed), onText);
+  }
+
+  private async run<T>(kind: 'questions' | 'record', prompt: string, photo: string | null, route: Route, parse: (t: string) => Result<T>, onText?: (text: string) => void): Promise<AiOutcome<T>> {
     const started = performance.now();
     const parts: Array<string | Part> = photo ? [{ type: 'inlineData', inlineData: { mimeType: 'image/jpeg', data: photo } }, prompt] : [prompt];
 
@@ -134,10 +143,29 @@ class MundaAi {
         : { kind: 'failed', reason: `Couldn't read the model's answer: ${r.error}` };
     };
 
+    /** One attempt; streamed when someone is watching. On-device streams aren't cut off by the timeout. */
+    const call = async (m: GenerativeModel): Promise<{ text: string; source: InferenceSource | undefined }> => {
+      if (!onText) {
+        const res = await m.generateContent(parts, { timeout: TIMEOUT_MS });
+        return { text: res.response.text(), source: res.response.inferenceSource };
+      }
+      onText('');
+      const res = await m.generateContentStream(parts, { timeout: TIMEOUT_MS });
+      let acc = '';
+      for await (const chunk of res.stream) {
+        const piece = chunk.text();
+        // Chunks are additions; older Chrome builds sent the whole text so far.
+        acc = acc && piece.startsWith(acc) ? piece : acc + piece;
+        onText(acc);
+      }
+      const final = await res.response;
+      return { text: acc || final.text(), source: final.inferenceSource };
+    };
+
     const viaCloud = async (): Promise<AiOutcome<T>> => {
       try {
-        const res = await this.model(kind, 'cloud').generateContent(parts, { timeout: TIMEOUT_MS });
-        return finish(res.response.text(), res.response.inferenceSource);
+        const r = await call(this.model(kind, 'cloud'));
+        return finish(r.text, r.source);
       } catch (e) {
         console.warn('Cloud call failed', e);
         return connectivity.value ? { kind: 'failed', reason: errMsg(e) } : { kind: 'deferred', reason: 'Lost signal; saved for later' };
@@ -148,8 +176,8 @@ class MundaAi {
     if (route === 'CLOUD') return viaCloud();
 
     try {
-      const res = await withBackoff(() => this.model(kind, 'hybrid').generateContent(parts, { timeout: TIMEOUT_MS }));
-      const out = finish(res.response.text(), res.response.inferenceSource);
+      const r = await withBackoff(() => call(this.model(kind, 'hybrid')));
+      const out = finish(r.text, r.source);
       // Small local model produced something unusable: one cloud retry if we can.
       return out.kind === 'failed' && connectivity.value ? viaCloud() : out;
     } catch (e) {

@@ -38,7 +38,7 @@ const causeSchema = obj(
     name: str(),
     likelihood: enumOf(Likelihood.values),
     supporting: arr(str(), 3, 'Observations that support this cause'),
-    againstOrMissing: arr(str(), 3, 'Observations against it, or information still missing'),
+    againstOrMissing: arr(str(), 3, 'Facts against it, or facts still unknown. Not actions to take.'),
     checkNext: str('One concrete check the farmer can do in the field.'),
   },
   ['guideId', 'name', 'likelihood', 'supporting', 'againstOrMissing', 'checkNext'],

@@ -24,7 +24,19 @@ function fakeLanguageModel(r) {
         await new Promise((res) => setTimeout(res, 100));
         return popts?.responseConstraint?.properties?.questions ? JSON.stringify({ questions: [] }) : r;
       },
-      promptStreaming: () => { throw new Error('not used'); }, destroy() {}, clone: async function () { return this; },
+      // The record is streamed in small pieces, slowly enough to see the live screen.
+      promptStreaming: (input) => {
+        window.__prompts.push(typeof input === 'string' ? input : JSON.stringify(input));
+        const pieces = r.match(/.{1,12}/gs);
+        let i = 0;
+        return new ReadableStream({
+          async pull(c) {
+            await new Promise((res) => setTimeout(res, 60));
+            if (i < pieces.length) c.enqueue(pieces[i++]); else c.close();
+          },
+        });
+      },
+      destroy() {}, clone: async function () { return this; },
     }),
   };
 }
@@ -51,7 +63,11 @@ try {
   await page.getByRole('radio', { name: 'Patches' }).click();
   await page.getByRole('radio', { name: 'Heavy rain' }).click();
   await page.getByRole('radio', { name: 'This week' }).click();
-  await page.getByText('Possible causes').first().waitFor({ timeout: 15000 });
+  await page.getByRole('heading', { name: 'Working it out' }).waitFor({ timeout: 15000 });
+  await page.locator('.live-summary').waitFor({ timeout: 15000 });
+  check(true, 'live screen shows the summary while the record is streamed');
+  await page.getByRole('heading', { name: 'Possible causes' }).waitFor({ timeout: 15000 });
+  check(await page.getByRole('heading', { name: 'Nitrogen deficiency' }).count() > 0, 'finished record shows the leading cause');
 
   const recordPrompt = (await page.evaluate(() => window.__prompts)).find((p) => p.includes('POSSIBLE causes')) ?? '';
   check(recordPrompt.includes('Started: This week'), 'record prompt includes the onset answered last (no follow-ups)');

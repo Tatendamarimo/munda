@@ -1,17 +1,22 @@
+import type { GuideEntry } from '../domain/guide';
 import type { FieldRecord, InferenceOrigin } from '../domain/models';
+import type { Route } from '../domain/routing';
 import { useT } from '../i18n';
 import { Working } from './components';
+import { LiveResult } from './LiveResult';
 import { CallOfficer, RecordView } from './RecordView';
 
 export type RecordState =
   | { kind: 'idle' }
-  | { kind: 'building' }
+  /** `text` is the answer so far, streamed. */
+  | { kind: 'building'; text: string; startedAt: number; route: Route; candidates: GuideEntry[] }
   | { kind: 'done'; record: FieldRecord; origin: InferenceOrigin; latencyMs: number }
   | { kind: 'problem'; message: string };
 
 export function ResultStep({ state, onSave }: { state: RecordState; onSave: () => void }) {
   const t = useT();
-  if (state.kind === 'idle' || state.kind === 'building') return <Working>{t('observe.writing')}</Working>;
+  if (state.kind === 'idle') return <Working>{t('observe.writing')}</Working>;
+  if (state.kind === 'building') return <LiveResult text={state.text} startedAt={state.startedAt} route={state.route} candidates={state.candidates} />;
   if (state.kind === 'problem') {
     return (
       <div className="stack">
