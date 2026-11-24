@@ -29,6 +29,8 @@ class RemoteSettings {
 
     val cloudModel: String get() = rc.getString("cloud_model").ifBlank { DEFAULT_MODEL }
     val reviewModel: String get() = rc.getString("review_model").ifBlank { DEFAULT_MODEL }
+    /** Tried once when the main model fails (overloaded, timeout). */
+    val cloudFallbackModel: String get() = rc.getString("cloud_fallback_model").ifBlank { "gemini-3.5-flash-lite" }
     /** Read-aloud voice (Gemini text-to-speech), same keys as the web. */
     val ttsModel: String get() = rc.getString("tts_model").ifBlank { "gemini-2.5-flash-preview-tts" }
     val ttsVoice: String get() = rc.getString("tts_voice").ifBlank { "Sulafat" }

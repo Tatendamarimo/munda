@@ -10,6 +10,8 @@ import { firebase } from './firebase';
 const DEFAULTS = {
   cloud_model: 'gemini-3.7-flash',
   review_model: 'gemini-3.7-flash',
+  // Tried once when the main model fails (overloaded, timeout); lighter and usually available.
+  cloud_fallback_model: 'gemini-3.5-flash-lite',
   // Read-aloud voice (Gemini text-to-speech). Voice names: the Chirp 3 HD / Gemini TTS list.
   tts_model: 'gemini-2.5-flash-preview-tts',
   tts_voice: 'Sulafat',
@@ -47,6 +49,7 @@ class Settings {
 
   get cloudModel() { return this.str('cloud_model'); }
   get reviewModel() { return this.str('review_model'); }
+  get cloudFallbackModel() { return this.str('cloud_fallback_model'); }
   get ttsModel() { return this.str('tts_model'); }
   get ttsVoice() { return this.str('tts_voice'); }
   get maxOnDeviceChars() { return clamp(this.num('max_on_device_chars'), 500, 20_000); }

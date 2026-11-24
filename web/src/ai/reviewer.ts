@@ -9,9 +9,21 @@ import { settings } from '../data/settings';
 import { reviewPrompt } from './prompts';
 import { language } from '../i18n';
 import { reviewSchema } from './schemas';
+import { withFallback } from './fallback';
 
 const DAY = 86_400_000;
-let model: GenerativeModel | null = null;
+const models = new Map<string, GenerativeModel>();
+function reviewModel(name: string): GenerativeModel {
+  let m = models.get(name);
+  if (!m) {
+    m = getGenerativeModel(firebase().ai, {
+      mode: InferenceMode.ONLY_IN_CLOUD,
+      inCloudParams: { model: name, generationConfig: { responseMimeType: 'application/json', responseJsonSchema: reviewSchema, temperature: 0.1 } },
+    });
+    models.set(name, m);
+  }
+  return m;
+}
 
 /**
  * Runs when connected. Deliberately cloud-only: it needs Firestore history plus the full guide,
@@ -31,14 +43,8 @@ export async function reviewObservation(target: Observation): Promise<HistoryRev
   let ai: ReviewParts | null = null;
   if (settings.aiReviewEnabled && target.record) {
     try {
-      model ??= getGenerativeModel(firebase().ai, {
-        mode: InferenceMode.ONLY_IN_CLOUD,
-        inCloudParams: {
-          model: settings.reviewModel,
-          generationConfig: { responseMimeType: 'application/json', responseJsonSchema: reviewSchema, temperature: 0.1 },
-        },
-      });
-      const res = await model.generateContent(reviewPrompt(target, plotHistory, farmHistory, rules.map((r) => r.kind), language.value), { timeout: 60_000 });
+      const prompt = reviewPrompt(target, plotHistory, farmHistory, rules.map((r) => r.kind), language.value);
+      const res = await withFallback((name) => reviewModel(name).generateContent(prompt, { timeout: 60_000 }), settings.reviewModel, settings.cloudFallbackModel);
       const parsed = parseReview(res.response.text(), new Set(history.map((o) => o.id)), guideFor(target.crop));
       if (parsed.ok) ai = parsed.value;
       else console.warn('Unparseable review', parsed.error);

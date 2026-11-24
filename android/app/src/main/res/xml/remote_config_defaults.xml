@@ -3,6 +3,7 @@
 <defaultsMap>
     <entry><key>cloud_model</key><value>gemini-3.7-flash</value></entry>
     <entry><key>review_model</key><value>gemini-3.7-flash</value></entry>
+    <entry><key>cloud_fallback_model</key><value>gemini-3.5-flash-lite</value></entry>
     <entry><key>tts_model</key><value>gemini-2.5-flash-preview-tts</value></entry>
     <entry><key>tts_voice</key><value>Sulafat</value></entry>
     <!-- On-device input is capped at ~4k tokens including prompt + guide excerpts. -->

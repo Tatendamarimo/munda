@@ -13,6 +13,7 @@ import { language } from '../i18n';
 /** Only cloud calls get the farmer's language; on-device stays English (see prompts.languageLines). */
 const cloudLang = (route: Route) => (route === 'CLOUD' ? language.value : undefined);
 import { questionsSchema, recordSchema } from './schemas';
+import { withFallback } from './fallback';
 
 export type AiOutcome<T> =
   | { kind: 'done'; value: T; origin: InferenceOrigin; latencyMs: number }
@@ -39,7 +40,8 @@ const createOptions: LanguageModelCreateOptions = {
 };
 
 const LOCAL_ATTEMPTS = 3;
-const TIMEOUT_MS = 60_000;
+/** Per cloud attempt; an overloaded model then hands over to the fallback instead of making the farmer wait. */
+const TIMEOUT_MS = 30_000;
 
 /**
  * Munda's on-device + cloud intelligence via Firebase AI Logic hybrid inference in Chrome.
@@ -57,15 +59,15 @@ class MundaAi {
   readonly local = new Store<LocalModelInfo>({ state: 'UNKNOWN', progress: null });
   private models = new Map<string, GenerativeModel>();
 
-  private model(kind: 'questions' | 'record', mode: 'hybrid' | 'cloud'): GenerativeModel {
-    const key = `${kind}:${mode}`;
+  private model(kind: 'questions' | 'record', mode: 'hybrid' | 'cloud', cloudModel = settings.cloudModel): GenerativeModel {
+    const key = `${kind}:${mode}:${cloudModel}`;
     let m = this.models.get(key);
     if (!m) {
       const schema = kind === 'questions' ? questionsSchema : recordSchema;
       m = getGenerativeModel(firebase().ai, {
         mode: mode === 'hybrid' ? InferenceMode.PREFER_ON_DEVICE : InferenceMode.ONLY_IN_CLOUD,
         inCloudParams: {
-          model: settings.cloudModel,
+          model: cloudModel,
           generationConfig: { responseMimeType: 'application/json', responseJsonSchema: schema, temperature: 0.2 },
         },
         onDeviceParams: { createOptions, promptOptions: { responseConstraint: schema } },
@@ -165,7 +167,7 @@ class MundaAi {
 
     const viaCloud = async (): Promise<AiOutcome<T>> => {
       try {
-        const r = await call(this.model(kind, 'cloud'));
+        const r = await withFallback((name) => call(this.model(kind, 'cloud', name)), settings.cloudModel, settings.cloudFallbackModel);
         return finish(r.text, r.source);
       } catch (e) {
         console.warn('Cloud call failed', e);

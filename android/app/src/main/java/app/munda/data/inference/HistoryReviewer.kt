@@ -30,9 +30,10 @@ class HistoryReviewer(
     /** English name of the farmer's language for the review text, e.g. "Shona". */
     private val language: () -> String? = { null },
 ) {
-    private val model by lazy {
+    private val models = HashMap<String, com.google.firebase.ai.GenerativeModel>()
+    private fun model(name: String) = models.getOrPut(name) {
         Firebase.ai(backend = GenerativeBackend.googleAI()).generativeModel(
-            modelName = settings.reviewModel,
+            modelName = name,
             generationConfig = generationConfig {
                 responseMimeType = "application/json"
                 responseSchema = Prompts.reviewSchema
@@ -53,7 +54,7 @@ class HistoryReviewer(
         val ai = if (settings.aiReviewEnabled && target.record != null) {
             try {
                 val prompt = Prompts.review(target, plotHistory, farmHistory, rules.map { it.kind }, language())
-                val response = withTimeout(60_000) { model.generateContent(prompt) }
+                val response = withFallback(settings.reviewModel, settings.cloudFallbackModel) { name -> withTimeout(60_000) { model(name).generateContent(prompt) } }
                 ModelOutputParser.parseReview(response.text, history.map { it.id }.toSet(), Guides.forCrop(target.crop))
                     .onFailure { Log.w(TAG, "Unparseable review", it) }
                     .getOrNull()

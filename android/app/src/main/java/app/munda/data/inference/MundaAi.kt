@@ -86,17 +86,21 @@ class MundaAi(
         onDeviceConfig = OnDeviceConfig(mode = InferenceMode.PREFER_ON_DEVICE, maxOutputTokens = maxOut, temperature = 0.2f),
     )
 
-    private fun cloud(schema: Schema) = ai.generativeModel(
-        modelName = settings.cloudModel,
+    private val cloudModels = HashMap<String, GenerativeModel>()
+    /** Cloud model for this schema and model name, cached (the fallback uses a second name). */
+    private fun cloud(schema: Schema, name: String = settings.cloudModel) = cloudModels.getOrPut("${schema.hashCode()}:$name") { cloudModel(schema, name) }
+
+    private fun cloudModel(schema: Schema, name: String) = ai.generativeModel(
+        modelName = name,
         generationConfig = generationConfig { responseMimeType = "application/json"; responseSchema = schema; temperature = 0.2f },
         onDeviceConfig = OnDeviceConfig.IN_CLOUD,
     )
 
     private val questionsHybrid by lazy { hybrid(Prompts.questionsSchema, maxOut = 160) }
-    private val questionsCloud by lazy { cloud(Prompts.questionsSchema) }
+    private val questionsCloud = { name: String -> cloud(Prompts.questionsSchema, name) }
     // Record output is the largest on-device generation; 3 causes with short phrases fit ~300 tokens.
     private val recordHybrid by lazy { hybrid(Prompts.recordSchema, maxOut = 320) }
-    private val recordCloud by lazy { cloud(Prompts.recordSchema) }
+    private val recordCloud = { name: String -> cloud(Prompts.recordSchema, name) }
 
     // ---------- Local model lifecycle ----------
 
@@ -172,7 +176,7 @@ class MundaAi(
 
     private suspend fun <T> run(
         hybrid: GenerativeModel,
-        cloud: GenerativeModel,
+        cloud: (String) -> GenerativeModel,
         prompt: String,
         photo: Bitmap?,
         route: Route,
@@ -196,7 +200,7 @@ class MundaAi(
         }
 
         suspend fun viaCloud(): AiOutcome<T> =
-            attempt { withTimeout(CLOUD_TIMEOUT_MS) { call(cloud) } }.fold(
+            attempt { withFallback(settings.cloudModel, settings.cloudFallbackModel) { name -> withTimeout(CLOUD_TIMEOUT_MS) { call(cloud(name)) } } }.fold(
                 onSuccess = { finish(it, started, parse) },
                 onFailure = { e ->
                     Log.w(TAG, "Cloud call failed", e)
@@ -277,6 +281,7 @@ class MundaAi(
         const val LOCAL_TIMEOUT_MS = 45_000L
         // Streaming shows progress, so a slow phone may take longer without the farmer giving up.
         const val LOCAL_STREAM_TIMEOUT_MS = 120_000L
-        const val CLOUD_TIMEOUT_MS = 45_000L
+        /** Per cloud attempt; an overloaded model then hands over to the fallback. */
+        const val CLOUD_TIMEOUT_MS = 30_000L
     }
 }
