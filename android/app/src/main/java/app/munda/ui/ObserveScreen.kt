@@ -85,8 +85,6 @@ sealed interface Seen {
     data class Suggest(val signs: String) : Seen
 }
 
-/** Firestore rules need a description; a photo alone is a complete observation for the farmer. */
-private const val PHOTO_ONLY = "Leaf photo only; the farmer gave no description."
 /** Long enough to see the tile light up before the next question slides in. */
 private const val AUTO_ADVANCE_MS = 260L
 
@@ -238,6 +236,8 @@ class ObserveViewModel(private val c: AppContainer, app: Application) : ViewMode
             reviewStatus = ReviewStatus.NOT_STARTED, review = null,
         )
         c.repository.create(o)
+        // Not finished yet: keep the photo on this phone only, to finish the check from it later.
+        if (o.record == null) f.photo?.let { c.pendingPhotos.put(o.id, it) }
         if (o.record != null) c.scheduler.reviewWhenOnline(o.orgId, o.id) else c.scheduler.buildRecordWhenOnline(o.orgId, o.id)
         prefs.edit { putString(KEY_LAST_PLOT, o.plot) }
         onSaved(o.id)

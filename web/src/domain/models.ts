@@ -195,3 +195,6 @@ export const Limits = {
 export function normalizeKey(raw: string): string {
   return raw.trim().toUpperCase().replace(/\s+/g, '-').slice(0, Limits.MAX_KEY);
 }
+
+/** Firestore rules require a description; a photo alone is a complete observation for the farmer. */
+export const PHOTO_ONLY = 'Leaf photo only; the farmer gave no description.';

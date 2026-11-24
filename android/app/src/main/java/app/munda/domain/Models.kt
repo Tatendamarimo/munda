@@ -168,3 +168,6 @@ object Normalize {
     const val MAX_DESCRIPTION = 8_000
     const val MAX_ANSWER = 200
 }
+
+/** Firestore rules need a description; a photo alone is a complete observation for the farmer. */
+const val PHOTO_ONLY = "Leaf photo only; the farmer gave no description."

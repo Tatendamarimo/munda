@@ -1,9 +1,10 @@
 import type { Unsubscribe } from 'firebase/firestore';
 import { errMsg, mundaAi } from '../ai/mundaAi';
 import { reviewObservation } from '../ai/reviewer';
-import type { Observation } from '../domain/models';
+import { PHOTO_ONLY, type Observation } from '../domain/models';
 import { connectivity } from '../data/connectivity';
 import { repository } from '../data/repository';
+import { pendingPhotos } from '../data/pendingPhotos';
 import { session } from '../data/session';
 import { Store } from '../data/store';
 
@@ -96,15 +97,25 @@ class SyncProcessor {
   }
 
   private async buildRecord(o: Observation) {
+    // The photo kept on this device for this check, if any (never synced).
+    const photo = (await pendingPhotos.get(o.id)) ?? null;
+    let description = o.description;
+    if (photo && o.description === PHOTO_ONLY) {
+      // Photo only: describe it first, so matching and the answer work from what it shows.
+      const seen = await mundaAi.describePhoto(photo, o.crop, 'CLOUD');
+      if (seen.kind === 'done' && seen.value.clear) description = `From the photo: ${seen.value.signs}`;
+    }
     const out = await mundaAi.buildRecord(
-      { crop: o.crop, plot: o.plot, stage: o.cropStage, description: o.description, core: o.core, followUps: o.followUps, photoBase64: null },
+      { crop: o.crop, plot: o.plot, stage: o.cropStage, description, core: o.core, followUps: o.followUps, photoBase64: photo },
       'CLOUD',
     );
     if (out.kind === 'done') {
       repository.saveRecord(o.orgId, o.id, out.value, out.origin);
       this.attempts.delete(`record:${o.id}`);
+      void pendingPhotos.delete(o.id);
     } else if (out.kind === 'failed' && this.failed(`record:${o.id}`)) {
       repository.saveRecordError(o.orgId, o.id, out.reason);
+      void pendingPhotos.delete(o.id);
     } else if (out.kind === 'deferred') {
       this.failed(`record:${o.id}`); // back off; signal dropped mid-call
     }

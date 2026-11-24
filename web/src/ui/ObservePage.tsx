@@ -4,6 +4,7 @@ import { mundaAi } from '../ai/mundaAi';
 import type { ObservationInput } from '../ai/prompts';
 import { connectivity } from '../data/connectivity';
 import { repository } from '../data/repository';
+import { pendingPhotos } from '../data/pendingPhotos';
 import { prefs } from '../data/prefs';
 import { placeCell } from '../data/weather';
 import { session } from '../data/session';
@@ -11,7 +12,7 @@ import { settings } from '../data/settings';
 import { useStore } from '../data/store';
 import { plotsFrom } from '../domain/farm';
 import type { CoreAnswers, CropStage as Stage, FollowUpQuestion, InferenceOrigin, Observation, QA } from '../domain/models';
-import { AffectedArea, CropStage, emptyCore, Limits, normalizeKey, Onset, Rainfall } from '../domain/models';
+import { AffectedArea, CropStage, emptyCore, Limits, normalizeKey, Onset, PHOTO_ONLY, Rainfall } from '../domain/models';
 import { decideRoute, type RouteDecision } from '../domain/routing';
 import { labelArea, labelOnset, labelRain, labelStage, useLang, useT } from '../i18n';
 import { OriginBadge, Working } from './components';
@@ -41,8 +42,6 @@ interface Form {
 
 const LAST_PLOT = 'munda.lastPlot';
 const readLastPlot = () => { try { return localStorage.getItem(LAST_PLOT) ?? ''; } catch { return ''; } };
-/** Firestore rules require a description; a photo alone is a complete observation for the farmer. */
-const PHOTO_ONLY = 'Leaf photo only; the farmer gave no description.';
 /** Long enough to see the tile light up before the next question slides in. */
 const AUTO_ADVANCE_MS = 260;
 
@@ -154,6 +153,9 @@ export function ObservePage() {
       area: prefs.value.place.trim() || null, cell: placeCell.value,
     };
     repository.create(o);
+    // Not finished yet (offline, no on-device AI): keep the photo on this device only, so the check
+    // can be finished from it when signal returns. Never synced; deleted once used.
+    if (!done && form.photo) void pendingPhotos.put(o.id, form.photo.base64);
     try { localStorage.setItem(LAST_PLOT, o.plot); } catch { /* best effort */ }
     // Replace the flow in history so Back from the record returns home, not into the form.
     window.history.replaceState(null, '', href({ name: 'record', id: o.id }));

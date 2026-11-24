@@ -15,6 +15,7 @@ import app.munda.MundaApp
 import app.munda.data.inference.AiOutcome
 import app.munda.data.inference.ObservationInput
 import app.munda.domain.ReviewStatus
+import app.munda.domain.PHOTO_ONLY
 import app.munda.domain.Route
 import java.util.concurrent.TimeUnit
 
@@ -55,10 +56,19 @@ class RecordWorker(context: Context, params: WorkerParameters) : CoroutineWorker
         val o = c.repository.get(orgId, id) ?: return Result.failure()
         if (o.record != null) { c.scheduler.reviewWhenOnline(orgId, id); return Result.success() }
 
-        val input = ObservationInput(o.crop, o.plot, o.cropStage, o.description, o.core, o.followUps, photo = null)
+        // The photo kept on this phone for this check, if any (never synced).
+        val photo = c.pendingPhotos.get(id)
+        var description = o.description
+        if (photo != null && o.description == PHOTO_ONLY) {
+            // Photo only: describe it first, so matching and the answer work from what it shows.
+            val seen = c.ai.describePhoto(photo, o.crop, Route.CLOUD)
+            if (seen is AiOutcome.Done && seen.value.clear) description = "From the photo: ${seen.value.signs}"
+        }
+        val input = ObservationInput(o.crop, o.plot, o.cropStage, description, o.core, o.followUps, photo = photo)
         return when (val out = c.ai.buildRecord(input, Route.CLOUD)) {
             is AiOutcome.Done -> {
                 c.repository.saveRecord(orgId, id, out.value, out.origin)
+                c.pendingPhotos.delete(id)
                 c.scheduler.reviewWhenOnline(orgId, id)
                 Result.success()
             }
@@ -66,7 +76,7 @@ class RecordWorker(context: Context, params: WorkerParameters) : CoroutineWorker
             is AiOutcome.Failed -> {
                 Log.w(TAG, "Record failed for $id: ${out.reason}")
                 if (runAttemptCount + 1 >= WorkScheduler.MAX_ATTEMPTS) {
-                    c.repository.saveRecordError(orgId, id, out.reason); Result.failure()
+                    c.repository.saveRecordError(orgId, id, out.reason); c.pendingPhotos.delete(id); Result.failure()
                 } else Result.retry()
             }
         }

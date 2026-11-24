@@ -2,6 +2,7 @@ package app.munda
 
 import android.app.Application
 import app.munda.data.Connectivity
+import app.munda.data.PendingPhotos
 import app.munda.data.PrefsStore
 import app.munda.data.WeatherRepo
 import app.munda.domain.GuideText
@@ -31,6 +32,7 @@ class AppContainer(app: Application) {
     val i18n = I18n.load { name -> app.assets.open("i18n/$name").bufferedReader().use { it.readText() } }
     val guideText = GuideText.load { name -> runCatching { app.assets.open("guides/i18n/$name").bufferedReader().use { it.readText() } }.getOrNull() }
     val prefs = PrefsStore(app)
+    val pendingPhotos = PendingPhotos(app)
     val connectivity = Connectivity(app)
     val weather = WeatherRepo(app, prefs, connectivity)
     val settings = RemoteSettings()
