@@ -2,6 +2,10 @@ package app.munda
 
 import android.app.Application
 import app.munda.data.Connectivity
+import app.munda.data.PrefsStore
+import app.munda.data.WeatherRepo
+import app.munda.domain.GuideText
+import app.munda.i18n.I18n
 import app.munda.data.ObservationRepository
 import app.munda.data.RemoteSettings
 import app.munda.data.Session
@@ -17,12 +21,17 @@ import com.google.firebase.initialize
 
 /** Manual DI: the graph is small enough that a framework would cost more than it saves. */
 class AppContainer(app: Application) {
+    /** The web app's text and guide translations, from shared/ (bundled as assets). */
+    val i18n = I18n.load { name -> app.assets.open("i18n/$name").bufferedReader().use { it.readText() } }
+    val guideText = GuideText.load { name -> runCatching { app.assets.open("guides/i18n/$name").bufferedReader().use { it.readText() } }.getOrNull() }
+    val prefs = PrefsStore(app)
     val connectivity = Connectivity(app)
+    val weather = WeatherRepo(app, prefs, connectivity)
     val settings = RemoteSettings()
     val session = Session(app)
     val repository = ObservationRepository()
     val ai = MundaAi(settings, connectivity)
-    val reviewer = HistoryReviewer(settings, repository)
+    val reviewer = HistoryReviewer(settings, repository) { prefs.value.lang?.let { i18n.info(it).english } }
     val scheduler = WorkScheduler(app)
 }
 

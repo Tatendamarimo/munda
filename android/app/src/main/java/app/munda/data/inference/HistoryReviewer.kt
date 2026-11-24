@@ -27,6 +27,8 @@ import java.util.concurrent.TimeUnit
 class HistoryReviewer(
     private val settings: RemoteSettings,
     private val repository: ObservationRepository,
+    /** English name of the farmer's language for the review text, e.g. "Shona". */
+    private val language: () -> String? = { null },
 ) {
     private val model by lazy {
         Firebase.ai(backend = GenerativeBackend.googleAI()).generativeModel(
@@ -50,7 +52,7 @@ class HistoryReviewer(
 
         val ai = if (settings.aiReviewEnabled && target.record != null) {
             try {
-                val prompt = Prompts.review(target, plotHistory, farmHistory, rules.map { it.kind })
+                val prompt = Prompts.review(target, plotHistory, farmHistory, rules.map { it.kind }, language())
                 val response = withTimeout(60_000) { model.generateContent(prompt) }
                 ModelOutputParser.parseReview(response.text, history.map { it.id }.toSet(), Guides.forCrop(target.crop))
                     .onFailure { Log.w(TAG, "Unparseable review", it) }

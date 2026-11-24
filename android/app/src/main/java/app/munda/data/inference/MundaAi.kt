@@ -140,21 +140,29 @@ class MundaAi(
 
     // ---------- Step 1: follow-up questions ----------
 
-    suspend fun followUpQuestions(input: ObservationInput, route: Route): AiOutcome<List<FollowUpQuestion>> {
+    /**
+     * [language] is the English name of the farmer's language. Only cloud calls get it: Nano is
+     * asked in English, and the guide supplies translated names and checks (as on the web).
+     */
+    suspend fun followUpQuestions(input: ObservationInput, route: Route, language: String? = null): AiOutcome<List<FollowUpQuestion>> {
         if (!settings.aiFollowUpsEnabled) return AiOutcome.Done(emptyList(), InferenceOrigin.ON_DEVICE, 0)
         val candidates = Guides.forCrop(input.crop).relevant(input.retrievalText, input.core, input.stage, limit = 4)
-        return run(questionsHybrid, questionsCloud, Prompts.questions(input, candidates), input.photo, route) { text ->
+        return run(questionsHybrid, questionsCloud, Prompts.questions(input, candidates, language.cloudOnly(route)), input.photo, route) { text ->
             ModelOutputParser.parseQuestions(text)
         }
     }
 
     // ---------- Step 2: field record ----------
 
-    suspend fun buildRecord(input: ObservationInput, route: Route): AiOutcome<FieldRecord> {
+    /** The guide entries a record is built from, so the screen can show what's being weighed. */
+    fun recordCandidates(input: ObservationInput) = Guides.forCrop(input.crop).relevant(input.retrievalText, input.core, input.stage, limit = 5)
+
+    /** [onText] receives the answer so far while it's written (streamed), for the live screen. */
+    suspend fun buildRecord(input: ObservationInput, route: Route, language: String? = null, onText: ((String) -> Unit)? = null): AiOutcome<FieldRecord> {
         val guide = Guides.forCrop(input.crop)
-        val candidates = guide.relevant(input.retrievalText, input.core, input.stage, limit = 5)
+        val candidates = recordCandidates(input)
         val allowed = candidates.map { it.id }.toSet()
-        return run(recordHybrid, recordCloud, Prompts.record(input, candidates), input.photo, route) { text ->
+        return run(recordHybrid, recordCloud, Prompts.record(input, candidates, language.cloudOnly(route)), input.photo, route, onText) { text ->
             ModelOutputParser.parseRecord(text, guide, allowed)
         }
     }
@@ -167,12 +175,27 @@ class MundaAi(
         prompt: String,
         photo: Bitmap?,
         route: Route,
+        onText: ((String) -> Unit)? = null,
         parse: (String?) -> Result<T>,
     ): AiOutcome<T> {
         val started = System.currentTimeMillis()
 
+        /** One attempt; streamed when someone is watching, so the answer appears as it's written. */
+        suspend fun call(model: GenerativeModel): Answer {
+            if (onText == null) return model.generateContent(content(prompt, photo)).let { Answer(it.text, it.inferenceSource) }
+            onText("")
+            var acc = ""
+            var source: InferenceSource? = null
+            model.generateContentStream(content(prompt, photo)).collect { chunk ->
+                acc += chunk.text.orEmpty()
+                source = chunk.inferenceSource ?: source
+                onText(acc)
+            }
+            return Answer(acc, source)
+        }
+
         suspend fun viaCloud(): AiOutcome<T> =
-            attempt { withTimeout(CLOUD_TIMEOUT_MS) { cloud.generateContent(content(prompt, photo)) } }.fold(
+            attempt { withTimeout(CLOUD_TIMEOUT_MS) { call(cloud) } }.fold(
                 onSuccess = { finish(it, started, parse) },
                 onFailure = { e ->
                     Log.w(TAG, "Cloud call failed", e)
@@ -184,7 +207,7 @@ class MundaAi(
         return when (route) {
             Route.QUEUE_UNTIL_ONLINE -> AiOutcome.Deferred("No signal and no on-device model on this phone")
             Route.CLOUD -> viaCloud()
-            Route.ON_DEVICE -> attempt { withTimeout(LOCAL_TIMEOUT_MS) { withBackoff { hybrid.generateContent(content(prompt, photo)) } } }.fold(
+            Route.ON_DEVICE -> attempt { withTimeout(if (onText != null) LOCAL_STREAM_TIMEOUT_MS else LOCAL_TIMEOUT_MS) { withBackoff { call(hybrid) } } }.fold(
                 onSuccess = { r ->
                     when (val out = finish(r, started, parse)) {
                         // Small local model produced something unusable: one cloud retry if we can.
@@ -200,8 +223,12 @@ class MundaAi(
         }
     }
 
-    private fun <T> finish(r: GenerateContentResponse, started: Long, parse: (String?) -> Result<T>): AiOutcome<T> {
-        val origin = if (r.inferenceSource == InferenceSource.ON_DEVICE) InferenceOrigin.ON_DEVICE else InferenceOrigin.CLOUD
+    private data class Answer(val text: String?, val source: InferenceSource?)
+
+    private fun String?.cloudOnly(route: Route) = if (route == Route.CLOUD) this else null
+
+    private fun <T> finish(r: Answer, started: Long, parse: (String?) -> Result<T>): AiOutcome<T> {
+        val origin = if (r.source == InferenceSource.ON_DEVICE) InferenceOrigin.ON_DEVICE else InferenceOrigin.CLOUD
         return parse(r.text).fold(
             onSuccess = { AiOutcome.Done(it, origin, System.currentTimeMillis() - started) },
             onFailure = { AiOutcome.Failed("Couldn't read the model's answer: ${it.message}") },
@@ -214,7 +241,7 @@ class MundaAi(
     }
 
     /** AICore throttles per app (BUSY / battery quota): brief exponential backoff before giving up. */
-    private suspend fun withBackoff(block: suspend () -> GenerateContentResponse): GenerateContentResponse {
+    private suspend fun <R> withBackoff(block: suspend () -> R): R {
         var wait = 400L
         repeat(LOCAL_ATTEMPTS - 1) {
             try { return block() } catch (e: Exception) {
@@ -247,6 +274,8 @@ class MundaAi(
         const val TAG = "MundaAi"
         const val LOCAL_ATTEMPTS = 3
         const val LOCAL_TIMEOUT_MS = 45_000L
+        // Streaming shows progress, so a slow phone may take longer without the farmer giving up.
+        const val LOCAL_STREAM_TIMEOUT_MS = 120_000L
         const val CLOUD_TIMEOUT_MS = 45_000L
     }
 }
