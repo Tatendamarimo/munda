@@ -21,6 +21,8 @@ data class Prefs(
     val plantedAt: Map<String, Long> = emptyMap(),
     val lang: String? = null,
     val weatherOn: Boolean = false,
+    val setupStep: Int = 0,
+    val setupCompletedUids: List<String> = emptyList(),
 )
 
 class PrefsStore(context: Context) {

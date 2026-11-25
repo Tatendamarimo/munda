@@ -5,6 +5,7 @@
 // Prereqs: emulators on 9099/8080 (see npm run e2e) and the dev server on 5173 with
 // VITE_USE_EMULATORS=true. Usage: node e2e/smoke.mjs [screenshotDir]
 import { chromium } from 'playwright-core';
+import { completeSetupIfNeeded } from './setup.mjs';
 import { mkdirSync } from 'node:fs';
 
 const BASE = process.env.BASE_URL ?? 'http://127.0.0.1:5173';
@@ -59,9 +60,9 @@ try {
   page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()); });
 
   await page.goto(BASE);
-  await page.getByRole('button', { name: 'Set up this device' }).waitFor();
+  await page.locator('.setup-shell').waitFor();
   await page.screenshot({ path: `${OUT}/0-welcome.png`, fullPage: true });
-  await page.getByRole('button', { name: 'Set up this device' }).click();
+  await completeSetupIfNeeded(page);
   await page.getByText('Offline AI ready').waitFor({ timeout: 15000 });
   check(true, 'activation signs in (Auth emulator) and detects on-device AI');
   await page.screenshot({ path: `${OUT}/1-home.png` });
@@ -132,7 +133,7 @@ try {
   await fresh.addInitScript(fakeLanguageModel, { q: QUESTIONS, r: RECORD });
   const w = await fresh.newPage();
   await w.goto(BASE);
-  await w.getByRole('button', { name: 'Set up this device' }).waitFor();
+  await w.locator('.setup-shell').waitFor();
   await w.waitForTimeout(900);
   await w.screenshot({ path: `${OUT}/d0-welcome.png` });
   await fresh.close();

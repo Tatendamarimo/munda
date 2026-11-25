@@ -397,6 +397,7 @@ fun MeScreen(vm: FarmViewModel) {
     Column(Modifier.verticalScroll(rememberScrollState()).imePadding().padding(bottom = 24.dp)) {
         PageHead(s.t("me.title"))
         Page {
+            CardBox { AccountPanel(vm) }
             CardBox {
                 Text(s.t("me.language"), style = MaterialTheme.typography.titleSmall)
                 @OptIn(ExperimentalLayoutApi::class)

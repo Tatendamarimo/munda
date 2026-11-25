@@ -1,4 +1,5 @@
 import { BookOpen, Check, CloudRain, Camera, HardDrive, MapPin, Sprout, Sun, TriangleAlert } from 'lucide-react';
+import { account } from '../data/session';
 import { mundaAi } from '../ai/mundaAi';
 import { connectivity } from '../data/connectivity';
 import { cropWeeks, prefs } from '../data/prefs';
@@ -20,6 +21,7 @@ import { useObservations } from './useObservations';
 
 export function HomePage() {
   const t = useT();
+  const identity = useStore(account);
   const lang = useLang();
   const items = useObservations();
   const p = useStore(prefs);
@@ -67,6 +69,7 @@ export function HomePage() {
         </> : <section className="empty-state"><span className="empty-icon"><Sprout size={32} /></span><h2>{t('studio.emptyTitle')}</h2><p>{t('studio.emptyHelp')}</p><button className="btn btn-secondary" onClick={() => navigate({ name: 'observe' })}>{t('studio.firstCheck')}</button></section>}
       </div>
       <aside className="dashboard-aside">
+        {identity.kind === 'guest' && observations.length > 0 && <section className="protect-reminder"><h3>{t('auth.guestNotice')}</h3><p>{t('auth.protectHelp')}</p><a className="btn btn-secondary" href={href({name:'me'})}>{t('auth.protect')}</a></section>}
         <section className="device-card"><div className="section-head"><span className="eyebrow">{t('me.offlineAi')}</span><HardDrive size={20} aria-hidden="true" /></div><h3>{t(readiness)}</h3><p>{t('studio.deviceHelp')}</p><a className="muted-link" href={href({ name: 'me' })}>{t('common.details')}</a></section>
         <a className="guide-feature" href={href({ name: 'guide' })}><span className="empty-icon"><BookOpen size={24} aria-hidden="true" /></span><h3>{t('studio.library')}</h3><p>{t('studio.libraryHelp')}</p><span className="muted-link">{t('studio.learn')}</span></a>
       </aside>

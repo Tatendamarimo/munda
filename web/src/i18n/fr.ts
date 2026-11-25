@@ -1,7 +1,10 @@
+import { onboardingCopy } from './onboarding-copy';
 import { en, type Messages } from './en';
 
 /** French. Beta: machine-drafted, needs native-speaker review. */
 export const fr: Messages = {
+  setup: onboardingCopy.fr.setup,
+  auth: onboardingCopy.fr.auth,
   // New interface copy uses explicit English fallback until reviewed translations are available.
   studio: {
     getAndroid: 'Obtenir l’app Android',

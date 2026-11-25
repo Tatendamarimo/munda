@@ -1,6 +1,6 @@
 # ADR 0003: Anonymous auth with org claim seam
 
-**Status:** Accepted, 2026-11-23
+**Status:** Historical decision, superseded by [ADR 0007](0007-recoverable-accounts-and-onboarding.md), 2026-11-25. The shared `demo` organization described below is no longer used.
 
 ## Context
 Farmers need to start with near-zero friction and then work offline. Cooperatives and extension groups need to share history across members. There's no admin backend yet.

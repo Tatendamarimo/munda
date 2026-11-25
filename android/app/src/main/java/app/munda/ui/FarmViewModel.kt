@@ -36,6 +36,13 @@ data class ReviewAdded(val id: String, val plot: String, val at: Long)
 @OptIn(ExperimentalCoroutinesApi::class)
 class FarmViewModel(val c: AppContainer) : ViewModel() {
     val session: StateFlow<SessionState> = c.session.state
+    val account = c.session.account
+    private val _accountBusy = MutableStateFlow(false)
+    val accountBusy = _accountBusy.asStateFlow()
+    private val _accountProblem = MutableStateFlow<String?>(null)
+    val accountProblem = _accountProblem.asStateFlow()
+    private val _accountNotice = MutableStateFlow<String?>(null)
+    val accountNotice = _accountNotice.asStateFlow()
     val online: StateFlow<Boolean> = c.connectivity.online
     val localModel: StateFlow<LocalModelInfo> = c.ai.localModel
     val prefs: StateFlow<Prefs> = c.prefs.state
@@ -63,15 +70,43 @@ class FarmViewModel(val c: AppContainer) : ViewModel() {
         .stateIn(viewModelScope, SharingStarted.Eagerly, null)
 
     init {
-        viewModelScope.launch { if (c.session.ready != null) c.ai.ensureLocalModel() else c.ai.refreshLocalStatus() }
+        viewModelScope.launch { c.ai.refreshLocalStatus() }
         viewModelScope.launch { c.weather.refresh() }
         viewModelScope.launch { online.collect { if (it) c.weather.refresh() } }
     }
 
     fun activate() = viewModelScope.launch {
         c.session.activate()
-        if (c.session.ready != null) c.ai.ensureLocalModel()
+
     }
+
+    fun setupName(value: String) = c.prefs.update { it.copy(name = value.take(40)) }
+    fun setupPlace(value: String) = c.prefs.update { it.copy(place = value.take(40)) }
+    fun setupStep(step: Int) { _accountProblem.value = null; c.prefs.update { it.copy(setupStep = step.coerceIn(0, 4)) } }
+    fun finishSetup() {
+        val uid = c.session.ready?.uid ?: return
+        c.prefs.update { it.copy(setupStep = 0, setupCompletedUids = (it.setupCompletedUids.filterNot { old -> old == uid } + uid).takeLast(20)) }
+    }
+    fun guestSetup() = viewModelScope.launch {
+        if (_accountBusy.value) return@launch
+        _accountBusy.value = true; _accountProblem.value = null
+        try { if (c.session.ready == null) c.session.activate(); if (c.session.ready != null) setupStep(2) else _accountProblem.value = "auth.network" }
+        finally { _accountBusy.value = false }
+    }
+    private fun accountAction(action: suspend () -> Unit) = viewModelScope.launch {
+        if (_accountBusy.value) return@launch
+        _accountBusy.value = true; _accountProblem.value = null; _accountNotice.value = null
+        try { action() } catch (e: Exception) { _accountProblem.value = app.munda.data.Session.issue(e) }
+        finally { _accountBusy.value = false }
+    }
+    fun createEmail(email: String, password: String, onDone: () -> Unit) = accountAction { c.session.createEmail(email, password); onDone() }
+    fun signInEmail(email: String, password: String, onDone: () -> Unit) = accountAction { c.session.signInEmail(email, password); onDone() }
+    fun resetPassword(email: String) = accountAction {
+        try { c.session.resetPassword(email) } catch (e: com.google.firebase.auth.FirebaseAuthException) { if (e.errorCode != "ERROR_USER_NOT_FOUND") throw e }
+        _accountNotice.value = "auth.resetSent"
+    }
+    fun verifyEmail() = accountAction { c.session.verifyEmail(); _accountNotice.value = "auth.verifySent" }
+    fun refreshAccount() = accountAction { c.session.refreshAccount() }
 
     fun downloadModel() = viewModelScope.launch { c.ai.ensureLocalModel() }
 

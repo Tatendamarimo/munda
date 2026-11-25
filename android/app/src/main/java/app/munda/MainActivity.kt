@@ -44,7 +44,7 @@ class MainActivity : ComponentActivity() {
                 ) {
                     val session by farm.session.collectAsStateWithLifecycle()
                     Surface(Modifier.fillMaxSize(), color = LocalMunda.current.mist) {
-                        if (session !is SessionState.Ready) WelcomeScreen(farm) else MundaNav(farm, app)
+                        if (session !is SessionState.Ready || (session as? SessionState.Ready)?.uid !in prefs.setupCompletedUids) OnboardingScreen(farm) else MundaNav(farm, app)
                     }
                 }
             }

@@ -2,6 +2,7 @@
 // Chrome on-device model. No emulators needed: the record is built but never saved.
 // Usage: node e2e/flow-regressions.mjs   (BASE_URL defaults to http://localhost:5173)
 import { chromium } from 'playwright-core';
+import { completeSetupIfNeeded } from './setup.mjs';
 
 const BASE = process.env.BASE_URL ?? 'http://localhost:5173';
 const RECORD = JSON.stringify({
@@ -50,8 +51,7 @@ try {
   await ctx.addInitScript(() => localStorage.setItem('munda.lang', 'en'));
   const page = await ctx.newPage();
   await page.goto(`${BASE}/#/`);
-  await page.waitForSelector('.welcome .btn-main, .action-card', { timeout: 15000 });
-  if (await page.locator('.welcome .btn-main').count()) await page.locator('.welcome .btn-main').click();
+  await completeSetupIfNeeded(page);
   await page.getByRole('button', { name: /Check a crop/ }).waitFor({ timeout: 15000 });
   await page.getByRole('button', { name: /Check a crop/ }).click();
 

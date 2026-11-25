@@ -1,7 +1,10 @@
+import { onboardingCopy } from './onboarding-copy';
 import { en, type Messages } from './en';
 
 /** Portuguese (Mozambique/Angola/Brazil). Beta: machine-drafted, needs native-speaker review. */
 export const pt: Messages = {
+  setup: onboardingCopy.pt.setup,
+  auth: onboardingCopy.pt.auth,
   // New interface copy uses explicit English fallback until reviewed translations are available.
   studio: {
     getAndroid: 'Obter a app Android',

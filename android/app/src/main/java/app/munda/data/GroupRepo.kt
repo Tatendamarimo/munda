@@ -42,10 +42,11 @@ class GroupRepo(context: Context) {
     suspend fun join(uid: String, code: String, myName: String): Group {
         val orgId = normalizeCode(code)
         require(Regex("^g-[A-Z2-9]{6}$").matches(orgId)) { "bad-code" }
-        db.collection("orgs").document(orgId).collection("members").document(uid)
-            .set(mapOf("role" to "farmer", "name" to myName.trim().take(40).ifBlank { null }, "joinedAt" to FieldValue.serverTimestamp())).await()
+        val member = db.collection("orgs").document(orgId).collection("members").document(uid)
+        val existing = runCatching { member.get().await() }.getOrNull()
+        if (existing?.exists() != true) member.set(mapOf("role" to "farmer", "name" to myName.trim().take(40).ifBlank { null }, "joinedAt" to FieldValue.serverTimestamp())).await()
         val name = runCatching { db.collection("orgs").document(orgId).get().await().getString("name") }.getOrNull() ?: orgId.drop(2)
-        return Group(orgId, name, "farmer").also(::set)
+        return Group(orgId, name, if (existing?.getString("role") == "officer") "officer" else "farmer").also(::set)
     }
 
     suspend fun leave(uid: String) {

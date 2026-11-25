@@ -30,6 +30,18 @@ Smallholder maize farmers lose yield to problems they notice too late or misread
 
 Every record shows **where its AI actually ran** ("On this device" / "Cloud AI" / "Waiting for signal"), taken from the SDK's `inferenceSource`, never guessed.
 
+## Accounts and first-run setup
+
+Both the web and Android clients guide the farmer through language, account choice, preferred name, area, and offline readiness. Name and area are optional and stay on that device. Progress is saved, and setup completion is scoped to the current Firebase UID. Model downloads are explicit, not automatically started during setup.
+
+- **Guest:** anonymous Firebase identity, no email or password. Clearing app/browser data or losing the device can lose access to that identity, even to records it synced.
+- **Create an account / Protect my records:** email/password credentials are linked to an existing guest UID, preserving ownership of its records and group membership. A collision with an existing email never silently switches identities or merges records.
+- **Sign in:** restores an existing account's synced records on another device. Unsynced records must first finish syncing. Preferred name, area, and other device settings are not cloud profiles.
+- **Me → Your account:** email verification, password recovery, and optional guest-account protection. No credentials are stored in preferences. Recovery and verification emails are sent only after the farmer requests them.
+- **Farmer groups:** group sharing stays opt-in. A returning member can re-enter the same group code on another device to restore access without replacing their membership.
+
+For another Firebase deployment, enable **Anonymous** and **Email/Password** under Authentication → Sign-in method. In `app-munda`, both providers are enabled. Live guest-to-email linking and password sign-in were checked using a disposable identity; no real farmer records were used. Email delivery still needs an inbox test. New setup translations are drafts pending native-speaker review.
+
 ## Easy for any farmer, in their language
 
 - **Picture answers.** One question per screen, answered by tapping drawings (patches, low wet spots, heavy rain, this week). Typing is optional; a photo alone is enough to start.
@@ -80,7 +92,7 @@ flowchart LR
     H --> F
 ```
 
-Other Firebase products: **App Check** (reCAPTCHA Enterprise; debug token locally), **Authentication** (anonymous, with an `orgId` custom-claim seam for cooperatives), **Firestore** (persistent offline cache, security rules tested in the emulator), **Remote Config** (model names, on-device size limit, history thresholds, feature flags), **Hosting** (the judged URL).
+Other Firebase products: **App Check** (reCAPTCHA Enterprise; debug token locally), **Authentication** (guest identities plus recoverable email/password accounts, with an `orgId` custom-claim seam for cooperatives), **Firestore** (persistent offline cache, security rules tested in the emulator), **Remote Config** (model names, on-device size limit, history thresholds, feature flags), **Hosting** (the judged URL).
 
 ## Uncertainty, by design
 
@@ -122,7 +134,7 @@ Crops plug in as a `SymptomGuide` plus a guide file; prompts, retrieval, parsing
 3. **Deploy rules and indexes:** `firebase deploy --only firestore --project <project-id>`
 4. **Run locally:** `cd web && npm install && npm run dev`. Add `?demo` to the URL to see every screen with a sample farm (development builds only). Open the printed URL in Chrome, copy the **App Check debug token** from the browser console, and register it under **App Check → Apps → Manage debug tokens**.
 5. **Enable on-device AI in Chrome** (if not already on): open `chrome://flags`, enable **Prompt API for Gemini Nano** and **Prompt API for Gemini Nano with Multimodal Input**, restart Chrome. Check the model under `chrome://on-device-internals`.
-6. In Munda, tap **Set up this device**, then **Download offline AI**, and wait for **Works offline**. Turn Wi-Fi off and record an observation.
+6. Complete the five-step setup: language → guest or email account → optional preferred name → optional town/district → offline readiness. On a compatible device, choose **Download offline AI**, wait for **Offline AI ready**, then turn Wi-Fi off and record an observation. Downloading is optional; unsupported devices queue checks offline and finish them online.
 7. **Deploy for judging:** `cd web && npm run build && cd .. && firebase deploy --only hosting --project <project-id>`
 
 ### Android
@@ -177,7 +189,7 @@ docs/                ADRs, eval scenarios, demo script
 - Dictation in desktop Chrome uses a cloud speech service; typing always works offline.
 - On-device AI writes in English; the app translates guide-backed names and checks, and cloud mode writes in the farmer's language. Beta languages need native-speaker review.
 - Maize only for now; other crops and livestock are planned ([ADR 0004](docs/adr/0004-multi-crop-and-livestock.md)).
-- Activation needs one online session (sign-in and model download); after that Munda works offline.
+- First-time guest activation or email sign-in needs a connection. Local AI also needs a compatible downloaded model. Returning users open Home directly after completing setup; unsupported devices save observations offline and finish AI work after reconnecting.
 
 ## License
 

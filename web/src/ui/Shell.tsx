@@ -14,7 +14,8 @@ import { PlotPage } from './PlotPage';
 import { PlotsPage } from './PlotsPage';
 import { tabOf, useRoute, type Route } from './router';
 import { TabBar } from './TabBar';
-import { Welcome } from './Welcome';
+import { Onboarding } from './Onboarding';
+import { onboarding, setupComplete } from '../data/onboarding';
 
 const wideQuery = '(min-width: 960px)';
 const useWide = () =>
@@ -44,10 +45,11 @@ function screenFor(r: Route) {
 export function Shell() {
   const t = useT();
   const s = useStore(session);
+  const setup = useStore(onboarding);
   const route = useRoute();
   const wide = useWide();
   useEffect(() => { window.scrollTo({ top: 0, behavior: 'instant' }); }, [route]);
-  if (s.kind !== 'ready') return <Welcome state={s} />;
+  if (s.kind !== 'ready' || !setupComplete(setup, s.uid)) return <Onboarding state={s} />;
 
   const tab = tabOf(route);
   const flow = tab === null;

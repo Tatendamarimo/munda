@@ -35,14 +35,15 @@ export async function joinGroup(uid: string, code: string, myName: string): Prom
   const orgId = normalizeCode(code);
   if (!isGroupId(orgId)) throw new Error('bad-code');
   const { db } = firebase();
+  const { getDoc } = await import('firebase/firestore');
+  const existing = await getDoc(doc(db, 'orgs', orgId, 'members', uid)).catch(() => null);
   try {
-    await setDoc(doc(db, 'orgs', orgId, 'members', uid), { role: 'farmer', name: myName.trim().slice(0, 40) || null, joinedAt: serverTimestamp() });
+    if (!existing?.exists()) await setDoc(doc(db, 'orgs', orgId, 'members', uid), { role: 'farmer', name: myName.trim().slice(0, 40) || null, joinedAt: serverTimestamp() });
   } catch {
     throw new Error('not-found');
   }
-  const { getDoc } = await import('firebase/firestore');
   const snap = await getDoc(doc(db, 'orgs', orgId)).catch(() => null);
-  const g: Group = { orgId, name: (snap?.data()?.name as string | undefined) ?? orgId.slice(2), role: 'farmer' };
+  const g: Group = { orgId, name: (snap?.data()?.name as string | undefined) ?? orgId.slice(2), role: existing?.get('role') === 'officer' ? 'officer' : 'farmer' };
   set(g);
   return g;
 }
