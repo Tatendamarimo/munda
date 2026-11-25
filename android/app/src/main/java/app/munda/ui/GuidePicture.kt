@@ -49,7 +49,7 @@ fun GuidePicture(id: String?, alt: String, compact: Boolean = false) {
     val img = remember(c.file) { GuideImages.bitmap(context, c) } ?: return
     val s = strings()
     Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
-        Image(img, alt, Modifier.fillMaxWidth().aspectRatio(if (compact) 16f / 9f else 3f / 2f).clip(RoundedCornerShape(if (compact) 14.dp else 20.dp)), contentScale = ContentScale.Crop)
+        Image(img, alt, Modifier.fillMaxWidth().aspectRatio(if (compact) 16f / 9f else 3f / 2f).clip(RoundedCornerShape(if (compact) 14.dp else 20.dp)), contentScale = ContentScale.Fit)
         val caption = if (c.kind == "photo") s.t("guide.photoBy", "credit" to listOfNotNull(c.author, c.license).joinToString(" · ")) else s.t("guide.drawing")
         Text(caption, style = MaterialTheme.typography.labelSmall, color = LocalMunda.current.ink2)
     }
