@@ -49,6 +49,18 @@
   "title": "Zea mays damaged by Spodoptera frugiperda (200218-0814).jpg",
   "confirmed": false
  },
+ "grey_leaf_spot": {
+  "kind": "photo",
+  "file": "grey_leaf_spot.jpg",
+  "author": "Daren Mueller, Iowa State University, Bugwood.org",
+  "license": "CC BY 3.0 us",
+  "licenseUrl": "https://creativecommons.org/licenses/by/3.0/us/",
+  "source": "https://commons.wikimedia.org/wiki/File:Gray_leaf_spot_Cercospora_zeae-maydis_5465607.png",
+  "title": "Gray leaf spot Cercospora zeae-maydis 5465607.png",
+  "changes": "Converted from PNG to JPEG.",
+  "description": "Grey leaf spot lesions on a maize leaf.",
+  "confirmed": false
+ },
  "leaf_blight": {
   "kind": "photo",
   "file": "leaf_blight.jpg",
@@ -104,6 +116,30 @@
   "title": "Ustilago maydis J1b.jpg",
   "confirmed": false
  },
+ "stalk_borer": {
+  "kind": "photo",
+  "file": "stalk_borer.jpg",
+  "author": "Paul-andre Calatayud",
+  "license": "CC BY-SA 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+  "source": "https://commons.wikimedia.org/wiki/File:5th_instar_larva_of_B._fusca.jpg",
+  "title": "5th instar larva of B. fusca.jpg",
+  "changes": "Unmodified original.",
+  "description": "Busseola fusca larva; an example of maize stalk borer, not every borer species.",
+  "confirmed": false
+ },
+ "storage_pests": {
+  "kind": "photo",
+  "file": "storage_pests.jpg",
+  "author": "Frank Peairs, Colorado State University, Bugwood.org",
+  "license": "CC BY 3.0 us",
+  "licenseUrl": "https://creativecommons.org/licenses/by/3.0/us/",
+  "source": "https://commons.wikimedia.org/wiki/File:Maize_damaged_by_maize_weevil,_Sitophilus_zeamais_01.jpg",
+  "title": "Maize damaged by maize weevil, Sitophilus zeamais 01.jpg",
+  "changes": "Resized to 1100 pixels and JPEG compressed.",
+  "description": "Maize weevil damage; illustrates the weevil component of the storage-pest entry.",
+  "confirmed": false
+ },
  "streak_virus": {
   "kind": "drawing",
   "file": "streak_virus.jpg",
@@ -126,6 +162,18 @@
  "termites": {
   "kind": "drawing",
   "file": "termites.jpg",
+  "confirmed": false
+ },
+ "waterlogging": {
+  "kind": "photo",
+  "file": "waterlogging.jpg",
+  "author": "Lance Cheung / USDA",
+  "license": "Public domain (US government)",
+  "licenseUrl": "https://commons.wikimedia.org/wiki/Commons:Copyright_rules_by_territory/United_States#Works_by_the_US_Government",
+  "source": "https://commons.wikimedia.org/wiki/File:Irrigation_and_Water_(20210604-NRCS-LSC-0543).jpg",
+  "title": "Irrigation and Water (20210604-NRCS-LSC-0543).jpg",
+  "changes": "Unmodified original.",
+  "description": "Standing water in saturated maize fields; illustrates field conditions rather than a diagnostic leaf symptom.",
   "confirmed": false
  },
  "zinc": {
