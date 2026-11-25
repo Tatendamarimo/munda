@@ -11,8 +11,10 @@
 ## Try it
 
 - **Web app:** https://app-munda.web.app (Chrome on a laptop or Android phone; Safari on iPhone). Tap *See an example* for a sample result without setting anything up.
-- **Android app:** download [`munda.apk`](https://github.com/Tatendamarimo/munda/releases/latest/download/munda.apk) from the latest release and open it on the phone (Android 8 or newer; allow installing from your browser when asked).
-- **Video:** *link added on submission.*
+- **Android app:** source and build instructions are available below. A downloadable judging APK has not been published yet; the former latest-release link was not functional.
+- **Video:** not recorded/published yet.
+- **Judging guide:** [docs/judging-guide.md](docs/judging-guide.md).
+- **Submission readiness:** [docs/submission-readiness.md](docs/submission-readiness.md).
 - **Offline AI on a laptop:** in Chrome, Munda can run Gemini Nano on the device. If the status says *Cloud AI only*, the device or browser doesn't support on-device AI yet, and Munda uses cloud Gemini.
 
 ---
@@ -117,7 +119,7 @@ Crops plug in as a `SymptomGuide` plus a guide file; prompts, retrieval, parsing
 ## Privacy
 
 - With Gemini Nano available, questions and records are generated on the device.
-- Photos are used for assessment only and are **never uploaded or stored**.
+- Photos are not saved in Firestore. On-device assessment processes them locally; cloud assessment sends them to Firebase AI Logic. Unfinished photo checks retain a temporary copy on this device until processing completes.
 - Data syncs only to the farm group's Firestore workspace: author-only writes, org-scoped reads, immutable observations, no client deletes.
 
 ## Setup (web)
@@ -127,7 +129,7 @@ Crops plug in as a `SymptomGuide` plus a guide file; prompts, retrieval, parsing
 1. **Firebase console**
    - Create a project; add a **Web app**; copy its config.
    - **AI Services → AI Logic → Get started** (Gemini Developer API).
-   - **Authentication → Sign-in method → Anonymous → Enable**.
+   - **Authentication → Sign-in method → enable Anonymous and Email/Password**.
    - **Firestore → Create database**.
    - **App Check → Apps → your web app → reCAPTCHA Enterprise**: create a key and add your hosting domains (`<project>.web.app`, `<project>.firebaseapp.com`). Don't add `localhost`.
 2. **Config:** `web/.env` already points at the `app-munda` project. To use your own project, `cp web/.env.example web/.env.local` and fill in its values (they override `.env`).
