@@ -136,6 +136,7 @@ export const sw: Messages = {
     trend: 'Eneo lililoathirika kwa muda', heavyRain: 'Mvua kubwa',
   },
   guide: {
+    distinguish: "Jinsi ya kutofautisha",
     byStage: 'Katika kila hatua', likelyWhen: 'Hutokea lini', actNow: 'Cha kufanya sasa', prevent: 'Msimu ujao', sources: 'Imeandikwa kutoka', report: 'Ripoti kwa afisa ugani au Wizara ya Kilimo mara moja.', unchecked: 'Bado haijakaguliwa na mtaalamu wa kilimo. Thibitisha na afisa ugani kabla ya kutumia pesa.',
     photoBy: 'Picha: {credit}', drawing: 'Mchoro, si picha halisi', source: 'Tazama chanzo',
     title: 'Mwongozo wa mahindi', subtitle: 'Matatizo ya kawaida, yanavyoonekana na jinsi ya kukagua. Hufanya kazi bila mtandao.', signs: 'Yanavyoonekana', check: 'Jinsi ya kukagua shambani',

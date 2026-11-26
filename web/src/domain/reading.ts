@@ -23,7 +23,7 @@ export function speechChunks(text: string, limit = 600): string[] {
 export function guideReading(entry: GuideEntry, local: LocalizedEntry, t: (key: MessageKey) => string): string {
   return [local.name, t('guide.signs'), local.signs,
     entry.report ? t('guide.report') : '', t('guide.check'), local.checkInField,
-    ...([['guide.byStage', entry.byStage], ['guide.likelyWhen', entry.likelyWhen], ['guide.actNow', entry.actNow], ['guide.prevent', entry.prevent]] as const).flatMap(([key, value]) => value ? [t(key), value] : []),
+    ...([['guide.distinguish', entry.distinguish], ['guide.byStage', entry.byStage], ['guide.likelyWhen', entry.likelyWhen], ['guide.actNow', entry.actNow], ['guide.prevent', entry.prevent]] as const).flatMap(([key, value]) => value ? [t(key), value] : []),
     ...(entry.sources?.length ? [t('guide.sources'), ...entry.sources.map(s => s.title), t('guide.unchecked')] : []),
   ].filter(Boolean).join('. ');
 }

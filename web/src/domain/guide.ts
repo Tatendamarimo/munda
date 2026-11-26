@@ -23,7 +23,7 @@ export interface GuideEntry {
   actNow?: string;
   /** What to do before and during next season. */
   prevent?: string;
-  /** Must be reported to the authorities (e.g. MLN, not yet in southern Africa). */
+  /** Prompt referral to local plant-health authorities for confirmation (e.g. suspected MLN). */
   report?: boolean;
   /** What the entry was written from. */
   sources?: { title: string; url: string }[];

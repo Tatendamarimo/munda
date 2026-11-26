@@ -299,8 +299,8 @@
   {
    "id": "ear_rot",
    "name": "Kuora kwemaguru",
-   "signs": "Huswa hwe pink kusvika tsvuku pamaguru nembeu, kazhinji huchitangira kumuromo weguru; maguru akaora uye akareruka.",
-   "checkInField": "Pakukohwa, svuura makoko emaguru 20 uverenge ane huswa.",
+   "signs": "Chakuvhe, tsanga dzachinja ruvara kana dzakakuvara, nemiguri isina kurema. Chakuvhe chinogona kuva chichena, chepinki, chitsvuku, chegrey kana chegirini. Muchetura hausi wose unooneka.",
+   "checkInField": "Patsanura miguri ine chakuvhe kana inofungirwa. Usairavira, kuidya kana kuipa zvipfuwo. Bvunza nyanzvi yekurima kana yekuchengeteka kwezvokudya nezvekuongororwa; mufananidzo hautauri kana paine muchetura.",
    "keywords": [
     "kuora",
     "huswa",
@@ -326,8 +326,8 @@
   {
    "id": "storage_pests",
    "name": "Zvipukanana zvemudura (huruva neLGB)",
-   "signs": "LGB: maburi akatenderera mumakoko, maguru nembeu, ine hupfu hwakawanda. Huruva: mbeu dzakabudiswa mukati, tumbuyu tudiki twe brown tune muromo murefu.",
-   "checkInField": "Vhiki imwe kana mbiri dzega dzega, sefa mbeu dziri mudura utsvage tumbuyu, maburi nehupfu.",
+   "signs": "Tsanga dzakadyiwa mukati, maburi, zvipembenene nehupfu hwechibage. Zvipfukuto zvine mhino refu zvinogonawo kusiya maburi akatenderera; hole shape yoga haisiyanisi zvipembenene.",
+   "checkInField": "Tarisa zvipembenene, kupisa, hunyoro, hupfu nechakuvhe munzvimbo dzakasiyana dzekuchengetera. Patsanura chibage chinofungirwa; usafunge kuti chakachengeteka kudya, kupa zvipfuwo kana kutengesa usina kuongororwa.",
    "keywords": [
     "huruva",
     "mudura",

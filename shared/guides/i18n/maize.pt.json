@@ -272,8 +272,8 @@
   {
    "id": "ear_rot",
    "name": "Podridão da maçaroca",
-   "signs": "Bolor rosa a vermelho nas maçarocas e grãos, muitas vezes a partir da ponta da maçaroca.",
-   "checkInField": "Na colheita, abra o folhelho de 20 maçarocas e conte as que têm bolor.",
+   "signs": "Mofo, grãos descoloridos ou danificados e espigas leves. O mofo pode ser branco, rosa, vermelho, cinza ou verde. Algumas contaminações não são visíveis.",
+   "checkInField": "Separe espigas mofadas ou suspeitas. Não prove, consuma nem forneça aos animais. Peça orientação sobre testes e segurança; uma foto não identifica nem mede toxinas.",
    "keywords": [
     "podridão",
     "bolor",
@@ -295,8 +295,8 @@
   {
    "id": "storage_pests",
    "name": "Pragas do celeiro (gorgulho e broca-grande)",
-   "signs": "Broca-grande: furos redondos e limpos no folhelho, maçarocas e grãos, com muito pó. Gorgulho: grãos ocos, pequenos besouros castanhos com focinho comprido.",
-   "checkInField": "A cada 1-2 semanas, peneire uma amostra do grão guardado e procure insetos, furos e pó.",
+   "signs": "Grãos ocos ou danificados, furos, insetos e pó de milho. Gorgulhos de rostro comprido podem deixar furos redondos; só o formato do furo não identifica a praga.",
+   "checkInField": "Inspecione insetos, calor, umidade, pó e mofo em vários pontos do estoque. Separe os lotes suspeitos; não suponha que são seguros para consumo, alimentação animal ou venda sem avaliação.",
    "keywords": [
     "gorgulho",
     "celeiro",

@@ -74,10 +74,10 @@ function causes(raw: unknown, guide: SymptomGuide, allowed: Set<string>, max: nu
     const gid = allowed.has(id) || guide.get(id) ? id : null;
     const entry = guide.get(gid);
     if (!entry && outside >= MAX_OUTSIDE_GUIDE) continue;
-    const name = clean(c.name, MAX.item) || entry?.name;
+    const name = entry?.name || clean(c.name, MAX.item);
     if (!name) continue;
     const proposed = clean(c.checkNext, MAX.check);
-    const check = (proposed && noDose(proposed) ? proposed : '') || entry?.checkInField || (proposed ? OUTSIDE_GUIDE_CHECK : '');
+    const check = !entry ? OUTSIDE_GUIDE_CHECK : (proposed && noDose(proposed) ? proposed : entry.checkInField);
     if (!check) continue;
     const supporting = cleanList(c.supporting, MAX.item, 4).filter(noDose);
     let likelihood = Likelihood.parseLoose(c.likelihood);
@@ -154,6 +154,7 @@ export function parseReview(raw: string | null | undefined, knownIds: Set<string
       const s = clean(p.summary, MAX.note);
       if (!s) continue;
       const ids = Array.isArray(p.relatedIds) ? p.relatedIds.filter((x): x is string => typeof x === 'string' && knownIds.has(x)) : [];
+      if (!ids.length) continue; // A claimed history pattern needs a real earlier record.
       patterns.push({ kind: PatternKind.parse(p.kind), summary: s, relatedIds: [...new Set(ids)].slice(0, MAX.related), source: 'CLOUD_AI' });
       if (patterns.length >= 3) break;
     }
@@ -161,7 +162,7 @@ export function parseReview(raw: string | null | undefined, knownIds: Set<string
       summary: clean(o.summary, MAX.note),
       patterns,
       updatedCauses: causes(o.updatedCauses, guide, new Set(guide.entries.map((e) => e.id)), 4),
-      nextChecks: cleanList(o.nextChecks, MAX.check, 4),
+      nextChecks: cleanList(o.nextChecks, MAX.check, 4).filter(noDose),
     });
   } catch (e) {
     return fail(String(e instanceof Error ? e.message : e));

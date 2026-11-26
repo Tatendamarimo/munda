@@ -278,8 +278,8 @@
   {
    "id": "ear_rot",
    "name": "Pourriture des épis",
-   "signs": "Moisissure rose à rouge sur les épis et les grains, souvent à partir de la pointe de l'épi.",
-   "checkInField": "À la récolte, ouvrez les spathes de 20 épis et comptez ceux qui sont moisis.",
+   "signs": "Moisissures, grains décolorés ou abîmés, épis légers. La moisissure peut être blanche, rose, rouge, grise ou verte. Certaines contaminations ne sont pas visibles.",
+   "checkInField": "Séparez les épis moisis ou suspects. Ne les goûtez pas, ne les consommez pas et ne les donnez pas aux animaux. Demandez conseil sur les analyses et la sécurité ; une photo ne mesure pas les toxines.",
    "keywords": [
     "pourriture",
     "moisissure",
@@ -301,8 +301,8 @@
   {
    "id": "storage_pests",
    "name": "Ravageurs des stocks (charançon et grand capucin)",
-   "signs": "Grand capucin : trous ronds nets dans spathes, épis et grains, avec beaucoup de poussière. Charançon : grains évidés, petits coléoptères bruns à long rostre.",
-   "checkInField": "Toutes les 1 à 2 semaines, tamisez un échantillon du stock et cherchez insectes, trous et poussière.",
+   "signs": "Grains creusés ou abîmés, trous, insectes et poussière de maïs. Les charançons à long rostre peuvent laisser des trous ronds ; leur forme seule ne suffit pas à identifier le ravageur.",
+   "checkInField": "Inspectez insectes, chaleur, humidité, poussière et moisissures en plusieurs points du stock. Séparez les lots suspects ; ne présumez pas qu’ils sont sûrs à manger, à donner aux animaux ou à vendre sans évaluation.",
    "keywords": [
     "charançon",
     "stock",

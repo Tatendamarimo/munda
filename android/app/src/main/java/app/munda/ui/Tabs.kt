@@ -338,7 +338,7 @@ fun GuideEntryScreen(vm: FarmViewModel, id: String, onBack: () -> Unit) {
             add(loc.name); add(s.t("guide.signs")); add(loc.signs)
             if (e.report) add(s.t("guide.report"))
             add(s.t("guide.check")); add(loc.checkInField)
-            listOf("guide.byStage" to e.byStage, "guide.likelyWhen" to e.likelyWhen, "guide.actNow" to e.actNow, "guide.prevent" to e.prevent).forEach { (key, value) -> if (!value.isNullOrBlank()) { add(s.t(key)); add(value) } }
+            listOf("guide.distinguish" to e.distinguish, "guide.byStage" to e.byStage, "guide.likelyWhen" to e.likelyWhen, "guide.actNow" to e.actNow, "guide.prevent" to e.prevent).forEach { (key, value) -> if (!value.isNullOrBlank()) { add(s.t(key)); add(value) } }
             if (e.sources.isNotEmpty()) { add(s.t("guide.sources")); addAll(e.sources.map { it.title }); add(s.t("guide.unchecked")) }
         }.joinToString(". ")) })
         Page {
@@ -351,7 +351,7 @@ fun GuideEntryScreen(vm: FarmViewModel, id: String, onBack: () -> Unit) {
             }
             if (e.report) ReportNow()
             CheckFirst(loc.checkInField)
-            listOf("guide.byStage" to e.byStage, "guide.likelyWhen" to e.likelyWhen, "guide.actNow" to e.actNow, "guide.prevent" to e.prevent).forEach { (k, v) ->
+            listOf("guide.distinguish" to e.distinguish, "guide.byStage" to e.byStage, "guide.likelyWhen" to e.likelyWhen, "guide.actNow" to e.actNow, "guide.prevent" to e.prevent).forEach { (k, v) ->
                 if (v != null) CardBox { Text(s.t(k), style = MaterialTheme.typography.titleSmall); Text(v, style = MaterialTheme.typography.bodyMedium) }
             }
             if (e.sources.isNotEmpty()) {

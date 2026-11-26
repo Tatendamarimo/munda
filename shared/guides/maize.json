@@ -1,7 +1,7 @@
 {
  "crop": "MAIZE",
- "version": 2,
- "note": "Plain-language summary for smallholder farmers. Every entry lists the sources it was written from. Reference material for the model and the farmer, not a diagnosis. Not yet reviewed by an agronomist or extension officer: please confirm before relying on it.",
+ "version": 3,
+ "note": "Source-reviewed maize reference, updated 26 November 2026; not an exhaustive diagnostic guide or an agronomist-approved treatment plan. Photos and symptoms cannot confirm a cause, a fertilizer need, or grain safety. Local extension review, laboratory testing where appropriate, and native-speaker validation remain required.",
  "entries": [
   {
    "id": "nitrogen",
@@ -29,7 +29,7 @@
    "checkInField": "Compare lower and upper leaves of 10 plants; look for the V from the tip along the midrib; compare with a well-fertilized row; note when fertilizer or manure was last applied.",
    "byStage": "Most likely during fast growth from knee-high, when the plant takes up most of its nitrogen.",
    "likelyWhen": "After heavy rain or waterlogging (nitrogen is lost from wet, saturated soil); on sandy soils with little organic matter; when no top-dressing was given before the growth spurt.",
-   "actNow": "Top-dress nitrogen (fertilizer or well-rotted manure) while the crop is still growing fast, before tasselling; ask your extension officer how much for your soil.",
+   "actNow": "Check the leaf pattern, root health and fertilizer history first. Ask your extension officer whether additional nitrogen is needed for this crop stage and soil; yellow leaves alone do not establish a fertilizer requirement.",
    "prevent": "Split nitrogen: a small amount at planting and most of it just before the fast-growth stage. Add manure or compost; rotate with legumes.",
    "sources": [
     {
@@ -38,11 +38,15 @@
     },
     {
      "title": "Mississippi State University Extension: Corn fertilization (P3591)",
-     "url": "https://extension.msstate.edu/sites/default/files/publications/P3591_web.pdf"
+     "url": "https://extension.msstate.edu/publications/corn-fertilization"
     },
     {
      "title": "Infonet-Biovision: Maize (pests, diseases and crop husbandry)",
      "url": "https://www.infonet-biovision.org/crops-fruits-vegetables/maize-revised"
+    },
+    {
+     "title": "UMN Extension: Flooded corn",
+     "url": "https://extension.umn.edu/agriculture/crop-production/corn/flooded-corn"
     }
    ]
   },
@@ -75,7 +79,7 @@
     },
     {
      "title": "Mississippi State University Extension: Corn fertilization (P3591)",
-     "url": "https://extension.msstate.edu/sites/default/files/publications/P3591_web.pdf"
+     "url": "https://extension.msstate.edu/publications/corn-fertilization"
     }
    ]
   },
@@ -98,8 +102,8 @@
    "checkInField": "Check young plants after a cold or wet spell; compare varieties and parts of the field.",
    "byStage": "Young plants, usually before knee-high.",
    "likelyWhen": "Cool, wet weather followed by warm sun; compacted, very wet or very dry soil; acid soil (below pH 5.5 phosphorus is much less available).",
-   "actNow": "Little helps once seen; plants often recover as roots grow. Note the field for next season.",
-   "prevent": "Place phosphorus near the seed at planting, lime acid soils, and avoid compaction.",
+   "actNow": "Check for cold or wet soil, root damage and persistent poor growth. Some temporary purpling resolves as conditions improve; ask your extension officer to interpret a soil test if it persists.",
+   "prevent": "Use a soil-test-based phosphorus plan, safe fertilizer placement that avoids seed injury, and lime only where a soil test recommends it. Avoid compaction.",
    "sources": [
     {
      "title": "University of Nebraska CropWatch: Key to nutrient deficiencies of corn and sorghum",
@@ -107,7 +111,11 @@
     },
     {
      "title": "Mississippi State University Extension: Corn fertilization (P3591)",
-     "url": "https://extension.msstate.edu/sites/default/files/publications/P3591_web.pdf"
+     "url": "https://extension.msstate.edu/publications/corn-fertilization"
+    },
+    {
+     "title": "Manitoba Agriculture: Corn trouble shooting",
+     "url": "https://gov.mb.ca/agriculture/crops/crop-management/grain-corn/corn-trouble-shooting.html"
     }
    ]
   },
@@ -125,11 +133,11 @@
     "new leaves",
     "pale"
    ],
-   "signs": "Whole young (upper) leaves turn evenly pale yellow, without dead patches; plants pale and stunted.",
-   "distinguish": "Young leaves first (nitrogen starts on old leaves). Evenly yellow; zinc gives white bands in the lower half of the leaf instead.",
-   "checkInField": "Compare the newest leaves with the oldest on 10 plants; look for even yellowing on top and green leaves below.",
+   "signs": "Young or recently expanded upper leaves become pale yellow; yellow stripes between green veins may occur. Plants may be stunted. Symptoms can overlap other nutrient or root problems.",
+   "distinguish": "Usually affects younger leaves before older ones, unlike classic nitrogen deficiency. Striping can occur, so leaf age, field conditions and plant analysis help separate it from zinc and magnesium problems.",
+   "checkInField": "Compare the newest and oldest leaves on several plants; note yellowing or striping. Ask about plant tissue analysis when uncertain; appearance alone does not confirm sulfur deficiency.",
    "byStage": "Shows on the youngest leaves.",
-   "actNow": "Ask your extension officer about a sulfur-containing fertilizer or manure; a soil test confirms it before you buy.",
+   "actNow": "Ask your extension officer to assess the symptoms and testing options before buying sulfur inputs. Soil sulfur results alone may not reliably predict the crop response.",
    "prevent": "Test the soil every few years; add manure or compost.",
    "sources": [
     {
@@ -138,7 +146,15 @@
     },
     {
      "title": "Mississippi State University Extension: Corn fertilization (P3591)",
-     "url": "https://extension.msstate.edu/sites/default/files/publications/P3591_web.pdf"
+     "url": "https://extension.msstate.edu/publications/corn-fertilization"
+    },
+    {
+     "title": "Iowa State Extension: Is it nitrogen or sulfur deficiency?",
+     "url": "https://crops.extension.iastate.edu/post/it-nitrogen-or-sulfur-deficiency-symptoms"
+    },
+    {
+     "title": "NC State Extension: Sulfur deficiency symptoms in emerging corn",
+     "url": "https://corn.ces.ncsu.edu/sulfur-deficiency-symptoms-in-emerging-corn/"
     }
    ]
   },
@@ -156,7 +172,7 @@
     "bushy"
    ],
    "signs": "Young leaves have white to pale yellow bands in the lower half of the leaf, either side of the midrib, later turning pale brown or grey; plants pale and short.",
-   "distinguish": "Bands on young leaves (sulfur yellows the whole young leaf evenly; magnesium stripes old leaves).",
+   "distinguish": "Broad pale bands beside the midrib, often near the base of young leaves. Sulfur may also produce striping on young leaves; magnesium more often affects older leaves. Confirm uncertain cases with an adviser.",
    "checkInField": "Look at the youngest leaves for white bands near the base of the leaf.",
    "byStage": "Shows on the youngest leaves.",
    "actNow": "Ask your extension officer about zinc; a soil test confirms it before you buy.",
@@ -196,7 +212,7 @@
     },
     {
      "title": "Mississippi State University Extension: Corn fertilization (P3591)",
-     "url": "https://extension.msstate.edu/sites/default/files/publications/P3591_web.pdf"
+     "url": "https://extension.msstate.edu/publications/corn-fertilization"
     }
    ]
   },
@@ -224,7 +240,7 @@
    "sources": [
     {
      "title": "Mississippi State University Extension: Corn fertilization (P3591)",
-     "url": "https://extension.msstate.edu/sites/default/files/publications/P3591_web.pdf"
+     "url": "https://extension.msstate.edu/publications/corn-fertilization"
     }
    ]
   },
@@ -252,7 +268,7 @@
    "distinguish": "Follows the lie of the land (low spots, not rows or random plants) and appears within days of heavy rain. Often followed by nitrogen yellowing because wet soil loses nitrogen.",
    "checkInField": "Look for standing water or soggy soil after rain; dig up one yellow plant and one healthy one and compare roots.",
    "likelyWhen": "Heavy or long rains on flat, low-lying, clay or compacted soils with poor drainage.",
-   "actNow": "Open shallow channels to let standing water off. Once the soil drains, top-dress nitrogen to replace what was lost.",
+   "actNow": "Where safe and permitted, improve drainage without causing erosion or sending floodwater into other fields. Let the soil drain and assess new growth and roots before asking your extension officer whether extra nitrogen is needed.",
    "prevent": "Plant on ridges or raised beds in low spots, keep drains open, and choose deep, well-drained land for maize.",
    "sources": [
     {
@@ -261,7 +277,11 @@
     },
     {
      "title": "Mississippi State University Extension: Corn fertilization (P3591)",
-     "url": "https://extension.msstate.edu/sites/default/files/publications/P3591_web.pdf"
+     "url": "https://extension.msstate.edu/publications/corn-fertilization"
+    },
+    {
+     "title": "UMN Extension: Flooded corn",
+     "url": "https://extension.umn.edu/agriculture/crop-production/corn/flooded-corn"
     }
    ]
   },
@@ -324,7 +344,7 @@
    "checkInField": "From the 2-3 leaf stage, 2-3 times a week: check 20 plants in each of 5 places across the field (100 plants). Count plants with fresh damage or frass in the whorl.",
    "byStage": "Seedlings: windowpanes, small holes, dead heart. Whorl: ragged holes and frass. Tasselling and cobs: caterpillars bore into cobs and eat the grain.",
    "likelyWhen": "Late-planted fields are hit hardest; it attacks every crop stage and can arrive in large numbers.",
-   "actNow": "Crush egg masses and caterpillars on each visit; put ash or soil into damaged whorls; keep weeding. If 10-15 of every 100 plants are freshly damaged, contact your AGRITEX/extension officer before spraying.",
+   "actNow": "Scout for live small larvae and fresh damage, and remove reachable egg masses or larvae by hand where practical. Protect natural enemies. Ask your extension officer about crop-stage-specific action thresholds before any pesticide use; ash or soil is not a reliably proven substitute.",
    "prevent": "Plant early with the effective rains. Push-pull (intercrop with desmodium, Brachiaria grass around the edge), timely weeding, and varieties with good husk cover help.",
    "sources": [
     {
@@ -342,6 +362,10 @@
     {
      "title": "Virginia Cooperative Extension: Fall armyworm identification",
      "url": "https://www.pubs.ext.vt.edu/444/444-015/444-015.html"
+    },
+    {
+     "title": "Babendreier et al. (2020): Efficacy of alternative fall armyworm controls",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7240539/"
     }
    ]
   },
@@ -364,10 +388,10 @@
    "signs": "Small holes in straight rows across the youngest leaves; dead heart in young plants; tunnels with frass inside stems, which may break; older caterpillars bore into cobs.",
    "distinguish": "Holes in neat rows and tunnels in the stem (fall armyworm leaves ragged holes and wet frass in the whorl).",
    "checkInField": "Check the newest leaves on 20 plants for rows of small holes; split one damaged stem to look for tunnels and caterpillars.",
-   "byStage": "Seedlings and whorl: rows of holes, dead heart. Later: stem tunnels, broken stalks, cob damage; damaged cobs can grow mould (aflatoxin).",
+   "byStage": "Young plants: rows of holes or dead heart. Later: stem tunnels, broken stalks and cob damage. Insect-damaged cobs can be more vulnerable to fungal infection and mycotoxin contamination.",
    "likelyWhen": "Numbers build up through the season; caterpillars survive the dry season inside old stalks and stubble.",
    "actNow": "Pull out plants with dead heart. Keep the field weeded, and remove wild sorghum nearby.",
-   "prevent": "After harvest, slash and plough in or destroy old stalks (or burn their leaves if stalks are kept for fencing). Intercrop or rotate with cowpea, soybean or cassava; push-pull with Napier grass and desmodium. Act together with neighbours.",
+   "prevent": "Use locally recommended resistant varieties and cropping or push-pull practices where suitable. Ask your extension officer how to manage infested stalks after harvest while protecting soil cover; do not burn residues as a default.",
    "sources": [
     {
      "title": "Infonet-Biovision: African maize stalkborer",
@@ -430,11 +454,15 @@
    "byStage": "Mostly older plants, from about three months after planting.",
    "likelyWhen": "Dry spells; fields cultivated for many years; old wood and residue left in the field; maize left standing after it is ready.",
    "actNow": "Harvest on time and do not leave harvested maize in stooks or heaps where termites are a problem.",
-   "prevent": "Plough to break nests and runways, rotate crops, and remove rotting wood and residue.",
+   "prevent": "Maintain crop health and soil moisture where possible. Termite species differ and many feed on dead material; do not strip all mulch or destroy mounds indiscriminately. Ask for locally appropriate management of confirmed crop damage.",
    "sources": [
     {
      "title": "Infonet-Biovision: Maize (pests, diseases and crop husbandry)",
      "url": "https://www.infonet-biovision.org/crops-fruits-vegetables/maize-revised"
+    },
+    {
+     "title": "Infonet-Biovision: Termites",
+     "url": "https://www.infonet-biovision.org/plant_pests/termites"
     }
    ]
   },
@@ -455,13 +483,13 @@
     "granary",
     "powder"
    ],
-   "signs": "Larger grain borer: neat round holes in husks, cobs and grain, with lots of fine grain dust. Weevil: hollowed kernels with irregular holes; small brown beetles with a long snout.",
-   "distinguish": "Grain borer leaves round holes and fine dust and attacks cobs; weevils have a snout and attack loose grain too.",
-   "checkInField": "Every 1-2 weeks, sieve a sample of stored grain and look for beetles, holes and dust; smell for mustiness.",
+   "signs": "Damaged or hollowed kernels, holes, beetles and grain dust. Maize weevils have a long snout and can leave round exit holes; larger grain borers can produce heavy boring dust and damage stored cobs.",
+   "distinguish": "Hole shape alone cannot reliably separate the pests. Inspect adult insects and the amount of boring dust; maize weevils have a snout.",
+   "checkInField": "Inspect several parts of the store for live insects, damaged kernels, dust, moisture, heating or mould. Keep suspect grain separate and ask for identification if unsure.",
    "byStage": "After harvest, in store (weevils can start in the field).",
    "likelyWhen": "Maize left in the field after it is ready, grain not dried enough, unshelled cobs, warm humid stores; grain-borer losses can reach about a third of the grain in 3-6 months.",
-   "actNow": "Sort out and use or sell infested grain first; shell and re-dry grain; clean out dust and damaged grain.",
-   "prevent": "Harvest on time; dry grain to about 12-13% (a kernel cracks when bitten); shell before storing; store in airtight or sealed containers in a clean, raised store; inspect regularly.",
+   "actNow": "Separate infested or suspect grain and inspect it for mould, heating and moisture. Ask your extension or grain-safety adviser about safe treatment and use. Do not assume infested grain is safe to eat, feed or sell, and do not mix it into clean grain.",
+   "prevent": "Dry clean maize to the moisture level recommended for the storage period and system, commonly around 13% or lower for longer storage. Use a calibrated moisture meter where possible; biting kernels cannot establish a precise percentage. Use suitable intact hermetic storage only with adequately dried grain.",
    "sources": [
     {
      "title": "Infonet-Biovision: Larger grain borer",
@@ -470,6 +498,14 @@
     {
      "title": "Infonet-Biovision: Storage pests",
      "url": "https://infonet-biovision.org/plant_pests/storage-pests"
+    },
+    {
+     "title": "Purdue Extension: Rice, granary and maize weevils",
+     "url": "https://extension.entm.purdue.edu/publications/E-237/E-237.html"
+    },
+    {
+     "title": "FAO: Inspection, sampling and analysis of maize for aflatoxin",
+     "url": "https://www.fao.org/4/x5036e/x5036E1d.htm"
     }
    ]
   },
@@ -489,12 +525,12 @@
     "leafhopper"
    ],
    "signs": "Narrow, broken white-to-yellow streaks running along the leaves, starting as small pale spots at the base of the youngest leaves. Plants infected young are stunted and give small or no cobs.",
-   "distinguish": "Fine broken streaks along the veins on scattered plants, often near grass or field edges (zinc gives broad bands; nutrient problems affect whole areas evenly).",
+   "distinguish": "Fine broken streaks along veins, often on scattered plants. Zinc and other stresses can look similar, and nutrient problems can also occur in patches; an image alone cannot confirm the virus.",
    "checkInField": "Look at the youngest leaves of 20 plants for fine broken streaks; note whether affected plants are near grass or the field edge.",
    "byStage": "Worst when plants are infected young.",
    "likelyWhen": "Spread by small leafhoppers that breed on wild grasses during the rains; late or staggered planting and fields next to grassland are hit hardest.",
    "actNow": "There is no cure. Keep grass weeds down around the field.",
-   "prevent": "Plant early and at the same time as neighbours; use streak-tolerant varieties; keep about 10 m of bare ground from earlier maize; remove old cereal residue.",
+   "prevent": "Use locally recommended streak-resistant or tolerant varieties and appropriate planting dates. Manage volunteer maize and grassy host plants with local advice; no fixed isolation distance guarantees protection.",
    "sources": [
     {
      "title": "Infonet-Biovision: Maize (pests, diseases and crop husbandry)",
@@ -529,8 +565,8 @@
    "checkInField": "Look for mottled young leaves, dead hearts and drying husks; count affected plants and note where they are.",
    "byStage": "All stages; plants infected young are hit hardest and may die.",
    "likelyWhen": "Caused by two viruses together, carried by insects (thrips, aphids, beetles), by seed from infected crops, and on tools and people moving between fields. Continuous maize keeps it going.",
-   "actNow": "Report suspected MLN to AGRITEX / the Ministry of Agriculture straight away: as of 2025 it had not been reported in southern Africa. Pull out and burn suspected plants; do not feed them to livestock; do not save seed; clean tools and do not walk from this field into others.",
-   "prevent": "Use certified disease-free seed; rotate with legumes; leave up to two months with no maize; remove weed and grass hosts.",
+   "actNow": "Report suspected maize lethal necrosis promptly to AGRITEX or your local plant-health authority for confirmation and containment advice. Avoid moving suspect plants, seed or crop debris to other farms; do not save suspect seed. Clean tools and follow official instructions on removal and disposal.",
+   "prevent": "Use certified clean seed and locally recommended resistant or tolerant varieties where available. Rotate with suitable non-host crops and control volunteer maize and relevant weed hosts. Follow the local plant-health authority on the required maize-free period; do not assume two months is sufficient.",
    "report": true,
    "sources": [
     {
@@ -540,6 +576,10 @@
     {
      "title": "CIMMYT: MLN symptoms and best practices (flyer)",
      "url": "https://mln.cimmyt.org/wp-content/uploads/sites/39/2016/06/MLN-FLYER-final-complete.pdf"
+    },
+    {
+     "title": "KALRO / KEPHIS / CIMMYT and partners: MLND management poster (2024)",
+     "url": "https://mln.cimmyt.org/wp-content/uploads/sites/39/2024/01/English-Version-MLN-Poster-FINAL-4.01.2024.pdf-1.pdf"
     }
    ]
   },
@@ -619,11 +659,15 @@
    "checkInField": "Rub a pustule: rust leaves brown powder. Note how many leaves are covered.",
    "likelyWhen": "Spores blow in on the wind; Oxalis (sorrel) weeds can carry it.",
    "actNow": "Note the field; ask your extension officer if upper leaves are heavily covered before tasselling.",
-   "prevent": "Plant resistant varieties; plough residue deeply; control Oxalis weeds.",
+   "prevent": "Use locally recommended resistant varieties and scout regularly. Rust spores can travel on the wind; burying crop residue alone does not reliably prevent infection.",
    "sources": [
     {
      "title": "Infonet-Biovision: Maize (pests, diseases and crop husbandry)",
      "url": "https://www.infonet-biovision.org/crops-fruits-vegetables/maize-revised"
+    },
+    {
+     "title": "UMN Extension: Common rust on corn",
+     "url": "https://extension.umn.edu/agriculture/crop-production/corn/common-rust-on-corn"
     }
    ]
   },
@@ -643,12 +687,12 @@
     "grain",
     "mouldy"
    ],
-   "signs": "Pink to red mould on cobs and grain, often starting at the cob tip; rotten, light cobs.",
-   "distinguish": "Mould on the cob itself, often where insects or birds damaged it.",
-   "checkInField": "Peel back the husks of 20 cobs at harvest and count mouldy ones.",
+   "signs": "Mouldy, discoloured, damaged or lightweight kernels and cobs. Depending on the fungus, growth may be white, pink, red, grey or green; some contamination is not visibly obvious.",
+   "distinguish": "Cob mould can involve different fungi. Colour or a photograph cannot determine which toxin is present or whether grain is safe.",
+   "checkInField": "Peel husks from cobs sampled across the field and note mould or damage. Separate suspect cobs; ask for grain testing where contamination is suspected. Do not taste suspect grain.",
    "byStage": "Cobs, from grain filling to harvest.",
-   "likelyWhen": "Fungi enter through the silk and through holes made by borers, earworms and birds; leaving the crop in the field late raises the risk of toxins (aflatoxin).",
-   "actNow": "Do not eat or feed mouldy cobs to animals (they can carry toxins); sort them out at harvest; harvest on time and dry well.",
+   "likelyWhen": "Insect damage, stressed crops, delayed harvest and damp storage can favour different ear-rot fungi. Aflatoxins and other mycotoxins are different hazards; visible mould does not identify or measure them.",
+   "actNow": "Keep suspect or mouldy cobs separate. Do not eat, feed or mix them into clean grain. Seek local grain-safety or extension advice on testing and disposal; drying reduces further fungal growth but does not reliably remove toxins already present.",
    "prevent": "Control stalk borers and fall armyworm; plant varieties with good husk cover; harvest promptly.",
    "sources": [
     {
@@ -658,6 +702,14 @@
     {
      "title": "Infonet-Biovision: Storage pests",
      "url": "https://infonet-biovision.org/plant_pests/storage-pests"
+    },
+    {
+     "title": "UMN Extension: Corn ear rots and mycotoxins",
+     "url": "https://extension.umn.edu/agriculture/crop-production/corn/corn-ear-rots-and-mycotoxins"
+    },
+    {
+     "title": "WHO: Mycotoxins",
+     "url": "https://www.who.int/news-room/fact-sheets/detail/mycotoxins"
     }
    ]
   },
@@ -680,13 +732,17 @@
    "distinguish": "Black powdery galls; head smut has stringy threads among the spores.",
    "checkInField": "Count plants with galls or smutted tassels and cobs.",
    "byStage": "Mostly at tasselling and cob formation.",
-   "likelyWhen": "Head smut is carried on seed; spores stay in the soil.",
-   "actNow": "Cut off galls and smutted heads before they burst, and burn or bury them away from the field.",
+   "likelyWhen": "Common smut can infect growing tissues, often after injury. Head smut infects seedlings from spores in soil or on seed and grows within the plant; signs may only appear at flowering.",
+   "actNow": "Avoid spreading spore masses. In small plots, ask your extension officer about removing unburst galls or affected heads and suitable disposal. Removing a head does not cure systemic head smut; do not burn material as a default.",
    "prevent": "Use clean certified seed and resistant varieties; rotate crops; remove volunteer maize.",
    "sources": [
     {
      "title": "Infonet-Biovision: Maize (pests, diseases and crop husbandry)",
      "url": "https://www.infonet-biovision.org/crops-fruits-vegetables/maize-revised"
+    },
+    {
+     "title": "UC IPM: Head smut of corn",
+     "url": "https://ipm.ucanr.edu/agriculture/corn/head-smut/"
     }
    ]
   },

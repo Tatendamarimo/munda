@@ -258,8 +258,8 @@
   {
    "id": "ear_rot",
    "name": "Ukubola kwezikhwebu",
-   "signs": "Isikhunta esipinki kusiya kokubomvu ezikhwebini lenhlamvini, siqala esihlokweni sesikhwebu.",
-   "checkInField": "Ekuvuneni, hlubula amakhoba ezikhwebu ezingu-20 ubale ezilesikhunta.",
+   "signs": "Ukhunta, inhlamvu eziguqule umbala kumbe ezonakeleyo, lezikhwebu ezingasindi. Ukhunta lungaba mhlophe, pinki, bomvu, mpunga kumbe luhlaza. Ubuthi bonke abubonakali.",
+   "checkInField": "Hlukanisa izikhwebu ezilokhunta kumbe ezisolwayo. Ungazinambithi, uzidle kumbe uphe izifuyo. Buza umeluleki ngezokulima kumbe ukuphepha kokudla mayelana lokuhlolwa; isithombe asiqinisekisi ubuthi.",
    "keywords": [
     "ukubola",
     "isikhunta",
@@ -281,8 +281,8 @@
   {
    "id": "storage_pests",
    "name": "Izinambuzane zesiphala (ihuruva leLGB)",
-   "signs": "LGB: imigodi eyindilinga emakhobeni, ezikhwebini lenhlamvini, lothuli oluningi. Ihuruva: inhlamvu ezidliweyo ngaphakathi, amabhungane amancane anomlomo omude.",
-   "checkInField": "Viki linye kumbe amabili, hlunga inhlamvu ezigcinwe usesha amabhungane, imigodi lothuli.",
+   "signs": "Inhlamvu ezidliwe ngaphakathi, imbobo, izinambuzane lothuli lomumbu. Izibungu ezilekhala elide zingatshiya imbobo eziyindingilizi; ukuma kwembobo kuphela akwanele ukwehlukanisa izinambuzane.",
+   "checkInField": "Hlola izinambuzane, ukutshisa, ubumanzi lukhunta endaweni ezitshiyeneyo. Hlukanisa umumbu osolwayo; ungacabangi ukuthi uphephile ukudliwa, ukupha izifuyo kumbe ukuthengisa ungakahlolwa.",
    "keywords": [
     "ihuruva",
     "isiphala",

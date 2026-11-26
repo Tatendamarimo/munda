@@ -136,6 +136,7 @@ export const fr: Messages = {
     trend: 'Surface touchée dans le temps', heavyRain: 'Fortes pluies',
   },
   guide: {
+    distinguish: "Comment les distinguer",
     byStage: 'À chaque stade', likelyWhen: 'Quand c’est probable', actNow: 'Que faire maintenant', prevent: 'Saison prochaine', sources: 'Rédigé à partir de', report: 'Signalez-le immédiatement aux services agricoles ou au ministère de l’Agriculture.', unchecked: 'Pas encore vérifié par un agronome. Confirmez avec votre conseiller agricole avant de dépenser.',
     photoBy: 'Photo : {credit}', drawing: 'Dessin, pas une photo', source: 'Voir la source',
     title: 'Guide du maïs', subtitle: 'Problèmes courants, leur aspect et comment vérifier. Fonctionne hors ligne.', signs: 'À quoi ça ressemble', check: 'Comment vérifier au champ',

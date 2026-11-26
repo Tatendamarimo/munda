@@ -274,8 +274,8 @@
   {
    "id": "ear_rot",
    "name": "Pudrición de mazorca",
-   "signs": "Moho rosa a rojo en mazorcas y granos, a menudo desde la punta de la mazorca.",
-   "checkInField": "En la cosecha, abra las hojas de 20 mazorcas y cuente las que tienen moho.",
+   "signs": "Moho, granos descoloridos o dañados y mazorcas ligeras. El moho puede ser blanco, rosa, rojo, gris o verde. Algunas contaminaciones no son visibles.",
+   "checkInField": "Separe las mazorcas mohosas o sospechosas. No las pruebe, coma ni dé a los animales. Pida asesoramiento sobre análisis y seguridad; una foto no identifica ni mide toxinas.",
    "keywords": [
     "pudrición",
     "moho",
@@ -298,8 +298,8 @@
   {
    "id": "storage_pests",
    "name": "Plagas del almacén (gorgojo y barrenador mayor)",
-   "signs": "Barrenador mayor: agujeros redondos y limpios en hojas, mazorcas y granos, con mucho polvo. Gorgojo: granos huecos, escarabajos pequeños pardos con hocico largo.",
-   "checkInField": "Cada 1-2 semanas, cierna una muestra del grano almacenado y busque insectos, agujeros y polvo.",
+   "signs": "Granos huecos o dañados, agujeros, insectos y polvo de maíz. Los gorgojos de rostro largo pueden dejar agujeros redondos; la forma sola no identifica la plaga.",
+   "checkInField": "Revise insectos, calor, humedad, polvo y moho en varios puntos del almacén. Separe los lotes sospechosos; no suponga que son seguros para comer, alimentar animales o vender sin evaluación.",
    "keywords": [
     "gorgojo",
     "almacén",

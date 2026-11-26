@@ -1,0 +1,34 @@
+{
+  "asOf": "2026-11-26",
+  "guideVersion": 3,
+  "crop": "MAIZE",
+  "entries": 22,
+  "accuracyPercent": null,
+  "status": "UNMEASURED",
+  "independentFieldCasesEvaluated": 0,
+  "expertSignOff": false,
+  "entriesCorrectedInDeskAudit": [
+    "nitrogen",
+    "phosphorus",
+    "sulfur",
+    "zinc",
+    "waterlogging",
+    "fall_armyworm",
+    "stalk_borer",
+    "termites",
+    "storage_pests",
+    "streak_virus",
+    "mln",
+    "common_rust",
+    "ear_rot",
+    "smut"
+  ],
+  "limitations": [
+    "Desk source review is not field validation",
+    "Guide coverage is incomplete",
+    "Images lack agronomic confirmation",
+    "Translations require native agricultural review",
+    "Heuristic likelihood is not calibrated probability",
+    "Offline inference validation pending"
+  ]
+}

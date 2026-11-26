@@ -136,6 +136,7 @@ export const nd: Messages = {
     trend: 'Indawo ethintekileyo ngokuhamba kwesikhathi', heavyRain: 'Izulu elinengi',
   },
   guide: {
+    distinguish: "Indlela yokwehlukanisa izimbangela",
     byStage: 'Esigabeni ngasinye', likelyWhen: 'Kungenzeka nini', actNow: 'Okumele ukwenze khathesi', prevent: 'Isizini elandelayo', sources: 'Kubhalwe kusukela ku', report: 'Bikela iAGRITEX kumbe iMinistry of Agriculture masinyane.', unchecked: 'Akukahlolwa yingcitshi yezolimo. Buza isikhulu sezolimo ungakasebenzisi imali.',
     photoBy: 'Isithombe: {credit}', drawing: 'Umdwebo, hayisiso isithombe', source: 'Bona lapho esivela khona',
     title: 'Isiqondiso sombila', subtitle: 'Inkinga ezivamileyo, ukuthi zikhangeleka njani, lokuthi zihlolwa njani. Sisebenza kungelanethiwekhi.', signs: 'Ukuthi kukhangeleka njani', check: 'Ukuhlola ensimini',

@@ -265,8 +265,8 @@
   {
    "id": "ear_rot",
    "name": "Kuoza kwa gunzi",
-   "signs": "Ukungu wa waridi hadi mwekundu kwenye magunzi na nafaka, mara nyingi ukianzia ncha ya gunzi.",
-   "checkInField": "Wakati wa mavuno, fungua maganda ya magunzi 20 na uhesabu yenye ukungu.",
+   "signs": "Ukungu, nafaka zilizobadilika rangi au kuharibika, na mahindi mepesi. Ukungu unaweza kuwa mweupe, waridi, mwekundu, kijivu au kijani. Baadhi ya sumu hazionekani.",
+   "checkInField": "Tenga mahindi yenye ukungu au yanayotiliwa shaka. Usionje, kula au kulisha mifugo. Uliza mtaalamu kuhusu vipimo na usalama; picha haiwezi kuthibitisha uwepo au kiwango cha sumu.",
    "keywords": [
     "kuoza",
     "ukungu",
@@ -289,8 +289,8 @@
   {
    "id": "storage_pests",
    "name": "Wadudu wa ghalani (dumuzi na LGB)",
-   "signs": "LGB: matundu ya mviringo kwenye maganda, magunzi na nafaka, na unga mwingi. Dumuzi: punje zilizotobolewa ndani, mende wadogo wa kahawia wenye mdomo mrefu.",
-   "checkInField": "Kila wiki moja au mbili, chekecha sampuli ya nafaka iliyohifadhiwa na utafute mende, matundu na unga.",
+   "signs": "Nafaka zilizoliwa ndani, mashimo, wadudu na unga wa mahindi. Fuku wenye pua ndefu wanaweza kuacha mashimo ya duara; umbo la shimo pekee halitofautishi wadudu.",
+   "checkInField": "Kagua wadudu, joto, unyevu, unga na ukungu sehemu mbalimbali za ghala. Tenga nafaka zinazotiliwa shaka; usidhani ni salama kula, kulisha mifugo au kuuza bila tathmini.",
    "keywords": [
     "dumuzi",
     "ghala",

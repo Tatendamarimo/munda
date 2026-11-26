@@ -84,6 +84,7 @@ export function GuideEntryPage({ id }: { id: string }) {
           <p>{e.checkInField}</p>
         </aside>
         {/* The richer sections are English until translated; they fall back like everything else. */}
+        <GuideSection title={t('guide.distinguish')} text={entry.distinguish} />
         <GuideSection title={t('guide.byStage')} text={entry.byStage} />
         <GuideSection title={t('guide.likelyWhen')} text={entry.likelyWhen} />
         <GuideSection title={t('guide.actNow')} text={entry.actNow} />

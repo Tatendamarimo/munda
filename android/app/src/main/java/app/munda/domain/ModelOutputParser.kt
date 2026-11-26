@@ -86,15 +86,17 @@ object ModelOutputParser {
             summary = dto.summary?.clean(MAX_NOTE).orEmpty(),
             patterns = dto.patterns.orEmpty().mapNotNull { p ->
                 val s = p.summary?.clean(MAX_NOTE)?.takeIf { it.isNotBlank() } ?: return@mapNotNull null
+                val ids = p.relatedIds.orEmpty().filter { it in knownIds }.distinct().take(MAX_RELATED)
+                if (ids.isEmpty()) return@mapNotNull null
                 Pattern(
                     kind = PatternKind.parse(p.kind),
                     summary = s,
-                    relatedIds = p.relatedIds.orEmpty().filter { it in knownIds }.distinct().take(MAX_RELATED),
+                    relatedIds = ids,
                     source = FindingSource.CLOUD_AI,
                 )
             }.take(3),
             updatedCauses = causes(dto.updatedCauses, guide, guide.entries.map { it.id }.toSet(), 4),
-            nextChecks = dto.nextChecks.cleanList(MAX_CHECK, 4),
+            nextChecks = dto.nextChecks.cleanList(MAX_CHECK, 4).filter { it.noDose() },
         )
     }
 
@@ -120,10 +122,10 @@ object ModelOutputParser {
             val guideId = id?.takeIf { it in allowedGuideIds || guide.get(it) != null }
             val entry = guide.get(guideId)
             if (entry == null && outside >= MAX_OUTSIDE_GUIDE) return@mapNotNull null
-            val name = c.name?.clean(MAX_ITEM)?.takeIf { it.isNotBlank() } ?: entry?.name ?: return@mapNotNull null
+            val name = entry?.name ?: c.name?.clean(MAX_ITEM)?.takeIf { it.isNotBlank() } ?: return@mapNotNull null
             val supporting = c.supporting.cleanList(MAX_ITEM, 4).filter { it.noDose() }
             val proposed = c.checkNext?.clean(MAX_CHECK)?.takeIf { it.isNotBlank() }
-            val check = proposed?.takeIf { it.noDose() } ?: entry?.checkInField ?: proposed?.let { OUTSIDE_GUIDE_CHECK } ?: return@mapNotNull null
+            val check = if (entry == null) OUTSIDE_GUIDE_CHECK else proposed?.takeIf { it.noDose() } ?: entry.checkInField
             var likelihood = Likelihood.parse(c.likelihood)
             if (likelihood == Likelihood.HIGH && (supporting.size < MIN_SUPPORT_FOR_HIGH || entry == null)) likelihood = Likelihood.MEDIUM
             if (entry == null) outside++
