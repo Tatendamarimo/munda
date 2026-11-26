@@ -167,6 +167,7 @@ export const en = {
     photoUsed: 'Leaf photo',
   },
   result: {
+    noClearCause: 'No clear cause identified', safeNextCheck: 'Compare affected and healthy-looking plants. Ask your extension officer if symptoms persist or spread.',
     outsideGuide: 'Not in Munda’s guide: Gemini’s own suggestion. Check with your extension officer.',
     title: 'Possible causes',
     subtitle: 'Not a diagnosis. What fits, what doesn’t, and what to check.',
@@ -216,6 +217,7 @@ export const en = {
     heavyRain: 'Heavy rain',
   },
   guide: {
+    englishNote: 'Some guidance is in English.',
     distinguish: "How to tell them apart",
     byStage: 'At each stage', likelyWhen: 'When it is likely', actNow: 'What to do now', prevent: 'Next season', sources: 'Written from', report: 'Report this to AGRITEX or the Ministry of Agriculture straight away.', unchecked: 'Not yet checked by an agronomist. Confirm with your extension officer before spending money.',
     photoBy: 'Photo: {credit}', drawing: 'Drawing, not a photo', source: 'See the source',
@@ -223,7 +225,7 @@ export const en = {
     subtitle: 'Common problems, what they look like, and how to check. Works offline.',
     signs: 'What it looks like',
     check: 'How to check in the field',
-    categories: { NUTRIENT: 'Nutrients', WATER: 'Water', PEST: 'Pests', DISEASE: 'Diseases', WEED: 'Weeds' },
+    categories: { STRESS: 'Weather and chemical damage', NUTRIENT: 'Nutrients', WATER: 'Water', PEST: 'Pests', DISEASE: 'Diseases', WEED: 'Weeds' },
   },
   me: {
     title: 'Me',
@@ -244,7 +246,7 @@ export const en = {
     offlineAi: 'Offline AI',
     about: 'Munda helps you observe carefully and decide what to check next. It does not diagnose. Serious or uncertain cases: talk to your extension officer.',
   },
-  readAloud: { play: 'Read aloud', stop: 'Stop reading' },
+  readAloud: { progress: 'Passage {current} of {total}', failed: 'Reading stopped before the end. Tap to try again.', play: 'Read aloud', stop: 'Stop reading' },
   live: {
     title: 'Working it out',
     onDevice: 'This AI request runs on your device. Saved reports can sync later.',

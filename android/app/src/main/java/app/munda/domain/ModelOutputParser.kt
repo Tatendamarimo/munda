@@ -30,6 +30,7 @@ object ModelOutputParser {
     )
 
     @Serializable private data class RecordDto(
+        val assessment: String? = null,
         val summary: String? = null,
         val symptoms: List<String>? = null,
         val possibleCauses: List<CauseDto>? = null,
@@ -69,14 +70,23 @@ object ModelOutputParser {
         val dto = json.decodeFromString(RecordDto.serializer(), extractJsonObject(raw))
         val summary = dto.summary?.clean(MAX_SUMMARY)
         require(!summary.isNullOrBlank()) { "Model returned no summary" }
-        val causes = causes(dto.possibleCauses, guide, allowedGuideIds, maxCauses)
-        require(causes.isNotEmpty()) { "Model returned no possible causes" }
+        val abstain = dto.assessment in listOf("NO_CLEAR_PROBLEM", "UNCERTAIN")
+        require(!abstain || dto.possibleCauses != null) { "Model returned no causes array" }
+        val causes = if (abstain) emptyList() else causes(dto.possibleCauses, guide, allowedGuideIds, maxCauses).map {
+            if (dto.assessment == "MIXED" && it.likelihood == Likelihood.HIGH) it.copy(likelihood = Likelihood.MEDIUM) else it
+        }
+        require(causes.isNotEmpty() || abstain) { "Model returned no possible causes" }
         FieldRecord(
             summary = summary,
             symptoms = dto.symptoms.cleanList(MAX_ITEM, 5),
             possibleCauses = causes,
             urgency = Urgency.parse(dto.urgency),
-            uncertaintyNote = dto.uncertaintyNote?.clean(MAX_NOTE)?.takeIf { it.isNotBlank() } ?: DEFAULT_UNCERTAINTY,
+            uncertaintyNote = when (dto.assessment) {
+                "NO_CLEAR_PROBLEM" -> "No clear problem was identified from this observation. This does not confirm that the crop is healthy. Keep monitoring and ask your extension officer if symptoms appear or persist."
+                "UNCERTAIN" -> "There is not enough evidence to identify a cause. Compare affected and healthy-looking plants, record changes, and ask your extension officer before buying inputs."
+                "MIXED" -> "More than one problem may be present. The listed possibilities are not a confirmed combination. Check each symptom pattern with your extension officer before treatment."
+                else -> dto.uncertaintyNote?.clean(MAX_NOTE)?.takeIf { it.isNotBlank() } ?: DEFAULT_UNCERTAINTY
+            },
         )
     }
 

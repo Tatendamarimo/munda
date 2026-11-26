@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import coverage from '../../shared/guides/coverage.json';
 import { guideFor, normalizeText } from '../src/domain/guide';
 import { causeDisplay, localizedEntry } from '../src/domain/localize';
 import type { AffectedArea, CoreAnswers, CropStage, Rainfall } from '../src/domain/models';
@@ -52,9 +53,13 @@ describe('localized guide entries', () => {
     expect(localizedEntry({ ...nitrogen, id: 'not_in_any_translation' }, 'fr')).toEqual({ name: nitrogen.name, signs: nitrogen.signs, checkInField: nitrogen.checkInField });
   });
   for (const lang of ['nd', 'sw', 'fr', 'pt', 'es'] as const) {
-    it(`${lang} translates every guide entry`, () => {
+    it(`${lang} translates established entries and explicitly falls back for new English references`, () => {
       for (const e of maize.entries) {
         const l = localizedEntry(e, lang);
+        if (coverage.englishOnlyEntries.includes(e.id)) {
+          expect(l).toEqual({ name: e.name, signs: e.signs, checkInField: e.checkInField });
+          continue;
+        }
         expect(l.name, e.id).not.toBe(e.name);
         expect(l.checkInField, e.id).not.toBe(e.checkInField);
       }

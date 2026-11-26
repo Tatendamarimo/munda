@@ -566,6 +566,12 @@ fun RecordHeader(record: FieldRecord, origin: InferenceOrigin, latencyMs: Long? 
 fun Details(record: FieldRecord) {
     val c = LocalMunda.current
     val s = strings()
+    if (record.possibleCauses.isEmpty()) CardBox {
+        Text(s.t("result.noClearCause"), style = MaterialTheme.typography.titleSmall)
+        Text(record.summary, style = MaterialTheme.typography.bodyMedium)
+        Text(s.t("result.safeNextCheck"), style = MaterialTheme.typography.bodyMedium)
+    }
+    Text("${s.t("result.uncertainty")}: ${record.uncertaintyNote}", style = MaterialTheme.typography.bodySmall, color = c.ink2)
     var open by remember { mutableStateOf(false) }
     Column(Modifier.fillMaxWidth().clip(RoundedCornerShape(16.dp)).background(c.card).clickable { open = !open }.padding(14.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
         Text(s.t("common.details"), style = MaterialTheme.typography.titleSmall, color = c.leaf)

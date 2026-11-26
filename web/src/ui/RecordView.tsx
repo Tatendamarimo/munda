@@ -34,12 +34,13 @@ export function RecordView({ record, origin, latencyMs, animate = false }: { rec
           {latencyMs !== undefined && <Badge tone="quiet">{t('result.seconds', { s: (latencyMs / 1000).toFixed(1) })}</Badge>}
         </div>
       </div>
+      {record.possibleCauses.length === 0 && <section className="card stack" role="status"><h3 className="section-title">{t('result.noClearCause')}</h3><p>{record.summary}</p><p>{t('result.safeNextCheck')}</p></section>}
       <CauseList causes={record.possibleCauses} animate={animate} />
+      <aside className="uncertainty"><CircleHelp size={18} strokeWidth={2.25} aria-hidden="true" /><p><b>{t('result.uncertainty')}:</b> {record.uncertaintyNote}</p></aside>
       <details className="details">
         <summary>{t('common.details')}</summary>
         <div className="stack">
           <p className="result-summary">{record.summary}</p>
-          <aside className="uncertainty"><CircleHelp size={18} strokeWidth={2.25} aria-hidden="true" /><p><b>{t('result.uncertainty')}:</b> {record.uncertaintyNote}</p></aside>
         </div>
       </details>
     </div>

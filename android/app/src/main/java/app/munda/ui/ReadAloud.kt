@@ -16,6 +16,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.TimeoutCancellationException
+import androidx.compose.ui.platform.LocalContext
+import android.widget.Toast
 
 val LocalVoice = staticCompositionLocalOf<app.munda.data.Voice?> { null }
 val LocalOnline = staticCompositionLocalOf { true }
@@ -26,6 +30,7 @@ fun ReadAloud(text: String) {
     val voice = LocalVoice.current ?: return
     val s = strings()
     val online = LocalOnline.current
+    val context = LocalContext.current
     val locale = s.i18n.info(s.lang).locale
     if (text.isBlank() || (!online && !voice.deviceCanSpeak(locale))) { androidx.compose.foundation.layout.Spacer(Modifier.size(44.dp)); return }
     var state by remember { mutableStateOf("idle") }
@@ -37,7 +42,14 @@ fun ReadAloud(text: String) {
         onClick = {
             if (state != "idle") { playback?.cancel(); voice.stop(); state = "idle"; return@IconButton }
             state = "loading"
-            playback = scope.launch { voice.speak(text, locale, onStarted = { state = "playing" }) { state = "idle" } }
+            playback = scope.launch {
+                try { voice.speak(text, locale, onStarted = { state = "playing" }) { state = "idle" } }
+                catch (e: Exception) {
+                    if (e is CancellationException && e !is TimeoutCancellationException) throw e
+                    state = "idle"
+                    Toast.makeText(context, s.t("readAloud.failed"), Toast.LENGTH_LONG).show()
+                }
+            }
         },
         modifier = Modifier.size(44.dp).clip(CircleShape).background(c.forest),
     ) {

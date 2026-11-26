@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "englishOnlyEntries": [
+    "herbicide_injury",
+    "hail_wind_damage",
+    "cold_frost_injury",
+    "seedling_disease",
+    "root_rot",
+    "stalk_rot"
+  ],
+  "pendingPhotoEntries": [
+    "herbicide_injury",
+    "hail_wind_damage",
+    "cold_frost_injury",
+    "seedling_disease",
+    "root_rot",
+    "stalk_rot"
+  ],
+  "note": "New references use English fallback until reviewed translations and suitable licensed photographs are available."
+}

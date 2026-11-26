@@ -12,7 +12,7 @@ enum class Crop(val label: String) {
     companion object { fun parse(raw: String?) = entries.firstOrNull { it.name == raw } ?: MAIZE }
 }
 
-enum class GuideCategory { NUTRIENT, WATER, PEST, DISEASE, WEED }
+enum class GuideCategory { NUTRIENT, WATER, PEST, DISEASE, WEED, STRESS }
 
 /** One problem the assistant may suggest: reference material for the model, not a diagnosis tool. */
 data class GuideEntry(

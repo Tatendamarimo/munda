@@ -113,6 +113,7 @@ export const fr: Messages = {
     saveForLater: 'Enregistrer pour plus tard', photoUsed: 'Photo de la feuille',
   },
   result: {
+    noClearCause: 'Aucune cause claire identifiée', safeNextCheck: 'Comparez les plants touchés à ceux qui semblent sains. Consultez votre conseiller agricole si les symptômes persistent ou se propagent.',
     outsideGuide: 'Absent du guide de Munda : suggestion de Gemini. Vérifiez avec votre conseiller agricole.',
     title: 'Causes possibles', subtitle: 'Pas un diagnostic. Ce qui correspond, ce qui ne correspond pas et quoi vérifier.',
     fits: 'Correspond à ce que vous avez vu', gaps: 'Ne correspond pas, ou encore inconnu', checkFirst: 'Vérifiez avant d’acheter quoi que ce soit',
@@ -136,11 +137,12 @@ export const fr: Messages = {
     trend: 'Surface touchée dans le temps', heavyRain: 'Fortes pluies',
   },
   guide: {
+    englishNote: 'Certains conseils sont en anglais.',
     distinguish: "Comment les distinguer",
     byStage: 'À chaque stade', likelyWhen: 'Quand c’est probable', actNow: 'Que faire maintenant', prevent: 'Saison prochaine', sources: 'Rédigé à partir de', report: 'Signalez-le immédiatement aux services agricoles ou au ministère de l’Agriculture.', unchecked: 'Pas encore vérifié par un agronome. Confirmez avec votre conseiller agricole avant de dépenser.',
     photoBy: 'Photo : {credit}', drawing: 'Dessin, pas une photo', source: 'Voir la source',
     title: 'Guide du maïs', subtitle: 'Problèmes courants, leur aspect et comment vérifier. Fonctionne hors ligne.', signs: 'À quoi ça ressemble', check: 'Comment vérifier au champ',
-    categories: { NUTRIENT: 'Nutriments', WATER: 'Eau', PEST: 'Ravageurs', DISEASE: 'Maladies', WEED: 'Mauvaises herbes' },
+    categories: { STRESS: 'Dégâts climatiques et chimiques', NUTRIENT: 'Nutriments', WATER: 'Eau', PEST: 'Ravageurs', DISEASE: 'Maladies', WEED: 'Mauvaises herbes' },
   },
   me: {
     title: 'Moi', language: 'Langue', betaNote: 'Les langues bêta sont des brouillons jusqu’à leur relecture par un locuteur natif.',
@@ -150,7 +152,7 @@ export const fr: Messages = {
     extName: 'Nom', extPhone: 'Téléphone', offlineAi: 'IA hors ligne',
     about: 'Munda vous aide à bien observer et à décider quoi vérifier. Il ne pose pas de diagnostic. En cas de doute ou de problème grave, parlez à votre conseiller agricole.',
   },
-  readAloud: { play: 'Lire à voix haute', stop: 'Arrêter la lecture' },
+  readAloud: { progress: 'Passage {current} sur {total}', failed: 'La lecture s’est arrêtée avant la fin. Appuyez pour réessayer.', play: 'Lire à voix haute', stop: 'Arrêter la lecture' },
   live: {
     ...en.live,
     onDevice: 'Cette requête d’IA s’exécute sur votre appareil. Les rapports enregistrés pourront se synchroniser plus tard.',

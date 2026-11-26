@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "speechIsMocked": true,
+  "acidSoilPassages": 12,
+  "entireVisibleAcidSoilTextRead": true,
+  "stopCancelsQueue": true,
+  "failureVisible": true,
+  "retryWorks": true,
+  "guideEntryCount": 28,
+  "mobileOverflow": false,
+  "passages": [
+    "Acid soil. What it looks like. Patches of short, poorly growing plants with weak roots, often with signs of several deficiencies (purple,",
+    "yellow) at once.. How to check in the field. Get a soil test (every few years); compare roots of stunted and healthy plants..",
+    "How to tell them apart. Whole patches grow badly even with fertilizer; a soil test shows low pH.. When it is likely.",
+    "Strongly acid soil can restrict root growth through aluminium or manganese toxicity and nutrient imbalances.",
+    "A pH below roughly 5.5 warrants investigation, but effects depend on soil, variety and the test method.",
+    "High rainfall and repeated use of acidifying nitrogen fertilizers can increase acidity.. What to do now.",
+    "Ask your extension officer to interpret a soil test and advise lime.. Next season.",
+    "Use a soil test to plan lime type, amount and timing with your extension officer.",
+    "Apply ahead of planting when advised so it has time to react.",
+    "A target around pH 6 to 7 is often used for maize; follow the locally recommended target and test method.. Written from.",
+    "Mississippi State University Extension: Corn fertilization (P3591). Not yet checked by an agronomist.",
+    "Confirm with your extension officer before spending money."
+  ]
+}

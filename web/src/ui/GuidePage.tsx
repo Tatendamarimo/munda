@@ -10,7 +10,7 @@ import { PageHead } from './Header';
 import { ReadAloud } from './ReadAloud';
 import { back, href } from './router';
 
-const ORDER: GuideCategory[] = ['PEST', 'DISEASE', 'NUTRIENT', 'WATER', 'WEED'];
+const ORDER: GuideCategory[] = ['PEST', 'DISEASE', 'NUTRIENT', 'WATER', 'WEED', 'STRESS'];
 
 export function GuidePage() {
   const t = useT();
@@ -26,6 +26,7 @@ export function GuidePage() {
       <PageHead title={t('guide.title')} />
       <div className="page">
         <p className="muted">{t('guide.subtitle')}</p>
+        {lang !== 'en' && <p className="hint-card">{t('guide.englishNote')}</p>}
         <label className="guide-search"><Search size={21} aria-hidden="true" /><input type="search" value={search} onChange={(e) => setSearch(e.target.value)} placeholder={t('studio.guideSearch')} aria-label={t('studio.guideSearch')} /></label>
         {entries.length === 0 && <p className="hint-card" role="status">{t('studio.guideEmpty')}</p>}
         {ORDER.map((cat) => {
@@ -74,6 +75,7 @@ export function GuideEntryPage({ id }: { id: string }) {
           <h2 className="page-title">{e.name}</h2>
         </div>
         <GuidePicture id={entry.id} alt={e.name} />
+        {lang !== 'en' && <p className="hint-card">{t('guide.englishNote')}</p>}
         <section className="card stack" style={{ gap: 6 }}>
           <h3 className="section-title">{t('guide.signs')}</h3>
           <p>{e.signs}</p>

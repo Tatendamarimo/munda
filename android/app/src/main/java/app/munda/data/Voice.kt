@@ -9,12 +9,14 @@ import android.util.Log
 import com.google.firebase.Firebase
 import com.google.firebase.ai.ai
 import com.google.firebase.ai.type.GenerativeBackend
+import com.google.firebase.ai.type.FinishReason
 import com.google.firebase.ai.type.InlineDataPart
 import com.google.firebase.ai.type.ResponseModality
 import com.google.firebase.ai.type.SpeechConfig
 import com.google.firebase.ai.type.Voice as GeminiVoice
 import com.google.firebase.ai.type.generationConfig
 import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.TimeoutCancellationException
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -23,8 +25,8 @@ import java.util.Locale
 
 /**
  * Read-aloud, hybrid like the rest of Munda (mirrors web/src/ui/ReadAloud.tsx): online, a natural
- * Gemini voice through Firebase AI Logic; offline or if that fails, the phone's own voice for the
- * language. Speech is cached so replaying a screen is instant.
+ * literal device speech when available; a short Gemini TTS passage is a fallback when online.
+ * Generative audio must not summarize the reference. Cloud speech is cached for replay.
  */
 class Voice(private val context: Context, private val settings: RemoteSettings, private val connectivity: Connectivity) {
     private var tts: TextToSpeech? = null
@@ -60,20 +62,31 @@ class Voice(private val context: Context, private val settings: RemoteSettings, 
         stop()
         val id = generation
         try {
-            for (chunk in speechChunks(text)) {
-                val audio = if (connectivity.online.value) try { cloudSpeech(chunk) } catch (e: Exception) {
-                    if (e is CancellationException) throw e
-                    Log.w(TAG, "Cloud voice failed; using the device voice", e); null
-                } else null
+            for (chunk in speechChunks(text, 140)) {
                 if (id != generation) return
-                val done = CompletableDeferred<Unit>()
-                if (audio != null) play(audio.first, audio.second) { done.complete(Unit) }
-                else speakOnDevice(chunk, localeTag) { done.complete(Unit) }
-                onStarted()
-                done.await()
+                val useDevice = deviceCanSpeak(localeTag)
+                var read = false
+                if (useDevice) try {
+                    onStarted()
+                    speakOnDevice(chunk, localeTag)
+                    read = true
+                } catch (e: Exception) {
+                    if (e is CancellationException && e !is TimeoutCancellationException) throw e
+                    Log.w(TAG, "Device voice failed; trying cloud speech", e)
+                }
                 if (id != generation) return
-                track?.runCatching { stop(); release() }
-                track = null
+                if (!read) {
+                    check(connectivity.online.value) { "No voice available" }
+                    val audio = cloudSpeech(chunk)
+                    if (id != generation) return
+                    val done = CompletableDeferred<Unit>()
+                    play(audio.first, audio.second) { done.complete(Unit) }
+                    onStarted()
+                    withTimeout((audio.first.size.toLong() * 1000 / (audio.second * 2)) + 10_000) { done.await() }
+                    if (id != generation) return
+                    track?.runCatching { stop(); release() }
+                    track = null
+                }
             }
         } finally { if (id == generation) onDone() }
     }
@@ -87,12 +100,19 @@ class Voice(private val context: Context, private val settings: RemoteSettings, 
 
     private suspend fun cloudSpeech(text: String): Pair<ByteArray, Int> {
         cache[text]?.let { return it }
-        val prompt = "Read this aloud to a farmer, warmly and slowly, like a kind extension officer standing in the field. Say only the text:\n\n$text"
+        val prompt = "Read this aloud to a farmer, warmly and slowly, like a kind extension officer standing in the field. Read every word exactly as written, including headings, numbers and the final sentence. Do not summarize, skip, translate or add words. Say only the text:\n\n$text"
         suspend fun once(): Pair<ByteArray, Int>? {
             val r = withTimeout(30_000) { model.generateContent(prompt) }
-            val part = r.candidates.firstOrNull()?.content?.parts?.filterIsInstance<InlineDataPart>()?.firstOrNull { it.mimeType.startsWith("audio/") } ?: return null
-            val rate = Regex("rate=(\\d+)").find(part.mimeType)?.groupValues?.get(1)?.toInt() ?: 24_000
-            return part.inlineData to rate
+            val candidate = r.candidates.firstOrNull() ?: return null
+            check(candidate.finishReason == null || candidate.finishReason == FinishReason.STOP) { "Incomplete speech response: ${candidate.finishReason}" }
+            val parts = candidate.content.parts.filterIsInstance<InlineDataPart>().filter { it.mimeType.startsWith("audio/") }
+            if (parts.isEmpty()) return null
+            fun rate(part: InlineDataPart) = Regex("rate=(\\d+)").find(part.mimeType)?.groupValues?.get(1)?.toInt() ?: 24_000
+            val sampleRate = rate(parts.first())
+            check(parts.all { rate(it) == sampleRate }) { "Speech sample rates differ" }
+            val pcm = java.io.ByteArrayOutputStream().apply { parts.forEach { write(it.inlineData) } }.toByteArray()
+            check(pcm.size >= 2) { "Speech response is empty" }
+            return pcm to sampleRate
         }
         // The preview voice model now and then answers without audio; one retry fixes it.
         val out = once() ?: once() ?: error("No audio in the response")
@@ -116,17 +136,22 @@ class Voice(private val context: Context, private val settings: RemoteSettings, 
         t.play()
     }
 
-    private fun speakOnDevice(text: String, localeTag: String, onDone: () -> Unit) {
-        val t = tts
-        if (t == null || !ttsReady) { onDone(); return }
-        t.language = Locale.forLanguageTag(localeTag)
+    private suspend fun speakOnDevice(text: String, localeTag: String) {
+        val t = tts ?: error("No device voice available")
+        check(ttsReady && deviceCanSpeak(localeTag)) { "No device voice for this language" }
+        check(t.setLanguage(Locale.forLanguageTag(localeTag)) >= TextToSpeech.LANG_AVAILABLE) { "Voice data unavailable" }
         t.setSpeechRate(0.92f)
+        val done = CompletableDeferred<Unit>()
+        val utteranceId = "munda-$generation-${System.nanoTime()}"
         t.setOnUtteranceProgressListener(object : android.speech.tts.UtteranceProgressListener() {
             override fun onStart(id: String?) = Unit
-            override fun onDone(id: String?) = onDone()
-            @Deprecated("Deprecated in Java") override fun onError(id: String?) = onDone()
+            override fun onDone(id: String?) { if (id == utteranceId) done.complete(Unit) }
+            @Deprecated("Deprecated in Java") override fun onError(id: String?) { if (id == utteranceId) done.completeExceptionally(IllegalStateException("Device speech failed")) }
         })
-        t.speak(text, TextToSpeech.QUEUE_FLUSH, null, "munda")
+        check(t.speak(text, TextToSpeech.QUEUE_FLUSH, null, utteranceId) == TextToSpeech.SUCCESS) { "Device speech did not start" }
+        try { withTimeout(30_000) { done.await() } }
+        catch (e: TimeoutCancellationException) { throw IllegalStateException("Device voice did not finish the passage", e) }
+        finally { if (!done.isCompleted) t.stop() }
     }
 
     private companion object { const val TAG = "Voice" }

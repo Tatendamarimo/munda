@@ -167,6 +167,7 @@ export const sn: Messages = {
     photoUsed: 'Mufananidzo weshizha',
   },
   result: {
+    noClearCause: 'Chikonzero hachisati chanyatsozivikanwa', safeNextCheck: 'Enzanisa miti yakanganisika neinoita seine utano. Bvunza murimisi kana zviratidzo zvikaramba zviripo kana kupararira.',
     outsideGuide: 'Hazvisi mugwaro raMunda: pfungwa yaGemini chete. Bvunza mupi wezano wezvekurima.',
     title: 'Zvingangove zvakonzera',
     subtitle: 'Hakusi kuongorora kwechokwadi. Zvinoenderana, zvisingaenderani, uye zvekutarisa.',
@@ -218,6 +219,7 @@ export const sn: Messages = {
     heavyRain: 'Mvura yakawanda',
   },
   guide: {
+    englishNote: 'Mamwe mazano ari muChirungu.',
     distinguish: "Kusiyanisa zvinogona kukonzera izvi",
     byStage: 'Padanho rimwe nerimwe', likelyWhen: 'Rinowanzoitika riini', actNow: 'Zvokuita izvozvi', prevent: 'Mwaka unotevera', sources: 'Zvakanyorwa kubva ku', report: 'Zivisa AGRITEX kana Ministry of Agriculture nekukurumidza.', unchecked: 'Hazvisati zvaongororwa nenyanzvi yezvekurima. Bvunza mupi wezano wezvekurima usati washandisa mari.',
     photoBy: 'Mufananidzo: {credit}', drawing: 'Mufananidzo wakadhirowewa, kwete foto', source: 'Ona kwazvakabva',
@@ -225,7 +227,7 @@ export const sn: Messages = {
     subtitle: 'Matambudziko anowanzoitika, kuti anoita sei, uye kuti ungaatarisa sei. Rinoshanda pasina network.',
     signs: 'Zvaanoita',
     check: 'Kutarisa mumunda',
-    categories: { NUTRIENT: 'Chikafu chevhu', WATER: 'Mvura', PEST: 'Zvipembenene', DISEASE: 'Zvirwere', WEED: 'Sora' },
+    categories: { STRESS: 'Kukuvadzwa nemamiriro ekunze nemishonga', NUTRIENT: 'Chikafu chevhu', WATER: 'Mvura', PEST: 'Zvipembenene', DISEASE: 'Zvirwere', WEED: 'Sora' },
   },
   me: {
     title: 'Ini',
@@ -246,7 +248,7 @@ export const sn: Messages = {
     offlineAi: 'AI yepafoni',
     about: 'Munda inokubatsira kuongorora zvakanaka uye kusarudza zvekutarisa. Haiongorori chirwere chaicho. Kana zvakaoma kana usina chokwadi, taura nemudzidzisi wako wezvekurima.',
   },
-  readAloud: { play: 'Verenga zvinonzwika', stop: 'Mira kuverenga' },
+  readAloud: { progress: 'Chikamu {current} pa{total}', failed: 'Kuverenga kwamira kusati kwapera. Dzvanya kuti uedzezve.', play: 'Verenga zvinonzwika', stop: 'Mira kuverenga' },
   live: {
     ...en.live,
     onDevice: 'AI iyi iri kushanda pafoni yako. Mishumo yakachengetwa inogona kutumirwa gare gare.',

@@ -2,7 +2,7 @@ import maizeJson from '../../../shared/guides/maize.json';
 import type { CoreAnswers, Crop, CropStage } from './models';
 import { Rainfall } from './models';
 
-export type GuideCategory = 'NUTRIENT' | 'WATER' | 'PEST' | 'DISEASE' | 'WEED';
+export type GuideCategory = 'NUTRIENT' | 'WATER' | 'PEST' | 'DISEASE' | 'WEED' | 'STRESS';
 
 /** One problem the assistant may suggest: reference material for the model, not a diagnosis tool. */
 export interface GuideEntry {

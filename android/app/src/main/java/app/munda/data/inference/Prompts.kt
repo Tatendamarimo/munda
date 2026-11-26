@@ -55,10 +55,12 @@ internal object Prompts {
     fun questions(input: ObservationInput, candidates: List<GuideEntry>, outputLanguage: String? = null): String = buildString {
         appendLine("You help a ${input.crop.label.lowercase()} farmer narrow down what might be wrong in their field.")
         appendLine("Ask at most 2 short, simple questions whose answers best tell apart the possible causes below.")
-        appendLine("Each question must be answerable by looking at the plants or the soil. Give 2-4 short answer choices.")
+        appendLine("Each question must be answerable from the plants, soil or recent management history. Give 2-4 short answer choices.")
+        appendLine("Ask about recent spraying, fertilizer or manure only if it distinguishes these causes and is not already answered. Include an unknown choice.")
         appendLine("Do NOT ask how much of the field is affected, about rainfall, or when it started; those are already answered.")
         appendLine()
         appendLine("Crop stage: ${input.stage.label}")
+        appendLine("Already recorded: area ${input.core.area.label}; rain ${input.core.rainfall.label}; onset ${input.core.onset.label}.")
         appendLine("Farmer says: ${input.description.trim()}")
         if (input.hasPhoto) appendLine("(A photo of the plant is attached.)")
         appendLine()
@@ -83,6 +85,7 @@ internal object Prompts {
 
     val recordSchema: Schema = Schema.obj(
         mapOf(
+            "assessment" to Schema.enumeration(listOf("POSSIBLE_CAUSES", "NO_CLEAR_PROBLEM", "UNCERTAIN", "MIXED")),
             "summary" to Schema.string("One sentence, at most 25 words, describing what was observed."),
             "symptoms" to Schema.array(Schema.string(), maxItems = 5),
             "possibleCauses" to Schema.array(causeSchema, maxItems = 3),
@@ -95,6 +98,7 @@ internal object Prompts {
         appendLine("You help a ${input.crop.label.lowercase()} farmer record a field observation. You do NOT diagnose.")
         appendLine("List up to 3 POSSIBLE causes, most likely first. Prefer the guide entries below (use their id).")
         appendLine("If none of them fits what was observed, you may add ONE other cause from your own knowledge with guideId \"other\"; it must fit the observations, and checkNext must say what would confirm it.")
+        appendLine("assessment: POSSIBLE_CAUSES for supported possibilities; NO_CLEAR_PROBLEM when no abnormality is described or visible; UNCERTAIN when evidence is insufficient; MIXED when different symptom patterns may have separate causes. For NO_CLEAR_PROBLEM or UNCERTAIN return possibleCauses: []; do not force a disease or certify health. For MIXED keep each cause tentative and explain the uncertainty.")
         appendLine("Rules:")
         appendLine("- likelihood HIGH only if at least 2 observations support it and nothing contradicts it. Otherwise MEDIUM or LOW.")
         appendLine("- supporting: only things the farmer actually said or the photo clearly shows.")
@@ -149,6 +153,7 @@ internal object Prompts {
         appendLine("You are an agronomy assistant reviewing a ${target.crop.label.lowercase()} farmer's field records. You do NOT diagnose.")
         appendLine("Using the history, update the possible causes for TODAY's observation and suggest what to check next.")
         appendLine("Same likelihood rules: HIGH only with 2+ supporting observations and no contradiction. Keep uncertainty visible.")
+        appendLine("Do not force a disease on normal-looking plants or insufficient evidence. Mixed problems remain tentative. Respect guide safety; never declare grain safe from a photo.")
         appendLine("Only describe patterns that the records below support, and cite record ids in relatedIds.")
         appendLine("No product names or doses. If the situation may need an expert (e.g. suspected virus or lethal necrosis), say to contact an extension officer.")
         if (ruleKinds.isNotEmpty()) appendLine("Patterns already found by rules (do not repeat): ${ruleKinds.joinToString { it.name }}.")

@@ -1,6 +1,6 @@
 {
  "crop": "MAIZE",
- "version": 3,
+ "version": 4,
  "note": "Source-reviewed maize reference, updated 26 November 2026; not an exhaustive diagnostic guide or an agronomist-approved treatment plan. Photos and symptoms cannot confirm a cause, a fertilizer need, or grain safety. Local extension review, laboratory testing where appropriate, and native-speaker validation remain required.",
  "entries": [
   {
@@ -234,9 +234,9 @@
    "signs": "Patches of short, poorly growing plants with weak roots, often with signs of several deficiencies (purple, yellow) at once.",
    "distinguish": "Whole patches grow badly even with fertilizer; a soil test shows low pH.",
    "checkInField": "Get a soil test (every few years); compare roots of stunted and healthy plants.",
-   "likelyWhen": "Below about pH 5.5 maize starts to suffer: aluminium and manganese become toxic and phosphorus, nitrogen, potassium, sulfur and magnesium are harder for roots to take up. High rainfall and years of fertilizer make soil more acid.",
+   "likelyWhen": "Strongly acid soil can restrict root growth through aluminium or manganese toxicity and nutrient imbalances. A pH below roughly 5.5 warrants investigation, but effects depend on soil, variety and the test method. High rainfall and repeated use of acidifying nitrogen fertilizers can increase acidity.",
    "actNow": "Ask your extension officer to interpret a soil test and advise lime.",
-   "prevent": "Lime before the season so it has time to work; the best pH for maize is about 6 to 7.",
+   "prevent": "Use a soil test to plan lime type, amount and timing with your extension officer. Apply ahead of planting when advised so it has time to react. A target around pH 6 to 7 is often used for maize; follow the locally recommended target and test method.",
    "sources": [
     {
      "title": "Mississippi State University Extension: Corn fertilization (P3591)",
@@ -775,6 +775,193 @@
      "url": "https://www.infonet-biovision.org/crops-fruits-vegetables/maize-revised"
     }
    ]
+  },
+  {
+   "id": "herbicide_injury",
+   "name": "Herbicide injury",
+   "category": "STRESS",
+   "keywords": [
+    "herbicide",
+    "weedkiller",
+    "spray drift",
+    "spray overlap",
+    "bleached",
+    "white leaves",
+    "twisted leaves",
+    "bottlebrush roots",
+    "chemical injury"
+   ],
+   "signs": "Leaves may bleach, scorch or twist; shoots or roots may be shortened or deformed. Symptoms vary with the chemical and exposure.",
+   "distinguish": "Injury can resemble nutrient, cold or disease damage. Spray history and a pattern matching drift or overlapping passes are clues, not proof.",
+   "checkInField": "After the labelled re-entry interval, compare affected and unaffected rows and roots. Record nearby spraying, product labels and dates; photograph the field pattern.",
+   "byStage": "Seedlings may fail to emerge; later injury can affect leaves, roots and stems.",
+   "likelyWhen": "After drift, an unsuitable application, contaminated equipment or carryover from an earlier crop.",
+   "actNow": "Ask extension staff to review the spray record and symptoms before adding treatments. Do not assume fertilizer reverses chemical injury. Seek prompt advice if many plants are affected.",
+   "prevent": "Follow locally registered labels, rotation restrictions and drift precautions. Calibrate equipment and keep spray records.",
+   "sources": [
+    {
+     "title": "UF/IFAS: Diagnosing herbicide injury in corn",
+     "url": "https://ask.ifas.ufl.edu/publication/AG374"
+    },
+    {
+     "title": "Wisconsin Corn Agronomy: Diagnosing injured corn",
+     "url": "https://corn.agronomy.wisc.edu/Management/L028.aspx"
+    }
+   ],
+   "imageStatus": "PENDING_VERIFICATION",
+   "referenceLanguage": "en"
+  },
+  {
+   "id": "hail_wind_damage",
+   "name": "Hail and wind damage",
+   "category": "STRESS",
+   "keywords": [
+    "hail",
+    "hailstones",
+    "storm damage",
+    "wind damage",
+    "shredded leaves",
+    "bruised stalks",
+    "snapped stalks",
+    "root lodging"
+   ],
+   "signs": "Leaves tear or shred after a storm. Stems may be bruised, snapped or leaning with loosened roots.",
+   "distinguish": "A sudden storm-related pattern differs from fresh insect feeding. Stem and growing-point damage matter more than leaf appearance alone.",
+   "checkInField": "When safe, compare several field areas, count surviving plants and look for new growth. Ask an extension officer to inspect bruised stems and growing points.",
+   "byStage": "Young plants may regrow if the growing point survives. Later stem breakage can be more damaging.",
+   "likelyWhen": "After hail or strong winds, especially where wet soil allows roots to loosen.",
+   "actNow": "Record the storm and damage. Recheck recovery with extension staff before deciding to replant; a shredded leaf alone cannot predict crop survival.",
+   "prevent": "Use local advice on variety, plant population and standability. Keep dated records for assessing recovery.",
+   "sources": [
+    {
+     "title": "University of Minnesota Extension: Wind and hail damage on corn",
+     "url": "https://extension.umn.edu/agriculture/crop-production/corn/wind-and-hail-damage"
+    }
+   ],
+   "imageStatus": "PENDING_VERIFICATION",
+   "referenceLanguage": "en"
+  },
+  {
+   "id": "cold_frost_injury",
+   "name": "Cold and frost injury",
+   "category": "STRESS",
+   "keywords": [
+    "frost",
+    "freeze",
+    "cold night",
+    "cold weather",
+    "water soaked leaves",
+    "frost damage",
+    "chilling"
+   ],
+   "signs": "After a cold event, leaves may look water-soaked, then pale or brown. Growth can slow; damage may be worse in low areas.",
+   "distinguish": "Cold can resemble nutrient stress. Damaged leaves do not establish whether the growing point survived.",
+   "checkInField": "Note the cold event and field pattern. Compare new growth on several plants over the following warmer days; ask extension staff to inspect growing points.",
+   "byStage": "Small plants can recover when their protected growing point remains alive; exposed growing tissue is more vulnerable.",
+   "likelyWhen": "After unusually cold nights or frost; local terrain and soil conditions affect damage.",
+   "actNow": "Assess recovery before replanting or adding inputs. Get prompt local advice if new growth stops or most of the stand is damaged.",
+   "prevent": "Choose planting windows and varieties using local frost risk and soil conditions, rather than a fixed calendar copied from another region.",
+   "sources": [
+    {
+     "title": "NC State Extension: Frost or freeze damage to corn",
+     "url": "https://craven.ces.ncsu.edu/frost-or-freeze-damage-to-corn/"
+    }
+   ],
+   "imageStatus": "PENDING_VERIFICATION",
+   "referenceLanguage": "en"
+  },
+  {
+   "id": "seedling_disease",
+   "name": "Seed rot and seedling blight",
+   "category": "DISEASE",
+   "keywords": [
+    "seed rot",
+    "damping off",
+    "seedling blight",
+    "missing seedlings",
+    "rotting seed",
+    "collapsed seedlings",
+    "soft stem",
+    "poor emergence"
+   ],
+   "signs": "Gaps appear in rows; seeds may rot before emergence. Young plants can yellow, wilt and collapse, with soft brown tissue near the soil line.",
+   "distinguish": "Cutworms may sever stems; seed quality, depth and chemical injury can also reduce emergence. Rot does not identify a particular pathogen.",
+   "checkInField": "Carefully dig at gaps and beside weak plants. Compare seeds, roots and the shoot below the soil with healthier seedlings; look for feeding or cut stems.",
+   "byStage": "From germination through early establishment.",
+   "likelyWhen": "Risk can increase in wet, poorly drained, compacted or cold soils; seed condition also matters.",
+   "actNow": "Ask extension staff to assess stand loss and collect samples for diagnosis before deciding on treatment or replanting.",
+   "prevent": "Use good-quality seed and locally suitable planting conditions. Address drainage and compaction; ask about locally appropriate seed protection.",
+   "sources": [
+    {
+     "title": "UC IPM: Seed rot and damping-off of corn",
+     "url": "https://ipm.ucanr.edu/agriculture/corn/seed-rot-and-damping-off/"
+    }
+   ],
+   "imageStatus": "PENDING_VERIFICATION",
+   "referenceLanguage": "en"
+  },
+  {
+   "id": "root_rot",
+   "name": "Root rot and root injury",
+   "category": "DISEASE",
+   "keywords": [
+    "root rot",
+    "rotting roots",
+    "brown roots",
+    "root lesions",
+    "damaged roots",
+    "weak roots",
+    "uneven stand"
+   ],
+   "signs": "Plants grow unevenly, yellow or wilt; roots may have brown lesions or decay. Some plants remain stunted while nearby plants grow normally.",
+   "distinguish": "Waterlogging, insects, compaction and chemical injury also damage roots. A photo cannot distinguish all causes or name the pathogen.",
+   "checkInField": "Dig up affected and healthier plants with roots intact. Compare root condition, soil wetness and feeding damage; note whether the problem follows wet patches or rows.",
+   "byStage": "Can start in seedlings and limit later growth.",
+   "likelyWhen": "Poor establishment and wet areas warrant closer inspection; several stresses can occur together.",
+   "actNow": "Ask an extension officer to examine whole-plant samples. Avoid treating yellow leaves as proof of fertilizer deficiency; widespread decline needs prompt assessment.",
+   "prevent": "Plan drainage, soil management, rotation and variety choices with local extension staff after identifying the cause.",
+   "sources": [
+    {
+     "title": "Iowa State Extension: Corn field guide, seed and root diseases",
+     "url": "https://crops.extension.iastate.edu/files/inline-files/corn-field-guide.pdf"
+    },
+    {
+     "title": "Iowa State Extension: Scouting tips for seedling disease",
+     "url": "https://crops.extension.iastate.edu/post/scouting-tips-seedling-disease"
+    }
+   ],
+   "imageStatus": "PENDING_VERIFICATION",
+   "referenceLanguage": "en"
+  },
+  {
+   "id": "stalk_rot",
+   "name": "Stalk rot and weak stalks",
+   "category": "DISEASE",
+   "keywords": [
+    "stalk rot",
+    "stem rot",
+    "soft stalk",
+    "soft stems",
+    "rotting stalk",
+    "shredded pith",
+    "pink pith",
+    "plants falling over"
+   ],
+   "signs": "Plants may die early or lodge. Lower stems can soften; internal tissue may discolour and break down, leaving stringy strands.",
+   "distinguish": "Borer tunnels, storm breakage and other stalk diseases can look similar. Internal colour alone cannot confirm Fusarium or grain safety.",
+   "checkInField": "Compare lower stems on affected and healthier plants. Ask an extension officer to inspect internal tissue and check for borer holes, tunnels and frass.",
+   "byStage": "Often noticed as plants mature, with weakening stems and premature drying.",
+   "likelyWhen": "Stressed plants or damaged stems need closer inspection. Several pathogens can cause stalk rot.",
+   "actNow": "Get local advice on lodging risk and harvest timing. Check ears separately; do not assume grain from affected plants is safe for food or feed.",
+   "prevent": "Use locally suitable resistant varieties and balanced soil management; plan rotation and pest control with extension staff.",
+   "sources": [
+    {
+     "title": "UC IPM: Fusarium stalk rot of corn",
+     "url": "https://ipm.ucanr.edu/agriculture/corn/fusarium-stalk-rot/"
+    }
+   ],
+   "imageStatus": "PENDING_VERIFICATION",
+   "referenceLanguage": "en"
   }
  ]
 }

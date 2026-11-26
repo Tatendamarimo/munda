@@ -305,6 +305,7 @@ fun GuideScreen(vm: FarmViewModel, onEntry: (String) -> Unit) {
         PageHead(s.t("guide.title"))
         Page {
             Text(s.t("guide.subtitle"), style = MaterialTheme.typography.bodyMedium, color = c.ink2)
+            if (s.lang != "en") Text(s.t("guide.englishNote"), style = MaterialTheme.typography.bodySmall, color = c.ink2)
             guide.entries.groupBy { it.category }.forEach { (cat, entries) ->
                 Tag(s.t("guide.categories.${cat.name}"))
                 entries.forEach { e ->
@@ -345,6 +346,7 @@ fun GuideEntryScreen(vm: FarmViewModel, id: String, onBack: () -> Unit) {
             Tag(s.t("guide.categories.${e.category.name}"))
             Text(loc.name, style = MaterialTheme.typography.headlineMedium)
             GuidePicture(e.id, loc.name)
+            if (s.lang != "en") Text(s.t("guide.englishNote"), style = MaterialTheme.typography.bodySmall, color = c.ink2)
             CardBox {
                 Text(s.t("guide.signs"), style = MaterialTheme.typography.titleSmall)
                 Text(loc.signs, style = MaterialTheme.typography.bodyLarge)

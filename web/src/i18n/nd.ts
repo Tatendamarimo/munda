@@ -113,6 +113,7 @@ export const nd: Messages = {
     saveForLater: 'Gcina okwesikhathi esizayo', photoUsed: 'Isithombe sehlamvu',
   },
   result: {
+    noClearCause: 'Imbangela ayikacaci', safeNextCheck: 'Qathanisa izitshalo ezilimeleyo lezikhangeleka ziphilile. Buza umlimisi nxa izimpawu ziqhubeka kumbe zisabalala.',
     outsideGuide: 'Akukho esiqondisweni sikaMunda: umbono kaGemini kuphela. Buza isikhulu sezolimo.',
     title: 'Okungaba yimbangela', subtitle: 'Akusikho ukuhlola kwesiqiniseko. Okuvumelanayo, okungavumelaniyo, lokumele kuhlolwe.',
     fits: 'Kuvumelana lokubonileyo', gaps: 'Akuvumelani, kumbe kakukaziwa', checkFirst: 'Hlola ungakathengi lutho',
@@ -136,11 +137,12 @@ export const nd: Messages = {
     trend: 'Indawo ethintekileyo ngokuhamba kwesikhathi', heavyRain: 'Izulu elinengi',
   },
   guide: {
+    englishNote: 'Ezinye izeluleko zingesiNgisi.',
     distinguish: "Indlela yokwehlukanisa izimbangela",
     byStage: 'Esigabeni ngasinye', likelyWhen: 'Kungenzeka nini', actNow: 'Okumele ukwenze khathesi', prevent: 'Isizini elandelayo', sources: 'Kubhalwe kusukela ku', report: 'Bikela iAGRITEX kumbe iMinistry of Agriculture masinyane.', unchecked: 'Akukahlolwa yingcitshi yezolimo. Buza isikhulu sezolimo ungakasebenzisi imali.',
     photoBy: 'Isithombe: {credit}', drawing: 'Umdwebo, hayisiso isithombe', source: 'Bona lapho esivela khona',
     title: 'Isiqondiso sombila', subtitle: 'Inkinga ezivamileyo, ukuthi zikhangeleka njani, lokuthi zihlolwa njani. Sisebenza kungelanethiwekhi.', signs: 'Ukuthi kukhangeleka njani', check: 'Ukuhlola ensimini',
-    categories: { NUTRIENT: 'Ukudla komhlabathi', WATER: 'Amanzi', PEST: 'Izinambuzane', DISEASE: 'Imikhuhlane', WEED: 'Ukhula' },
+    categories: { STRESS: 'Ukulinyazwa ngumkhathi lemithi', NUTRIENT: 'Ukudla komhlabathi', WATER: 'Amanzi', PEST: 'Izinambuzane', DISEASE: 'Imikhuhlane', WEED: 'Ukhula' },
   },
   me: {
     title: 'Mina', language: 'Ulimi', betaNote: 'Izilimi ze-beta zisengamabhalo okuqala kuze kube yilapho umkhulumi wazo ezihlola.',
@@ -150,7 +152,7 @@ export const nd: Messages = {
     extName: 'Ibizo', extPhone: 'Ifoni', offlineAi: 'I-AI yefoni',
     about: 'IMunda ikunceda ukuhlola kuhle lokukhetha okumele ukuhlole. Kayitsho isifo ngesiqiniseko. Nxa kunzima kumbe ungaqinisekanga, khuluma lomeluleki wakho wezolimo.',
   },
-  readAloud: { play: 'Bala ngelizwi', stop: 'Yekela ukubala' },
+  readAloud: { progress: 'Ingxenye {current} kwezingu {total}', failed: 'Ukubala kumile kungakapheli. Cindezela uzame futhi.', play: 'Bala ngelizwi', stop: 'Yekela ukubala' },
   live: {
     ...en.live,
     onDevice: 'Le-AI isebenza efonini yakho. Imibiko egciniweyo ingathunyelwa ngemuva.',

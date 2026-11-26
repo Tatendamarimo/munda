@@ -14,6 +14,9 @@ import { Likelihood, PatternKind, Urgency } from './models';
  */
 
 export const NOT_SURE = 'Not sure';
+export const NO_CLEAR_PROBLEM_NOTE = 'No clear problem was identified from this observation. This does not confirm that the crop is healthy. Keep monitoring and ask your extension officer if symptoms appear or persist.';
+export const UNCERTAIN_NOTE = 'There is not enough evidence to identify a cause. Compare affected and healthy-looking plants, record changes, and ask your extension officer before buying inputs.';
+export const MIXED_NOTE = 'More than one problem may be present. The listed possibilities are not a confirmed combination. Check each symptom pattern with your extension officer before treatment.';
 export const DEFAULT_UNCERTAINTY =
   'These are possible causes based on what you described, not a diagnosis. Check them in the field before spending money on inputs.';
 
@@ -125,14 +128,17 @@ export function parseRecord(raw: string | null | undefined, guide: SymptomGuide,
     const o = parseObject(raw);
     const summary = clean(o.summary, MAX.summary);
     if (!summary) return fail('Model returned no summary');
-    const cs = causes(o.possibleCauses, guide, allowed, maxCauses);
-    if (cs.length === 0) return fail('Model returned no possible causes');
+    const assessment = o.assessment;
+    if ((assessment === 'UNCERTAIN' || assessment === 'NO_CLEAR_PROBLEM') && !Array.isArray(o.possibleCauses)) return fail('Model returned no causes array');
+    const cs = assessment === 'NO_CLEAR_PROBLEM' || assessment === 'UNCERTAIN' ? [] : causes(o.possibleCauses, guide, allowed, maxCauses);
+    if (cs.length === 0 && assessment !== 'NO_CLEAR_PROBLEM' && assessment !== 'UNCERTAIN') return fail('Model returned no possible causes');
+    if (assessment === 'MIXED') for (const cause of cs) if (cause.likelihood === 'HIGH') cause.likelihood = 'MEDIUM';
     return ok({
       summary,
       symptoms: cleanList(o.symptoms, MAX.item, 5),
       possibleCauses: cs,
       urgency: Urgency.parseLoose(o.urgency),
-      uncertaintyNote: clean(o.uncertaintyNote, MAX.note) || DEFAULT_UNCERTAINTY,
+      uncertaintyNote: assessment === 'NO_CLEAR_PROBLEM' ? NO_CLEAR_PROBLEM_NOTE : assessment === 'UNCERTAIN' ? UNCERTAIN_NOTE : assessment === 'MIXED' ? MIXED_NOTE : clean(o.uncertaintyNote, MAX.note) || DEFAULT_UNCERTAINTY,
     });
   } catch (e) {
     return fail(String(e instanceof Error ? e.message : e));

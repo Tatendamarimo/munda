@@ -1,3 +1,4 @@
+import { BookOpen } from 'lucide-react';
 import { BotanicalPlate } from './illustrations/BotanicalPlate';
 import { guideImage } from '../domain/guideImages';
 import { useT } from '../i18n';
@@ -20,5 +21,5 @@ export function GuidePicture({ id, alt, compact = false }: { id: string | null |
 
 export function GuideThumb({ id }: { id: string }) {
   const img = guideImage(id);
-  return img ? img.kind === 'drawing' ? <span className="guide-thumb botanical-thumb"><BotanicalPlate problem={id} thumbnail /></span> : <img className="guide-thumb" src={img.url} alt="" loading="lazy" decoding="async" /> : null;
+  return img ? img.kind === 'drawing' ? <span className="guide-thumb botanical-thumb"><BotanicalPlate problem={id} thumbnail /></span> : <img className="guide-thumb" src={img.url} alt="" loading="lazy" decoding="async" /> : <span className="guide-thumb guide-reference-icon" aria-hidden="true"><BookOpen size={22} /></span>;
 }

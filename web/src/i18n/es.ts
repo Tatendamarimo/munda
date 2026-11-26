@@ -113,6 +113,7 @@ export const es: Messages = {
     saveForLater: 'Guardar para después', photoUsed: 'Foto de la hoja',
   },
   result: {
+    noClearCause: 'No se identificó una causa clara', safeNextCheck: 'Compare plantas afectadas con las que parecen sanas. Consulte a su técnico agrícola si los síntomas persisten o se extienden.',
     outsideGuide: 'No está en la guía de Munda: sugerencia propia de Gemini. Confírmelo con su extensionista.',
     title: 'Causas posibles', subtitle: 'No es un diagnóstico. Qué coincide, qué no y qué revisar.',
     fits: 'Coincide con lo que vio', gaps: 'No coincide o aún no se sabe', checkFirst: 'Revise antes de comprar nada',
@@ -136,11 +137,12 @@ export const es: Messages = {
     trend: 'Área afectada en el tiempo', heavyRain: 'Lluvia fuerte',
   },
   guide: {
+    englishNote: 'Algunas indicaciones están en inglés.',
     distinguish: "Cómo distinguirlos",
     byStage: 'En cada etapa', likelyWhen: 'Cuándo es probable', actNow: 'Qué hacer ahora', prevent: 'Próxima temporada', sources: 'Redactado a partir de', report: 'Repórtelo de inmediato al servicio de extensión o al Ministerio de Agricultura.', unchecked: 'Aún no revisado por un agrónomo. Confirme con su extensionista antes de gastar dinero.',
     photoBy: 'Foto: {credit}', drawing: 'Dibujo, no una foto', source: 'Ver la fuente',
     title: 'Guía del maíz', subtitle: 'Problemas comunes, cómo se ven y cómo revisarlos. Funciona sin señal.', signs: 'Cómo se ve', check: 'Cómo revisar en el campo',
-    categories: { NUTRIENT: 'Nutrientes', WATER: 'Agua', PEST: 'Plagas', DISEASE: 'Enfermedades', WEED: 'Malezas' },
+    categories: { STRESS: 'Daños climáticos y químicos', NUTRIENT: 'Nutrientes', WATER: 'Agua', PEST: 'Plagas', DISEASE: 'Enfermedades', WEED: 'Malezas' },
   },
   me: {
     title: 'Yo', language: 'Idioma', betaNote: 'Los idiomas beta son borradores hasta que un hablante nativo los revise.',
@@ -150,7 +152,7 @@ export const es: Messages = {
     extName: 'Nombre', extPhone: 'Teléfono', offlineAi: 'IA sin conexión',
     about: 'Munda le ayuda a observar con cuidado y decidir qué revisar. No hace diagnósticos. En casos graves o dudosos, hable con su técnico agrícola.',
   },
-  readAloud: { play: 'Leer en voz alta', stop: 'Dejar de leer' },
+  readAloud: { progress: 'Pasaje {current} de {total}', failed: 'La lectura se detuvo antes del final. Toque para intentarlo de nuevo.', play: 'Leer en voz alta', stop: 'Dejar de leer' },
   live: {
     ...en.live,
     onDevice: 'Esta solicitud de IA se ejecuta en su dispositivo. Los informes guardados pueden sincronizarse después.',

@@ -4,7 +4,7 @@
 
 **Diagnostic accuracy is not yet measured.** No independent, expert-labelled field evaluation or agronomist sign-off was available in this audit. Do not advertise an accuracy percentage. Passing software tests, finding supporting publications, or completing a successful cloud request does not measure diagnostic accuracy.
 
-Scope: source screening of the 22 maize guide entries, farmer-facing guide presentation/read-aloud, translated symptom/check fields and model-output handling in web and Android. This is a desk review, not independent agronomic certification. Guide version: 3.
+Scope: source screening of the 22 maize guide entries, farmer-facing guide presentation/read-aloud, translated symptom/check fields and model-output handling in web and Android. This is a desk review, not independent agronomic certification. Initial audit: guide version 3. The version 4 expansion is recorded below.
 
 ## Changes made
 
@@ -19,7 +19,7 @@ Model handling now rejects dose-bearing review actions detected by the existing 
 ## Coverage and remaining gaps
 
 - Maize only. Other crops and animals are outside this reference's scope.
-- Twenty-two entries are not an exhaustive differential. Herbicide injury, hail/cold damage, iron deficiency, several root/stalk/seedling diseases and additional pests are missing as dedicated entries. Healthy plants, mixed problems and unusual presentations also need explicit evaluation. Outside-guide referral is essential.
+- Twenty-two entries are not an exhaustive differential. The initial audit lacked herbicide injury, hail/cold damage and root/stalk/seedling disease references; version 4 adds six broad references for these. Iron deficiency, additional pests and disease-specific differentials remain outside the dedicated entries. Healthy plants, mixed problems and unusual presentations also need explicit evaluation. Outside-guide referral is essential.
 - Visual symptoms overlap. Soil/tissue testing, pest identification or laboratory/plant-health confirmation may be needed. Labels such as “Likely” are heuristic, not calibrated probabilities.
 - Source material includes US and East African contexts. Local crop stage, cultivar, weather, soils and registered treatments matter; Zimbabwe-specific extension review remains pending. Do not carry foreign rates or calendar recommendations directly into local advice.
 - All 22 guide-photo records remain agronomically unconfirmed. Licensing/source attribution is separate from diagnostic validation. The acid-soil image cannot establish soil pH; a termite identification image does not demonstrate maize injury; the ear-rot photograph shows one example, not every fungus; the nitrogen image needs symptom confirmation.
@@ -87,3 +87,26 @@ The existing authored retrieval examples and software regressions check intended
 ## Software verification
 
 Web: 178 tests passed across 27 files; production build passed. Android: 74 unit tests passed with zero failures/errors; debug Kotlin compilation passed. These results verify software regressions, not agronomic accuracy.
+
+## Version 4 expansion and narration repair
+
+The guide now contains **28 references**, adding:
+
+- **Herbicide injury** (`herbicide_injury`): [UF/IFAS: Diagnosing herbicide injury in corn](https://ask.ifas.ufl.edu/publication/AG374); [Wisconsin Corn Agronomy: Diagnosing injured corn](https://corn.agronomy.wisc.edu/Management/L028.aspx).
+- **Hail and wind damage** (`hail_wind_damage`): [University of Minnesota Extension: Wind and hail damage on corn](https://extension.umn.edu/agriculture/crop-production/corn/wind-and-hail-damage).
+- **Cold and frost injury** (`cold_frost_injury`): [NC State Extension: Frost or freeze damage to corn](https://craven.ces.ncsu.edu/frost-or-freeze-damage-to-corn/).
+- **Seed rot and seedling blight** (`seedling_disease`): [UC IPM: Seed rot and damping-off of corn](https://ipm.ucanr.edu/agriculture/corn/seed-rot-and-damping-off/).
+- **Root rot and root injury** (`root_rot`): [Iowa State Extension: Corn field guide, seed and root diseases](https://crops.extension.iastate.edu/files/inline-files/corn-field-guide.pdf); [Iowa State Extension: Scouting tips for seedling disease](https://crops.extension.iastate.edu/post/scouting-tips-seedling-disease).
+- **Stalk rot and weak stalks** (`stalk_rot`): [UC IPM: Fusarium stalk rot of corn](https://ipm.ucanr.edu/agriculture/corn/fusarium-stalk-rot/).
+
+These are symptom-comparison references rather than confirmed pathogen diagnoses. They include look-alikes, field checks, crop-stage context, referral and prevention guidance without product doses. The new references use English fallback, visibly disclosed when another interface language is selected. Their six photographs and reviewed agronomic translations remain pending; the original 22 credited photos remain available. See `shared/guides/coverage.json`. No unrelated photos or generated diagnostic illustrations were substituted.
+
+Acid-soil text now qualifies pH thresholds and the role of soil/test method, variety and acidifying fertilizers; lime decisions remain based on a locally interpreted soil test.
+
+The response schema explicitly supports NO_CLEAR_PROBLEM, UNCERTAIN and MIXED alongside POSSIBLE_CAUSES. Both parsers permit empty causes only for explicit abstention, discard contradictory causes on abstention, keep mixed causes below HIGH and use fixed uncertainty/referral wording. The persisted record shape is unchanged for backward compatibility. Follow-up prompts may ask about recent spraying/fertilizer/manure when it distinguishes the candidate causes, and include the field context already recorded. Prompt instructions do not guarantee model compliance.
+
+Narration now prefers literal device speech when a suitable voice is available. It sends short passages in order, preserves every cloud audio part rather than keeping only the first, and rejects explicitly truncated/blocked cloud generations. Web progress and a visible failure message distinguish unfinished reading; Android reports a failure rather than silently treating missing speech as success. Cloud speech remains generative, so exact spoken wording and actual device audio need listening checks on target devices.
+
+Verification: **194 web tests passed**, production build passed; **78 Android unit tests passed**, debug compilation passed. A browser regression with a clearly labelled mock speech engine verified all acid-soil text through the final safety note (12 passages), stopping the queue, visible failure and successful retry; all 28 guide links and mobile layout also passed. Mock speech validates control flow and the exact text delivered to the engine, not acoustic output or agronomic accuracy.
+
+Accuracy remains **unmeasured**. No independent field cases or agronomist sign-off have been added by this implementation.

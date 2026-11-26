@@ -113,6 +113,7 @@ export const pt: Messages = {
     saveForLater: 'Guardar para depois', photoUsed: 'Foto da folha',
   },
   result: {
+    noClearCause: 'Nenhuma causa clara identificada', safeNextCheck: 'Compare plantas afetadas com plantas que parecem saudáveis. Consulte o técnico agrícola se os sintomas persistirem ou se espalharem.',
     outsideGuide: 'Não está no guia do Munda: sugestão do próprio Gemini. Confirme com o extensionista.',
     title: 'Causas possíveis', subtitle: 'Não é um diagnóstico. O que bate certo, o que não bate e o que verificar.',
     fits: 'Bate com o que viu', gaps: 'Não bate, ou ainda não se sabe', checkFirst: 'Verifique antes de comprar qualquer coisa',
@@ -136,11 +137,12 @@ export const pt: Messages = {
     trend: 'Área afetada ao longo do tempo', heavyRain: 'Chuva forte',
   },
   guide: {
+    englishNote: 'Algumas orientações estão em inglês.',
     distinguish: "Como distinguir",
     byStage: 'Em cada fase', likelyWhen: 'Quando é provável', actNow: 'O que fazer agora', prevent: 'Próxima época', sources: 'Escrito a partir de', report: 'Comunique de imediato aos serviços de extensão ou ao Ministério da Agricultura.', unchecked: 'Ainda não verificado por um agrónomo. Confirme com o extensionista antes de gastar dinheiro.',
     photoBy: 'Foto: {credit}', drawing: 'Desenho, não é uma foto', source: 'Ver a fonte',
     title: 'Guia do milho', subtitle: 'Problemas comuns, como se parecem e como verificar. Funciona sem rede.', signs: 'Como se parece', check: 'Como verificar no campo',
-    categories: { NUTRIENT: 'Nutrientes', WATER: 'Água', PEST: 'Pragas', DISEASE: 'Doenças', WEED: 'Ervas daninhas' },
+    categories: { STRESS: 'Danos climáticos e químicos', NUTRIENT: 'Nutrientes', WATER: 'Água', PEST: 'Pragas', DISEASE: 'Doenças', WEED: 'Ervas daninhas' },
   },
   me: {
     title: 'Eu', language: 'Língua', betaNote: 'As línguas beta são rascunhos até serem revistas por um falante nativo.',
@@ -150,7 +152,7 @@ export const pt: Messages = {
     extName: 'Nome', extPhone: 'Telefone', offlineAi: 'IA offline',
     about: 'O Munda ajuda a observar com cuidado e a decidir o que verificar. Não faz diagnósticos. Em casos graves ou duvidosos, fale com o seu extensionista.',
   },
-  readAloud: { play: 'Ler em voz alta', stop: 'Parar a leitura' },
+  readAloud: { progress: 'Trecho {current} de {total}', failed: 'A leitura parou antes do fim. Toque para tentar novamente.', play: 'Ler em voz alta', stop: 'Parar a leitura' },
   live: {
     ...en.live,
     onDevice: 'Este pedido de IA corre no seu dispositivo. Os relatórios guardados podem sincronizar mais tarde.',

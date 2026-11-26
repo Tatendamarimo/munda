@@ -525,3 +525,9 @@ progress { width: 100%; height: 8px; accent-color: var(--leaf); }
 .android-link { display: inline-flex; align-items: center; gap: 10px; margin-top: 12px; padding: 10px 14px; border-radius: var(--r-md); border: 1px solid var(--rule); color: inherit; text-decoration: none; }
 .android-link small { display: block; color: var(--ink-2); font-size: .82rem; }
 .android-link:hover { border-color: var(--leaf); }
+
+/* Read-aloud progress stays beside the control; failure text remains visible below the header. */
+.read-aloud-control { position: relative; display: inline-flex; flex: 0 0 auto; align-items: center; }
+.read-aloud-progress { position: absolute; right: 0; top: 100%; font-size: 10px; line-height: 1.4; white-space: nowrap; color: var(--ink2, #53634f); }
+.read-aloud-error { position: absolute; z-index: 5; top: calc(100% + 6px); right: 0; width: min(260px, 75vw); padding: 12px; border-radius: 12px; background: #fff4df; color: #59411b; box-shadow: 0 3px 16px #182a181a; font-size: 13px; line-height: 1.4; }
+.guide-reference-icon { display: grid; place-items: center; background: #edf1e7; color: #52694d; }

@@ -46,13 +46,14 @@ const causeSchema = obj(
 
 export const recordSchema = obj(
   {
+    assessment: enumOf(['POSSIBLE_CAUSES', 'NO_CLEAR_PROBLEM', 'UNCERTAIN', 'MIXED']),
     summary: str('One sentence, at most 25 words, describing what was observed.'),
     symptoms: arr(str(), 5),
     possibleCauses: arr(causeSchema, 3),
     urgency: enumOf(Urgency.values),
     uncertaintyNote: str('One sentence: what information would most change this assessment.'),
   },
-  ['summary', 'symptoms', 'possibleCauses', 'urgency', 'uncertaintyNote'],
+  ['assessment', 'summary', 'symptoms', 'possibleCauses', 'urgency', 'uncertaintyNote'],
 );
 
 export const reviewSchema = obj(

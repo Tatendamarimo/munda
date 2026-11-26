@@ -113,6 +113,7 @@ export const sw: Messages = {
     saveForLater: 'Hifadhi kwa baadaye', photoUsed: 'Picha ya jani',
   },
   result: {
+    noClearCause: 'Hakuna sababu iliyo wazi', safeNextCheck: 'Linganisha mimea iliyoathirika na inayoonekana yenye afya. Wasiliana na afisa ugani ikiwa dalili zinaendelea au kuenea.',
     outsideGuide: 'Haimo kwenye mwongozo wa Munda: pendekezo la Gemini mwenyewe. Thibitisha na afisa ugani.',
     title: 'Visababishi vinavyowezekana', subtitle: 'Si uchunguzi wa uhakika. Kinacholingana, kisicholingana, na cha kukagua.',
     fits: 'Inalingana na ulichoona', gaps: 'Hailingani, au bado haijulikani', checkFirst: 'Kagua kabla ya kununua chochote',
@@ -136,11 +137,12 @@ export const sw: Messages = {
     trend: 'Eneo lililoathirika kwa muda', heavyRain: 'Mvua kubwa',
   },
   guide: {
+    englishNote: 'Baadhi ya maelekezo yako kwa Kiingereza.',
     distinguish: "Jinsi ya kutofautisha",
     byStage: 'Katika kila hatua', likelyWhen: 'Hutokea lini', actNow: 'Cha kufanya sasa', prevent: 'Msimu ujao', sources: 'Imeandikwa kutoka', report: 'Ripoti kwa afisa ugani au Wizara ya Kilimo mara moja.', unchecked: 'Bado haijakaguliwa na mtaalamu wa kilimo. Thibitisha na afisa ugani kabla ya kutumia pesa.',
     photoBy: 'Picha: {credit}', drawing: 'Mchoro, si picha halisi', source: 'Tazama chanzo',
     title: 'Mwongozo wa mahindi', subtitle: 'Matatizo ya kawaida, yanavyoonekana na jinsi ya kukagua. Hufanya kazi bila mtandao.', signs: 'Yanavyoonekana', check: 'Jinsi ya kukagua shambani',
-    categories: { NUTRIENT: 'Virutubisho', WATER: 'Maji', PEST: 'Wadudu', DISEASE: 'Magonjwa', WEED: 'Magugu' },
+    categories: { STRESS: 'Uharibifu wa hali ya hewa na kemikali', NUTRIENT: 'Virutubisho', WATER: 'Maji', PEST: 'Wadudu', DISEASE: 'Magonjwa', WEED: 'Magugu' },
   },
   me: {
     title: 'Mimi', language: 'Lugha', betaNote: 'Lugha za beta ni rasimu hadi mzungumzaji asilia azikague.',
@@ -150,7 +152,7 @@ export const sw: Messages = {
     extName: 'Jina', extPhone: 'Simu', offlineAi: 'AI ya nje ya mtandao',
     about: 'Munda inakusaidia kuchunguza kwa makini na kuamua cha kukagua. Haitoi uchunguzi wa uhakika. Kwa hali mbaya au zenye shaka, ongea na afisa ugani wako.',
   },
-  readAloud: { play: 'Soma kwa sauti', stop: 'Acha kusoma' },
+  readAloud: { progress: 'Kifungu {current} kati ya {total}', failed: 'Usomaji umesimama kabla ya mwisho. Gusa kujaribu tena.', play: 'Soma kwa sauti', stop: 'Acha kusoma' },
   live: {
     ...en.live,
     onDevice: 'Ombi hili la AI linaendeshwa kwenye kifaa chako. Ripoti zilizohifadhiwa zinaweza kusawazishwa baadaye.',
