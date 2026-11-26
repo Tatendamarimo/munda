@@ -228,5 +228,99 @@
   "source": "https://commons.wikimedia.org/wiki/File:Zinc-deficient_maize_plants.jpg",
   "title": "Zinc-deficient maize plants.jpg",
   "confirmed": false
+ },
+ "herbicide_injury": {
+  "kind": "photo",
+  "file": "herbicide_injury.jpg",
+  "author": "Cal Shumway, Bob Scott and John Boyd, University of Arkansas Division of Agriculture",
+  "license": "Reuse permitted",
+  "licenseUrl": "https://plants.uada.edu/herbicide/select/",
+  "source": "https://plants.uada.edu/herbicide/view/?type=plant&group=Corn",
+  "title": "Corn with clomazone direct-application injury",
+  "description": "Maize foliage showing bleaching after clomazone exposure, from the UADA herbicide injury collection. This is one kind of herbicide injury, not every chemical symptom.",
+  "changes": "Source photograph bundled without changes.",
+  "confirmed": false,
+  "sourceChecked": "2026-11-26"
+ },
+ "hail_wind_damage": {
+  "kind": "photo",
+  "file": "hail_wind_damage.jpg",
+  "author": "Zumthie",
+  "license": "Public domain",
+  "licenseUrl": "https://commons.wikimedia.org/wiki/File:Hagelschaden-Maisblatt.jpg#Licensing",
+  "source": "https://commons.wikimedia.org/wiki/File:Hagelschaden-Maisblatt.jpg",
+  "title": "Hail damage on a maize leaf",
+  "description": "A maize leaf with tears and physical injury following a hailstorm. Shows hail damage, not all forms of wind injury.",
+  "changes": "Source photograph bundled without changes.",
+  "confirmed": false,
+  "sourceChecked": "2026-11-26"
+ },
+ "cold_frost_injury": {
+  "kind": "photo",
+  "file": "cold_frost_injury.jpg",
+  "author": "Howard F. Schwartz, Colorado State University, Bugwood.org",
+  "license": "CC BY 3.0 US",
+  "licenseUrl": "https://creativecommons.org/licenses/by/3.0/us/",
+  "source": "https://www.ipmimages.org/browse/image/5363636",
+  "title": "Freezing injury on field corn — Bugwood 5363636",
+  "description": "Mature field maize damaged by freezing temperatures. This is a mature-crop example, not a photograph of seedling frost injury.",
+  "changes": "The catalogue’s 768-pixel JPEG version was bundled; its embedded image number is retained.",
+  "confirmed": false,
+  "sourceChecked": "2026-11-26"
+ },
+ "stalk_rot": {
+  "kind": "photo",
+  "file": "stalk_rot.jpg",
+  "author": "Clemson University — USDA Cooperative Extension Slide Series, Bugwood.org",
+  "license": "CC BY 3.0 US",
+  "licenseUrl": "https://creativecommons.org/licenses/by/3.0/us/",
+  "source": "https://www.ipmimages.org/browse/image/1436022",
+  "title": "Fusarium subglutinans on maize stalk — Bugwood 1436022",
+  "description": "A split maize stalk showing discoloured, shredded internal tissue associated with Fusarium. This is one stalk-rot example, not confirmation of a pathogen in a farmer’s crop.",
+  "changes": "The catalogue’s 768-pixel JPEG version was bundled; its embedded image number is retained.",
+  "confirmed": false,
+  "sourceChecked": "2026-11-26"
+ },
+ "seedling_disease": {
+  "kind": "photo",
+  "file": "fusarium_seedling_root.jpg",
+  "author": "Martina Sanna, Ilaria Martino, Vladimiro Guarnaccia and Monica Mezzalama (2023), Plants 12:3857",
+  "license": "CC BY 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+  "source": "https://www.mdpi.com/2223-7747/12/22/3857#fig_body_display_plants-12-03857-f001",
+  "title": "Fusarium symptoms on maize seedling — Figure 1a",
+  "description": "A field maize seedling with Fusarium-associated symptoms, as described in Figure 1a of Sanna et al. (2023). One seedling-disease example; it does not illustrate every cause of failed emergence.",
+  "changes": "Figure 1 converted from PNG to a maximum 1800-pixel JPEG. Panel a is selected at display time; no disease features have been generated or retouched.",
+  "confirmed": false,
+  "sourceChecked": "2026-11-26",
+  "crop": {
+   "x": 22,
+   "y": 22,
+   "width": 1365,
+   "height": 1385,
+   "sourceWidth": 2788,
+   "sourceHeight": 2769
+  }
+ },
+ "root_rot": {
+  "kind": "photo",
+  "file": "fusarium_seedling_root.jpg",
+  "author": "Martina Sanna, Ilaria Martino, Vladimiro Guarnaccia and Monica Mezzalama (2023), Plants 12:3857",
+  "license": "CC BY 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+  "source": "https://www.mdpi.com/2223-7747/12/22/3857#fig_body_display_plants-12-03857-f001",
+  "title": "Fusarium symptoms on maize roots and crown — Figure 1b",
+  "description": "Maize roots and crown displaying field symptoms associated with Fusarium, as described in Figure 1b of Sanna et al. (2023). One root/crown-rot example; a picture alone does not establish the cause.",
+  "changes": "Figure 1 converted from PNG to a maximum 1800-pixel JPEG. Panel b is selected at display time; no disease features have been generated or retouched.",
+  "confirmed": false,
+  "sourceChecked": "2026-11-26",
+  "crop": {
+   "x": 1440,
+   "y": 22,
+   "width": 1325,
+   "height": 1385,
+   "sourceWidth": 2788,
+   "sourceHeight": 2769
+  }
  }
 }

@@ -8,13 +8,6 @@
     "root_rot",
     "stalk_rot"
   ],
-  "pendingPhotoEntries": [
-    "herbicide_injury",
-    "hail_wind_damage",
-    "cold_frost_injury",
-    "seedling_disease",
-    "root_rot",
-    "stalk_rot"
-  ],
-  "note": "New references use English fallback until reviewed translations and suitable licensed photographs are available."
+  "pendingPhotoEntries": [],
+  "note": "Every maize reference has a bundled source-checked photograph. New reference text still uses English fallback until reviewed translations are available. Photo examples are not agronomic confirmation."
 }

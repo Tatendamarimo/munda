@@ -1,0 +1,70 @@
+{
+  "passed": true,
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "references": [
+    {
+      "id": "herbicide_injury",
+      "name": "Herbicide injury",
+      "size": {
+        "width": 1536,
+        "height": 1024
+      },
+      "caption": "Photo: Cal Shumway, Bob Scott and John Boyd, University of Arkansas Division of Agriculture \u00b7 Reuse permitted \u00b7 See the source \u00b7 Licence",
+      "crop": null
+    },
+    {
+      "id": "hail_wind_damage",
+      "name": "Hail and wind damage",
+      "size": {
+        "width": 2272,
+        "height": 1704
+      },
+      "caption": "Photo: Zumthie \u00b7 Public domain \u00b7 See the source \u00b7 Licence",
+      "crop": null
+    },
+    {
+      "id": "cold_frost_injury",
+      "name": "Cold and frost injury",
+      "size": {
+        "width": 768,
+        "height": 508
+      },
+      "caption": "Photo: Howard F. Schwartz, Colorado State University, Bugwood.org \u00b7 CC BY 3.0 US \u00b7 See the source \u00b7 Licence",
+      "crop": null
+    },
+    {
+      "id": "seedling_disease",
+      "name": "Seed rot and seedling blight",
+      "size": {
+        "width": 1800,
+        "height": 1787
+      },
+      "caption": "Photo: Martina Sanna, Ilaria Martino, Vladimiro Guarnaccia and Monica Mezzalama (2023), Plants 12:3857 \u00b7 CC BY 4.0 \u00b7 See the source \u00b7 Licence",
+      "crop": "22 22 1365 1385"
+    },
+    {
+      "id": "root_rot",
+      "name": "Root rot and root injury",
+      "size": {
+        "width": 1800,
+        "height": 1787
+      },
+      "caption": "Photo: Martina Sanna, Ilaria Martino, Vladimiro Guarnaccia and Monica Mezzalama (2023), Plants 12:3857 \u00b7 CC BY 4.0 \u00b7 See the source \u00b7 Licence",
+      "crop": "1440 22 1325 1385"
+    },
+    {
+      "id": "stalk_rot",
+      "name": "Stalk rot and weak stalks",
+      "size": {
+        "width": 768,
+        "height": 512
+      },
+      "caption": "Photo: Clemson University \u2014 USDA Cooperative Extension Slide Series, Bugwood.org \u00b7 CC BY 3.0 US \u00b7 See the source \u00b7 Licence",
+      "crop": null
+    }
+  ],
+  "all28EntriesHavePhotos": true
+}

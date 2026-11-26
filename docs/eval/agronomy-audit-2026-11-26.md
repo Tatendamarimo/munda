@@ -99,7 +99,7 @@ The guide now contains **28 references**, adding:
 - **Root rot and root injury** (`root_rot`): [Iowa State Extension: Corn field guide, seed and root diseases](https://crops.extension.iastate.edu/files/inline-files/corn-field-guide.pdf); [Iowa State Extension: Scouting tips for seedling disease](https://crops.extension.iastate.edu/post/scouting-tips-seedling-disease).
 - **Stalk rot and weak stalks** (`stalk_rot`): [UC IPM: Fusarium stalk rot of corn](https://ipm.ucanr.edu/agriculture/corn/fusarium-stalk-rot/).
 
-These are symptom-comparison references rather than confirmed pathogen diagnoses. They include look-alikes, field checks, crop-stage context, referral and prevention guidance without product doses. The new references use English fallback, visibly disclosed when another interface language is selected. Their six photographs and reviewed agronomic translations remain pending; the original 22 credited photos remain available. See `shared/guides/coverage.json`. No unrelated photos or generated diagnostic illustrations were substituted.
+These are symptom-comparison references rather than confirmed pathogen diagnoses. They include look-alikes, field checks, crop-stage context, referral and prevention guidance without product doses. The new references use English fallback, visibly disclosed when another interface language is selected. The six photographs were pending at the initial version 4 release and are now supplied; reviewed agronomic translations remain pending. The original 22 credited photos remain available. See `shared/guides/coverage.json`. No unrelated photos or generated diagnostic illustrations were substituted.
 
 Acid-soil text now qualifies pH thresholds and the role of soil/test method, variety and acidifying fertilizers; lime decisions remain based on a locally interpreted soil test.
 
@@ -112,3 +112,5 @@ Verification: **194 web tests passed**, production build passed; **78 Android un
 Accuracy remains **unmeasured**. No independent field cases or agronomist sign-off have been added by this implementation.
 
 Deployed smoke check: one synthetic normal-looking maize case completed against the real cloud model (`gemini-3.5-flash-lite`, HTTP 200). The result named no disease, displayed the fixed health qualification and monitoring/referral check, and was not saved as a farmer record. The UI reported 39.6 seconds for this request; this is one observation, not a latency benchmark. Evidence: `docs/evidence/2026-11-26/maize-live-abstention-smoke.json`. This does not add an independent field-validation case or establish accuracy.
+
+Photo completion: all six new references now have credited, source-checked photo examples with licence links. All 28 references resolve offline assets. Details and image-subject limitations: [maize-photo-completion-2026-11-26.md](maize-photo-completion-2026-11-26.md). This does not establish diagnostic accuracy or agronomist approval.

@@ -137,6 +137,7 @@ export const nd: Messages = {
     trend: 'Indawo ethintekileyo ngokuhamba kwesikhathi', heavyRain: 'Izulu elinengi',
   },
   guide: {
+    license: 'Ilayisensi',
     englishNote: 'Ezinye izeluleko zingesiNgisi.',
     distinguish: "Indlela yokwehlukanisa izimbangela",
     byStage: 'Esigabeni ngasinye', likelyWhen: 'Kungenzeka nini', actNow: 'Okumele ukwenze khathesi', prevent: 'Isizini elandelayo', sources: 'Kubhalwe kusukela ku', report: 'Bikela iAGRITEX kumbe iMinistry of Agriculture masinyane.', unchecked: 'Akukahlolwa yingcitshi yezolimo. Buza isikhulu sezolimo ungakasebenzisi imali.',

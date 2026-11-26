@@ -137,6 +137,7 @@ export const sw: Messages = {
     trend: 'Eneo lililoathirika kwa muda', heavyRain: 'Mvua kubwa',
   },
   guide: {
+    license: 'Leseni',
     englishNote: 'Baadhi ya maelekezo yako kwa Kiingereza.',
     distinguish: "Jinsi ya kutofautisha",
     byStage: 'Katika kila hatua', likelyWhen: 'Hutokea lini', actNow: 'Cha kufanya sasa', prevent: 'Msimu ujao', sources: 'Imeandikwa kutoka', report: 'Ripoti kwa afisa ugani au Wizara ya Kilimo mara moja.', unchecked: 'Bado haijakaguliwa na mtaalamu wa kilimo. Thibitisha na afisa ugani kabla ya kutumia pesa.',

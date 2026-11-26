@@ -217,6 +217,7 @@ export const en = {
     heavyRain: 'Heavy rain',
   },
   guide: {
+    license: 'Licence',
     englishNote: 'Some guidance is in English.',
     distinguish: "How to tell them apart",
     byStage: 'At each stage', likelyWhen: 'When it is likely', actNow: 'What to do now', prevent: 'Next season', sources: 'Written from', report: 'Report this to AGRITEX or the Ministry of Agriculture straight away.', unchecked: 'Not yet checked by an agronomist. Confirm with your extension officer before spending money.',

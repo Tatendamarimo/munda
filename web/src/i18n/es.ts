@@ -137,6 +137,7 @@ export const es: Messages = {
     trend: 'Área afectada en el tiempo', heavyRain: 'Lluvia fuerte',
   },
   guide: {
+    license: 'Licencia',
     englishNote: 'Algunas indicaciones están en inglés.',
     distinguish: "Cómo distinguirlos",
     byStage: 'En cada etapa', likelyWhen: 'Cuándo es probable', actNow: 'Qué hacer ahora', prevent: 'Próxima temporada', sources: 'Redactado a partir de', report: 'Repórtelo de inmediato al servicio de extensión o al Ministerio de Agricultura.', unchecked: 'Aún no revisado por un agrónomo. Confirme con su extensionista antes de gastar dinero.',

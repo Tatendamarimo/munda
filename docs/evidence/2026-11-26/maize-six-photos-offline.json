@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "site": "https://app-munda.web.app",
+  "realBrowserOffline": true,
+  "photoAssetsPrecached": [
+    "/assets/stalk_rot-OwRSo8Mh.jpg",
+    "/assets/herbicide_injury-CXXzPMy6.jpg",
+    "/assets/hail_wind_damage-D_KTniZN.jpg",
+    "/assets/fusarium_seedling_root-SKHCG9bx.jpg",
+    "/assets/cold_frost_injury-C8But_4L.jpg"
+  ],
+  "allSixReferencesDecodedOffline": [
+    "herbicide_injury",
+    "hail_wind_damage",
+    "cold_frost_injury",
+    "seedling_disease",
+    "root_rot",
+    "stalk_rot"
+  ]
+}

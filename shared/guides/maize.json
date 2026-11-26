@@ -808,7 +808,7 @@
      "url": "https://corn.agronomy.wisc.edu/Management/L028.aspx"
     }
    ],
-   "imageStatus": "PENDING_VERIFICATION",
+   "imageStatus": "SOURCE_CHECKED_EXAMPLE",
    "referenceLanguage": "en"
   },
   {
@@ -838,7 +838,7 @@
      "url": "https://extension.umn.edu/agriculture/crop-production/corn/wind-and-hail-damage"
     }
    ],
-   "imageStatus": "PENDING_VERIFICATION",
+   "imageStatus": "SOURCE_CHECKED_EXAMPLE",
    "referenceLanguage": "en"
   },
   {
@@ -867,7 +867,7 @@
      "url": "https://craven.ces.ncsu.edu/frost-or-freeze-damage-to-corn/"
     }
    ],
-   "imageStatus": "PENDING_VERIFICATION",
+   "imageStatus": "SOURCE_CHECKED_EXAMPLE",
    "referenceLanguage": "en"
   },
   {
@@ -897,7 +897,7 @@
      "url": "https://ipm.ucanr.edu/agriculture/corn/seed-rot-and-damping-off/"
     }
    ],
-   "imageStatus": "PENDING_VERIFICATION",
+   "imageStatus": "SOURCE_CHECKED_EXAMPLE",
    "referenceLanguage": "en"
   },
   {
@@ -930,7 +930,7 @@
      "url": "https://crops.extension.iastate.edu/post/scouting-tips-seedling-disease"
     }
    ],
-   "imageStatus": "PENDING_VERIFICATION",
+   "imageStatus": "SOURCE_CHECKED_EXAMPLE",
    "referenceLanguage": "en"
   },
   {
@@ -960,7 +960,7 @@
      "url": "https://ipm.ucanr.edu/agriculture/corn/fusarium-stalk-rot/"
     }
    ],
-   "imageStatus": "PENDING_VERIFICATION",
+   "imageStatus": "SOURCE_CHECKED_EXAMPLE",
    "referenceLanguage": "en"
   }
  ]

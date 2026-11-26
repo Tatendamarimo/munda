@@ -137,6 +137,7 @@ export const fr: Messages = {
     trend: 'Surface touchée dans le temps', heavyRain: 'Fortes pluies',
   },
   guide: {
+    license: 'Licence',
     englishNote: 'Certains conseils sont en anglais.',
     distinguish: "Comment les distinguer",
     byStage: 'À chaque stade', likelyWhen: 'Quand c’est probable', actNow: 'Que faire maintenant', prevent: 'Saison prochaine', sources: 'Rédigé à partir de', report: 'Signalez-le immédiatement aux services agricoles ou au ministère de l’Agriculture.', unchecked: 'Pas encore vérifié par un agronome. Confirmez avec votre conseiller agricole avant de dépenser.',

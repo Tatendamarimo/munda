@@ -31,6 +31,7 @@
     "Heuristic likelihood is not calibrated probability",
     "Offline inference validation pending"
   ],
-  "pendingPhotoEntries": 6,
-  "englishOnlyNewEntries": 6
+  "pendingPhotoEntries": 0,
+  "englishOnlyNewEntries": 6,
+  "sourceCheckedPhotoReferences": 28
 }
