@@ -271,13 +271,13 @@
  "stalk_rot": {
   "kind": "photo",
   "file": "stalk_rot.jpg",
-  "author": "Clemson University — USDA Cooperative Extension Slide Series, Bugwood.org",
+  "author": "Adam Sisson, Iowa State University, Bugwood.org",
   "license": "CC BY 3.0 US",
   "licenseUrl": "https://creativecommons.org/licenses/by/3.0/us/",
-  "source": "https://www.ipmimages.org/browse/image/1436022",
-  "title": "Fusarium subglutinans on maize stalk — Bugwood 1436022",
-  "description": "A split maize stalk showing discoloured, shredded internal tissue associated with Fusarium. This is one stalk-rot example, not confirmation of a pathogen in a farmer’s crop.",
-  "changes": "The catalogue’s 768-pixel JPEG version was bundled; its embedded image number is retained.",
+  "source": "https://www.ipmimages.org/browse/image/5608094",
+  "title": "Anthracnose on maize stalk sections — Bugwood 5608094",
+  "description": "Maize stalk sections showing dark outer discolouration and a split section associated with anthracnose. One example of stalk damage; appearance alone does not confirm the cause in your field.",
+  "changes": "The catalogue’s 768-pixel JPEG version was bundled without retouching; its embedded image number is retained.",
   "confirmed": false,
   "sourceChecked": "2026-11-26"
  },
