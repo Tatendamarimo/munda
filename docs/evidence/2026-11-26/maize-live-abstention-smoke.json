@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "syntheticCase": true,
+  "modelMocked": false,
+  "recordSaved": false,
+  "realCloudResponses": [
+    {
+      "status": 200,
+      "model": "gemini-3.5-flash-lite"
+    }
+  ],
+  "text": "Field check\n\nStep 7 of 7\n\nPossible causes\n\nNot a diagnosis. What fits, what doesn\u2019t, and what to check.\n\nCloud AI\nMonitor\n39.6 s\nNo clear cause identified\n\nMaize plants are green, standing upright, and growing evenly with no spots, holes, yellowing, wilt, or insects visible.\n\nCompare affected and healthy-looking plants. Ask your extension officer if symptoms persist or spread.\n\nWhat would change this: No clear problem was identified from this observation. This does not confirm that the crop is healthy. Keep monitoring and ask your extension officer if symptoms appear or persist.\n\nDetails\nCall officer\nSave record"
+}
