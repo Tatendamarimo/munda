@@ -72,6 +72,8 @@ class Voice(private val context: Context, private val settings: RemoteSettings, 
                 onStarted()
                 done.await()
                 if (id != generation) return
+                track?.runCatching { stop(); release() }
+                track = null
             }
         } finally { if (id == generation) onDone() }
     }
