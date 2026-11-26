@@ -1,3 +1,5 @@
+import { selectedDeviceArea } from '../data/deviceArea';
+import { coarseCell } from '../domain/groups';
 import { Camera, Image as ImageIcon, Mic, PenLine, Square, X } from 'lucide-react';
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { mundaAi } from '../ai/mundaAi';
@@ -143,6 +145,7 @@ export function ObservePage() {
     const s = session.ready;
     if (!s) return;
     const done = record.kind === 'done' ? record : null;
+    const selectedArea = selectedDeviceArea();
     const o: Observation = {
       id: repository.newId(s.orgId), orgId: s.orgId, ownerUid: s.uid, crop: 'MAIZE',
       plot: form.plot.trim().slice(0, Limits.MAX_KEY), plotKey: normalizeKey(form.plot), cropStage: form.stage,
@@ -150,7 +153,7 @@ export function ObservePage() {
       record: done?.record ?? null, origin: done?.origin ?? 'PENDING', createdAtMillis: Date.now(),
       reviewStatus: 'NOT_STARTED', review: null, recordError: null,
       // Only the typed area and a ~5 km square, for the group officer's map; never an exact position.
-      area: prefs.value.place.trim() || null, cell: placeCell.value,
+      area: prefs.value.place.trim() || null, cell: selectedArea ? coarseCell(selectedArea.latitude, selectedArea.longitude) : placeCell.value,
     };
     repository.create(o);
     // Not finished yet (offline, no on-device AI): keep the photo on this device only, so the check

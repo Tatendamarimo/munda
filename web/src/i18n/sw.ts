@@ -1,8 +1,10 @@
+import { locationCopy } from './location-copy';
 import { onboardingCopy } from './onboarding-copy';
 import { en, type Messages } from './en';
 
 /** Swahili. Beta: machine-drafted, needs native-speaker review. */
 export const sw: Messages = {
+  location: locationCopy.sw,
   setup: onboardingCopy.sw.setup,
   auth: onboardingCopy.sw.auth,
   // New interface copy uses explicit English fallback until reviewed translations are available.

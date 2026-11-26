@@ -34,7 +34,7 @@ Every record shows **where its AI actually ran** ("On this device" / "Cloud AI" 
 
 ## Accounts and first-run setup
 
-Both the web and Android clients guide the farmer through language, account choice, preferred name, area, and offline readiness. Name and area are optional and stay on that device. Progress is saved, and setup completion is scoped to the current Firebase UID. Model downloads are explicit, not automatically started during setup.
+Both the web and Android clients guide the farmer through language, account choice, preferred name, area, and offline readiness. Name and area are optional and stay on that device. **Use my location** requests foreground location permission only when tapped, fills an editable approximate coordinate area (roughly a 5 km grid), and discards exact GPS precision. You can type a town instead. Weather stays separately optional; refreshes do not request location in the background. Progress is saved, and setup completion is scoped to the current Firebase UID. Model downloads are explicit, not automatically started during setup.
 
 - **Guest:** anonymous Firebase identity, no email or password. Clearing app/browser data or losing the device can lose access to that identity, even to records it synced.
 - **Create an account / Protect my records:** email/password credentials are linked to an existing guest UID, preserving ownership of its records and group membership. A collision with an existing email never silently switches identities or merges records.
@@ -51,7 +51,7 @@ For another Firebase deployment, enable **Anonymous** and **Email/Password** und
 - **Seven languages:** English and chiShona, plus isiNdebele, Kiswahili, Français, Português and Español (marked *beta* until a native speaker reviews them). Screens, the maize guide and its field checks are all translated. Adding a language is one dictionary file and one guide file.
 - **Offline in any language.** Gemini Nano runs in English here, so the app shows cause names and field checks from the human-written guide in the farmer's language, with the model's own English wording under *Details*. In cloud mode the model writes in the farmer's language directly.
 - **Search in any language.** On-device retrieval matches keywords from every translated guide (accent-insensitive), so "mashizha ari kuita yellow" or "hojas amarillas" find the right entries.
-- **Read aloud** on questions, results and guide pages, where the device has a voice for the language.
+- **Read aloud** on questions, results and guide pages, where the device has a voice for the language. Guide reading includes symptoms, field checks, stage notes, likely conditions, actions, prevention, source titles and the safety note. Long readings play sequential passages to avoid a single oversized utterance.
 - **Plots and history at a glance:** a home screen with the farm summary and latest alert, a timeline per plot (affected area against heavy rain), and the cloud review's patterns and next steps.
 - **Local details stay on the phone:** name, area, extension officer's number, planting dates and an optional rain outlook (Open-Meteo) are kept in local storage, never in Firestore.
 
@@ -148,6 +148,8 @@ Crops plug in as a `SymptomGuide` plus a guide file; prompts, retrieval, parsing
 3. Open `android/` in Android Studio and run the `app` configuration, or `cd android && ./gradlew installDebug`.
 
 ## Tests
+
+See [live validation on 26 November](docs/live-validation-2026-11-26.md) for successful cloud and offline queue/reconnect evidence, and the still-unverified genuine offline-inference run.
 
 ```bash
 cd web && npm test                         # routing, retrieval eval (English + 7-language scenarios), parser/uncertainty rules, history rules, i18n, plots

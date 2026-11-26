@@ -1,8 +1,10 @@
+import { locationCopy } from './location-copy';
 /**
  * English: the source dictionary. Every other language is typed against this shape, and any key
  * a language leaves out falls back to the English text here. `{name}` marks a placeholder.
  */
 export const en = {
+  location: locationCopy.en,
   studio: {
     getAndroid: 'Get the Android app',
     getAndroidHelp: 'For phones: install the Munda app file from GitHub.',

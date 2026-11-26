@@ -132,6 +132,11 @@ class FarmViewModel(val c: AppContainer) : ViewModel() {
         c.prefs.update { it.copy(place = place.trim().take(40)) }
         viewModelScope.launch { c.weather.refresh(force = true) }
     }
+    fun useDeviceArea(latitude: Double, longitude: Double) {
+        val label = app.munda.data.GroupRepo.coarseCell(latitude, longitude)
+        c.weather.selectDeviceArea(label)
+        setPlace(label)
+    }
     fun setWeather(on: Boolean) {
         c.prefs.update { it.copy(weatherOn = on) }
         if (on) viewModelScope.launch { c.weather.refresh(force = true) } else c.weather.clear()

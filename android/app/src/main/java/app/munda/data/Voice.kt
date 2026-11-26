@@ -14,6 +14,8 @@ import com.google.firebase.ai.type.ResponseModality
 import com.google.firebase.ai.type.SpeechConfig
 import com.google.firebase.ai.type.Voice as GeminiVoice
 import com.google.firebase.ai.type.generationConfig
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeout
@@ -51,17 +53,31 @@ class Voice(private val context: Context, private val settings: RemoteSettings, 
         return t.isLanguageAvailable(Locale.forLanguageTag(localeTag)) >= TextToSpeech.LANG_AVAILABLE
     }
 
-    /** Speaks [text]; returns when playback has started. [onDone] fires when it ends. */
-    suspend fun speak(text: String, localeTag: String, onDone: () -> Unit) {
+    private var generation = 0
+
+    /** Completes after every passage has played, rather than after only the first starts. */
+    suspend fun speak(text: String, localeTag: String, onStarted: () -> Unit = {}, onDone: () -> Unit) {
         stop()
-        if (connectivity.online.value) {
-            val audio = runCatching { cloudSpeech(text) }.onFailure { Log.w(TAG, "Cloud voice failed; using the device voice", it) }.getOrNull()
-            if (audio != null) { play(audio.first, audio.second, onDone); return }
-        }
-        speakOnDevice(text, localeTag, onDone)
+        val id = generation
+        try {
+            for (chunk in speechChunks(text)) {
+                val audio = if (connectivity.online.value) try { cloudSpeech(chunk) } catch (e: Exception) {
+                    if (e is CancellationException) throw e
+                    Log.w(TAG, "Cloud voice failed; using the device voice", e); null
+                } else null
+                if (id != generation) return
+                val done = CompletableDeferred<Unit>()
+                if (audio != null) play(audio.first, audio.second) { done.complete(Unit) }
+                else speakOnDevice(chunk, localeTag) { done.complete(Unit) }
+                onStarted()
+                done.await()
+                if (id != generation) return
+            }
+        } finally { if (id == generation) onDone() }
     }
 
     fun stop() {
+        generation++
         track?.runCatching { stop(); release() }
         track = null
         tts?.stop()
@@ -112,4 +128,18 @@ class Voice(private val context: Context, private val settings: RemoteSettings, 
     }
 
     private companion object { const val TAG = "Voice" }
+}
+
+/** Keep passages comfortably below Android TTS input and cloud audio-generation limits. */
+internal fun speechChunks(text: String, limit: Int = 600): List<String> {
+    require(limit > 0)
+    val chunks = mutableListOf<String>()
+    var rest = text.trim()
+    while (rest.length > limit) {
+        val end = rest.take(limit + 1).lastIndexOf(' ').takeIf { it > 0 } ?: limit
+        chunks += rest.take(end).trim()
+        rest = rest.drop(end).trim()
+    }
+    if (rest.isNotEmpty()) chunks += rest
+    return chunks
 }

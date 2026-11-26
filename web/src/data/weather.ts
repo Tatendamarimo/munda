@@ -1,3 +1,4 @@
+import { selectedDeviceArea } from './deviceArea';
 import { connectivity } from './connectivity';
 import { prefs } from './prefs';
 import { coarseCell } from '../domain/groups';
@@ -108,18 +109,13 @@ async function geocode(place: string): Promise<Coords | null> {
   return res.ok ? parseGeocode(await res.json()) : null;
 }
 
-const position = () =>
-  new Promise<GeolocationPosition>((resolve, reject) =>
-    navigator.geolocation.getCurrentPosition(resolve, reject, { maximumAge: 6 * 3_600_000, timeout: 15_000 }),
-  );
-
 export async function refreshWeather(force = false): Promise<void> {
   if (!weatherEnabled.value || !connectivity.value) return;
   const cached = weather.value;
   if (!force && cached && Date.now() - cached.at < MAX_AGE) return;
   try {
-    // Device location first; if it's blocked or unavailable, the area typed on Me (e.g. "Wedza").
-    const located = 'geolocation' in navigator ? await position().then((p) => p.coords, () => null) : null;
+    // Use only an explicitly selected approximate area; never trigger GPS in a background refresh.
+    const located = selectedDeviceArea();
     const place = prefs.value.place.trim();
     const found = located ? null : place ? await geocode(place) : null;
     placeNotFound.set(!located && place && !found ? place : null);

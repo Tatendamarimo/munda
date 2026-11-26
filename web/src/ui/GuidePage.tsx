@@ -1,3 +1,4 @@
+import { guideReading } from '../domain/reading';
 import { useState } from 'react';
 import { Search } from 'lucide-react';
 import { ChevronRight } from 'lucide-react';
@@ -66,7 +67,7 @@ export function GuideEntryPage({ id }: { id: string }) {
   const e = localizedEntry(entry, lang);
   return (
     <>
-      <PageHead onBack={back} title={t('guide.title')} right={<ReadAloud prefetch text={[e.name, t('guide.signs'), e.signs, t('guide.check'), e.checkInField, lang === 'en' && entry.actNow ? `${t('guide.actNow')}. ${entry.actNow}` : ''].filter(Boolean).join('. ')} />} />
+      <PageHead onBack={back} title={t('guide.title')} right={<ReadAloud prefetch text={guideReading(entry, e, t)} />} />
       <div className="page" style={{ gap: 14 }}>
         <div>
           <p className="tag">{t(`guide.categories.${entry.category}`)}</p>

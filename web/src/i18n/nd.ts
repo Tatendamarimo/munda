@@ -1,8 +1,10 @@
+import { locationCopy } from './location-copy';
 import { onboardingCopy } from './onboarding-copy';
 import { en, type Messages } from './en';
 
 /** Ndebele (isiNdebele, Zimbabwe). Beta: machine-drafted, needs native-speaker review. */
 export const nd: Messages = {
+  location: locationCopy.nd,
   setup: onboardingCopy.nd.setup,
   auth: onboardingCopy.nd.auth,
   // New interface copy uses explicit English fallback until reviewed translations are available.

@@ -7,7 +7,7 @@ import { Store } from './store';
 export interface Prefs {
   /** For the greeting ("Hello, Gogo"). */
   name: string;
-  /** Typed by the farmer; shown in the header. No reverse geocoding. */
+  /** Typed town or explicitly selected approximate device area; shown in the header. */
   place: string;
   extension: { name: string; phone: string } | null;
   /** Planting date per plotKey, for the crop's age. */

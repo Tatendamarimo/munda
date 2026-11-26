@@ -40,7 +40,9 @@ class WeatherRepo(context: Context, private val prefs: PrefsStore, private val c
         if (!force && cached != null && System.currentTimeMillis() - cached.at < MAX_AGE) return@withContext
         val place = p.place.trim().ifEmpty { return@withContext }
         runCatching {
-            val found = WeatherRules.parsePlace(get("https://geocoding-api.open-meteo.com/v1/search?count=10&name=" + URLEncoder.encode(place, "UTF-8")))
+            val selected = sp.getString("deviceArea", null)?.takeIf { it == place }
+            val point = selected?.split(",")?.mapNotNull { it.trim().toDoubleOrNull() }
+            val found = if (point?.size == 2) app.munda.domain.Place(point[0], point[1], place) else WeatherRules.parsePlace(get("https://geocoding-api.open-meteo.com/v1/search?count=10&name=" + URLEncoder.encode(place, "UTF-8")))
             _notFound.value = if (found == null) place else null
             if (found == null) { clear(); return@runCatching }
             GroupRepo.coarseCell(found.latitude, found.longitude).let { _cell.value = it; sp.edit { putString(KEY_CELL, it) } }
@@ -51,6 +53,11 @@ class WeatherRepo(context: Context, private val prefs: PrefsStore, private val c
                 sp.edit { putString(KEY, json.encodeToString(Cached.serializer(), Cached(w.tempC, w.rainSoon, w.rainDay, w.rainAt, w.at, w.where))) }
             }
         } // offline or API down: keep what we had
+    }
+
+    fun selectDeviceArea(label: String) {
+        _cell.value = label
+        sp.edit { putString("deviceArea", label); putString(KEY_CELL, label) }
     }
 
     fun clear() { _weather.value = null; sp.edit { remove(KEY) } }

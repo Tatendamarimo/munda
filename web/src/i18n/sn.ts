@@ -1,3 +1,4 @@
+import { locationCopy } from './location-copy';
 import { onboardingCopy } from './onboarding-copy';
 import { en, type Messages } from './en';
 
@@ -6,6 +7,7 @@ import { en, type Messages } from './en';
  * Farming words farmers commonly use in English (e.g. "yellow", "fetiraiza") are kept as spoken.
  */
 export const sn: Messages = {
+  location: locationCopy.sn,
   setup: onboardingCopy.sn.setup,
   auth: onboardingCopy.sn.auth,
   // New interface copy uses explicit English fallback until reviewed translations are available.

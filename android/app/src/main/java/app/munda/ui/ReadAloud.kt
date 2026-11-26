@@ -30,13 +30,14 @@ fun ReadAloud(text: String) {
     if (text.isBlank() || (!online && !voice.deviceCanSpeak(locale))) { androidx.compose.foundation.layout.Spacer(Modifier.size(44.dp)); return }
     var state by remember { mutableStateOf("idle") }
     val scope = rememberCoroutineScope()
-    DisposableEffect(text) { onDispose { voice.stop(); state = "idle" } }
+    var playback by remember { mutableStateOf<kotlinx.coroutines.Job?>(null) }
+    DisposableEffect(text, locale) { onDispose { playback?.cancel(); voice.stop(); state = "idle" } }
     val c = LocalMunda.current
     IconButton(
         onClick = {
-            if (state != "idle") { voice.stop(); state = "idle"; return@IconButton }
+            if (state != "idle") { playback?.cancel(); voice.stop(); state = "idle"; return@IconButton }
             state = "loading"
-            scope.launch { voice.speak(text, locale) { state = "idle" }; if (state == "loading") state = "playing" }
+            playback = scope.launch { voice.speak(text, locale, onStarted = { state = "playing" }) { state = "idle" } }
         },
         modifier = Modifier.size(44.dp).clip(CircleShape).background(c.forest),
     ) {

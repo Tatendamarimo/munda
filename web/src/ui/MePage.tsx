@@ -1,3 +1,4 @@
+import { LocationButton } from './LocationButton';
 import { MapPin, Sprout } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { prefs, updatePrefs } from '../data/prefs';
@@ -50,6 +51,7 @@ export function MePage() {
           <label className="field"><span className="field-label">{t('me.place')}</span>
             <SavedInput value={p.place} placeholder={t('me.placePlaceholder')} maxLength={40} onSave={(place) => updatePrefs({ place })} />
           </label>
+          <LocationButton />
         </section>
 
         <section className="card stack">

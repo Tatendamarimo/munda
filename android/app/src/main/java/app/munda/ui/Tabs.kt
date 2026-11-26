@@ -334,7 +334,13 @@ fun GuideEntryScreen(vm: FarmViewModel, id: String, onBack: () -> Unit) {
     val e = Guides.forCrop(Crop.MAIZE).get(id) ?: return
     val loc = vm.c.guideText.localized(e, s.lang)
     Column(Modifier.verticalScroll(rememberScrollState()).padding(bottom = 24.dp)) {
-        PageHead(s.t("guide.title"), onBack, right = { ReadAloud(listOfNotNull(loc.name, loc.signs, s.t("guide.check"), loc.checkInField, e.actNow?.takeIf { s.lang == "en" }?.let { "${s.t("guide.actNow")}. $it" }).joinToString(". ")) })
+        PageHead(s.t("guide.title"), onBack, right = { ReadAloud(buildList {
+            add(loc.name); add(s.t("guide.signs")); add(loc.signs)
+            if (e.report) add(s.t("guide.report"))
+            add(s.t("guide.check")); add(loc.checkInField)
+            listOf("guide.byStage" to e.byStage, "guide.likelyWhen" to e.likelyWhen, "guide.actNow" to e.actNow, "guide.prevent" to e.prevent).forEach { (key, value) -> if (!value.isNullOrBlank()) { add(s.t(key)); add(value) } }
+            if (e.sources.isNotEmpty()) { add(s.t("guide.sources")); addAll(e.sources.map { it.title }); add(s.t("guide.unchecked")) }
+        }.joinToString(". ")) })
         Page {
             Tag(s.t("guide.categories.${e.category.name}"))
             Text(loc.name, style = MaterialTheme.typography.headlineMedium)
@@ -417,6 +423,7 @@ fun MeScreen(vm: FarmViewModel) {
             CardBox {
                 SavedField(s.t("me.name"), p.name, s.t("me.namePlaceholder"), vm::setName)
                 SavedField(s.t("me.place"), p.place, s.t("me.placePlaceholder"), vm::setPlace)
+                LocationButton(vm)
             }
             CardBox {
                 Text(s.t("me.weather"), style = MaterialTheme.typography.titleSmall)

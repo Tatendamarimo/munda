@@ -19,7 +19,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import app.munda.R
 import app.munda.data.SessionState
 
-/** One-time, resumable setup, with optional personal details and no location permission request. */
+/** One-time, resumable setup, with optional personal details and explicit location permission. */
 @Composable
 fun OnboardingScreen(vm: FarmViewModel) {
     val s = strings()
@@ -53,7 +53,7 @@ fun OnboardingScreen(vm: FarmViewModel) {
             }
             3 -> {
                 OutlinedTextField(p.place, { vm.setupPlace(it) }, Modifier.fillMaxWidth(), label = { Text(s.t("me.place")) }, placeholder = { Text(s.t("setup.areaPlaceholder")) }, singleLine = true)
-                Text(s.t("setup.location"), style = MaterialTheme.typography.bodySmall, color = LocalMunda.current.ink2)
+                LocationButton(vm)
                 MainButton(s.t("setup.next"), { vm.setPlace(p.place); vm.setupStep(4) })
                 TextButton({ vm.setPlace(p.place); vm.setupStep(4) }) { Text(s.t("setup.skip")) }
             }
