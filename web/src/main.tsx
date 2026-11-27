@@ -1,3 +1,4 @@
+import { isNativeIOS } from './ai/appleNative';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { registerSW } from 'virtual:pwa-register';
@@ -35,7 +36,9 @@ if (import.meta.env.DEV && new URLSearchParams(location.search).has('demo')) {
   session.start();
   syncProcessor.start();
   void mundaAi.refreshLocalStatus();
-  registerSW({ immediate: true });
+  if (!isNativeIOS()) registerSW({ immediate: true });
+  // The native bundle already contains the app and guide; refresh after Settings changes.
+  if (isNativeIOS()) document.addEventListener('visibilitychange', () => { if (!document.hidden) void mundaAi.refreshLocalStatus(); });
   document.documentElement.lang = language.value;
   void refreshWeather();
   window.addEventListener('online', () => void refreshWeather());

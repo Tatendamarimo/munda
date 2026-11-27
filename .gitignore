@@ -22,3 +22,8 @@ dev-dist/
 
 # Firebase deploy cache
 .firebase/
+
+# iOS local configuration and signing
+ios/App/App/GoogleService-Info.plist
+**/.build/
+**/xcuserdata/

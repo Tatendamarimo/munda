@@ -1,6 +1,7 @@
+import { appleAI, isNativeIOS } from '../ai/appleNative';
 import { initializeApp, type FirebaseApp } from 'firebase/app';
-import { initializeAppCheck, ReCaptchaEnterpriseProvider } from 'firebase/app-check';
-import { connectAuthEmulator, getAuth, type Auth } from 'firebase/auth';
+import { initializeAppCheck, CustomProvider, ReCaptchaEnterpriseProvider } from 'firebase/app-check';
+import { connectAuthEmulator, getAuth, initializeAuth, browserLocalPersistence, type Auth } from 'firebase/auth';
 import { connectFirestoreEmulator, initializeFirestore, persistentLocalCache, persistentMultipleTabManager, type Firestore } from 'firebase/firestore';
 import { getAI, GoogleAIBackend, type AI } from 'firebase/ai';
 
@@ -43,13 +44,19 @@ export function firebase(): FirebaseServices {
 
   const app = initializeApp(config);
 
-  if (env.DEV) {
+  if (env.DEV && !isNativeIOS()) {
     // Local development: prints a debug token in the console. Register it in
     // Firebase console > App Check > Apps > Manage debug tokens. Never ship this.
     globalThis.FIREBASE_APPCHECK_DEBUG_TOKEN = true;
   }
   const siteKey = env.VITE_RECAPTCHA_ENTERPRISE_SITE_KEY;
-  if (siteKey) {
+  if (isNativeIOS()) {
+    // Native App Attest / DeviceCheck, not reCAPTCHA inside a local WebView.
+    initializeAppCheck(app, {
+      provider: new CustomProvider({ getToken: () => appleAI.appCheckToken() }),
+      isTokenAutoRefreshEnabled: true,
+    });
+  } else if (siteKey) {
     initializeAppCheck(app, { provider: new ReCaptchaEnterpriseProvider(siteKey), isTokenAutoRefreshEnabled: true });
   } else {
     console.warn('App Check site key missing (VITE_RECAPTCHA_ENTERPRISE_SITE_KEY); AI Logic calls will be rejected.');
@@ -60,7 +67,9 @@ export function firebase(): FirebaseServices {
     localCache: persistentLocalCache({ tabManager: persistentMultipleTabManager() }),
   });
 
-  const auth = getAuth(app);
+  // Email/password and anonymous auth do not need a cross-origin OAuth iframe in WKWebView.
+  // Use persistent app-local storage explicitly instead of the browser redirect resolver.
+  const auth = isNativeIOS() ? initializeAuth(app, { persistence: browserLocalPersistence }) : getAuth(app);
   if (env.DEV && env.VITE_USE_EMULATORS === 'true') {
     // Local testing against `firebase emulators:start` (auth + firestore). AI Logic has no emulator.
     connectAuthEmulator(auth, 'http://127.0.0.1:9099', { disableWarnings: true });

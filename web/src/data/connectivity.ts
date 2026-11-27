@@ -1,3 +1,4 @@
+import { appleAI, isNativeIOS } from '../ai/appleNative';
 import { Store } from './store';
 
 /**
@@ -7,6 +8,10 @@ import { Store } from './store';
 class Connectivity extends Store<boolean> {
   constructor() {
     super(typeof navigator === 'undefined' ? true : navigator.onLine);
+    if (isNativeIOS()) {
+      // Native reachability updates also trigger queued work when the phone reconnects.
+      void appleAI.addListener('networkStatus', ({ connected }) => this.set(connected)).catch(() => {});
+    }
     if (typeof window !== 'undefined') {
       window.addEventListener('online', () => this.set(true));
       window.addEventListener('offline', () => this.set(false));

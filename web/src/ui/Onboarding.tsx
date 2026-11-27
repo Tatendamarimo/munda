@@ -36,7 +36,7 @@ export function Onboarding({ state }: { state: SessionState }) {
         <div className="setup-step-heading"><span className="empty-icon"><Icon size={25} aria-hidden="true" /></span><span className="eyebrow">{t('studio.companion')}</span></div>
         <h1 ref={heading} tabIndex={-1}>{t(`setup.${step}`)}</h1>
         <p className="setup-description">{t(HELP[step])}</p>
-        {state.kind === 'loading' ? <Working>{t('common.loading')}</Working> : <>
+        {state.kind === 'loading' && step !== 'language' ? <Working>{t('common.loading')}</Working> : <>
           {step === 'language' && <><div className="setup-languages" role="group" aria-label={t('me.language')}>{LANG_CODES.map((l) => <button key={l} type="button" aria-pressed={l===lang} className="setup-language" onClick={() => setLanguage(l)}><b>{LANGS[l].native}</b>{LANGS[l].beta && <small>{t('common.beta')}</small>}</button>)}</div><button className="btn btn-primary btn-main" onClick={() => move('account')}>{t('setup.next')}</button></>}
           {step === 'account' && <AccountOptions allowGuest onComplete={() => move('name')} />}
           {step === 'name' && <form className="setup-form" onSubmit={(e) => {e.preventDefault();updatePrefs({name:p.name.trim()});move('area');}}><label className="field"><span className="field-label">{t('me.name')}</span><input autoComplete="given-name" value={p.name} maxLength={40} placeholder={t('setup.namePlaceholder')} onChange={(e) => updatePrefs({name:e.target.value})} /></label><button className="btn btn-primary btn-main">{t('setup.next')}</button><button type="button" className="text-btn" onClick={() => { updatePrefs({name:p.name.trim()}); move('area'); }}>{t('setup.skip')}</button></form>}

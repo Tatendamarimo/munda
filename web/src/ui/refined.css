@@ -363,3 +363,8 @@ a.stat:hover { background: #ffffff19; }
 .protect-reminder p { color: var(--ink-2); font-size: .9rem; }
 @media (max-width: 899px) { .setup-layout { grid-template-columns: minmax(0, 560px); justify-content: center; gap: 40px; } .setup-art { display: none; } }
 @media (max-width: 599px) { .setup-nav { padding: 20px; } .setup-layout { padding: 16px 24px 40px; } .setup-panel { gap: 20px; } .setup-panel h1 { font-size: 2.3rem; } .setup-step-heading .eyebrow { font-size: .7rem; } .setup-languages { gap: 8px; } .setup-language { padding: 12px; min-height: 64px; } }
+
+/* Keep first-run navigation below iPhone sensor housing and status bar. */
+@media (max-width: 599px) {
+  .setup-nav, .welcome-nav { padding-top: calc(20px + env(safe-area-inset-top)); }
+}

@@ -1,3 +1,4 @@
+import { isNativeIOS } from '../ai/appleNative';
 import { selectedDeviceArea } from '../data/deviceArea';
 import { coarseCell } from '../domain/groups';
 import { Camera, Image as ImageIcon, Mic, PenLine, Square, X } from 'lucide-react';
@@ -73,7 +74,7 @@ export function ObservePage() {
     followUps: withFollowUps ? followUps() : [], photoBase64: form.photo?.base64 ?? null,
   });
   const chars = description.length + Object.values(form.answers).reduce((n, a) => n + a.length + 60, 0);
-  const route = decideRoute(chars, local.state, online, settings.maxOnDeviceChars);
+  const route = decideRoute(chars, local.state, online, settings.maxOnDeviceChars, { hasPhoto: Boolean(form.photo), supportsLocalImages: !isNativeIOS() });
   // While questions are loading we still plan to show them; "unavailable" or none skips the step.
   const hasFollowUps = step === 'followups' || questions.kind === 'loading' || (questions.kind === 'ready' && questions.questions.length > 0);
   const steps = stepsFor(hasFollowUps);
@@ -278,7 +279,7 @@ function Describe({ form, edit, canContinue, onNext }: { form: Form; edit: (p: P
     if (!photo) { seenFor.current = null; setSeen({ kind: 'idle' }); return; }
     if (seenFor.current === photo.previewUrl) return;
     seenFor.current = photo.previewUrl;
-    const route = decideRoute(0, local.state, online, settings.maxOnDeviceChars).route;
+    const route = decideRoute(0, local.state, online, settings.maxOnDeviceChars, { hasPhoto: true, supportsLocalImages: !isNativeIOS() }).route;
     if (route === 'QUEUE_UNTIL_ONLINE') return;
     setSeen({ kind: 'reading' });
     void mundaAi.describePhoto(photo.base64, 'MAIZE', route).then((out) => {

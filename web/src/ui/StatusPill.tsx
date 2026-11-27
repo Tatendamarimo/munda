@@ -53,12 +53,13 @@ export function StatusDetails({ id }: { id?: string }) {
   const local = useStore(mundaAi.local);
   return (
     <div id={id} className={id ? 'status-panel' : 'stack'} role={id ? 'region' : undefined} aria-label={id ? t('me.offlineAi') : undefined}>
+      {local.detail && <p>{local.detail}</p>}
       <p>{online ? t('status.onlineDetail') : t('status.offlineDetail')}</p>
-      <p>
+      {!local.detail && <p>
         {local.state === 'AVAILABLE' && t('status.aiReadyDetail')}
         {local.state === 'UNAVAILABLE' && t('status.aiUnavailableDetail')}
         {(local.state === 'DOWNLOADABLE' || local.state === 'DOWNLOADING' || local.state === 'UNKNOWN') && t('status.aiDownloadDetail')}
-      </p>
+      </p>}
       {local.state === 'DOWNLOADING' && local.progress != null && <progress value={local.progress} max={1} aria-label={t('status.aiDownloading', { pct: '' })} />}
       {local.state === 'DOWNLOADABLE' && (
         // Chrome requires a click to start the model download.

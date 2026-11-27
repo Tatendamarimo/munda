@@ -1,3 +1,4 @@
+import { appleAI, isNativeIOS, appleRequestRoute } from './appleNative';
 import { getGenerativeModel, InferenceMode, InferenceSource, type GenerativeModel, type LanguageModelCreateOptions, type Part } from 'firebase/ai';
 import { guideFor } from '../domain/guide';
 import type { FieldRecord, FollowUpQuestion, InferenceOrigin } from '../domain/models';
@@ -25,6 +26,7 @@ export interface LocalModelInfo {
   state: LocalModelState;
   /** 0..1 while downloading, when known. */
   progress: number | null;
+  detail?: string;
 }
 
 /** Chrome's Prompt API global; declared minimally so we can show model status in the UI. */
@@ -78,6 +80,15 @@ class MundaAi {
   }
 
   async refreshLocalStatus(): Promise<void> {
+    if (isNativeIOS()) {
+      try {
+        const result = await appleAI.status();
+        this.local.set({ ...result, progress: null });
+      } catch {
+        this.local.set({ state: 'UNAVAILABLE', progress: null, detail: 'Apple on-device AI could not be checked. Cloud analysis is available when connected.' });
+      }
+      return;
+    }
     const lm = globalThis.LanguageModel;
     if (!lm) {
       this.local.set({ state: 'UNAVAILABLE', progress: null });
@@ -99,6 +110,8 @@ class MundaAi {
    */
   async ensureLocalModel(): Promise<void> {
     await this.refreshLocalStatus();
+    // Apple manages model downloads in Settings; an app cannot trigger them.
+    if (isNativeIOS()) return;
     const s = this.local.value.state;
     if (s === 'UNAVAILABLE') return;
     if (s !== 'AVAILABLE') this.local.set({ state: 'DOWNLOADING', progress: 0 });
@@ -141,6 +154,10 @@ class MundaAi {
   }
 
   private async run<T>(kind: 'questions' | 'record' | 'photo', prompt: string, photo: string | null, route: Route, parse: (t: string) => Result<T>, onText?: (text: string) => void): Promise<AiOutcome<T>> {
+    if (isNativeIOS()) {
+      route = appleRequestRoute(route, Boolean(photo), connectivity.value);
+      if (route === 'QUEUE_UNTIL_ONLINE') return { kind: 'deferred', reason: photo ? 'Photo analysis needs a connection on iPhone; saved for later' : 'Saved for when a model or connection is available' };
+    }
     const started = performance.now();
     const parts: Array<string | Part> = photo ? [{ type: 'inlineData', inlineData: { mimeType: 'image/jpeg', data: photo } }, prompt] : [prompt];
 
@@ -184,7 +201,15 @@ class MundaAi {
     if (route === 'CLOUD') return viaCloud();
 
     try {
-      const r = await withBackoff(() => call(this.model(kind, 'hybrid')));
+      const r = await withBackoff(async () => {
+        if (!isNativeIOS()) return call(this.model(kind, 'hybrid'));
+        const schema = kind === 'questions' ? questionsSchema : kind === 'photo' ? photoSchema : recordSchema;
+        onText?.('');
+        const result = await appleAI.generate({ prompt, schema: JSON.stringify(schema) });
+        if (result.source !== 'ON_DEVICE') throw new Error('Unexpected native inference source');
+        onText?.(result.text);
+        return { text: result.text, source: InferenceSource.ON_DEVICE };
+      });
       const out = finish(r.text, r.source);
       // Small local model produced something unusable: one cloud retry if we can.
       return out.kind === 'failed' && connectivity.value ? viaCloud() : out;

@@ -1,0 +1,6 @@
+{
+  "appId": "app.munda.ios",
+  "appName": "Munda",
+  "webDir": "dist",
+  "ios": { "path": "../ios", "contentInset": "automatic", "backgroundColor": "#F8F6EE" }
+}

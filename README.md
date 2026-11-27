@@ -6,7 +6,7 @@
 
 > Munda does not diagnose. It helps farmers observe carefully, record consistently and decide what to check next. Serious or uncertain cases are pointed to an extension officer.
 
-**Platforms:** **Android** (Kotlin, Jetpack Compose) is the farmer's app. The **web app** (installable PWA) is the extension officer's tool, with the live group view and area map, and the way in for anyone on an iPhone or a computer. Both use Firebase AI Logic hybrid inference, with Gemini Nano on-device where the device supports it and cloud Gemini otherwise. They share one Firestore backend, one set of security rules, one crop guide and one set of translations, so a record made on a phone opens on the web, and the reverse. See [ADR 0006](docs/adr/0006-two-platforms.md).
+**Platforms:** A native **iOS** build is now available in source (Capacitor with the existing Munda interface, bundled offline guide and Firebase-backed Apple on-device text inference). It uses Apple Foundation Models, not Gemini Nano. Physical-device inference, signing and distribution remain pending; see [iOS setup](ios/README.md). **Android** (Kotlin, Jetpack Compose) is the farmer's app. The **web app** (installable PWA) is the extension officer's tool, with the live group view and area map, and the way in for anyone on an iPhone or a computer. Both use Firebase AI Logic hybrid inference, with Gemini Nano on-device where the device supports it and cloud Gemini otherwise. They share one Firestore backend, one set of security rules, one crop guide and one set of translations, so a record made on a phone opens on the web, and the reverse. See [ADR 0006](docs/adr/0006-two-platforms.md).
 
 ## Try it
 
@@ -180,6 +180,7 @@ web/                 PWA (React + TypeScript + Vite)
   src/sync/          Finishes queued work when online
   src/i18n/          Dictionaries for 7 languages (typed against English)
   src/ui/            Screens (Home, Plots, Guide, Me, observation flow)
+ios/                 Native iOS host + Apple text inference and App Check bridge
 android/             Android client (Kotlin/Compose), same design, data and rules
 shared/guides/       Crop guides: single source of truth for all clients
   i18n/              Guide translations and keywords per language

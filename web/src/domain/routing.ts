@@ -26,7 +26,12 @@ const describe: Record<LocalModelState, string> = {
  * Decides where an observation is processed, before the farmer taps, so the UI can say whether
  * it stays on the device. Inputs too large for Nano are never silently truncated.
  */
-export function decideRoute(chars: number, local: LocalModelState, online: boolean, maxOnDeviceChars: number): RouteDecision {
+export function decideRoute(chars: number, local: LocalModelState, online: boolean, maxOnDeviceChars: number, capabilities: { hasPhoto?: boolean; supportsLocalImages?: boolean } = {}): RouteDecision {
+  if (capabilities.hasPhoto && capabilities.supportsLocalImages === false) {
+    return online
+      ? { route: 'CLOUD', reason: 'Photo analysis runs in the cloud on this device.' }
+      : { route: 'QUEUE_UNTIL_ONLINE', reason: 'Photo saved. Analysis finishes when you have a connection.' };
+  }
   const fits = chars <= maxOnDeviceChars;
   const ready = local === 'AVAILABLE';
   if (ready && fits) return { route: 'ON_DEVICE', reason: 'Runs on this device. Private, and works without signal.' };

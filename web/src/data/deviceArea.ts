@@ -1,3 +1,5 @@
+import { isNativeIOS } from '../ai/appleNative';
+import { Geolocation } from '@capacitor/geolocation';
 import { prefs, updatePrefs } from './prefs';
 import { coarseCell } from '../domain/groups';
 const KEY = 'munda.deviceArea';
@@ -16,8 +18,8 @@ export function selectedDeviceArea(): DeviceArea | null {
 }
 /** Called only from the explicit location button, never during startup or rendering. */
 export async function pickDeviceArea(): Promise<void> {
-  if (!navigator.geolocation) throw new Error('unavailable');
-  const p = await new Promise<GeolocationPosition>((resolve, reject) => navigator.geolocation.getCurrentPosition(resolve, reject, {enableHighAccuracy:false,maximumAge:300000,timeout:15000}));
+  if (!isNativeIOS() && !navigator.geolocation) throw new Error('unavailable');
+  const p = isNativeIOS() ? await Geolocation.getCurrentPosition({ enableHighAccuracy: false, maximumAge: 300000, timeout: 15000 }) : await new Promise<GeolocationPosition>((resolve, reject) => navigator.geolocation.getCurrentPosition(resolve, reject, {enableHighAccuracy:false,maximumAge:300000,timeout:15000}));
   const a = approximateArea(p.coords.latitude, p.coords.longitude);
   localStorage.setItem(KEY, JSON.stringify(a));
   updatePrefs({place:a.label});
