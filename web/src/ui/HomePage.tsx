@@ -1,5 +1,5 @@
 import { WeatherCard } from './WeatherCard';
-import { BookOpen, Check, Camera, HardDrive, MapPin, Sprout, TriangleAlert } from 'lucide-react';
+import { ArrowUpRight, BookOpen, Check, Camera, HardDrive, MapPin, Sprout, TriangleAlert } from 'lucide-react';
 import { account } from '../data/session';
 import { mundaAi } from '../ai/mundaAi';
 import { connectivity } from '../data/connectivity';
@@ -12,7 +12,6 @@ import { labelPattern, labelStage, relativeTime, useLang, useT } from '../i18n';
 import { Hero } from './Header';
 import { GroupAlertCard } from './GroupAlertCard';
 import { GuideThumb } from './GuidePicture';
-import { FieldArtwork } from './FieldArtwork';
 import { href, navigate } from './router';
 import { StatusPill } from './StatusPill';
 import { OriginBadge, Working } from './components';
@@ -40,8 +39,8 @@ export function HomePage() {
   const meta = <>{p.place && <span><MapPin size={15} aria-hidden="true" />{p.place}</span>}</>;
   return <>
     <Hero right={<StatusPill />} meta={p.place ? meta : undefined}>
-      <span className="eyebrow hero-eyebrow">{t('studio.overview')}</span>
-      <div className="hero-greeting"><div><h1>{p.name ? t('home.greeting', { name: p.name }) : t('studio.journal')}</h1><p className="hero-sub">{cropLine}</p></div><span className="hero-season"><Sprout size={22} aria-hidden="true" /></span></div>
+      <span className="eyebrow hero-eyebrow">{cropLine}</span>
+      <div className="hero-greeting"><div><h1>{p.name ? t('home.greeting', { name: p.name }) : t('studio.overview')}</h1></div></div>
       <div className="stats">
         <a className="stat" href={href({ name: 'plots' })}><b>{items === null ? '—' : summary.plots}</b><span>{t('home.statPlots')}</span></a>
         <a className={`stat${summary.needsCheck ? ' stat-warn' : ''}`} href={href({ name: 'plots' })}><b>{items === null ? '—' : summary.needsCheck}</b><span>{t('home.statNeedsCheck')}</span></a>
@@ -50,8 +49,7 @@ export function HomePage() {
     </Hero>
     <div className="dashboard page">
       <section className="scout-card">
-        <div className="scout-copy"><span className="eyebrow">{t('studio.fieldCheck')}</span><h2>{t('home.checkCrop')}</h2><p>{t('home.checkCropSub')}</p><button className="btn btn-maize" onClick={() => navigate({ name: 'observe' })}><Camera size={21} aria-hidden="true" />{t('home.checkCrop')}</button></div>
-        <div className="scout-visual"><FieldArtwork compact /></div>
+        <div className="scout-copy"><span className="scout-icon"><Camera size={24} aria-hidden="true" /></span><div className="scout-description"><h2>{t('home.checkCrop')}</h2><p>{t('home.checkCropSub')}</p></div><button className="btn btn-maize" onClick={() => navigate({ name: 'observe' })}>{t('home.checkCrop')}<ArrowUpRight size={19} aria-hidden="true" /></button></div>
       </section>
       <WeatherCard />
       <div className="dashboard-main">

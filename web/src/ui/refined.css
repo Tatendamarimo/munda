@@ -404,3 +404,70 @@ a.stat:hover { background: #ffffff19; }
 @keyframes weather-spin { to { transform: rotate(360deg); } }
 @media (prefers-reduced-motion: reduce) { .weather-spinning { animation: none; } }
 @media (max-width: 599px) { .weather-card { padding: 20px; } .weather-now { gap: 14px; flex-wrap: wrap; } .weather-measures { flex: 1; min-width: 140px; } }
+
+/* Home dashboard: compact summary, a single primary action, useful information first. */
+.hero { padding-bottom: 42px; border-radius: 0 0 24px 24px; }
+.hero::before { background: none; }
+.hero-inner { gap: 16px; }
+.hero-scene { display: none; }
+.hero-eyebrow { margin-bottom: -8px; font-size: .67rem; letter-spacing: .12em; }
+.hero h1 { font-size: clamp(1.65rem, 3vw, 2.15rem); line-height: 1.15; max-width: none; letter-spacing: -.035em; }
+.hero-greeting > div { min-width: 0; overflow-wrap: anywhere; }
+.hero-meta { font-size: .76rem; color: #c7d9ce; }
+.stats { gap: 0; margin-top: 2px; padding-top: 16px; border-top: 1px solid #ffffff24; }
+.stat { border: 0; border-radius: 0; background: none; padding: 0 16px; gap: 4px; }
+.stat:first-child { padding-left: 0; }
+.stat + .stat { border-left: 1px solid #ffffff24; }
+.stat b { font-size: 1.5rem; line-height: 1.2; font-variant-numeric: tabular-nums; }
+.stat b svg { width: 23px; height: 23px; }
+.stat span { font-size: .72rem; }
+a.stat:hover { background: none; color: #f0c653; }
+.dashboard { margin-top: -20px; gap: 18px; }
+.scout-card { display: block; border-radius: 18px; box-shadow: 0 6px 18px -12px #143d2a30; }
+.scout-copy { display: grid; grid-template-columns: 48px minmax(0,1fr) auto; align-items: center; gap: 18px; padding: 24px; }
+.scout-icon { display: grid; place-items: center; width: 48px; height: 48px; background: var(--wash); color: var(--forest); border-radius: 14px; }
+.scout-description { min-width: 0; }
+.scout-copy h2 { font-size: 1.3rem; letter-spacing: -.025em; }
+.scout-copy p { margin-top: 6px; font-size: .85rem; max-width: 40ch; line-height: 1.45; }
+.scout-copy .btn { margin: 0; gap: 12px; font-size: .85rem; border-radius: 12px; }
+.weather-card { border-radius: 18px; background: #fff; }
+.weather-now { margin: 20px 0; }
+.weather-temperature strong { font-size: 2.8rem; }
+.weather-days { scrollbar-width: thin; scrollbar-color: #b9c7b5 transparent; }
+.weather-day { border-radius: 10px; }
+.empty-state { border-style: solid; background: #fff; border-radius: 18px; padding: 26px 22px; gap: 12px; }
+.empty-state h2 { font-size: 1.2rem; }
+.empty-state p { font-size: .88rem; }
+.device-card, .guide-feature { border-radius: 18px; padding: 22px; gap: 12px; }
+@media (min-width: 960px) {
+  .hero { padding-top: 26px; padding-bottom: 42px; border-radius: 22px; }
+  .hero-inner { gap: 16px; }
+  .hero-top { margin-bottom: -38px; }
+  .hero-meta { padding-right: 220px; }
+  .hero-eyebrow { padding-right: 220px; }
+  .stats { max-width: 480px; }
+  .dashboard { gap: 20px; }
+}
+@media (max-width: 599px) {
+  .hero { padding-top: calc(18px + env(safe-area-inset-top)); }
+  .hero-inner { gap: 14px; }
+  .hero-top { flex-wrap: wrap; gap: 10px; }
+  .brand-on-dark { font-size: 1.4rem; }
+  .brand-on-dark img { width: 30px; height: 30px; }
+  .status-btn { min-height: 36px; font-size: .68rem; padding: 7px 9px; }
+  .status-btn > svg { width: 13px; }
+  .hero h1 { font-size: 1.65rem; }
+  .stat { padding: 0 12px; }
+  .scout-copy { grid-template-columns: 40px minmax(0,1fr); gap: 12px; padding: 20px; }
+  .scout-icon { width: 40px; height: 40px; border-radius: 12px; }
+  .scout-copy h2 { font-size: 1.2rem; }
+  .scout-copy p { font-size: .8rem; }
+  .scout-copy .btn { grid-column: 1 / -1; width: 100%; margin-top: 4px; justify-content: space-between; }
+  .weather-card { padding: 20px; }
+  .weather-now { margin: 18px 0; }
+  .weather-measures { min-width: 120px; font-size: .73rem; }
+  .weather-temperature { gap: 10px; }
+  .weather-symbol svg { width: 32px; }
+  .weather-temperature strong { font-size: 2.5rem; }
+  .weather-temperature p { font-size: .75rem; }
+}

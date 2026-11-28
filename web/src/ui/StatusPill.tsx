@@ -1,5 +1,6 @@
 import { Download, Wifi, WifiOff } from 'lucide-react';
 import { useEffect, useState, useId, useRef } from 'react';
+import { isNativeIOS } from '../ai/appleNative';
 import { mundaAi } from '../ai/mundaAi';
 import { connectivity } from '../data/connectivity';
 import { useStore } from '../data/store';
@@ -30,7 +31,7 @@ export function StatusPill({ light = false }: { light?: boolean }) {
 
   const ai =
     local.state === 'AVAILABLE' ? { text: t('status.aiReady'), tone: 'device' }
-    : local.state === 'DOWNLOADING' ? { text: t('status.aiDownloading', { pct: local.progress != null ? `${Math.round(local.progress * 100)}%` : '' }).trim(), tone: 'pending' }
+    : local.state === 'DOWNLOADING' ? { text: isNativeIOS() ? t('status.aiChecking') : t('status.aiDownloading', { pct: local.progress != null ? `${Math.round(local.progress * 100)}%` : '' }).trim(), tone: 'pending' }
     : local.state === 'DOWNLOADABLE' ? { text: t('status.aiNotDownloaded'), tone: 'soil' }
     : local.state === 'UNAVAILABLE' ? { text: t('status.aiCloudOnly'), tone: 'cloud' }
     : { text: t('status.aiChecking'), tone: 'pending' };
