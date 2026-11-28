@@ -4,6 +4,8 @@ import { en, type Messages } from './en';
 
 /** Ndebele (isiNdebele, Zimbabwe). Beta: machine-drafted, needs native-speaker review. */
 export const nd: Messages = {
+  // Draft weather copy; remaining English text is explicit fallback pending review.
+  weather: { ...en.weather, ...{"privacy": "Kusetshenziswa indawo yakho eseduze le-Open-Meteo. Indawo yakho kayilandelelwa ngemuva.", "unavailable": "Isimo somkhathi kasivuselelwanga. Zama futhi nxa usule-inthanethi.", "offline": "Akula inthanethi · isibikezelo esigciniweyo", "saved": "Isibikezelo esigciniweyo · vuselela ungakahleli", "note": "Isibikezelo siyisilinganiso sendawo yakho. Hlola isimo ensimini yakho.", "notFound": "Indawo ayitholakalanga. Hlola idolobho lelizwe kuMina.", "source": "Isimo somkhathi esivela ku-Open-Meteo"}, ...{"title": "Isimo somkhathi epulazini", "enable": "Tshengisa isibikezelo", "choose": "Khetha indawo yepulazi ukuze ubone isibikezelo.", "change": "Tshintsha indawo", "refresh": "Vuselela isibikezelo", "loading": "Kuvuselelwa isibikezelo…", "forecast": "Amalanga ayisikhombisa alandelayo", "rain": "Izulu", "chance": "Amathuba", "wind": "Umoya", "humidity": "Umswakama", "today": "Lamuhla", "tomorrow": "Kusasa", "sunny": "Kuyakhanya", "cloudy": "Kulamayezi", "fog": "Inkungu", "wet": "Izulu", "storm": "Imidumo", "snow": "Ungqwaqwane", "unknown": "Isimo somkhathi khathesi", "updated": "Kuvuselelwe {time}"} },
   location: locationCopy.nd,
   setup: onboardingCopy.nd.setup,
   auth: onboardingCopy.nd.auth,

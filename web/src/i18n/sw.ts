@@ -4,6 +4,8 @@ import { en, type Messages } from './en';
 
 /** Swahili. Beta: machine-drafted, needs native-speaker review. */
 export const sw: Messages = {
+  // Draft weather copy; remaining English text is explicit fallback pending review.
+  weather: { ...en.weather, ...{"title": "Hali ya hewa shambani", "enable": "Onyesha utabiri", "privacy": "Inatumia eneo lako la makadirio na Open-Meteo. Hakuna ufuatiliaji wa eneo chinichini.", "choose": "Weka eneo la shamba kuona utabiri.", "change": "Badilisha eneo", "refresh": "Sasisha utabiri", "loading": "Inasasisha utabiri…", "unavailable": "Hali ya hewa haikuweza kusasishwa. Jaribu ukiwa mtandaoni.", "offline": "Nje ya mtandao · utabiri uliohifadhiwa", "saved": "Utabiri uliohifadhiwa · sasisha kabla ya kupanga", "updated": "Imesasishwa {time}", "forecast": "Utabiri wa siku 7", "rain": "Mvua", "chance": "Uwezekano", "wind": "Upepo", "humidity": "Unyevunyevu", "today": "Leo", "tomorrow": "Kesho", "highLow": "Juu / chini", "note": "Utabiri ni makadirio ya eneo lako. Angalia hali katika shamba lako.", "sunny": "Anga safi", "cloudy": "Mawingu", "fog": "Ukungu", "wet": "Mvua", "storm": "Ngurumo", "snow": "Theluji", "unknown": "Hali ya sasa", "notFound": "Eneo halikupatikana. Angalia mji na nchi katika Mimi.", "source": "Hali ya hewa kutoka Open-Meteo"} },
   location: locationCopy.sw,
   setup: onboardingCopy.sw.setup,
   auth: onboardingCopy.sw.auth,

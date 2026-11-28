@@ -5,6 +5,15 @@ import { locationCopy } from './location-copy';
  */
 export const en = {
   location: locationCopy.en,
+  weather: {
+    title: 'Weather for your farm', enable: 'Show my forecast', privacy: 'Uses your selected approximate area with Open-Meteo. No background location.',
+    choose: 'Set your farm area to see its forecast.', change: 'Change area', refresh: 'Refresh forecast', loading: 'Updating forecast…',
+    unavailable: 'Weather could not update. Try again when connected.', offline: 'Offline · saved forecast', saved: 'Saved forecast · refresh before planning',
+    updated: 'Updated {time}', forecast: '7-day outlook', rain: 'Rain', chance: 'Chance', wind: 'Wind', humidity: 'Humidity',
+    today: 'Today', tomorrow: 'Tomorrow', highLow: 'High / low', note: 'Forecasts are estimates for your area. Check conditions in your own field.',
+    sunny: 'Clear skies', cloudy: 'Cloudy', fog: 'Fog', wet: 'Rain', storm: 'Thunderstorms', snow: 'Snow', unknown: 'Current conditions',
+    notFound: 'We could not find that area. Check the town and country in Me.', source: 'Weather by Open-Meteo',
+  },
   studio: {
     getAndroid: 'Get the Android app',
     getAndroidHelp: 'For phones: install the Munda app file from GitHub.',

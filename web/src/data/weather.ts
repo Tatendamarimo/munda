@@ -5,12 +5,18 @@ import { coarseCell } from '../domain/groups';
 import { Store } from './store';
 
 /**
- * Optional rain outlook for the home header, from Open-Meteo (free, no key). Only runs when the
- * farmer switched it on, and only online. Any failure keeps the last cached forecast, or nothing:
- * the header simply leaves weather out.
+ * Optional area-specific forecast from Open-Meteo. Refreshes only after consent and while online.
+ * Failed updates retain the same area’s cache with an explicit freshness label.
  */
+export interface ForecastDay { date: string; minC: number | null; maxC: number | null; rainMm: number | null; rainChance: number | null; code: number | null }
 export interface Weather {
   tempC: number;
+  humidity?: number | null;
+  windKph?: number | null;
+  code?: number | null;
+  days?: ForecastDay[];
+  timezone?: string;
+  areaKey?: string;
   /** ≥ 5 mm today or on one of the next 2 days. */
   rainSoon: boolean;
   /** Day of week (0 = Sunday) of the first such day. */
@@ -46,7 +52,23 @@ export function parseOpenMeteo(json: unknown, now: number): Weather | null {
       if (!Number.isNaN(d.getTime())) { rainDay = d.getUTCDay(); rainAt = d.getTime(); break; }
     }
   }
-  return { tempC: Math.round(temp), rainSoon: rainDay !== null, rainDay, rainAt, at: now };
+  const result: Weather = { tempC: Math.round(temp), rainSoon: rainDay !== null, rainDay, rainAt, at: now };
+  const raw = json as { current?: Record<string, unknown>; daily?: Record<string, unknown>; timezone?: unknown };
+  if (Array.isArray(raw.daily?.temperature_2m_max)) {
+    const value = (key: string, i: number) => { const a = raw.daily?.[key]; return Array.isArray(a) ? num(a[i]) : null; };
+    result.days = times.slice(0, 7).flatMap((date, i) => {
+      if (typeof date !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(date) || Number.isNaN(Date.parse(date)) || new Date(date).toISOString().slice(0, 10) !== date) return [];
+      const chance = value('precipitation_probability_max', i);
+      return [{ date, minC: value('temperature_2m_min', i), maxC: value('temperature_2m_max', i), rainMm: value('precipitation_sum', i) !== null && value('precipitation_sum', i)! >= 0 ? value('precipitation_sum', i) : null, rainChance: chance !== null && chance >= 0 && chance <= 100 ? chance : null, code: value('weather_code', i) }];
+    });
+    const humidity = num(raw.current?.relative_humidity_2m);
+    result.humidity = humidity !== null && humidity >= 0 && humidity <= 100 ? humidity : null;
+    const wind = num(raw.current?.wind_speed_10m);
+    result.windKph = wind !== null && wind >= 0 ? wind : null;
+    result.code = num(raw.current?.weather_code);
+    result.timezone = typeof raw.timezone === 'string' ? raw.timezone : 'UTC';
+  }
+  return result;
 }
 
 const SHOW_FOR = 24 * 3_600_000;
@@ -56,7 +78,7 @@ const SHOW_FOR = 24 * 3_600_000;
  * must not read as this week's weather), and no rain once its day has passed.
  */
 export function freshWeather(w: Weather | null, now: number): Weather | null {
-  if (!w || now - w.at > SHOW_FOR) return null;
+  if (!w || !Number.isFinite(w.at) || !Number.isFinite(w.tempC) || w.at > now + 60000 || now - w.at > SHOW_FOR) return null;
   if (w.rainAt !== null && w.rainAt !== undefined && now > w.rainAt + 12 * 3_600_000) return { ...w, rainSoon: false, rainDay: null, rainAt: null };
   return w;
 }
@@ -76,7 +98,7 @@ export function setWeatherEnabled(on: boolean) {
     else { localStorage.removeItem(ENABLED); localStorage.removeItem(CACHE); }
   } catch { /* best effort */ }
   if (on) void refreshWeather(true);
-  else weather.set(null);
+  else { requestVersion++; weather.set(null); weatherRequest.set('idle'); }
 }
 
 export interface Coords { latitude: number; longitude: number; label?: string }
@@ -104,38 +126,69 @@ export const placeCell = new Store<string | null>(typeof window === 'undefined' 
 /** Set when the typed area couldn't be found, so Me can say so instead of showing nothing. */
 export const placeNotFound = new Store<string | null>(null);
 
-async function geocode(place: string): Promise<Coords | null> {
-  const res = await fetch(`https://geocoding-api.open-meteo.com/v1/search?count=10&name=${encodeURIComponent(place)}`);
-  return res.ok ? parseGeocode(await res.json()) : null;
-}
+
+export const weatherRequest = new Store<'idle' | 'loading' | 'error'>('idle');
+let requestVersion = 0;
+const areaKey = () => prefs.value.place.trim();
 
 export async function refreshWeather(force = false): Promise<void> {
-  if (!weatherEnabled.value || !connectivity.value) return;
+  const area = areaKey();
+  // Invalidate a different area's cache even while offline, before the freshness shortcut.
   const cached = weather.value;
-  if (!force && cached && Date.now() - cached.at < MAX_AGE) return;
+  if (cached && cached.areaKey !== area) {
+    weather.set(null);
+    try { localStorage.removeItem(CACHE); } catch { /* storage unavailable */ }
+  }
+  const version = ++requestVersion;
+  if (!weatherEnabled.value || !connectivity.value) { weatherRequest.set('idle'); return; }
+  if (!force && weather.value && Date.now() - weather.value.at < MAX_AGE) { weatherRequest.set('idle'); return; }
+  weatherRequest.set('loading');
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 12000);
+  const current = () => version === requestVersion && weatherEnabled.value && areaKey() === area;
   try {
-    // Use only an explicitly selected approximate area; never trigger GPS in a background refresh.
     const located = selectedDeviceArea();
-    const place = prefs.value.place.trim();
-    const found = located ? null : place ? await geocode(place) : null;
-    placeNotFound.set(!located && place && !found ? place : null);
-    // A forecast for a previously typed place no longer applies.
-    if (!located && place && !found) { weather.set(null); try { localStorage.removeItem(CACHE); } catch { /* best effort */ } }
+    const response = !located && area ? await fetch(`https://geocoding-api.open-meteo.com/v1/search?count=10&name=${encodeURIComponent(area)}`, { signal: controller.signal }) : null;
+    if (response && !response.ok) throw new Error('Place lookup unavailable');
+    const found = response ? parseGeocode(await response.json()) : null;
+    if (!current()) return;
+    placeNotFound.set(!located && area && !found ? area : null);
     const coords = located ?? found;
-    if (!coords) return;
+    if (!coords) { weatherRequest.set('idle'); return; }
     const cell = coarseCell(coords.latitude, coords.longitude);
     placeCell.set(cell);
     try { localStorage.setItem(CELL, cell); } catch { /* best effort */ }
     const url = `https://api.open-meteo.com/v1/forecast?latitude=${coords.latitude.toFixed(2)}&longitude=${coords.longitude.toFixed(2)}`
-      + '&current=temperature_2m&daily=precipitation_sum&forecast_days=3&timezone=auto';
-    const res = await fetch(url);
-    if (!res.ok) return;
+      + '&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,precipitation_probability_max,weather_code&forecast_days=7&timezone=auto&wind_speed_unit=kmh';
+    const res = await fetch(url, { signal: controller.signal });
+    if (!res.ok) throw new Error('Forecast unavailable');
     const parsed = parseOpenMeteo(await res.json(), Date.now());
-    if (!parsed) return;
-    const w = { ...parsed, where: found?.label ?? null };
+    if (!parsed) throw new Error('Incomplete forecast');
+    if (!current()) return;
+    const w = { ...parsed, where: found?.label ?? area, areaKey: area };
     weather.set(w);
-    localStorage.setItem(CACHE, JSON.stringify(w));
+    try { localStorage.setItem(CACHE, JSON.stringify(w)); } catch { /* keep in memory */ }
+    weatherRequest.set('idle');
   } catch {
-    /* declined, offline or API down: keep whatever we had */
-  }
+    if (current()) weatherRequest.set('error');
+  } finally { clearTimeout(timeout); }
 }
+
+/** WMO codes describe current conditions, not whether a later day might be rainy. */
+export function weatherCondition(code: number | null | undefined): 'sunny' | 'cloudy' | 'fog' | 'wet' | 'storm' | 'snow' | 'unknown' {
+  if (code === 0) return 'sunny';
+  if (code !== null && code !== undefined && code >= 1 && code <= 3) return 'cloudy';
+  if (code === 45 || code === 48) return 'fog';
+  if ([71,73,75,77,85,86].includes(code ?? -1)) return 'snow';
+  if ([95,96,99].includes(code ?? -1)) return 'storm';
+  if ([51,53,55,56,57,61,63,65,66,67,80,81,82].includes(code ?? -1)) return 'wet';
+  return 'unknown';
+}
+export function forecastDate(now: number, timezone = 'UTC'): string {
+  try {
+    const parts = new Intl.DateTimeFormat('en', { timeZone: timezone, year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(now);
+    const part = (type: string) => parts.find(p => p.type === type)!.value;
+    return `${part('year')}-${part('month')}-${part('day')}`;
+  } catch { return new Date(now).toISOString().slice(0, 10); }
+}
+export const visibleForecastDays = (w: Weather, now: number) => (w.days ?? []).filter(day => day.date >= forecastDate(now, w.timezone));

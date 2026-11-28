@@ -7,6 +7,8 @@ import { en, type Messages } from './en';
  * Farming words farmers commonly use in English (e.g. "yellow", "fetiraiza") are kept as spoken.
  */
 export const sn: Messages = {
+  // Draft weather copy; remaining English text is explicit fallback pending review.
+  weather: { ...en.weather, ...{"privacy": "Inoshandisa nzvimbo yako yakafungidzirwa neOpen-Meteo. Haitsvagi nzvimbo yako iri kumashure.", "unavailable": "Mamiriro ekunze haana kuvandudzwa. Edza zvakare kana wava neindaneti.", "offline": "Hapana indaneti · mamiriro ekunze akachengetwa", "saved": "Mamiriro akachengetwa · vandudza usati waronga", "note": "Aya mafungidziro emamiriro ekunze enzvimbo yako. Ongorora zviri kuitika mumunda mako.", "notFound": "Nzvimbo iyi haina kuwanikwa. Tarisa guta nenyika muchikamu chaIni.", "source": "Mamiriro ekunze kubva kuOpen-Meteo"}, ...{"title": "Mamiriro ekunze epapurazi", "enable": "Ratidza mamiriro ekunze", "choose": "Sarudza nzvimbo yepurazi kuti uone mamiriro ekunze.", "change": "Chinja nzvimbo", "refresh": "Vandudza mamiriro ekunze", "loading": "Kuvandudza mamiriro ekunze…", "forecast": "Mazuva manomwe anotevera", "rain": "Mvura", "chance": "Mukana", "wind": "Mhepo", "humidity": "Hunyoro", "today": "Nhasi", "tomorrow": "Mangwana", "sunny": "Kwakachena", "cloudy": "Kune makore", "fog": "Mhute", "wet": "Mvura", "storm": "Mabhanan’ana", "snow": "Sinou", "unknown": "Mamiriro ekunze zvino", "updated": "Zvavandudzwa {time}"} },
   location: locationCopy.sn,
   setup: onboardingCopy.sn.setup,
   auth: onboardingCopy.sn.auth,

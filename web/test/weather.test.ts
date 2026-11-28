@@ -1,6 +1,8 @@
-import { describe, expect, it } from 'vitest';
+import { prefs } from '../src/data/prefs';
+import { connectivity } from '../src/data/connectivity';
+import { describe, expect, it, vi, afterEach } from 'vitest';
 import { cropWeeks } from '../src/data/prefs';
-import { freshWeather, parseGeocode, parseOpenMeteo } from '../src/data/weather';
+import { freshWeather, parseGeocode, parseOpenMeteo, weatherCondition, visibleForecastDays, refreshWeather, weather, weatherEnabled, setWeatherEnabled } from '../src/data/weather';
 
 const now = Date.UTC(2026, 10, 24, 9); // Tuesday 24 Nov 2026
 const sample = {
@@ -66,5 +68,55 @@ describe('finding a typed place when location is blocked', () => {
     expect(parseGeocode({ results: [] })).toBeNull();
     expect(parseGeocode({ results: [{ name: 'x' }] })).toBeNull();
     expect(parseGeocode(null)).toBeNull();
+  });
+});
+
+
+describe('detailed forecasts', () => {
+  const detailed = { ...sample, timezone: 'Africa/Harare', current: { ...sample.current, weather_code: 3, relative_humidity_2m: 65, wind_speed_10m: 12.4 }, daily: { ...sample.daily, temperature_2m_max: [28,29,25,27], temperature_2m_min: [16,17,15,18], precipitation_probability_max: [10,20,90,null], weather_code: [3,1,63,0] } };
+  it('retains rain chance separately from rain amount and preserves missing values', () => {
+    const forecast = parseOpenMeteo(detailed, now)!;
+    expect(forecast).toMatchObject({ humidity: 65, windKph: 12.4, code: 3, timezone: 'Africa/Harare' });
+    expect(forecast.days![2]).toMatchObject({ rainChance: 90, rainMm: 8.5, minC: 15, maxC: 25 });
+    expect(forecast.days![3]!.rainChance).toBeNull();
+    expect(parseOpenMeteo({ ...detailed, daily: { ...detailed.daily, precipitation_sum: [null,0,0,0] } }, now)!.days![0]!.rainMm).toBeNull();
+  });
+  it('uses current weather code rather than rain forecast later in the week', () => {
+    expect(weatherCondition(3)).toBe('cloudy'); expect(weatherCondition(0)).toBe('sunny');
+    expect(weatherCondition(63)).toBe('wet'); expect(weatherCondition(95)).toBe('storm');
+    expect(weatherCondition(null)).toBe('unknown');
+  });
+  it('filters expired days in the farm timezone rather than the browser timezone', () => {
+    const forecast = parseOpenMeteo(detailed, now)!;
+    forecast.timezone = 'America/Los_Angeles';
+    expect(visibleForecastDays(forecast, Date.UTC(2026,10,27,1)).map(d => d.date)).toEqual(['2026-11-26','2026-11-27']);
+  });
+  it('does not display malformed or future-dated cache records', () => {
+    const w = parseOpenMeteo(detailed, now)!;
+    expect(freshWeather({ ...w, at: NaN }, now)).toBeNull();
+    expect(freshWeather({ ...w, at: now + 3600000 }, now)).toBeNull();
+  });
+});
+
+describe('weather location and consent', () => {
+  afterEach(() => { vi.unstubAllGlobals(); weatherEnabled.set(false); weather.set(null); connectivity.set(true); });
+  it('clears a different area even when offline and the cache is otherwise fresh', async () => {
+    prefs.set({ ...prefs.value, place: 'Marondera' });
+    weather.set({ ...parseOpenMeteo(sample, Date.now())!, areaKey: 'Harare' });
+    weatherEnabled.set(true); connectivity.set(false);
+    await refreshWeather(); expect(weather.value).toBeNull();
+  });
+  it('does not restore weather after opting out while a request is in flight', async () => {
+    prefs.set({ ...prefs.value, place: 'Harare' }); weatherEnabled.set(true);
+    let resolve!: (response: Response) => void;
+    const fetcher = vi.fn(() => new Promise<Response>(r => { resolve = r; })); vi.stubGlobal('fetch', fetcher);
+    const running = refreshWeather(true);
+    setWeatherEnabled(false);
+    resolve({ ok: true, json: async () => ({ results: [{ latitude: -17.8, longitude: 31, name: 'Harare' }] }) } as Response);
+    await running; expect(weather.value).toBeNull(); expect(fetcher).toHaveBeenCalledTimes(1);
+  });
+  it('does not fetch anything when weather is disabled', async () => {
+    const fetcher = vi.fn(); vi.stubGlobal('fetch', fetcher); weatherEnabled.set(false);
+    await refreshWeather(true); expect(fetcher).not.toHaveBeenCalled();
   });
 });

@@ -4,6 +4,8 @@ import { en, type Messages } from './en';
 
 /** French. Beta: machine-drafted, needs native-speaker review. */
 export const fr: Messages = {
+  // Draft weather copy; remaining English text is explicit fallback pending review.
+  weather: { ...en.weather, ...{"title": "La météo de votre ferme", "enable": "Afficher les prévisions", "privacy": "Utilise votre zone approximative avec Open-Meteo. Aucune localisation en arrière-plan.", "choose": "Indiquez la zone de votre ferme pour voir les prévisions.", "change": "Changer de zone", "refresh": "Actualiser les prévisions", "loading": "Actualisation des prévisions…", "unavailable": "La météo n’a pas pu être actualisée. Réessayez avec une connexion.", "offline": "Hors ligne · prévisions enregistrées", "saved": "Prévisions enregistrées · actualisez avant de planifier", "updated": "Actualisées {time}", "forecast": "Prévisions sur 7 jours", "rain": "Pluie", "chance": "Probabilité", "wind": "Vent", "humidity": "Humidité", "today": "Aujourd’hui", "tomorrow": "Demain", "highLow": "Max. / min.", "note": "Les prévisions sont des estimations pour votre zone. Vérifiez les conditions dans votre champ.", "sunny": "Ciel dégagé", "cloudy": "Nuageux", "fog": "Brouillard", "wet": "Pluie", "storm": "Orages", "snow": "Neige", "unknown": "Conditions actuelles", "notFound": "Zone introuvable. Vérifiez la ville et le pays dans Moi.", "source": "Météo par Open-Meteo"} },
   location: locationCopy.fr,
   setup: onboardingCopy.fr.setup,
   auth: onboardingCopy.fr.auth,

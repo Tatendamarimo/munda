@@ -4,6 +4,8 @@ import { en, type Messages } from './en';
 
 /** Portuguese (Mozambique/Angola/Brazil). Beta: machine-drafted, needs native-speaker review. */
 export const pt: Messages = {
+  // Draft weather copy; remaining English text is explicit fallback pending review.
+  weather: { ...en.weather, ...{"title": "Tempo na sua exploração", "enable": "Mostrar previsão", "privacy": "Usa a sua área aproximada com o Open-Meteo. Sem localização em segundo plano.", "choose": "Defina a área da exploração para ver a previsão.", "change": "Alterar área", "refresh": "Atualizar previsão", "loading": "A atualizar a previsão…", "unavailable": "Não foi possível atualizar o tempo. Tente quando tiver ligação.", "offline": "Sem ligação · previsão guardada", "saved": "Previsão guardada · atualize antes de planear", "updated": "Atualizada {time}", "forecast": "Previsão para 7 dias", "rain": "Chuva", "chance": "Probabilidade", "wind": "Vento", "humidity": "Humidade", "today": "Hoje", "tomorrow": "Amanhã", "highLow": "Máx. / mín.", "note": "As previsões são estimativas para a sua área. Verifique as condições no seu campo.", "sunny": "Céu limpo", "cloudy": "Nublado", "fog": "Nevoeiro", "wet": "Chuva", "storm": "Trovoada", "snow": "Neve", "unknown": "Condições atuais", "notFound": "Área não encontrada. Verifique a localidade e o país em Eu.", "source": "Tempo por Open-Meteo"} },
   location: locationCopy.pt,
   setup: onboardingCopy.pt.setup,
   auth: onboardingCopy.pt.auth,

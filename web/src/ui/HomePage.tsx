@@ -1,14 +1,14 @@
-import { BookOpen, Check, CloudRain, Camera, HardDrive, MapPin, Sprout, Sun, TriangleAlert } from 'lucide-react';
+import { WeatherCard } from './WeatherCard';
+import { BookOpen, Check, Camera, HardDrive, MapPin, Sprout, TriangleAlert } from 'lucide-react';
 import { account } from '../data/session';
 import { mundaAi } from '../ai/mundaAi';
 import { connectivity } from '../data/connectivity';
 import { cropWeeks, prefs } from '../data/prefs';
 import { useStore } from '../data/store';
-import { freshWeather, weather } from '../data/weather';
 import { farmSummary, latestAlert, plotsFrom, timeline } from '../domain/farm';
 import { causeDisplay } from '../domain/localize';
 import { guideFor } from '../domain/guide';
-import { labelPattern, labelStage, relativeTime, useLang, useT, weekday } from '../i18n';
+import { labelPattern, labelStage, relativeTime, useLang, useT } from '../i18n';
 import { Hero } from './Header';
 import { GroupAlertCard } from './GroupAlertCard';
 import { GuideThumb } from './GuidePicture';
@@ -25,7 +25,6 @@ export function HomePage() {
   const lang = useLang();
   const items = useObservations();
   const p = useStore(prefs);
-  const w = freshWeather(useStore(weather), Date.now());
   const online = useStore(connectivity);
   const local = useStore(mundaAi.local);
   const observations = (items ?? []).map((i) => i.observation);
@@ -38,9 +37,9 @@ export function HomePage() {
   const stage = active && active.latest.cropStage !== 'UNKNOWN' ? labelStage(active.latest.cropStage, lang) : null;
   const cropLine = [t('home.cropLine'), weeks !== null ? t('home.weeks', { weeks }) : null, stage].filter(Boolean).join(' · ');
   const readiness = local.state === 'AVAILABLE' ? 'studio.supported' : local.state === 'UNAVAILABLE' ? 'studio.cloudOnly' : local.state === 'UNKNOWN' ? 'studio.checking' : 'studio.download';
-  const meta = <>{p.place && <span><MapPin size={15} aria-hidden="true" />{p.place}</span>}{w && <span>{w.rainSoon ? <CloudRain size={15} aria-hidden="true" /> : <Sun size={15} aria-hidden="true" />}{t('home.temp', { temp: w.tempC })} · {w.rainSoon && w.rainDay !== null ? t('home.rainOn', { day: weekday(w.rainDay, lang) }) : t('home.noRain')}</span>}</>;
+  const meta = <>{p.place && <span><MapPin size={15} aria-hidden="true" />{p.place}</span>}</>;
   return <>
-    <Hero right={<StatusPill />} meta={p.place || w ? meta : undefined}>
+    <Hero right={<StatusPill />} meta={p.place ? meta : undefined}>
       <span className="eyebrow hero-eyebrow">{t('studio.overview')}</span>
       <div className="hero-greeting"><div><h1>{p.name ? t('home.greeting', { name: p.name }) : t('studio.journal')}</h1><p className="hero-sub">{cropLine}</p></div><span className="hero-season"><Sprout size={22} aria-hidden="true" /></span></div>
       <div className="stats">
@@ -54,6 +53,7 @@ export function HomePage() {
         <div className="scout-copy"><span className="eyebrow">{t('studio.fieldCheck')}</span><h2>{t('home.checkCrop')}</h2><p>{t('home.checkCropSub')}</p><button className="btn btn-maize" onClick={() => navigate({ name: 'observe' })}><Camera size={21} aria-hidden="true" />{t('home.checkCrop')}</button></div>
         <div className="scout-visual"><FieldArtwork compact /></div>
       </section>
+      <WeatherCard />
       <div className="dashboard-main">
         <GroupAlertCard />
         {alert && <a className="alert-card" href={href({ name: 'record', id: alert.observation.id })}><TriangleAlert size={23} aria-hidden="true" /><span><b>{t('home.alert')} · {alert.observation.plot}</b><span className="alert-description">{labelPattern(alert.pattern.kind, lang)}. {alert.observation.review?.nextChecks[0] ?? alert.pattern.summary}</span></span></a>}

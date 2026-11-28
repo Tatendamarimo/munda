@@ -4,6 +4,8 @@ import { en, type Messages } from './en';
 
 /** Spanish. Beta: machine-drafted, needs native-speaker review. */
 export const es: Messages = {
+  // Draft weather copy; remaining English text is explicit fallback pending review.
+  weather: { ...en.weather, ...{"title": "El tiempo en tu finca", "enable": "Mostrar pronóstico", "privacy": "Usa tu zona aproximada con Open-Meteo. Sin ubicación en segundo plano.", "choose": "Indica la zona de tu finca para ver el pronóstico.", "change": "Cambiar zona", "refresh": "Actualizar pronóstico", "loading": "Actualizando pronóstico…", "unavailable": "No se pudo actualizar el tiempo. Inténtalo cuando tengas conexión.", "offline": "Sin conexión · pronóstico guardado", "saved": "Pronóstico guardado · actualiza antes de planificar", "updated": "Actualizado {time}", "forecast": "Pronóstico de 7 días", "rain": "Lluvia", "chance": "Probabilidad", "wind": "Viento", "humidity": "Humedad", "today": "Hoy", "tomorrow": "Mañana", "highLow": "Máx. / mín.", "note": "El pronóstico es una estimación para tu zona. Comprueba las condiciones en tu campo.", "sunny": "Despejado", "cloudy": "Nublado", "fog": "Niebla", "wet": "Lluvia", "storm": "Tormentas", "snow": "Nieve", "unknown": "Condiciones actuales", "notFound": "No encontramos esa zona. Revisa la localidad y el país en Yo.", "source": "Tiempo de Open-Meteo"} },
   location: locationCopy.es,
   setup: onboardingCopy.es.setup,
   auth: onboardingCopy.es.auth,
