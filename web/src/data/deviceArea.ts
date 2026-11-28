@@ -16,11 +16,28 @@ export function selectedDeviceArea(): DeviceArea | null {
     return a && a.label === prefs.value.place && Number.isFinite(a.latitude) && Number.isFinite(a.longitude) ? a : null;
   } catch { return null; }
 }
+/** Resolve a town name using only the coarse cell, after the explicit location action. */
+export async function nameDeviceArea(area: DeviceArea): Promise<DeviceArea> {
+  if (navigator.onLine === false) return area;
+  try {
+    const query = new URLSearchParams({ latitude: String(area.latitude), longitude: String(area.longitude), localityLanguage: 'en' });
+    const response = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?${query}`, { signal: AbortSignal.timeout(6000) });
+    if (!response.ok) return area;
+    const data = await response.json();
+    const clean = (v: unknown): string => typeof v === 'string' ? v.trim().slice(0, 120) : '';
+    const town = clean(data.city) || clean(data.locality) || clean(data.principalSubdivision);
+    const country = clean(data.countryName);
+    return town ? { ...area, label: [...new Set([town, country].filter(Boolean))].join(', ') } : area;
+  } catch { return area; }
+}
 /** Called only from the explicit location button, never during startup or rendering. */
 export async function pickDeviceArea(): Promise<void> {
   if (!isNativeIOS() && !navigator.geolocation) throw new Error('unavailable');
+  const originalPlace = prefs.value.place;
   const p = isNativeIOS() ? await Geolocation.getCurrentPosition({ enableHighAccuracy: false, maximumAge: 300000, timeout: 15000 }) : await new Promise<GeolocationPosition>((resolve, reject) => navigator.geolocation.getCurrentPosition(resolve, reject, {enableHighAccuracy:false,maximumAge:300000,timeout:15000}));
-  const a = approximateArea(p.coords.latitude, p.coords.longitude);
+  const a = await nameDeviceArea(approximateArea(p.coords.latitude, p.coords.longitude));
+  // Preserve edits made while either location or the name lookup was pending.
+  if (prefs.value.place !== originalPlace) return;
   localStorage.setItem(KEY, JSON.stringify(a));
   updatePrefs({place:a.label});
 }
